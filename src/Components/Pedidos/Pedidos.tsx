@@ -1,19 +1,30 @@
 import Card from '../Card/Card'
-import Pizzas from '../../_temp/Pizzas.json'
+import Comidas from '../../_temp/Comidas.json'
+import '../Pedidos/Pedidos.css'
+import SearchBar from './SearchBar'
 
 export default function Pedidos() {
 
     return (
-        <div>
+        <div className='Contenedor'>
+            <SearchBar></SearchBar>
             {
-                Pizzas.length > 0 ?
+                Comidas.length > 0 ?
 
-                    typeof Pizzas === "object" ?
-
-                        Pizzas.map(recipe => {
+                    typeof Comidas === "object" ?
+                        Comidas.map(categoria => {
                             return (
-                                <div key={recipe.name} >
-                                    <Card name={recipe.name} image={recipe.img} price={recipe.price}/>
+                                <div className='Categoria'>
+                                    <h3>{Object.keys(categoria)} ( {Object.values(categoria)[0].length} )</h3>
+                                    <div className='Contenedor_cartas'>
+                                        {
+                                            Object.values(categoria)[0].map((comida: any) => {
+                                                return (
+                                                    <Card name={comida.name} image={comida.img} price={comida.price} />
+                                                )
+                                            })
+                                        }
+                                    </div>
                                 </div>
                             )
                         })

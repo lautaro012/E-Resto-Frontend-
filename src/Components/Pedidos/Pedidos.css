@@ -1,0 +1,29 @@
+.Contenedor {
+    padding: 5%;
+    background-color: #808080;
+}
+
+.Contenedor_cartas {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: 2%;
+    border-style: solid;
+    text-align: center;
+    max-width: min-content;
+}
+
+.card a {
+    word-break: break-all;
+    text-decoration: none;
+}
+
+.card:hover {
+    background-size: cover;
+    background-position: center;
+    transform: translateY(-15px);
+    box-shadow: 20px 20px 30px rgba(0,0,0,0.7);
+    cursor: pointer;
+}
