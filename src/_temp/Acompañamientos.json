@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Tortilla de papas",
+        "description": "Tortilla de papas",
+        "price": 1000,
+        "off": false,
+        "combo": false,
+        "img": "https://images.rappi.com.ar/products/2018151-1618507927746.jpg?e=webp&d=800x800&q=80"
+    },
+    {
+        "name": "Papas fritas",
+        "description": "Porcion de papas fritas para 2 personas",
+        "price": 1000,
+        "off": false,
+        "combo": false,
+        "img": "https://images.rappi.com.ar/products/2018149-1619199424915.jpg?e=webp&d=800x800&q=80"
+    },
+    {
+        "name": "Papas Cerveceras",
+        "description": "Papas fritas con cheddar, panceta y verdeo",
+        "price": 1300,
+        "off": false,
+        "combo": false,
+        "img": "https://images.rappi.com.ar/products/2018148-1618508286190.png?e=webp&d=800x800&q=80"
+    }
+]

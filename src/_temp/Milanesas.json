@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Mila Napolitana",
+        "description": "Milanesa con salsa de tomate, queso muzzarella y jamón",
+        "price": 1500,
+        "off": false,
+        "combo": false,
+        "img": "https://images.rappi.com.ar/products/1579602-1619199408414.jpg?e=webp&d=800x800&q=80"
+    },
+    {
+        "name": "Mila Completa",
+        "description": "Milanesa con huevos fritos",
+        "price": 1350,
+        "off": false,
+        "combo": false,
+        "img": "https://images.rappi.com.ar/products/1464154-1597089380193.png?e=webp&d=800x800&q=80"
+    },
+    {
+        "name": "Mila BBQ",
+        "description": "Milanesa con salsa barbacoa, panceta crocante y huevos fritos ",
+        "price": 1550,
+        "off": false,
+        "combo": false,
+        "img": "https://images.rappi.com.ar/products/1464164-1597089419402.png?e=webp&d=800x800&q=80"
+    },
+    {
+        "name": "Mila Guacamole",
+        "description": "Milanesa, queso crema, guacamole, salsa criolla y nachos",
+        "price": 1600,
+        "off": false,
+        "combo": false,
+        "img": "https://images.rappi.com.ar/products/2029677-1619199424928.jpg?e=webp&d=800x800&q=80"
+    }
+]
