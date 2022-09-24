@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
+<<<<<<< Updated upstream
 
 function App() {
   return (
@@ -52,6 +53,21 @@ function App() {
         </span>
       </header>
     </div>
+=======
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Pedidos from '../src/Components/Pedidos/Pedidos'
+import Home from '../src/Components/Home/Home'
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home/>} />
+        <Route path='/pedidos' element={<Pedidos />} />
+      </Routes>
+    </Router>
+>>>>>>> Stashed changes
   );
 }
 
