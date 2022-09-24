@@ -1,0 +1,13 @@
+.home-conteiner {
+    background-color: #121212;
+    color: white;
+    transition: 1s;
+}
+
+.logo-conteiner{
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+}

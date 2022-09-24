@@ -6,6 +6,7 @@ const store = configureStore({
     reducer: rootReducer
 })
 type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>;
+//HOOKS PARA USAR REDUX
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 export const useAppDispatch: () => AppDispatch = useDispatch;
-export type RootState = ReturnType<typeof store.getState>;
