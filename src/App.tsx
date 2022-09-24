@@ -1,7 +1,5 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 
 function App() {
@@ -68,6 +66,19 @@ function App() {
       </Routes>
     </Router>
 >>>>>>> Stashed changes
+=======
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Pedidos from '../src/Components/Pedidos/Pedidos'
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path='/pedidos' element={<Pedidos />} />
+      </Routes>
+    </Router>
+>>>>>>> Development
   );
 }
 
