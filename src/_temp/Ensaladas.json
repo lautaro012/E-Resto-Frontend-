@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Ensalada Cesar",
+        "description": "Pollo, lechuga, parmesano, croutones y salsa especial.",
+        "price": 1100,
+        "off": false,
+        "combo": false,
+        "img": "https://images.rappi.com.ar/products/2018269-1619199424925.jpg?e=webp&d=800x800&q=80"
+    },
+    {
+        "name": "Ensalada Serrana",
+        "description": "Rúcula, jamón crudo, tomate cherry y parmesano.",
+        "price": 1100,
+        "off": false,
+        "combo": false,
+        "img": "https://images.rappi.com.ar/products/2018268-1619199424922.jpg?e=webp&d=800x800&q=80"
+    },
+    {
+        "name": "Ensalada Completa",
+        "description": "Lechuga, tomate, cebolla, zanahoria, morrón, jamón y queso.",
+        "price": 1100,
+        "off": false,
+        "combo": false,
+        "img": "https://images.rappi.com.ar/products/2018270-1619199424926.jpg?e=webp&d=800x800&q=80"
+    }
+]
