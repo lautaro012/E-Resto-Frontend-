@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Cerveza Heineken lata",
+        "description": "Cerveza",
+        "price": 450,
+        "off": false,
+        "combo": false,
+        "img": "https://http2.mlstatic.com/D_NQ_NP_637542-MLA49976820839_052022-O.webp"
+    },
+    {
+        "name": "Schneider Lager 473 ml",
+        "description": "Cerveza",
+        "price": 350,
+        "off": false,
+        "combo": false,
+        "img": "https://images.rappi.com.ar/products/1139196-1588023044528.png?e=webp&d=800x800&q=80"
+    },
+    {
+        "name": "Stella Artois 473 ml",
+        "description": "Cerveza",
+        "price": 450,
+        "off": false,
+        "combo": false,
+        "img": "https://http2.mlstatic.com/D_NQ_NP_759447-MLA43740133080_102020-O.webp0"
+    },
+    {
+        "name": "Andes Roja 473 ml",
+        "description": "Cerveza",
+        "price": 450,
+        "off": false,
+        "combo": false,
+        "img": "https://http2.mlstatic.com/D_NQ_NP_736046-MLA48522001422_122021-O.webp"
+    },
+    {
+        "name": "Imperial Ipa 43 ml",
+        "description": "Cerveza",
+        "price": 450,
+        "off": false,
+        "combo": false,
+        "img": "https://http2.mlstatic.com/D_NQ_NP_855362-MLA46569073008_062021-O.webp"
+    }
+]
