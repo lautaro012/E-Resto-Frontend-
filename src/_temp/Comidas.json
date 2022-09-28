@@ -374,5 +374,93 @@
                 "img": "https://images.rappi.com.ar/products/1976666-1619199408419.jpg?e=webp&d=800x800&q=80"
             }
         ]
+    },
+    {
+        "Cervezas" : [
+            {
+                "name": "Cerveza Heineken lata",
+                "description": "Cerveza",
+                "price": 450,
+                "off": false,
+                "combo": false,
+                "img": "https://http2.mlstatic.com/D_NQ_NP_637542-MLA49976820839_052022-O.webp"
+            },
+            {
+                "name": "Schneider Lager 473 ml",
+                "description": "Cerveza",
+                "price": 350,
+                "off": false,
+                "combo": false,
+                "img": "https://images.rappi.com.ar/products/1139196-1588023044528.png?e=webp&d=800x800&q=80"
+            },
+            {
+                "name": "Stella Artois 473 ml",
+                "description": "Cerveza",
+                "price": 450,
+                "off": false,
+                "combo": false,
+                "img": "https://http2.mlstatic.com/D_NQ_NP_759447-MLA43740133080_102020-O.webp0"
+            },
+            {
+                "name": "Andes Roja 473 ml",
+                "description": "Cerveza",
+                "price": 450,
+                "off": false,
+                "combo": false,
+                "img": "https://http2.mlstatic.com/D_NQ_NP_736046-MLA48522001422_122021-O.webp"
+            },
+            {
+                "name": "Imperial Ipa 43 ml",
+                "description": "Cerveza",
+                "price": 450,
+                "off": false,
+                "combo": false,
+                "img": "https://http2.mlstatic.com/D_NQ_NP_855362-MLA46569073008_062021-O.webp"
+            }
+        ]
+    },
+    {
+        "Bebidas sin alcohol" : [
+            {
+                "name": "Pepsi Regular 354 ml",
+                "description": "Gaseosa",
+                "price": 200,
+                "off": false,
+                "combo": false,
+                "img": "https://images.rappi.com.ar/products/9698b85c-3e59-4524-a40a-ddd03d3c1e64-1628272541947.png?e=webp&d=800x800&q=80"
+            },
+            {
+                "name": "Pepsi Regular 354 ml",
+                "description": "Gaseosa",
+                "price": 200,
+                "off": false,
+                "combo": false,
+                "img": "https://images.rappi.com.ar/products/9698b85c-3e59-4524-a40a-ddd03d3c1e64-1628272541947.png?e=webp&d=800x800&q=80"
+            },
+            {
+                "name": "7Up Lima Limón 354 ml",
+                "description": "Gaseosa",
+                "price": 200,
+                "off": false,
+                "combo": false,
+                "img": "https://images.rappi.com.ar/products/e39991c4-3185-4d2b-a2ab-e1ec3661bbb5-1628272573706.png?e=webp&d=800x800&q=80"
+            },
+            {
+                "name": "Pepsi Black 354 ml",
+                "description": "Gaseosa",
+                "price": 200,
+                "off": false,
+                "combo": false,
+                "img": "https://images.rappi.com.ar/products/b67b4f63-412c-4866-92a1-2fe4366764f3-1628272584783.png?e=webp&d=800x800&q=80"
+            },
+            {
+                "name": "Villavicencio 500 ml",
+                "description": "Agua",
+                "price": 200,
+                "off": false,
+                "combo": false,
+                "img": "https://http2.mlstatic.com/D_NQ_NP_777853-MLA44632277984_012021-O.webp"
+            }
+        ]
     }
 ]
