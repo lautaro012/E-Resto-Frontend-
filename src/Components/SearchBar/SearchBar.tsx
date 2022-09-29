@@ -1,8 +1,12 @@
 import { useState } from "react";
+import '../SearchBar/SearchBar.css'
+import lupa from '../../Style/images/lupa.png'
+import { useDispatch } from "react-redux";
 
 export default function SearchBar() {
 
     const [name, setName] = useState<String>("")
+    // const dispatch = useDispatch()
 
     function handleInput(event:React.ChangeEvent<HTMLInputElement>) {
         setName(event.target.value)
@@ -11,19 +15,25 @@ export default function SearchBar() {
     function handleSubmit(event:React.FormEvent<HTMLFormElement>) {
         console.log(name)
         event.preventDefault()
+        // dispatch(getAllProducts(name))
         setName("")
+       
+        
     }
 
     return (
-        <div>
-            <form onSubmit={(event) => handleSubmit(event)}>
+        <div className="divPrueba">
+            <form onSubmit={(event) => handleSubmit(event)} className='formSearchBarStyle'>
                 <input
                     id="searchbar"
                     type='text'
                     placeholder="Search..."
                     onChange={(event) => handleInput(event)}
+                    className='inputFormSearchBarStyle'
                 />
-                <button type="submit" >Search</button>
+                <button type="submit" className="formButtonSearchBarStyle">
+                <img src={lupa} alt="lupa" width='20' className='lupitaImgButtonStyle'/>
+                </button>
             </form>
         </div>
     )
