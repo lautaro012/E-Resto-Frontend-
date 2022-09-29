@@ -1,8 +1,10 @@
+import { useState } from "react";
 import Card from '../Card/Card'
 import Comidas from '../../_temp/Comidas.json'
 import '../Pedidos/Pedidos.css'
 import SearchBar from './SearchBar'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
+import { Modal } from 'reactstrap'
 
 export default function Pedidos() {
 
@@ -16,6 +18,26 @@ export default function Pedidos() {
             left: 0,
             behavior: 'smooth'
         });
+    }
+
+    const [detailPop, setDetailPop] = useState(false)
+    const [detailCard, setDetailCard] = useState({
+        name: "",
+        image: "",
+        price: 0,
+        description: ""
+    })
+
+    function openDetail(event: any, comida: any) {
+        event.preventDefault()
+        setDetailCard({
+            name: comida.name,
+            image: comida.img,
+            price: comida.price,
+            description: comida.description,
+        })
+        console.log(detailCard)
+        setDetailPop(true)
     }
 
     return (
@@ -34,6 +56,17 @@ export default function Pedidos() {
                 <SearchBar></SearchBar>
 
                 {
+                    detailPop !== false ?
+                        <div>
+                            <h1>{detailCard.name}</h1>
+                            <img src={detailCard.image} alt="ImagenPOP" ></img>
+                            <button onClick={() => setDetailPop(false)}>X</button>
+                        </div>
+                        :
+                        null
+                }
+
+                {
                     Comidas.length > 0 ?
 
                         typeof Comidas === "object" ?
@@ -45,7 +78,9 @@ export default function Pedidos() {
                                             {
                                                 Object.values(categoria)[0].map((comida: any) => {
                                                     return (
-                                                        <Card name={comida.name} image={comida.img} price={comida.price} description={comida.description} />
+                                                        <div onClick={(event) => openDetail(event, comida)}>
+                                                            <Card name={comida.name} image={comida.img} price={comida.price} description={comida.description} />
+                                                        </div>
                                                     )
                                                 })
                                             }

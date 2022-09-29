@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-interface CardProp { name: string, image: string, price: number, description: string }
+interface CardProp { name: string, image: string, price: number, description: string };
+
 
 export default function Card({ name, image, price, description }: CardProp) {
 
