@@ -1,6 +1,6 @@
 import NavBar from "../NavBar/NavBar"
 import './Home.css'
-import Logo from '../../Style/images/logo.jpg'
+import Logo from '../../Style/images/logo.svg'
 import { Footer } from "../Footer/Footer"
 import Products from "../Products/Products"
 import { useRef } from "react"
