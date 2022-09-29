@@ -1,7 +1,7 @@
 import Card from '../Card/Card'
 import Comidas from '../../_temp/Comidas.json'
 import '../Pedidos/Pedidos.css'
-import SearchBar from './SearchBar'
+import SearchBar from '../SearchBar/SearchBar'
 import { useNavigate } from "react-router-dom";
 
 export default function Pedidos() {
