@@ -45,7 +45,7 @@ export default function Pedidos() {
                                             {
                                                 Object.values(categoria)[0].map((comida: any) => {
                                                     return (
-                                                        <Card name={comida.name} image={comida.img} price={comida.price} description={comida.description} />
+                                                        <Card off={0} name={comida.name} image={comida.img} price={comida.price} description={comida.description} />
                                                     )
                                                 })
                                             }
