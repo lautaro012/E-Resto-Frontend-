@@ -31,15 +31,33 @@ export default function Form () {
                     <form>
                         <div className='input-label'>
                             <label>Nombre:</label>
-                            <input onChange={handleChange}  type='string' name='name' ></input>
+                            <input onChange={handleChange} 
+                            maxLength={15}
+                            required
+                            name="name"
+                            type="text"
+                            placeholder="Inserte un nombre"
+                            ></input>
                         </div>
                         <div className='input-label'>
                             <label>Descripcion:</label>
-                            <input onChange={handleChange} type='string' name='description' ></input>
+                            <input onChange={handleChange} 
+                            required 
+                            type="text"
+                            placeholder="Descripcion"
+                            name='description'
+                            ></input>
                         </div>
                         <div className='input-label'>
                             <label>Precio:</label>
-                            <input onChange={handleChange} name='price' type='number' ></input>
+                            <input onChange={handleChange} 
+                            required
+                            placeholder='Ingrese un precio'
+                            name='price' 
+                            type='number'
+                            min={0}
+                            max={9999}
+                            ></input>
                         </div>
                         <div>
                             <label>Desea agregar el producto como oferta ?</label>
@@ -55,7 +73,11 @@ export default function Form () {
                         </div>
                         <div className='input-label'>
                             <label>Imagen:</label>
-                            <input onChange={handleChange} name='image'  type='url'/>
+                            <input onChange={handleChange} 
+                            required 
+                            name='image'  
+                            type='url'
+                            />
                         </div>
                         <button type='submit'>Crear</button>
                     </form>

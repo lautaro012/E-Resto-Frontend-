@@ -32,10 +32,8 @@ export default function Pedidos() {
             <div className='Contenedor'>
 
                 <SearchBar></SearchBar>
-
                 {
                     Comidas.length > 0 ?
-
                         typeof Comidas === "object" ?
                             Comidas.map(categoria => {
                                 return (
