@@ -1,7 +1,7 @@
-import { useState } from 'react'
+
+import React, { useState } from 'react'
 import Card from '../Card/Card'
 import './Form.css'
-
 
 export default function Form () {
 
