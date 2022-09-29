@@ -80,8 +80,7 @@
     overflow: hidden;
     width: 35px;
     height: 30px;
-    right: 0;
-    bottom: 0;
+    bottom: 14px;
     position: absolute;
     background-color: #222222;
     border: none;
@@ -92,6 +91,7 @@
     cursor: pointer;
     outline: none;
     transition: all 0.3s ease-in;
+    left: 205px;
   }
   .card__add:hover {
     opacity: 0.8;
@@ -107,4 +107,16 @@
   .card:hover .card__data {
     transform: translateY(-5px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+  .off_price{
+    display: flex;
+    align-items: center;
+  }
+  .tag_off h3{
+    background-color: greenyellow;
+    color: green;
+    border-radius: 10px;
+    padding: 3px;
+    margin: 2px;
+    border: 1px solid green;
   }
