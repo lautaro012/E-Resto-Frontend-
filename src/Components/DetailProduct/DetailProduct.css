@@ -1,0 +1,47 @@
+.detail {
+    position: fixed;
+    z-index: 10;
+    background-color: #F1FFC4;
+    display: flex;
+    align-items: flex-start;
+    min-width: 100pc;
+    max-width: 100pc;
+    max-height: 80%;
+    justify-content: space-between;
+    top: 5%;
+    left: 5%;
+  }
+  
+  #contenedor_detail img {
+    max-width: 100%;
+  }
+  
+  .detail_label {
+    background-color: #808080;
+    display: flex;
+    max-width: 80vh;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  
+  #detalle_der {
+    margin: 1%;
+  }
+  
+  #detalle_izq {
+    margin: 1%;
+    max-width: 50%;
+  }
+
+  #contenedor_detail {
+
+    /* position: fixed;
+    z-index: 10; */
+    background-color: #F1FFC4;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    /* top: 5%;
+    left: 5%; */
+    min-height: 100vh;
+  }
