@@ -13,15 +13,15 @@ export default function Pedidos() {
         dispatch(getCategories())
     }, [dispatch])
 
-    let categories = useAppSelector((state:any) => state.categories);
+    let categories = useAppSelector((state: any) => state.categories);
 
-    let products = useAppSelector((state:any) => state.products);
+    let products = useAppSelector((state: any) => state.products);
 
     return (
         <>
             <NavBar></NavBar>
             <div className='Contenedor'>
-                <div className='background_image_gps'/>
+                <div className='background_image_gps' />
                 <div className='sort-buttons'>
                     <select><option>DIETAS</option></select>
                     <button>SORT</button>
@@ -34,7 +34,7 @@ export default function Pedidos() {
                         <div className='categorias-conteiner'>
                             <ul>
                                 {
-                                    categories.map((cat:any) => {
+                                    categories.map((cat: any) => {
                                         return (
                                             <li key={cat._id}> {cat.name} </li>
                                         )
@@ -45,20 +45,20 @@ export default function Pedidos() {
                     </div>
                     <div className='productos-conteiner'>
                         {
-                            categories?.map((categoria:any) => {
+                            categories?.map((categoria: any) => {
                                 return (
                                     <div key={categoria._id} className='Categoria'>
                                         <h3>{categoria.name}</h3>
 
                                         <div className='Contenedor_cartas'>
                                             {
-                                            products?.map((comida: any) => {
-                                                if(comida.categoryProducts.name === categoria.name){
-                                                     return (
-                                                        <Card off={0} key={comida._id} name={comida.name} img={comida.img} price={comida.price} description={comida.description} />
-                                                    )
-                                                }
-                                                   
+                                                products?.map((comida: any) => {
+                                                    if (comida.categoryProducts.name === categoria.name) {
+                                                        return (
+                                                            <Card off={0} key={comida._id} name={comida.name} img={comida.img} price={comida.price} description={comida.description} />
+                                                        )
+                                                    }
+
                                                 })
                                             }
                                         </div>
