@@ -1,17 +1,25 @@
 import Card from '../Card/Card'
 import '../Pedidos/Pedidos.css'
 import NavBar from '../NavBar/NavBar'
-import { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../config'
 import { getCategories, getProducts } from '../../redux/actions'
 
 export default function Pedidos() {
 
+    const [order, setOrder] = useState('')
+
+    function orderAbc(e:any) {
+         e.preventDefault(e)
+        setOrder(e.target.value)
+    }
+
     let dispatch = useAppDispatch()
     useEffect(() => {
-        dispatch(getProducts())
+        console.log(order)
+        dispatch(getProducts(order))
         dispatch(getCategories())
-    }, [dispatch])
+    }, [dispatch, order])
 
     let categories = useAppSelector((state:any) => state.categories);
 
@@ -24,7 +32,11 @@ export default function Pedidos() {
                 <div className='background_image_gps'/>
                 <div className='sort-buttons'>
                     <select><option>DIETAS</option></select>
-                    <button>SORT</button>
+                        <select onChange={(e) => orderAbc(e)}>
+                            <option value=''>Ordenar por nombre:</option>
+                            <option value='AZ'>AZ</option>
+                            <option value='ZA'>ZA</option>
+                        </select>
                     <button>SORT</button>
                     <button>MAS COMPRADOS</button>
                     <button>MAS POPULARES</button>
@@ -56,9 +68,8 @@ export default function Pedidos() {
                                                 if(comida.categoryProducts.name === categoria.name){
                                                      return (
                                                         <Card off={0} key={comida._id} name={comida.name} img={comida.img} price={comida.price} description={comida.description} />
-                                                    )
-                                                }
-                                                   
+                                                    )       
+                                                }                   
                                                 })
                                             }
                                         </div>
