@@ -63,9 +63,7 @@ export default function Pedidos() {
                     <div className='productos-conteiner'>
                         {
                             categories?.map((categoria: any) => {
-                                if(products.length > 0) {
-                                    
-                                }
+
                                 return (
                                     <div id={categoria.name} key={categoria._id} className='Categoria'>
                                         <h3>{categoria.name}</h3>
