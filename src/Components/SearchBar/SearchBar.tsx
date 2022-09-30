@@ -15,7 +15,10 @@ export default function SearchBar() {
 
     function handleSubmit(event:React.FormEvent<HTMLFormElement>) {
         console.log(name)
+        event.preventDefault()
         dispatch(getProductsByName(name))
+        setName("")
+
     }
 
     return (
@@ -28,7 +31,7 @@ export default function SearchBar() {
                     onChange={(event) => handleInput(event)}
                     className='inputFormSearchBarStyle'
                 />
-                <button type="submit" className="formButtonSearchBarStyle">
+                <button type="submit" className="formButtonSearchBarStyle" >
                 <img src={lupa} alt="lupa" width='20' className='lupitaImgButtonStyle'/>
                 </button>
             </form>
