@@ -19,7 +19,7 @@
     border-radius: 5px;
 }
 
-.form-conteiner form:invalid button{
+.form-conteiner form:invalid .submit-button{
     pointer-events: none;
     opacity: 0.3;
 }

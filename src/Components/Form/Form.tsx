@@ -105,7 +105,7 @@ export default function Form () {
                                 :
                                 <div>
                                     <input onChange={handleChange} name='off' placeholder='Seleccione Descuento(%)' type='number'></input>
-                                    <button type='button' onClick={handleOferta}>Quitar Oferta</button>
+                                    <button onClick={handleOferta}>Quitar Oferta</button>
                                 </div>
                             }
                         </div>
@@ -140,7 +140,7 @@ export default function Form () {
                             type='url'
                             />
                         </div>
-                        <button type='submit'>Crear</button>
+                        <button className='submit-button' type='submit'>Crear</button>
                     </form>
                 </div>
             </aside>
