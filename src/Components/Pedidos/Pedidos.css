@@ -142,15 +142,23 @@
   }
   .categorias-conteiner {
     background-color: #FFE2D1;
-    padding: 10px;
-    border-radius: 60px;
+    border-radius: 16px;
     border: 2px solid #CC998D;
-    position: -webkit-sticky;
     position: sticky;
     top: 31%;
   }
   .categorias-conteiner ul {
     list-style: none;
+  }
+  .categorias-conteiner ul a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .categorias-conteiner ul a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: purple;
   }
   .categorias-conteiner li {
     font-size: 1.5rem;
