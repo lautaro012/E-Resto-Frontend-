@@ -147,7 +147,7 @@
     border: 2px solid #CC998D;
     position: -webkit-sticky;
     position: sticky;
-    top: 0;
+    top: 31%;
   }
   .categorias-conteiner ul {
     list-style: none;
