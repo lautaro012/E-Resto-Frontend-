@@ -1,5 +1,5 @@
 .Contenedor {
-    padding: 5%;
+
     background-color: #808080;
 }
 
@@ -119,4 +119,44 @@
     padding: 3px;
     margin: 2px;
     border: 1px solid green;
+  }
+
+  .background_image_gps {
+    width: 100%;
+    height: 45vh;
+    background-size: cover;
+    background-position-y: center;
+    background-image: url('https://arushad.org/wp-content/uploads/2015/03/map-1200x630.png');
+  }
+
+  .sort-buttons {
+    display: flex;
+    width: 100%;
+    height: 5vh;
+    background-color: #CC998D;
+    justify-content: space-evenly;
+  }
+  .categorias-productos{
+    display: flex;
+    background-color: #F1FFC4;
+    flex-direction: row;
+  }
+  .categorias-conteiner {
+    background-color: #FFE2D1;
+    padding: 10px;
+    border-radius: 60px;
+    border: 2px solid #CC998D;
+  }
+  .categorias-conteiner ul {
+    list-style: none;
+  }
+  .categorias-conteiner li {
+    font-size: 1.5rem;
+    padding: 1%;
+  }
+  .categorias-div{
+    width: 30%;
+  }
+  .productos-conteiner{
+    width: 70%;
   }
