@@ -6,6 +6,7 @@ import { CardProp } from "../../Interfaces/Interfaces";
 export default function Card({ name, image, price, description, off }: CardProp) {
 
     let currentprice = (price * off/100)
+
     return (
         // <div className="card2">
         //     <img src={image} alt={name} width="200" height="150" />

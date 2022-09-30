@@ -1,10 +1,11 @@
 import { useState } from "react";
 import Card from '../Card/Card'
 import Comidas from '../../_temp/Comidas.json'
+import BebidasSinAlcohol from '../../_temp/BebidasSinAlcohol.json'
+import Postres from '../../_temp/Postres.json'
 import '../Pedidos/Pedidos.css'
 import SearchBar from './SearchBar'
 import { useNavigate, Link, useParams } from "react-router-dom";
-import { Modal } from 'reactstrap'
 
 export default function Pedidos() {
 
@@ -21,11 +22,13 @@ export default function Pedidos() {
     }
 
     const [detailPop, setDetailPop] = useState(false)
+
     const [detailCard, setDetailCard] = useState({
         name: "",
         image: "",
         price: 0,
-        description: ""
+        description: "",
+        off: 0
     })
 
     function openDetail(event: any, comida: any) {
@@ -35,8 +38,8 @@ export default function Pedidos() {
             image: comida.img,
             price: comida.price,
             description: comida.description,
+            off: comida.off
         })
-        console.log(detailCard)
         setDetailPop(true)
     }
 
@@ -57,9 +60,56 @@ export default function Pedidos() {
 
                 {
                     detailPop !== false ?
-                        <div>
-                            <h1>{detailCard.name}</h1>
-                            <img src={detailCard.image} alt="ImagenPOP" ></img>
+                        <div className="imagePOP">
+                            <div id="detalle_izq">
+                                <h1>{detailCard.name}</h1>
+                                <img src={detailCard.image} alt="ImagenPOP" ></img>
+                                <h2>$ {detailCard.price}</h2>
+                                {
+                                    detailCard.off !== 0 ?
+                                        <h2>{detailCard.off}</h2>
+                                        :
+                                        null
+                                }
+                            </div>
+                            <div id="detalle_der">
+                                <div>
+                                    <h2>Detalles</h2>
+                                    <p>{detailCard.description}</p>
+                                </div>
+                                <div className="detail_label">
+                                    <details>
+                                        <summary><h2>Bebida (opcional)</h2></summary>
+                                        {
+                                            BebidasSinAlcohol.map(bebida => {
+                                                return (
+                                                    <option>{bebida.name}</option>
+                                                )
+                                            })
+                                        }
+                                    </details>
+                                </div>
+                                <div className="detail_label">
+                                    <details>
+                                        <summary><h2>Postre (opcional)</h2></summary>
+                                        {
+                                            Postres.map(postre => {
+                                                return (
+                                                    <option>{postre.name}</option>
+                                                )
+                                            })
+                                        }
+                                    </details>
+                                </div>
+                                <div>
+                                    <h2>Comentarios</h2>
+                                    <textarea
+                                        name='comentarios'
+                                        placeholder="Algo que nos quieras comentar sobre el pedido ?"
+                                        rows={5} cols={55}
+                                    />
+                                </div>
+                            </div>
                             <button onClick={() => setDetailPop(false)}>X</button>
                         </div>
                         :
@@ -79,7 +129,7 @@ export default function Pedidos() {
                                                 Object.values(categoria)[0].map((comida: any) => {
                                                     return (
                                                         <div onClick={(event) => openDetail(event, comida)}>
-                                                            <Card name={comida.name} image={comida.img} price={comida.price} description={comida.description} />
+                                                            <Card name={comida.name} image={comida.img} price={comida.price} description={comida.description} off={comida.off} />
                                                         </div>
                                                     )
                                                 })
