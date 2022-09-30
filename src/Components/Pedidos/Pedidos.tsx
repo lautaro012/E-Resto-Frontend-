@@ -15,7 +15,7 @@ export default function Pedidos() {
 
     let categories = useAppSelector((state:any) => state.categories);
 
-    // let products = useAppSelector((state:any) => state.products);
+    let products = useAppSelector((state:any) => state.products);
 
     return (
         <>
@@ -49,12 +49,16 @@ export default function Pedidos() {
                                 return (
                                     <div key={categoria._id} className='Categoria'>
                                         <h3>{categoria.name}</h3>
+
                                         <div className='Contenedor_cartas'>
                                             {
-                                            categoria?.categoryProducts?.map((comida: any) => {
-                                                    return (
+                                            products?.map((comida: any) => {
+                                                if(comida.categoryProducts.name === categoria.name){
+                                                     return (
                                                         <Card off={0} key={comida._id} name={comida.name} img={comida.img} price={comida.price} description={comida.description} />
                                                     )
+                                                }
+                                                   
                                                 })
                                             }
                                         </div>

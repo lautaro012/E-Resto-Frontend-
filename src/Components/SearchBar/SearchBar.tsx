@@ -1,12 +1,13 @@
 import { useState } from "react";
 import '../SearchBar/SearchBar.css'
 import lupa from '../../Style/images/lupa.png'
-import { useDispatch } from "react-redux";
+import { getProductsByName } from "../../redux/actions";
+import { useAppDispatch } from "../../config";
 
 export default function SearchBar() {
 
     const [name, setName] = useState<String>("")
-    // const dispatch = useDispatch()
+     let dispatch = useAppDispatch()
 
     function handleInput(event:React.ChangeEvent<HTMLInputElement>) {
         setName(event.target.value)
@@ -15,10 +16,9 @@ export default function SearchBar() {
     function handleSubmit(event:React.FormEvent<HTMLFormElement>) {
         console.log(name)
         event.preventDefault()
-        // dispatch(getAllProducts(name))
+        dispatch(getProductsByName(name))
         setName("")
-       
-        
+
     }
 
     return (

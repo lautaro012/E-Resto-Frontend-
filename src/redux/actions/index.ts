@@ -2,6 +2,7 @@ import { Dispatch } from "react";
 import axios from 'axios'
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const GET_CATEGORIES = 'GET_CATEGORIES'
+export const GET_PRODUCTS_BY_NAME = 'GET_PRODUCTS_BY_NAME'
 
 type Action = {
     type: string;
@@ -19,6 +20,27 @@ export const getProducts = () => {
         })
         .catch(err => console.log(err))
     }
+}
+
+export const getProductsByName = (name : String) => {
+    if(name) {
+        return function (dispatch:Dispatch<Action>) {
+            try {
+                axios(`http://localhost:3001/product?name=${name}`)
+                .then(res => res.data)
+                .then(res => {
+                    dispatch({
+                    type: GET_PRODUCTS_BY_NAME,
+                    payload: res
+                })
+                })
+                .catch(err => console.log(err))
+            } catch(err) {
+               console.log(err)
+            }
+        }
+    }
+
 }
 
 export const getCategories = () => {
@@ -48,31 +70,3 @@ export const createForm = function (input:any) {
     }
 }
 
-// export const getProductsByName = function (name : string) {
-//     if(name) {
-//         return async function (dispatch:Dispatch<Action>) {
-//             try {
-//                 let res = await axios (`/product?name=${name}`)
-//                 dispatch({
-//                     type: 'GET_PRODUCTS_BY_NAME',
-//                     payload: res.data
-//                 })
-//             } catch(err) {
-//                 dispatch({
-//                     type: 'GET_PRODUCTS_BY_NAME',
-//                     payload: 'no encontramos el producto'
-//                 })
-//             }
-//         }
-//     }
-//     else {
-//         return async function (dispatch:Dispatch<Action>) {
-//             let res = await axios ('/product')
-//             dispatch({
-//                 type: 'GET_ALL_PRODUCTS',
-//                 payload: res.data
-//             })
-//         }
-//     }
-
-// }

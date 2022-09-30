@@ -1,4 +1,4 @@
-import { GET_CATEGORIES, GET_PRODUCTS } from "../actions";
+import { GET_CATEGORIES, GET_PRODUCTS, GET_PRODUCTS_BY_NAME } from "../actions";
 
 const initialState:any = {
     backup: [],
@@ -14,6 +14,11 @@ const initialState:any = {
             return {
                 ...state,
                 backup: action.payload,
+                products: action.payload
+            }
+        case GET_PRODUCTS_BY_NAME: 
+            return{
+                ...state,
                 products: action.payload
             }
         case GET_CATEGORIES:
