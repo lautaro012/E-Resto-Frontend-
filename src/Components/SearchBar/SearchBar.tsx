@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import '../SearchBar/SearchBar.css'
 import lupa from '../../Style/images/lupa.png'
 import { getProductsByName } from "../../redux/actions";
@@ -15,10 +15,7 @@ export default function SearchBar() {
 
     function handleSubmit(event:React.FormEvent<HTMLFormElement>) {
         console.log(name)
-        event.preventDefault()
         dispatch(getProductsByName(name))
-        setName("")
-
     }
 
     return (

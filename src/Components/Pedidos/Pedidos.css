@@ -1,5 +1,4 @@
 .Contenedor {
-
     background-color: #808080;
 }
 
@@ -143,20 +142,32 @@
   }
   .categorias-conteiner {
     background-color: #FFE2D1;
-    padding: 10px;
-    border-radius: 60px;
+    border-radius: 16px;
     border: 2px solid #CC998D;
+    position: sticky;
+    top: 31%;
   }
   .categorias-conteiner ul {
     list-style: none;
+  }
+  .categorias-conteiner ul a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .categorias-conteiner ul a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: purple;
   }
   .categorias-conteiner li {
     font-size: 1.5rem;
     padding: 1%;
   }
   .categorias-div{
-    width: 30%;
+    width: 22%;
   }
   .productos-conteiner{
     width: 70%;
+    margin-left: 3%;
   }

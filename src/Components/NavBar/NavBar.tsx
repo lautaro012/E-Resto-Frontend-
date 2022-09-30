@@ -1,9 +1,10 @@
 import './NavBar.css'
 import { useNavigate } from "react-router-dom";
 import SearchBar from '../SearchBar/SearchBar'
+import { NavBarProp } from '../../Interfaces/Interfaces';
 
 
-export default function NavBar () {
+export default function NavBar({ comeback }: NavBarProp) {
     const navigate = useNavigate();
 
     const handleHome = () => {
@@ -16,7 +17,15 @@ export default function NavBar () {
         });
     }
     return (
-        <nav className="pedidos-navbar-conteiner">
+        <>
+        {
+            comeback ?
+            <nav className="pedidos-navbar-conteiner">
+                <button onClick={() => navigate('/pedidos')}> {'<'} </button>
+           
+            </nav>
+            :
+            <nav className="pedidos-navbar-conteiner">
             <header>
                 <button onClick={handleHome}><img width={150} src='http://www.occohelados.com.ar/_nuxt/img/logo.18d63ee.png' alt='LOGO'></img></button>
                 <div>
@@ -24,10 +33,12 @@ export default function NavBar () {
                 </div>
                 <SearchBar></SearchBar>
                 <div className='pedidos-navbar-buttons'>
-                    <button> Carrito </button>
-                    <button> Log in </button>
+                   
+                    <button onClick={() => navigate('/crear')}> Crear Producto </button>
                 </div>
-            </header>
-        </nav>
+                </header>
+            </nav>
+        }
+        </>  
 )
 }

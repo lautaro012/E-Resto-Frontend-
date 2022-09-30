@@ -1,17 +1,25 @@
 import Card from '../Card/Card'
 import '../Pedidos/Pedidos.css'
 import NavBar from '../NavBar/NavBar'
-import { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../config'
 import { getCategories, getProducts } from '../../redux/actions'
 
 export default function Pedidos() {
 
+    const [order, setOrder] = useState('')
+
+    function orderSort(e: any) {
+        e.preventDefault(e)
+        setOrder(e.target.value)
+    }
+
     let dispatch = useAppDispatch()
     useEffect(() => {
-        dispatch(getProducts())
+        console.log(order)
+        dispatch(getProducts(order))
         dispatch(getCategories())
-    }, [dispatch])
+    }, [dispatch, order])
 
     let categories = useAppSelector((state: any) => state.categories);
 
@@ -19,13 +27,21 @@ export default function Pedidos() {
 
     return (
         <>
-            <NavBar></NavBar>
+            <NavBar comeback={false} />
             <div className='Contenedor'>
                 <div className='background_image_gps' />
                 <div className='sort-buttons'>
                     <select><option>DIETAS</option></select>
-                    <button>SORT</button>
-                    <button>SORT</button>
+                    <select onChange={(e) => orderSort(e)}>
+                        <option value=''>Ordenar por nombre:</option>
+                        <option value='AZ'>AZ</option>
+                        <option value='ZA'>ZA</option>
+                    </select>
+                    <select onChange={(e) => orderSort(e)}>
+                        <option value=''>Ordenar por precio:</option>
+                        <option value='mayor'>Mayor precio</option>
+                        <option value='menor'>Menor precio</option>
+                    </select>
                     <button>MAS COMPRADOS</button>
                     <button>MAS POPULARES</button>
                 </div>
@@ -36,7 +52,7 @@ export default function Pedidos() {
                                 {
                                     categories.map((cat: any) => {
                                         return (
-                                            <li key={cat._id}> {cat.name} </li>
+                                            <a href={`#${cat.name}`}><li key={cat._id}> {cat.name} </li></a>
                                         )
                                     })
                                 }
@@ -47,11 +63,12 @@ export default function Pedidos() {
                         {
                             categories?.map((categoria: any) => {
                                 return (
-                                    <div key={categoria._id} className='Categoria'>
+                                    <div id={categoria.name} key={categoria._id} className='Categoria'>
                                         <h3>{categoria.name}</h3>
 
                                         <div className='Contenedor_cartas'>
                                             {
+
                                                 products?.map((comida: any) => {
                                                     if (comida.categoryProducts.name === categoria.name) {
                                                         return (
