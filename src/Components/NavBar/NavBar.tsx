@@ -23,11 +23,18 @@ export default function NavBar ({el, home}:any) {
 
                     <button onClick={() => navigate('/pedidos')}> HACE TU PEDIDO </button>
                 </div>
+<<<<<<< Updated upstream
                 <img src='http://www.occohelados.com.ar/_nuxt/img/logo.18d63ee.png' alt='LOGO'></img>
                 <div className='navbar-buttons'>
                     <button> CATALOGO </button>
 
                     <button onClick={handleClick}> CONTACTANOS </button>
+=======
+                <SearchBar></SearchBar>
+                <div className='pedidos-navbar-buttons'>
+                    <button> Carrito </button>
+                    <button onClick={() => navigate('/crear')}> Crear Producto </button>
+>>>>>>> Stashed changes
                 </div>
             </header>
         </nav>
