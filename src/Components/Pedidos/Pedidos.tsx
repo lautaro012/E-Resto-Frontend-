@@ -9,7 +9,7 @@ export default function Pedidos() {
 
     const [order, setOrder] = useState('')
 
-    function orderAbc(e:any) {
+    function orderSort(e:any) {
          e.preventDefault(e)
         setOrder(e.target.value)
     }
@@ -32,12 +32,16 @@ export default function Pedidos() {
                 <div className='background_image_gps'/>
                 <div className='sort-buttons'>
                     <select><option>DIETAS</option></select>
-                        <select onChange={(e) => orderAbc(e)}>
+                        <select onChange={(e) => orderSort(e)}>
                             <option value=''>Ordenar por nombre:</option>
                             <option value='AZ'>AZ</option>
                             <option value='ZA'>ZA</option>
                         </select>
-                    <button>SORT</button>
+                        <select onChange={(e) => orderSort(e)}>
+                            <option value=''>Ordenar por precio:</option>
+                            <option value='mayor'>Mayor precio</option>
+                            <option value='menor'>Menor precio</option>
+                        </select>
                     <button>MAS COMPRADOS</button>
                     <button>MAS POPULARES</button>
                 </div>

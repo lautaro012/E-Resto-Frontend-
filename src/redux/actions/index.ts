@@ -36,6 +36,12 @@ export const getProducts = (sort : String) => {
                     return 0;
                   });
             }
+            if(sort === 'mayor') {
+                resp.sort(function(a:any, b:any){return b.price - a.price})
+            }
+            if(sort === 'menor') {
+                resp.sort(function(a:any, b:any){return a.price - b.price})
+            }
             //   console.log(resp)
             dispatch({
                 type: GET_PRODUCTS,
