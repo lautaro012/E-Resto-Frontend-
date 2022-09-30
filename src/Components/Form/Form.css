@@ -13,9 +13,17 @@
     border: 2px solid black
 }
 .form-conteiner input:invalid {
-    border: 2px solid lightslategray;
-    background-color: rgba(119, 136, 153, 0.108);
+    background-color: ghostwhite;
+    border: none;
+    outline: 2px solid red;
+    border-radius: 5px;
 }
+
+.form-conteiner form:invalid button{
+    pointer-events: none;
+    opacity: 0.3;
+}
+
 .input-label{
     padding: 1rem 1rem 1rem 0;
 }
