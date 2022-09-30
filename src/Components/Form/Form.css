@@ -1,13 +1,34 @@
 .form-conteiner {
     background-color: ghostwhite;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+}
+.form-conteiner aside{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 .form-conteiner input:valid {
     border: 2px solid black
 }
 .form-conteiner input:invalid {
-    border: 2px solid lightslategray;
-    background-color: rgba(119, 136, 153, 0.108);
+    background-color: ghostwhite;
+    border: none;
+    outline: 2px solid red;
+    border-radius: 5px;
+}
+
+.form-conteiner form:invalid button{
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.input-label{
+    padding: 1rem 1rem 1rem 0;
+}
+.input-label input{
+    width: 100%;
+    height: 1.5rem;
+    padding: 1%;
 }

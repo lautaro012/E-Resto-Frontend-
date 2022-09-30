@@ -19,7 +19,7 @@ export default function Pedidos() {
 
     return (
         <>
-            <NavBar></NavBar>
+            <NavBar comeback={false}/>
             <div className='Contenedor'>
                 <div className='background_image_gps'/>
                 <div className='sort-buttons'>

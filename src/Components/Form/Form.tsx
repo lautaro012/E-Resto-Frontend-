@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../config'
 import { CardForm } from '../../Interfaces/Interfaces'
 import { createForm, getCategories } from '../../redux/actions'
 import Card from '../Card/Card'
+import NavBar from '../NavBar/NavBar'
 import './Form.css'
 
 export default function Form () {
@@ -42,7 +43,7 @@ export default function Form () {
             ...input,
             category: e.target.value
         })
-        console.log(e.target.value)
+
     }
     const handleSubmit = (e:any) => {
         e.preventDefault()
@@ -59,6 +60,8 @@ export default function Form () {
         })
     }
     return (
+        <>
+            <NavBar comeback={true}/>
         <div className='form-conteiner'>
             <aside>
                 <h1> Inserta la informacion de tu Producto:</h1>
@@ -119,6 +122,17 @@ export default function Form () {
                             </select>
                         </div>
                         <div className='input-label'>
+                            <label>Stock:</label>
+                            <input onChange={handleChange} 
+                            required
+                            placeholder='Ingrese un stock inicial'
+                            name='stock' 
+                            type='number'
+                            min={0}
+                            max={9999}
+                            ></input>
+                        </div>
+                        <div className='input-label'>
                             <label>Imagen:</label>
                             <input onChange={handleChange} 
                             required 
@@ -135,6 +149,7 @@ export default function Form () {
             </aside>
         </div>
 
+        </>
 
     )
 }
