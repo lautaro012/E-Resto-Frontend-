@@ -1,4 +1,4 @@
-import NavBar from "../NavBar/NavBar"
+import HomeBar from '../HomeBar/HomeBar'
 import './Home.css'
 import Logo from '../../Style/images/logo.svg'
 import { Footer } from "../Footer/Footer"
@@ -15,7 +15,7 @@ export default function Home () {
     return (
         <div className="home-conteiner">
             <header>
-            <NavBar el={el} home={home}/>
+            <HomeBar el={el} home={home}/>
             <div className="logo-conteiner" >
                 <img ref={home} width={400} src={Logo} alt='logo'/>
             </div>
