@@ -5,7 +5,7 @@ export interface CardProp {
     img: string, 
     price: number, 
     description: string,
-    off: number
+    off: number,
 }
 
 export interface CardForm extends CardProp{
