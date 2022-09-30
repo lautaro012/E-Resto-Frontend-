@@ -1,49 +1,59 @@
 import Card from '../Card/Card'
-import Comidas from '../../_temp/Comidas.json'
 import '../Pedidos/Pedidos.css'
-import SearchBar from '../SearchBar/SearchBar'
-import { useNavigate } from "react-router-dom";
+import NavBar from '../NavBar/NavBar'
+import { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '../../config'
+import { getCategories, getProducts } from '../../redux/actions'
 
 export default function Pedidos() {
 
-    const navigate = useNavigate();
+    let dispatch = useAppDispatch()
+    useEffect(() => {
+        dispatch(getProducts())
+        dispatch(getCategories())
+    }, [dispatch])
 
-    const handleHome = () => {
-        // home.current?.scrollIntoView({behavior: 'smooth'});
-        navigate('/')
-        window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
-    }
+    let categories = useAppSelector((state:any) => state.categories);
+
+    // let products = useAppSelector((state:any) => state.products);
 
     return (
         <>
-            <nav className="navbar-conteiner">
-                <header>
-                    <div className='navbar-buttons'>
-                        <button onClick={handleHome}> HOME </button>
-                    </div>
-                    <img src='http://www.occohelados.com.ar/_nuxt/img/logo.18d63ee.png' alt='LOGO'></img>
-
-                </header>
-            </nav>
+            <NavBar></NavBar>
             <div className='Contenedor'>
-
-                <SearchBar></SearchBar>
-                {
-                    Comidas.length > 0 ?
-                        typeof Comidas === "object" ?
-                            Comidas.map(categoria => {
+                <div className='background_image_gps'/>
+                <div className='sort-buttons'>
+                    <select><option>DIETAS</option></select>
+                    <button>SORT</button>
+                    <button>SORT</button>
+                    <button>MAS COMPRADOS</button>
+                    <button>MAS POPULARES</button>
+                </div>
+                <div className='categorias-productos'>
+                    <div className='categorias-div'>
+                        <div className='categorias-conteiner'>
+                            <ul>
+                                {
+                                    categories.map((cat:any) => {
+                                        return (
+                                            <li key={cat._id}> {cat.name} </li>
+                                        )
+                                    })
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div className='productos-conteiner'>
+                        {
+                            categories?.map((categoria:any) => {
                                 return (
-                                    <div className='Categoria'>
-                                        <h3>{Object.keys(categoria)} ( {Object.values(categoria)[0].length} )</h3>
+                                    <div key={categoria._id} className='Categoria'>
+                                        <h3>{categoria.name}</h3>
                                         <div className='Contenedor_cartas'>
                                             {
-                                                Object.values(categoria)[0].map((comida: any) => {
+                                            categoria?.categoryProducts?.map((comida: any) => {
                                                     return (
-                                                        <Card off={0} name={comida.name} image={comida.img} price={comida.price} description={comida.description} />
+                                                        <Card off={0} key={comida._id} name={comida.name} img={comida.img} price={comida.price} description={comida.description} />
                                                     )
                                                 })
                                             }
@@ -51,13 +61,9 @@ export default function Pedidos() {
                                     </div>
                                 )
                             })
-                            :
-                            <h5>No hay comidas</h5>
-                        :
-                        <div>
-                            <h5>Loading...</h5>
-                        </div>
-                }
+                        }
+                    </div>
+                </div>
             </div>
         </>
     )

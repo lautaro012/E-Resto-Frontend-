@@ -1,19 +1,33 @@
 
-import { useState } from 'react'
-import { CardProp } from '../../Interfaces/Interfaces'
+import { useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../../config'
+import { CardForm } from '../../Interfaces/Interfaces'
+import { createForm, getCategories } from '../../redux/actions'
 import Card from '../Card/Card'
 import './Form.css'
 
 export default function Form () {
 
-    const [input, setInput] = useState<CardProp>({
+    const [oferta, setOferta] = useState<Boolean>(false)
+    const [input, setInput] = useState<CardForm>({
         name: 'test',
-        image: 'https://citizengo.org/sites/default/files/images/test_3.png',
+        img: 'https://citizengo.org/sites/default/files/images/test_3.png',
         price: 0,
         description: 'test-description',
-        off: 0
+        off: 0,
+        stock: 0,
+        rating: 3,
+        category: '',
     })
-    const [oferta, setOferta] = useState<Boolean>(false)
+
+    let dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(getCategories())
+    }, [dispatch])
+
+    let categories = useAppSelector((state:any) => state.categories);
+
     const handleOferta = () => {
         oferta ? setOferta(false) : setOferta(true)
     }
@@ -23,12 +37,33 @@ export default function Form () {
             [e.target.name] : e.target.value
         })
     }
+    const handleSelect = (e:any) => {
+        setInput({
+            ...input,
+            category: e.target.value
+        })
+        console.log(e.target.value)
+    }
+    const handleSubmit = (e:any) => {
+        e.preventDefault()
+        dispatch(createForm(input))
+        setInput({
+            name: 'test',
+            img: 'https://citizengo.org/sites/default/files/images/test_3.png',
+            price: 0,
+            description: 'test-description',
+            off: 0,
+            stock: 0,
+            rating: 3,
+            category: '',
+        })
+    }
     return (
         <div className='form-conteiner'>
             <aside>
                 <h1> Inserta la informacion de tu Producto:</h1>
                 <div>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className='input-label'>
                             <label>Nombre:</label>
                             <input onChange={handleChange} 
@@ -72,10 +107,22 @@ export default function Form () {
                             }
                         </div>
                         <div className='input-label'>
+                            <select onChange={handleSelect} required>    
+                                <option>Seleccione una categoria</option>                          
+                                {
+                                    categories.map((cat:any) => {
+                                        return(
+                                            <option key={cat.name} value={cat.name}>{cat.name}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </div>
+                        <div className='input-label'>
                             <label>Imagen:</label>
                             <input onChange={handleChange} 
                             required 
-                            name='image'  
+                            name='img'  
                             type='url'
                             />
                         </div>
@@ -84,9 +131,8 @@ export default function Form () {
                 </div>
             </aside>
             <aside>
-                <h1>PREVIEW</h1>
-                <Card off={input.off} name={input.name} image={input.image} description={input.description} price={input.price}></Card>
-</aside>
+                <Card off={input.off} name={input.name} img={input.img} description={input.description} price={input.price}></Card>
+            </aside>
         </div>
 
 

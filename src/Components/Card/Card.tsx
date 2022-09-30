@@ -2,7 +2,7 @@ import { current } from "@reduxjs/toolkit";
 import { Link } from "react-router-dom";
 import { CardProp } from "../../Interfaces/Interfaces";
 
-export default function Card({ name, image, price, description, off }: CardProp) {
+export default function Card({ name, img, price, description, off }: CardProp) {
 
     let currentprice = price - (price * off/100)
     return (
@@ -17,7 +17,7 @@ export default function Card({ name, image, price, description, off }: CardProp)
             <div className="container">
                 <div className="grid">
                     <article className="card">
-                        <img className="card__image" src={image} alt={name} width="200" height="200"/>
+                        <img className="card__image" src={img} alt={name} width="200" height="200"/>
                         <div className="card__data">
                             <div className="card__info">
                                 <h2>{name}</h2>
