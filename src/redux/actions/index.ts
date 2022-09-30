@@ -11,10 +11,40 @@ type Action = {
     payload?: any;
 };
 
-export const getProducts = () => {
+export const getProducts = (sort : String) => {
+
     return function(dispatch:Dispatch<Action>) {
         axios('http://localhost:3001/product').then(resp => resp.data)
         .then(resp => {
+            if(sort === 'AZ') {
+                resp.sort(function (a:any, b:any) {
+                if (a.name > b.name) {
+                  return 1;
+                }
+                if (a.name < b.name) {
+                  return -1;
+                }
+                return 0;
+              });
+            }
+            if(sort === 'ZA') {
+                resp.sort(function (a:any, b:any) {
+                    if (b.name > a.name) {
+                      return 1;
+                    }
+                    if (b.name < a.name) {
+                      return -1;
+                    }
+                    return 0;
+                  });
+            }
+            if(sort === 'mayor') {
+                resp.sort(function(a:any, b:any){return b.price - a.price})
+            }
+            if(sort === 'menor') {
+                resp.sort(function(a:any, b:any){return a.price - b.price})
+            }
+            //   console.log(resp)
             dispatch({
                 type: GET_PRODUCTS,
                 payload: resp
@@ -42,7 +72,6 @@ export const getProductsByName = (name : String) => {
             }
         }
     }
-
 }
 
 export const getCategories = () => {

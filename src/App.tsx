@@ -14,6 +14,7 @@ function App() {
         <Route path='/pedidos' element={<Pedidos />} />
         <Route path='/test' element={<Form/>}/>
         <Route path='/product/:id' element={<DetailProduct/>}/>
+        <Route path='/crear' element={<Form/>}/>
       </Routes>
     </Router>
   );

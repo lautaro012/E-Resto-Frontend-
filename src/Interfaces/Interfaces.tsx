@@ -13,3 +13,7 @@ export interface CardForm extends CardProp{
     rating: 3,
     category: '',
 }
+
+export interface NavBarProp {
+    comeback: Boolean
+}
