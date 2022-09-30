@@ -42,7 +42,7 @@ export default function Form () {
             ...input,
             category: e.target.value
         })
-        console.log(e.target.value)
+
     }
     const handleSubmit = (e:any) => {
         e.preventDefault()
@@ -117,6 +117,17 @@ export default function Form () {
                                     })
                                 }
                             </select>
+                        </div>
+                        <div className='input-label'>
+                            <label>Stock:</label>
+                            <input onChange={handleChange} 
+                            required
+                            placeholder='Ingrese un stock inicial'
+                            name='stock' 
+                            type='number'
+                            min={0}
+                            max={9999}
+                            ></input>
                         </div>
                         <div className='input-label'>
                             <label>Imagen:</label>
