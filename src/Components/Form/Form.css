@@ -3,5 +3,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  
+}
+.form-conteiner input:valid {
+    border: 2px solid black
+}
+.form-conteiner input:invalid {
+    border: 2px solid lightslategray;
+    background-color: rgba(119, 136, 153, 0.108);
 }
