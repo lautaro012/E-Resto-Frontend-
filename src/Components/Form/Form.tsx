@@ -145,7 +145,7 @@ export default function Form () {
                 </div>
             </aside>
             <aside>
-                <Card off={input.off} name={input.name} img={input.img} description={input.description} price={input.price}></Card>
+                <Card comidaProps={input}></Card>
             </aside>
         </div>
 
