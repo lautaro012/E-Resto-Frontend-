@@ -63,7 +63,9 @@ export default function Pedidos() {
                     <div className='productos-conteiner'>
                         {
                             categories?.map((categoria: any) => {
-
+                                if(products.length > 0) {
+                                    
+                                }
                                 return (
                                     <div id={categoria.name} key={categoria._id} className='Categoria'>
                                         <h3>{categoria.name}</h3>
@@ -71,15 +73,16 @@ export default function Pedidos() {
                                         <div className='Contenedor_cartas'>
                                             {
 
-                                                products?.map((comida: any) => {
-                                                    if (comida.categoryProducts.name === categoria.name) {
-                                                       
-                                                        return (
-                                                            <Card comidaProps={comida} />
-                                                        )
+                                                products?.filter((e:any) => e.categoryProducts.name === categoria.name)
+                                                .map((comida: any) => {
+                                                    if (comida.categoryProducts.name === categoria.name){
+                                                      return (
+                                                        <Card comidaProps={comida} />
+                                                    )  
                                                     }
+                                                    
                                                 })
-                                            }
+                                                }                                             
                                         </div>
                                     </div>
                                 )

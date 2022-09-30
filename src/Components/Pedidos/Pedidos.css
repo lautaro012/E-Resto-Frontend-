@@ -45,10 +45,9 @@
 
 .categorias-conteiner {
   background-color: #FFE2D1;
-  border-radius: 16px;
-  border: 2px solid #CC998D;
-  position: sticky;
-  top: 31%;
+
+    position: sticky;
+    top: 31%;
 }
 
 .categorias-conteiner ul {
@@ -60,19 +59,29 @@
   color: black;
 }
 
-.categorias-conteiner ul a:hover {
+.categorias-conteiner ul a li:hover {
   text-decoration: underline;
   cursor: pointer;
-  color: purple;
+  background-color: #f1ffc491 ;
 }
 
 .categorias-conteiner li {
   font-size: 1.5rem;
   padding: 1%;
 }
+.categorias-conteiner ul a li {
+  background-color: #F1FFC4;
+    /* width: 100%; */
+    font-weight: 800;
+    margin-right: 60px;
+    text-align: center;
+    margin-bottom: 20px;
+    border: solid black 1px;
+}
 
 .categorias-div {
   width: 22%;
+  background-color: #FFE2D1;
 }
 
 .productos-conteiner {
