@@ -52,7 +52,7 @@ export default function Pedidos() {
                                 {
                                     categories.map((cat:any) => {
                                         return (
-                                            <li key={cat._id}> {cat.name} </li>
+                                            <a href={`#${cat.name}`}><li key={cat._id}> {cat.name} </li></a>
                                         )
                                     })
                                 }
@@ -63,7 +63,7 @@ export default function Pedidos() {
                         {
                             categories?.map((categoria:any) => {
                                 return (
-                                    <div key={categoria._id} className='Categoria'>
+                                    <div id={categoria.name} key={categoria._id} className='Categoria'>
                                         <h3>{categoria.name}</h3>
 
                                         <div className='Contenedor_cartas'>
