@@ -3,6 +3,8 @@ import axios from 'axios'
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const GET_PRODUCTS_BY_NAME = 'GET_PRODUCTS_BY_NAME'
+export const GET_FOOD_BY_ID = "GET_FOOD_BY_ID"
+export const EMPTY_FOOD = "EMPTY_FOOD"
 
 type Action = {
     type: string;
@@ -54,6 +56,7 @@ export const getCategories = () => {
         })
     }
 }
+
 export const clear = function (payload:any) {
     return function(dispatch:Dispatch<Action>){
         dispatch({
@@ -62,6 +65,7 @@ export const clear = function (payload:any) {
         })
     }
 }
+
 export const createForm = function (input:any) {
     return function(dispatch:Dispatch<Action>){
         axios.post('http://localhost:3001/product', input)
@@ -70,3 +74,22 @@ export const createForm = function (input:any) {
     }
 }
 
+export const getFoodById = (id:any) => {
+    return function(dispatch:Dispatch<Action>) {
+        axios(`http://localhost:3001/product/${id}`).then(resp => resp.data)
+        .then(resp => {
+            dispatch({
+                type:GET_FOOD_BY_ID,
+                payload:resp
+            })
+        })
+    }
+}
+
+export const vaciarComida = function () {
+    return function(dispatch:Dispatch<Action>){
+        dispatch({
+            type: EMPTY_FOOD,
+        })
+    }
+}
