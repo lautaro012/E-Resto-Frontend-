@@ -1,13 +1,9 @@
 import { useState } from "react";
 import Card from '../Card/Card'
-
-import Comidas from '../../_temp/Comidas.json'
 import BebidasSinAlcohol from '../../_temp/BebidasSinAlcohol.json'
 import Postres from '../../_temp/Postres.json'
 import '../Pedidos/Pedidos.css'
-//import SearchBar from './SearchBar'
 import { useNavigate, Link, useParams } from "react-router-dom";
-
 import '../Pedidos/Pedidos.css'
 import NavBar from '../NavBar/NavBar'
 import { useEffect } from 'react'
