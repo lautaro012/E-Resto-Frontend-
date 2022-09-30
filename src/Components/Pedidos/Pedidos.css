@@ -145,6 +145,9 @@
     padding: 10px;
     border-radius: 60px;
     border: 2px solid #CC998D;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
   }
   .categorias-conteiner ul {
     list-style: none;
