@@ -1,7 +1,7 @@
 import Card from '../Card/Card'
 import '../Pedidos/Pedidos.css'
 import NavBar from '../NavBar/NavBar'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../config'
 import { getCategories, getProducts } from '../../redux/actions'
 
@@ -16,7 +16,6 @@ export default function Pedidos() {
 
     let dispatch = useAppDispatch()
     useEffect(() => {
-        console.log(order)
         dispatch(getProducts(order))
         dispatch(getCategories())
     }, [dispatch, order])
@@ -24,6 +23,9 @@ export default function Pedidos() {
     let categories = useAppSelector((state: any) => state.categories);
 
     let products = useAppSelector((state: any) => state.products);
+
+    console.log("PRODUCTOS", products)
+    console.log("CATEGORIAS", categories)
 
     return (
         <>
@@ -71,16 +73,15 @@ export default function Pedidos() {
                                         <div className='Contenedor_cartas'>
                                             {
 
-                                                products?.filter((e:any) => e.categoryProducts.name === categoria.name)
-                                                .map((comida: any) => {
-                                                    if (comida.categoryProducts.name === categoria.name){
-                                                      return (
-                                                        <Card comidaProps={comida} />
-                                                    )  
-                                                    }
-                                                    
-                                                })
-                                                }                                             
+                                                products?.filter((e: any) => e.categoryProducts.name === categoria.name)
+                                                    .map((comida: any) => {
+                                                        if (comida.categoryProducts.name === categoria.name) {
+                                                            return (
+                                                                    <Card comidaProps={comida} />
+                                                            )
+                                                        }
+                                                    })
+                                            }
                                         </div>
                                     </div>
                                 )
