@@ -2,9 +2,10 @@ import './NavBar.css'
 import { useNavigate } from "react-router-dom";
 import SearchBar from '../SearchBar/SearchBar'
 import { NavBarProp } from '../../Interfaces/Interfaces';
+import { buttonclass } from '../../Style/Clases/Clases';
 
+export default function NavBar({ setShowModal, setcreateProduct, seteditProduct }: NavBarProp) {
 
-export default function NavBar({ setcreateProduct, seteditProduct, comeback }: NavBarProp) {
     const navigate = useNavigate();
 
     const handleHome = () => {
@@ -19,10 +20,10 @@ export default function NavBar({ setcreateProduct, seteditProduct, comeback }: N
     const handleCreate = () => {
         seteditProduct(false)
         setcreateProduct(true)
+        setShowModal(true)
     }
     return (
         <div id='navBar'>
-
             <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
                 <div className="container flex flex-wrap justify-between items-center mx-auto">
                     <a href="#" onClick={handleHome} className="flex items-center">
@@ -35,7 +36,6 @@ export default function NavBar({ setcreateProduct, seteditProduct, comeback }: N
 
                 </div>
             </nav>
-
         </div>
     )
 }

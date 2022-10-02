@@ -17,7 +17,7 @@ export interface CardForm extends CardProp{
 }
 
 export interface NavBarProp {
-    comeback: Boolean
     setcreateProduct: Dispatch<SetStateAction<Boolean>>
     seteditProduct: Dispatch<SetStateAction<Boolean>>
+    setShowModal: Dispatch<SetStateAction<boolean | undefined>> 
 }
