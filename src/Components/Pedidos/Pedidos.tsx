@@ -1,14 +1,33 @@
 import Card from '../Card/Card'
 import '../Pedidos/Pedidos.css'
 import NavBar from '../NavBar/NavBar'
-import { useEffect, useState } from 'react'
+import Form from '../Form/Form'
+import {Link} from 'react-scroll'
+import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../config'
 import { getCategories, getProducts } from '../../redux/actions'
 
 export default function Pedidos() {
 
     const [order, setOrder] = useState('')
-
+    const [createProduct, setcreateProduct] = useState<Boolean>(false)
+    const [editProduct, seteditProduct] = useState<Boolean>(false)
+    const [formData, setFormData] = useState<any>({   
+            name: 'test',
+            img: 'https://citizengo.org/sites/default/files/images/test_3.png',
+            price: 0,
+            description: 'test-description',
+            off: 0,
+            stock: 0,
+            rating: 3,
+            category: '',
+            newProduct: true
+      })
+    const onProducEdit = (input:any) => {
+    seteditProduct(true);
+    setcreateProduct(false)
+    setFormData(input)
+    }
     function orderSort(e: any) {
         e.preventDefault(e)
         setOrder(e.target.value)
@@ -21,7 +40,7 @@ export default function Pedidos() {
     }, [dispatch, order])
 
     let categories = useAppSelector((state: any) => state.categories);
-
+    let allcategores = useAppSelector((state:any) => state.allcategories)
     let products = useAppSelector((state: any) => state.products);
 
     console.log("PRODUCTOS", products)
@@ -29,7 +48,7 @@ export default function Pedidos() {
 
     return (
         <>
-            <NavBar comeback={false} />
+            <NavBar seteditProduct={seteditProduct} setcreateProduct={setcreateProduct} comeback={false} />
             <div className='Contenedor'>
 
                 <div className='background_image_gps' />
@@ -53,9 +72,12 @@ export default function Pedidos() {
                         <div className='categorias-conteiner'>
                             <ul>
                                 {
-                                    categories.map((cat: any) => {
+                                    categories?.map((cat: any) => {
                                         return (
-                                            <a href={`#${cat.name}`}><li key={cat._id}> {cat.name} </li></a>
+                                            cat.categoryProducts.length !== 0 ?
+                                            <li key={cat.name}><Link activeClass="active" className="test1" to={cat.name} spy={true} smooth={true} duration={1000}> <button>{cat.name}</button> </Link></li>
+                                            :
+                                            null
                                         )
                                     })
                                 }
@@ -65,31 +87,28 @@ export default function Pedidos() {
                     <div className='productos-conteiner'>
                         {
                             categories?.map((categoria: any) => {
-
                                 return (
+                                    categoria.categoryProducts.length !== 0 ?
                                     <div id={categoria.name} key={categoria._id} className='Categoria'>
                                         <h3>{categoria.name}</h3>
-
                                         <div className='Contenedor_cartas'>
                                             {
-
-                                                products?.filter((e: any) => e.categoryProducts.name === categoria.name)
-                                                    .map((comida: any) => {
-                                                        if (comida.categoryProducts.name === categoria.name) {
-                                                            return (
-                                                                    <Card comidaProps={comida} />
-                                                            )
-                                                        }
-                                                    })
-                                            }
+                                                categoria?.categoryProducts?.map((info:any) => {
+                                                    return <Card onProducEdit={onProducEdit} key={info.name} comidaProps={info} />
+                                                })
+                                            }                                             
                                         </div>
                                     </div>
+                                    :
+                                    null
                                 )
                             })
                         }
                     </div>
                 </div>
             </div>
+            {editProduct ? <Form newProduct={false} setcreateProduct={setcreateProduct} formData={formData} seteditProduct={seteditProduct} /> : null}
+            {createProduct ? <Form newProduct={true} setcreateProduct={setcreateProduct} formData={formData} seteditProduct={seteditProduct} /> : null}
         </>
     )
 }

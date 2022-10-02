@@ -4,7 +4,7 @@ import SearchBar from '../SearchBar/SearchBar'
 import { NavBarProp } from '../../Interfaces/Interfaces';
 
 
-export default function NavBar({ comeback }: NavBarProp) {
+export default function NavBar({setcreateProduct,seteditProduct, comeback }: NavBarProp) {
     const navigate = useNavigate();
 
     const handleHome = () => {
@@ -15,6 +15,10 @@ export default function NavBar({ comeback }: NavBarProp) {
             left: 0,
             behavior: 'smooth'
         });
+    }
+    const handleCreate = () => {
+        seteditProduct(false)
+        setcreateProduct(true)
     }
     return (
         <>
@@ -34,7 +38,7 @@ export default function NavBar({ comeback }: NavBarProp) {
                 <SearchBar></SearchBar>
                 <div className='pedidos-navbar-buttons'>
                    
-                    <button onClick={() => navigate('/crear')}> Crear Producto </button>
+                    <button onClick={handleCreate}> Crear Producto </button>
                 </div>
                 </header>
             </nav>
