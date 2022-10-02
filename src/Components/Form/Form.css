@@ -18,12 +18,12 @@
 .form-conteiner input:valid {
     border: 2px solid black
 }
-.form-conteiner input:invalid {
+/* .form-conteiner input:invalid {
     background-color: ghostwhite;
     border: none;
     outline: 2px solid red;
     border-radius: 5px;
-}
+} */
 
 .form-conteiner form:invalid .submit-button{
     pointer-events: none;
@@ -37,4 +37,16 @@
     width: 100%;
     height: 1.5rem;
     padding: 1%;
+}
+
+.input-label select {
+    width: 100%;
+    height: 2.5rem;
+    padding: 1%;
+}
+.input-descuento {
+    width: 50%;
+    height: 1.5rem;
+    padding: 1%;
+    margin: 2% 0 2% 0;
 }
