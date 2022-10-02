@@ -44,7 +44,8 @@ export default function CardProduct({ formCard = false, comidaProps, onProducEdi
                 imgAlt={name}
                 imgSrc={img}
             >
-                <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{name}</h2>
+                <h5 className="text-l font-semibold tracking-tight text-gray-900 dark:text-white">
                     {description}
                 </h5>
                 <div className="mt-2.5 mb-5 flex items-center">

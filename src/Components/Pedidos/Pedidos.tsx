@@ -6,6 +6,7 @@ import { Link } from 'react-scroll'
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../config'
 import { getCategories, getProducts } from '../../redux/actions'
+import { buttonclass } from '../../Style/Clases/Clases'
 
 export default function Pedidos() {
 
@@ -106,6 +107,11 @@ export default function Pedidos() {
                     </div>
                 </div>
             </div>
+            <button className={buttonclass} id='top_button'>
+                <Link activeClass="active" to="navBar" spy={true} smooth={true} duration={1000}>
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7l4-4m0 0l4 4m-4-4v18"></path></svg>
+                </Link>
+            </button>
             {editProduct ? <Form setFormData={setFormData} newProduct={false} setcreateProduct={setcreateProduct} formData={formData} seteditProduct={seteditProduct} /> : null}
             {createProduct ? <Form setFormData={setFormData} newProduct={true} setcreateProduct={setcreateProduct} formData={formData} seteditProduct={seteditProduct} /> : null}
         </>
