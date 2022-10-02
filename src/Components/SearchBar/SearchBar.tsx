@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import '../SearchBar/SearchBar.css'
-import lupa from '../../Style/images/lupa.png'
 import { getProductsByName } from "../../redux/actions";
 import { useAppDispatch } from "../../config";
 
@@ -29,8 +28,8 @@ export default function SearchBar() {
                     onChange={(event) => handleInput(event)}
                     className='inputFormSearchBarStyle'
                 />
-                <button type="submit" className="formButtonSearchBarStyle" >
-                <img src={lupa} alt="lupa" width='20' className='lupitaImgButtonStyle'/>
+                <button type="submit" className="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" >
+                <img src='https://res.cloudinary.com/luubermudezz/image/upload/v1664738482/E-Commerce%20Food/lupa2_xjnr8f.png' alt="lupa" width='20' className='lupitaImgButtonStyle'/>
                 </button>
             </form>
         </div>
