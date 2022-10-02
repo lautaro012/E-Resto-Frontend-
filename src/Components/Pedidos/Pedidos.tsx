@@ -10,6 +10,7 @@ import { getCategories, getProducts } from '../../redux/actions'
 export default function Pedidos() {
 
     const [order, setOrder] = useState('')
+
     const [createProduct, setcreateProduct] = useState<Boolean>(false)
     const [editProduct, seteditProduct] = useState<Boolean>(false)
     const [formData, setFormData] = useState<any>({   
@@ -35,8 +36,7 @@ export default function Pedidos() {
 
     let dispatch = useAppDispatch()
     useEffect(() => {
-        dispatch(getProducts(order))
-        dispatch(getCategories())
+        dispatch(getCategories(order))
     }, [dispatch, order])
 
     let categories = useAppSelector((state: any) => state.categories);

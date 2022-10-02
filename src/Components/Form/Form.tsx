@@ -40,7 +40,7 @@ export default function Form ({newProduct,setFormData, formData, setcreateProduc
     }
 
     useEffect(() => {
-        dispatch(getCategories())
+        dispatch(getCategories(""))
     }, [dispatch])
 
     let categories = useAppSelector((state:any) => state.categories);

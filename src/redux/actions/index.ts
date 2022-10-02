@@ -81,15 +81,47 @@ export const getProductsByName = (name : String) => {
     }
 }
 
-export const getCategories = () => {
-    return function(dispatch:Dispatch<Action>) {
+export const getCategories = (sort: string) => {
+    return function (dispatch: Dispatch<Action>) {
         axios('http://localhost:3001/category').then(resp => resp.data)
-        .then(resp => {
-            dispatch({
-                type:GET_CATEGORIES,
-                payload:resp
+            .then(resp => {
+                //console.log("RESP", resp)
+                resp.map((cat: any) => {
+
+                    if (sort === 'AZ') {
+                        cat.categoryProducts.sort(function (a: any, b: any) {
+                            if (a.name > b.name) {
+                                return 1;
+                            }
+                            if (a.name < b.name) {
+                                return -1;
+                            }
+                            return 0;
+                        });
+                    }
+                    if (sort === 'ZA') {
+                        cat.categoryProducts.sort(function (a: any, b: any) {
+                            if (b.name > a.name) {
+                                return 1;
+                            }
+                            if (b.name < a.name) {
+                                return -1;
+                            }
+                            return 0;
+                        });
+                    }
+                    if (sort === 'mayor') {
+                        cat.categoryProducts.sort(function (a: any, b: any) { return b.price - a.price })
+                    }
+                    if (sort === 'menor') {
+                        cat.categoryProducts.sort(function (a: any, b: any) { return a.price - b.price })
+                    }
+                })
+                dispatch({
+                    type: GET_CATEGORIES,
+                    payload: resp
+                })
             })
-        })
     }
 }
 
