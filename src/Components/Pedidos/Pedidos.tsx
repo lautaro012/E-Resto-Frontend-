@@ -8,7 +8,6 @@ import { getCategories, getProducts } from '../../redux/actions'
 export default function Pedidos() {
 
     const [order, setOrder] = useState('')
-
     function orderSort(e: any) {
         e.preventDefault(e)
         setOrder(e.target.value)
@@ -70,8 +69,7 @@ export default function Pedidos() {
 
                                         <div className='Contenedor_cartas'>
                                             {
-
-                                                products?.filter((e:any) => e.categoryProducts.name === categoria.name)
+                                               products?.filter((e:any) => e.categoryProducts.name === categoria.name)
                                                 .map((comida: any) => {
                                                     if (comida.categoryProducts.name === categoria.name){
                                                       return (
@@ -80,7 +78,10 @@ export default function Pedidos() {
                                                     }
                                                     
                                                 })
-                                                }                                             
+                                                }
+
+                                                
+                                                                                           
                                         </div>
                                     </div>
                                 )
