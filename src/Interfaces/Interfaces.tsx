@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 
 
 export interface CardProp { 
@@ -9,11 +10,14 @@ export interface CardProp {
 }
 
 export interface CardForm extends CardProp{
-    stock: 0,
-    rating: 3,
-    category: '',
+    stock: number,
+    rating: number,
+    category: string,
+    newProduct?: boolean
 }
 
 export interface NavBarProp {
     comeback: Boolean
+    setcreateProduct: Dispatch<SetStateAction<Boolean>>
+    seteditProduct: Dispatch<SetStateAction<Boolean>>
 }

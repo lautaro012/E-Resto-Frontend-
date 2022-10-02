@@ -5,6 +5,7 @@ export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const GET_PRODUCTS_BY_NAME = 'GET_PRODUCTS_BY_NAME'
 export const GET_FOOD_BY_ID = "GET_FOOD_BY_ID"
 export const EMPTY_FOOD = "EMPTY_FOOD"
+export const EDIT_FORM ='EDIT_FORM'
 
 type Action = {
     type: string;
@@ -57,19 +58,10 @@ export const getProducts = (sort : String) => {
 export const getProductsByName = (name : String) => {
     if(name) {
         return function (dispatch:Dispatch<Action>) {
-            try {
-                axios(`http://localhost:3001/product?name=${name}`)
-                .then(res => res.data)
-                .then(res => {
-                    dispatch({
-                    type: GET_PRODUCTS_BY_NAME,
-                    payload: res
-                })
-                })
-                .catch(err => console.log(err))
-            } catch(err) {
-               console.log(err)
-            }
+            dispatch({
+                type: GET_PRODUCTS_BY_NAME,
+                payload: name
+            })
         }
     }
 }
@@ -95,7 +87,7 @@ export const clear = function (payload:any) {
     }
 }
 
-export const createForm = function (input:any) {
+export const createProduct = function (input:any) {
     return function(dispatch:Dispatch<Action>){
         axios.post('http://localhost:3001/product', input)
         .then(res => console.log(res.data))
@@ -121,4 +113,29 @@ export const vaciarComida = function () {
             type: EMPTY_FOOD,
         })
     }
+}
+
+export const fillFormData = (input:any) => {
+    return function(dispatch:Dispatch<Action>){
+        dispatch({
+            type:EDIT_FORM,
+            payload: input
+        })
+    }
+}
+
+export const editProduct = (input:any, id:number) => {
+    return function(dispatch:Dispatch<Action>) {
+        axios.put(`http://localhost:3001/product/${id}`, input).then(res => res.data)
+        .then(resp => {
+            console.log(resp)
+        })
+        .catch(err => console.log(err))
+    }
+}
+
+export const deleteProduct = (id:number) => {
+    axios.delete(`http://localhost:3001/product/${id}`).then(res => res.data)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
 }
