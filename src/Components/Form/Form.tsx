@@ -92,7 +92,13 @@ export default function Form ({newProduct,setFormData, formData, setcreateProduc
         <div className='form-conteiner'>
             <button onClick={handleClose}>Cerrar</button>
             <aside>
-                <h1> Inserta la informacion de tu Producto:</h1>
+                {
+                    newProduct ?
+                    <h1> Inserta la informacion de tu Producto:</h1>
+                    :
+                    <h1> Edita la informacion de tu Producto:</h1>
+
+                }
                 <div>
                     <form onSubmit={handleSubmit}>
                         <div className='input-label'>
@@ -141,7 +147,7 @@ export default function Form ({newProduct,setFormData, formData, setcreateProduc
                             }
                         </div>
                         <div className='input-label'>
-                            <select onChange={handleSelect} required>    
+                            <select defaultValue={formData.category} onChange={handleSelect} required>    
                                 <option>Seleccione una categoria</option>                          
                                 {
                                     categories.map((cat:any) => {
@@ -161,6 +167,7 @@ export default function Form ({newProduct,setFormData, formData, setcreateProduc
                             type='number'
                             min={0}
                             max={9999}
+                            defaultValue={formData.stock}
                             ></input>
                         </div>
                         <div className='input-label'>
