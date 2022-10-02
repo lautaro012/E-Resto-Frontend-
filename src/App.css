@@ -37,29 +37,3 @@
     transform: translateY(0px);
   }
 }
-
-
-button {
-  padding-top: 0.625rem;
-  padding-bottom: 0.625rem; 
-  padding-left: 1.25rem;
-  padding-right: 1.25rem; 
-  margin-right: 0.5rem; 
-  background-image: linear-gradient(to right, var(--tw-gradient-stops)); 
-  background-color: #FECACA; 
-  background-color: #FCA5A5; 
-  background-color: #FDE68A; 
-  font-size: 0.875rem;
-  line-height: 1.25rem; 
-  font-weight: 500; 
-  text-align: center; 
-  border-radius: 0.5rem; 
-}
-
-button:not([disabled]):focus {
-  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
-}
-
-button:not([disabled]):hover {
-background-image: linear-gradient(to bottom left, var(--tw-gradient-stops)); 
-}
