@@ -18,12 +18,12 @@
 .form-conteiner input:valid {
     border: 2px solid black
 }
-.form-conteiner input:invalid {
+/* .form-conteiner input:invalid {
     background-color: ghostwhite;
     border: none;
     outline: 2px solid red;
     border-radius: 5px;
-}
+} */
 
 .form-conteiner form:invalid .submit-button{
     pointer-events: none;
