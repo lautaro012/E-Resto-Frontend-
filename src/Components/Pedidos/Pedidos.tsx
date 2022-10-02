@@ -6,7 +6,6 @@ import { Link } from 'react-scroll'
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../config'
 import { getCategories, getProducts } from '../../redux/actions'
-import { Button } from 'flowbite-react'
 
 export default function Pedidos() {
 
