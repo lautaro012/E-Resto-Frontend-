@@ -96,6 +96,8 @@ export default function DetailProduct() {
                                                             </div>
                                                         )
                                                     }
+                                                    return null
+                                                
                                                 })
 
                                             }

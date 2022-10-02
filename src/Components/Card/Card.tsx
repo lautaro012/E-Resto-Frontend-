@@ -1,5 +1,4 @@
-import { current } from "@reduxjs/toolkit";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../config";
 import { deleteProduct } from "../../redux/actions";
 import '../Card/Card.css'
