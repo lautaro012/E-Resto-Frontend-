@@ -2,35 +2,59 @@
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../config'
 import { CardForm } from '../../Interfaces/Interfaces'
-import { createForm, getCategories } from '../../redux/actions'
+import { createProduct, getCategories, editProduct } from '../../redux/actions'
 import Card from '../Card/Card'
 import NavBar from '../NavBar/NavBar'
 import './Form.css'
 
-export default function Form () {
-
+export default function Form ({newProduct,setFormData, formData, setcreateProduct, seteditProduct}:any) {
+    
+    let dispatch = useAppDispatch()
     const [oferta, setOferta] = useState<Boolean>(false)
     const [input, setInput] = useState<CardForm>({
-        name: 'test',
-        img: 'https://citizengo.org/sites/default/files/images/test_3.png',
-        price: 0,
-        description: 'test-description',
-        off: 0,
-        stock: 0,
-        rating: 3,
-        category: '',
+        name: formData.name,
+        img: formData.img,
+        price: formData.price,
+        description: formData.description,
+        off: formData.off,
+        stock: formData.stock,
+        rating: formData.rating,
+        category: formData.category,
     })
 
-    let dispatch = useAppDispatch()
+    const handleClose = (e:any) => {
+        e.preventDefault()
+        setcreateProduct(false)
+        seteditProduct(false)
+        setFormData({
+            name: 'test',
+            img: 'https://citizengo.org/sites/default/files/images/test_3.png',
+            price: 0,
+            description: 'test-description',
+            off: 0,
+            stock: 0,
+            rating: 3,
+            category: '',
+            newProduct: true
+        })
+    }
 
     useEffect(() => {
-        dispatch(getCategories())
+        dispatch(getCategories(""))
     }, [dispatch])
 
     let categories = useAppSelector((state:any) => state.categories);
 
     const handleOferta = () => {
-        oferta ? setOferta(false) : setOferta(true)
+        if(oferta) {
+            setOferta(false)
+            setInput({
+                ...input,
+                off:0
+            })
+         } else {
+            setOferta(true)
+         }
     }
     const handleChange = (e:any) => {
         setInput({
@@ -45,9 +69,12 @@ export default function Form () {
         })
 
     }
+
     const handleSubmit = (e:any) => {
-        e.preventDefault()
-        dispatch(createForm(input))
+        if (formData.newProduct) {
+          return dispatch(createProduct(input));
+        }
+        dispatch(editProduct(input, formData._id));
         setInput({
             name: 'test',
             img: 'https://citizengo.org/sites/default/files/images/test_3.png',
@@ -58,13 +85,20 @@ export default function Form () {
             rating: 3,
             category: '',
         })
-    }
+      };
     return (
         <>
-            <NavBar comeback={true}/>
+            <NavBar seteditProduct={seteditProduct} setcreateProduct={setcreateProduct} comeback={true}/>
         <div className='form-conteiner'>
+            <button onClick={handleClose}>Cerrar</button>
             <aside>
-                <h1> Inserta la informacion de tu Producto:</h1>
+                {
+                    newProduct ?
+                    <h1> Inserta la informacion de tu Producto:</h1>
+                    :
+                    <h1> Edita la informacion de tu Producto:</h1>
+
+                }
                 <div>
                     <form onSubmit={handleSubmit}>
                         <div className='input-label'>
@@ -75,6 +109,7 @@ export default function Form () {
                             name="name"
                             type="text"
                             placeholder="Inserte un nombre"
+                            defaultValue={formData.name}
                             ></input>
                         </div>
                         <div className='input-label'>
@@ -84,6 +119,7 @@ export default function Form () {
                             type="text"
                             placeholder="Descripcion"
                             name='description'
+                            defaultValue={formData.description}
                             ></input>
                         </div>
                         <div className='input-label'>
@@ -95,6 +131,7 @@ export default function Form () {
                             type='number'
                             min={0}
                             max={9999}
+                            defaultValue={formData.price}
                             ></input>
                         </div>
                         <div>
@@ -110,7 +147,7 @@ export default function Form () {
                             }
                         </div>
                         <div className='input-label'>
-                            <select onChange={handleSelect} required>    
+                            <select defaultValue={formData.category} onChange={handleSelect} required>    
                                 <option>Seleccione una categoria</option>                          
                                 {
                                     categories.map((cat:any) => {
@@ -130,6 +167,7 @@ export default function Form () {
                             type='number'
                             min={0}
                             max={9999}
+                            defaultValue={formData.stock}
                             ></input>
                         </div>
                         <div className='input-label'>
@@ -138,14 +176,20 @@ export default function Form () {
                             required 
                             name='img'  
                             type='url'
+                            defaultValue={formData.img}
                             />
                         </div>
-                        <button className='submit-button' type='submit'>Crear</button>
+                        {
+                            newProduct ?
+                            <button className='submit-button' type='submit'>Crear</button>
+                            :
+                            <button className='submit-button' type='submit'>Editar</button>
+                        }
                     </form>
                 </div>
             </aside>
             <aside>
-                <Card comidaProps={input}></Card>
+                <Card formCard={true} comidaProps={input}></Card>
             </aside>
         </div>
 

@@ -14,11 +14,9 @@ export default function SearchBar() {
     }
 
     function handleSubmit(event:React.FormEvent<HTMLFormElement>) {
-        console.log(name)
         event.preventDefault()
         dispatch(getProductsByName(name))
         setName("")
-
     }
 
     return (

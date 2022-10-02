@@ -1,13 +1,21 @@
-import { current } from "@reduxjs/toolkit";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../../config";
+import { deleteProduct } from "../../redux/actions";
 import '../Card/Card.css'
 
-export default function Card(comidaProps: any) {
-
-    let { _id, price, off, description, name, img } = comidaProps.comidaProps
-
+export default function Card({formCard=false, comidaProps, onProducEdit}: any) {
+    let { _id, price, off, description, name, img } = comidaProps
+    let dispatch = useAppDispatch()
     let currentprice = price - (price * off / 100)
+    
+    const handleEdit = () => {
+        console.log(comidaProps, 'aca')
+        onProducEdit(comidaProps)
+    }
 
+    const handleDelete = () => {
+        dispatch(deleteProduct(_id))
+    }
     return (
         <section className="section">
             <div className="container">
@@ -35,11 +43,20 @@ export default function Card(comidaProps: any) {
                                         <h3 className="card_price"> $ {currentprice}</h3>
                                     </div>
                             }
-                            <button className="card__add">+</button>
                         </div>
                     </article>
                 </div>
             </div>
+            {
+                formCard ?
+                null
+                :
+                <div className="card-buttons">
+                <button onClick={handleEdit}>edit</button>
+                <button onClick={handleDelete}>delete</button>
+                </div>
+            }
+            
         </section>
     )
 }
