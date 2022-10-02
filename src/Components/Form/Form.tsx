@@ -141,7 +141,7 @@ export default function Form ({newProduct,setFormData, formData, setcreateProduc
                                 <button type='button' onClick={handleOferta}>Agregar como oferta</button>
                                 :
                                 <div>
-                                    <input onChange={handleChange} name='off' placeholder='Seleccione Descuento(%)' type='number'></input>
+                                    <input className='input-descuento' onChange={handleChange} name='off' placeholder='Seleccione Descuento(%)' type='number'></input>
                                     <button onClick={handleOferta}>Quitar Oferta</button>
                                 </div>
                             }
