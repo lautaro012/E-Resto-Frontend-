@@ -40,7 +40,6 @@ export default function Pedidos() {
     }, [dispatch, order])
 
     let categories = useAppSelector((state: any) => state.categories);
-    let allcategores = useAppSelector((state:any) => state.allcategories)
     let products = useAppSelector((state: any) => state.products);
 
     console.log("PRODUCTOS", products)

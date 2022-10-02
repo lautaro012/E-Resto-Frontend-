@@ -13,18 +13,6 @@ const initialState: any = {
     categories: [],
     detail: [],
     allcategories: [],
-    formData: {
-        __id: undefined,
-        name: 'test',
-        img: 'https://citizengo.org/sites/default/files/images/test_3.png',
-        price: 0,
-        description: 'test-description',
-        off: 0,
-        stock: 0,
-        rating: 3,
-        category: '',
-        newProduct: true
-    }
 }
 
 
@@ -41,16 +29,17 @@ export default function rootReducer(state = initialState, action: any) {
             return {
                 ...state,
                 categories: action.payload,
-                allcategories: action.payload
             }
         case GET_PRODUCTS_BY_NAME:
-            const allcategories = state.allcategories
-            allcategories.map((product:any) => {
-                let newfilter = product.categoryProducts.filter((el:any) => el.name.toLowerCase().includes(action.payload.toLowerCase()))
-                state.categories.categoryProducts = newfilter
+            let categorias = action.payload
+            let Productosfiltrados = categorias.map((producto:any) => {
+                producto.categoryProducts = producto.categoryProducts.filter((data:any) => data.name.toLowerCase().includes(action.name.toLowerCase()))
+                return producto
             })
+            
             return {
-                ...state
+                ...state,
+                categories: Productosfiltrados
             }
         case GET_FOOD_BY_ID:
             return {
@@ -63,7 +52,6 @@ export default function rootReducer(state = initialState, action: any) {
                 detail: []
             }
         case EDIT_FORM:
-
             return {
                 ...state,
                 FormData: action.payload

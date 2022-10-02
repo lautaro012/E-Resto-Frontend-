@@ -10,6 +10,7 @@ export const EDIT_FORM ='EDIT_FORM'
 type Action = {
     type: string;
     payload?: any;
+    name?: String
 };
 
 export const getProducts = (sort : String) => {
@@ -58,9 +59,23 @@ export const getProducts = (sort : String) => {
 export const getProductsByName = (name : String) => {
     if(name) {
         return function (dispatch:Dispatch<Action>) {
-            dispatch({
-                type: GET_PRODUCTS_BY_NAME,
-                payload: name
+            axios('http://localhost:3001/category').then(resp => resp.data)
+            .then(res => {
+                dispatch({
+                    type: GET_PRODUCTS_BY_NAME,
+                    payload: res,
+                    name: name
+                })
+            })
+        }
+    } else {
+        return function (dispatch:Dispatch<Action>) {
+            axios('http://localhost:3001/category').then(resp => resp.data)
+            .then(resp => {
+                dispatch({
+                    type:GET_CATEGORIES,
+                    payload:resp
+                })
             })
         }
     }
