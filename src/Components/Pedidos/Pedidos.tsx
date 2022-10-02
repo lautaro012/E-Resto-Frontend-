@@ -13,6 +13,8 @@ export default function Pedidos() {
 
     const [createProduct, setcreateProduct] = useState<Boolean>(false)
     const [editProduct, seteditProduct] = useState<Boolean>(false)
+    const[showModal, setShowModal] = useState<boolean | undefined>(false)
+
     const [formData, setFormData] = useState<any>({
         name: 'test',
         img: 'https://citizengo.org/sites/default/files/images/test_3.png',
@@ -28,6 +30,7 @@ export default function Pedidos() {
         seteditProduct(true);
         setcreateProduct(false)
         setFormData(input)
+        setShowModal(true)
     }
     function orderSort(e: any) {
         e.preventDefault(e)
@@ -47,7 +50,7 @@ export default function Pedidos() {
 
     return (
         <>
-            <NavBar seteditProduct={seteditProduct} setcreateProduct={setcreateProduct} comeback={false} />
+            <NavBar setShowModal={setShowModal} seteditProduct={seteditProduct} setcreateProduct={setcreateProduct}/>
             <div className='Contenedor'>
 
                 <div className='background_image_gps' />
@@ -106,8 +109,8 @@ export default function Pedidos() {
                     </div>
                 </div>
             </div>
-            {editProduct ? <Form setFormData={setFormData} newProduct={false} setcreateProduct={setcreateProduct} formData={formData} seteditProduct={seteditProduct} /> : null}
-            {createProduct ? <Form setFormData={setFormData} newProduct={true} setcreateProduct={setcreateProduct} formData={formData} seteditProduct={seteditProduct} /> : null}
+            {editProduct ? <Form setShowModal={setShowModal} showModal={showModal} setFormData={setFormData} newProduct={false} setcreateProduct={setcreateProduct} formData={formData} seteditProduct={seteditProduct} /> : null}
+            {createProduct ? <Form setShowModal={setShowModal} showModal={showModal} setFormData={setFormData} newProduct={true} setcreateProduct={setcreateProduct} formData={formData} seteditProduct={seteditProduct} /> : null}
         </>
     )
 }

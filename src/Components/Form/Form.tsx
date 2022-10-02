@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../config";
 import { CardForm } from "../../Interfaces/Interfaces";
-import { buttonclass } from "../../Style/Clases/Clases";
+import { buttonclass, inputForm, labelForm } from "../../Style/Clases/Clases";
 import { createProduct, getCategories, editProduct } from "../../redux/actions";
+import { Modal } from "flowbite-react";
 import Card from "../Card/Card";
 import NavBar from "../NavBar/NavBar";
 import "./Form.css";
@@ -13,8 +14,11 @@ export default function Form({
   formData,
   setcreateProduct,
   seteditProduct,
+  setShowModal,
+  showModal
 }: any) {
   let dispatch = useAppDispatch();
+
   const [oferta, setOferta] = useState<Boolean>(false);
   const [input, setInput] = useState<CardForm>({
     name: formData.name,
@@ -27,10 +31,10 @@ export default function Form({
     category: formData.category,
   });
 
-  const handleClose = (e: any) => {
-    e.preventDefault();
+  const handleClose = () => {
     setcreateProduct(false);
     seteditProduct(false);
+    setShowModal(false)
     setFormData({
       name: "test",
       img: "https://citizengo.org/sites/default/files/images/test_3.png",
@@ -95,157 +99,173 @@ export default function Form({
       <NavBar
         seteditProduct={seteditProduct}
         setcreateProduct={setcreateProduct}
-        comeback={true}
+        setShowModal={setShowModal}
       />
-      <div className="form-conteiner">
-        <button onClick={handleClose}>Cerrar</button>
-        <aside>
-          {newProduct ? (
-            <h1> Inserta la informacion de tu Producto:</h1>
-          ) : (
-            <h1> Edita la informacion de tu Producto:</h1>
-          )}
-          <br></br>
-          <div>
-            <form onSubmit={handleSubmit}>
-              <div className="relative z-0 mb-6 w-full group">
-                <input
-                  type="text"
-                  onChange={handleChange}
-                  maxLength={15}
-                  defaultValue={newProduct ? null : formData.name}
-                  name="name"
-                  id="name"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  required
-                />
-                <label
-                  htmlFor="name"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Nombre
-                </label>
-              </div>
-
-              <div className="relative z-0 mb-6 w-full group">
-                <input
-                  type="text"
-                  onChange={handleChange}
-                  defaultValue={newProduct ? null : formData.description}
-                  name="description"
-                  id="description"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  required
-                />
-                <label
-                  htmlFor="description"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Descripcion
-                </label>
-              </div>
-
-              <div className="relative z-0 mb-6 w-full group">
-                <input
-                  type="number"
-                  onChange={handleChange}
-                  defaultValue={newProduct ? null : formData.price}
-                  name="price"
-                  id="price"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  required
-                />
-                <label
-                  htmlFor="price"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Precio
-                </label>
-              </div>
-               {!oferta ? (
-                  <button type="button" className={buttonclass} onClick={handleOferta}>
-                    Agregar como oferta
-                  </button>
-                ) : (
-                    <div className="relative z-0 mb-6 w-full group">
+      <Modal show={showModal} size="6xl" popup={true} onClose={handleClose}>
+        <Modal.Header />
+        <Modal.Body>
+          <div className="form-conteiner">
+            <aside>
+              {newProduct ? (
+                <h1> Inserta la informacion de tu Producto:</h1>
+              ) : (
+                <h1> Edita la informacion de tu Producto:</h1>
+              )}
+              <br></br>
+              <div>
+                <form onSubmit={handleSubmit}>
+                  <div className="relative z-0 mb-6 w-full group">
+                    <input
+                      type="text"
+                      onChange={handleChange}
+                      maxLength={15}
+                      defaultValue={newProduct ? null : formData.name}
+                      name="name"
+                      id="name"
+                      className={inputForm}
+                      placeholder=" "
+                      required
+                    />
+                    <label htmlFor="name" className={labelForm}>
+                      Nombre
+                    </label>
+                  </div>
+                  <div className="relative z-0 mb-6 w-full group">
+                    <input
+                      type="text"
+                      onChange={handleChange}
+                      defaultValue={newProduct ? null : formData.description}
+                      name="description"
+                      id="description"
+                      className={inputForm}
+                      placeholder=" "
+                      required
+                    />
+                    <label htmlFor="description" className={labelForm}>
+                      Descripcion
+                    </label>
+                  </div>
+                  <div className="relative z-0 mb-6 w-full group">
                     <input
                       type="number"
                       onChange={handleChange}
                       defaultValue={newProduct ? null : formData.price}
-                      name="off"
-                      id="off"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      name="price"
+                      id="price"
+                      min={0}
+                      max={9999}
+                      className={inputForm}
                       placeholder=" "
                       required
                     />
-                    <label
-                      htmlFor="off"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                    >
-                      Descuento
+                    <label htmlFor="price" className={labelForm}>
+                      Precio
                     </label>
-                    <button className={buttonclass} onClick={handleOferta}>Quitar Oferta</button>
                   </div>
-                )}
+                  {!oferta ? (
+                    <button
+                      type="button"
+                      className={buttonclass}
+                      onClick={handleOferta}
+                    >
+                      Agregar como oferta
+                    </button>
+                  ) : (
+                    <div className="relative z-0 mb-6 w-full group">
+                      <input
+                        type="number"
+                        onChange={handleChange}
+                        defaultValue={newProduct ? null : formData.off}
+                        name="off"
+                        id="off"
+                        className={inputForm}
+                        placeholder=" "
+                        required
+                      />
+                      <label htmlFor="off" className={labelForm}>
+                        Descuento
+                      </label>
+                      <button className={buttonclass} onClick={handleOferta}>
+                        Quitar Oferta
+                      </button>
+                    </div>
+                  )}
 
-              <div className="input-label">
-                <select
-                  defaultValue={formData.category}
-                  onChange={handleSelect}
-                  required
-                >
-                  <option>Seleccione una categoria</option>
-                  {categories.map((cat: any) => {
-                    return (
-                      <option key={cat.name} value={cat.name}>
-                        {cat.name}
-                      </option>
-                    );
-                  })}
-                </select>
+                  <label
+                    htmlFor="countries"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                  >
+                    Seleccione una categoria
+                  </label>
+                  <select
+                    id="countries"
+                    defaultValue={formData.category}
+                    onChange={handleSelect}
+                    required
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  >
+                    <option>Seleccione una categoria</option>
+                    {categories.map((cat: any) => {
+                      return (
+                        <option key={cat.name} value={cat.name}>
+                          {cat.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+
+                  <div className="relative z-0 mb-6 w-full group">
+                    <input
+                      type="number"
+                      onChange={handleChange}
+                      defaultValue={newProduct ? null : formData.stock}
+                      name="stock"
+                      id="stock"
+                      className={inputForm}
+                      placeholder=" "
+                      required
+                      min={0}
+                      max={9999}
+                    />
+                    <label htmlFor="stock" className={labelForm}>
+                      Stock
+                    </label>
+                  </div>
+
+                  <div className="relative z-0 mb-6 w-full group">
+                    <input
+                      type="url"
+                      onChange={handleChange}
+                      defaultValue={newProduct ? null : formData.img}
+                      name="img"
+                      id="img"
+                      className={inputForm}
+                      placeholder=" "
+                      required
+                    />
+                    <label htmlFor="img" className={labelForm}>
+                      Imagen
+                    </label>
+                  </div>
+
+                  {newProduct ? (
+                    <button className={buttonclass} type="submit">
+                      Crear
+                    </button>
+                  ) : (
+                    <button className={buttonclass} type="submit">
+                      Editar
+                    </button>
+                  )}
+                </form>
               </div>
-              <div className="input-label">
-                <label>Stock:</label>
-                <input
-                  onChange={handleChange}
-                  required
-                  placeholder="Ingrese un stock inicial"
-                  name="stock"
-                  type="number"
-                  min={0}
-                  max={9999}
-                  defaultValue={formData.stock}
-                ></input>
-              </div>
-              <div className="input-label">
-                <label>Imagen:</label>
-                <input
-                  onChange={handleChange}
-                  required
-                  name="img"
-                  type="url"
-                  defaultValue={formData.img}
-                />
-              </div>
-              {newProduct ? (
-                <button className={buttonclass} type="submit">
-                  Crear
-                </button>
-              ) : (
-                <button className={buttonclass} type="submit">
-                  Editar
-                </button>
-              )}
-            </form>
+            </aside>
+            <aside>
+              <Card formCard={true} comidaProps={input}></Card>
+            </aside>
           </div>
-        </aside>
-        <aside>
-          <Card formCard={true} comidaProps={input}></Card>
-        </aside>
-      </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 }

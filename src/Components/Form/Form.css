@@ -1,52 +1,7 @@
 .form-conteiner {
-    background-color: ghostwhite;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
 }
-.form-conteiner aside{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-.form-conteiner input:valid {
-    border: 2px solid black
-}
-/* .form-conteiner input:invalid {
-    background-color: ghostwhite;
-    border: none;
-    outline: 2px solid red;
-    border-radius: 5px;
-} */
-
-.form-conteiner form:invalid .submit-button{
-    pointer-events: none;
-    opacity: 0.3;
-}
-
-.input-label{
-    padding: 1rem 1rem 1rem 0;
-}
-.input-label input{
-    width: 100%;
-    height: 1.5rem;
-    padding: 1%;
-}
-
-.input-label select {
-    width: 100%;
-    height: 2.5rem;
-    padding: 1%;
-}
-.input-descuento {
+.form-conteiner aside {
     width: 50%;
-    height: 1.5rem;
-    padding: 1%;
-    margin: 2% 0 2% 0;
+    justify-content: center;
 }
