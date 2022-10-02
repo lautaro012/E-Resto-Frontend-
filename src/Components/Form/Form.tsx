@@ -7,7 +7,7 @@ import Card from '../Card/Card'
 import NavBar from '../NavBar/NavBar'
 import './Form.css'
 
-export default function Form ({newProduct, formData, setcreateProduct, seteditProduct}:any) {
+export default function Form ({newProduct,setFormData, formData, setcreateProduct, seteditProduct}:any) {
     
     let dispatch = useAppDispatch()
     const [oferta, setOferta] = useState<Boolean>(false)
@@ -26,6 +26,17 @@ export default function Form ({newProduct, formData, setcreateProduct, seteditPr
         e.preventDefault()
         setcreateProduct(false)
         seteditProduct(false)
+        setFormData({
+            name: 'test',
+            img: 'https://citizengo.org/sites/default/files/images/test_3.png',
+            price: 0,
+            description: 'test-description',
+            off: 0,
+            stock: 0,
+            rating: 3,
+            category: '',
+            newProduct: true
+        })
     }
 
     useEffect(() => {

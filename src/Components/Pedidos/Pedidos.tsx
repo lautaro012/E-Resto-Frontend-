@@ -107,8 +107,8 @@ export default function Pedidos() {
                     </div>
                 </div>
             </div>
-            {editProduct ? <Form newProduct={false} setcreateProduct={setcreateProduct} formData={formData} seteditProduct={seteditProduct} /> : null}
-            {createProduct ? <Form newProduct={true} setcreateProduct={setcreateProduct} formData={formData} seteditProduct={seteditProduct} /> : null}
+            {editProduct ? <Form setFormData={setFormData} newProduct={false} setcreateProduct={setcreateProduct} formData={formData} seteditProduct={seteditProduct} /> : null}
+            {createProduct ? <Form setFormData={setFormData} newProduct={true} setcreateProduct={setcreateProduct} formData={formData} seteditProduct={seteditProduct} /> : null}
         </>
     )
 }
