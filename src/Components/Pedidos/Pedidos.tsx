@@ -1,116 +1,155 @@
-import Card from '../Card/Card'
-import '../Pedidos/Pedidos.css'
-import NavBar from '../NavBar/NavBar'
-import Form from '../Form/Form'
-import { Link } from 'react-scroll'
-import React, { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../config'
-import { getCategories, getProducts } from '../../redux/actions'
+import Card from "../Card/Card";
+import "../Pedidos/Pedidos.css";
+import NavBar from "../NavBar/NavBar";
+import Form from "../Form/Form";
+import { ListGroup } from "flowbite-react";
+import { Link } from "react-scroll";
+import React, { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../config";
+import { getCategories, getProducts } from "../../redux/actions";
+import { buttonclass, select } from "../../Style/Clases/Clases";
 
 export default function Pedidos() {
+  const [order, setOrder] = useState("");
 
-    const [order, setOrder] = useState('')
+  const [createProduct, setcreateProduct] = useState<Boolean>(false);
+  const [editProduct, seteditProduct] = useState<Boolean>(false);
+  const [showModal, setShowModal] = useState<boolean | undefined>(false);
 
-    const [createProduct, setcreateProduct] = useState<Boolean>(false)
-    const [editProduct, seteditProduct] = useState<Boolean>(false)
-    const[showModal, setShowModal] = useState<boolean | undefined>(false)
+  const [formData, setFormData] = useState<any>({
+    name: "test",
+    img: "https://citizengo.org/sites/default/files/images/test_3.png",
+    price: 0,
+    description: "test-description",
+    off: 0,
+    stock: 0,
+    rating: 3,
+    category: "",
+    newProduct: true,
+  });
+  const onProducEdit = (input: any) => {
+    seteditProduct(true);
+    setcreateProduct(false);
+    setFormData(input);
+    setShowModal(true);
+  };
+  function orderSort(e: any) {
+    e.preventDefault(e);
+    setOrder(e.target.value);
+  }
 
-    const [formData, setFormData] = useState<any>({
-        name: 'test',
-        img: 'https://citizengo.org/sites/default/files/images/test_3.png',
-        price: 0,
-        description: 'test-description',
-        off: 0,
-        stock: 0,
-        rating: 3,
-        category: '',
-        newProduct: true
-    })
-    const onProducEdit = (input: any) => {
-        seteditProduct(true);
-        setcreateProduct(false)
-        setFormData(input)
-        setShowModal(true)
-    }
-    function orderSort(e: any) {
-        e.preventDefault(e)
-        setOrder(e.target.value)
-    }
+  let dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getCategories(order));
+  }, [dispatch, order]);
 
-    let dispatch = useAppDispatch()
-    useEffect(() => {
-        dispatch(getCategories(order))
-    }, [dispatch, order])
+  let categories = useAppSelector((state: any) => state.categories);
+  // let products = useAppSelector((state: any) => state.products);
 
-    let categories = useAppSelector((state: any) => state.categories);
-    // let products = useAppSelector((state: any) => state.products);
+  // console.log("PRODUCTOS", products)
+  // console.log("CATEGORIAS", categories)
 
-    // console.log("PRODUCTOS", products)
-    // console.log("CATEGORIAS", categories)
+  return (
+    <>
+      <NavBar
+        setShowModal={setShowModal}
+        seteditProduct={seteditProduct}
+        setcreateProduct={setcreateProduct}
+      />
+      <div className="Contenedor">
+        <div className="background_image_gps" />
+        <div className="sort-buttons">
+          <select
+            onChange={(e) => orderSort(e)}
+            className={select}
+          >
+            <option>DIETAS</option>
+          </select>
 
-    return (
-        <>
-            <NavBar setShowModal={setShowModal} seteditProduct={seteditProduct} setcreateProduct={setcreateProduct}/>
-            <div className='Contenedor'>
-
-                <div className='background_image_gps' />
-                <div className='sort-buttons'>
-                    <select><option>DIETAS</option></select>
-                    <select onChange={(e) => orderSort(e)}>
-                        <option value=''>Ordenar por nombre:</option>
-                        <option value='AZ'>AZ</option>
-                        <option value='ZA'>ZA</option>
-                    </select>
-                    <select onChange={(e) => orderSort(e)}>
-                        <option value=''>Ordenar por precio:</option>
-                        <option value='mayor'>Mayor precio</option>
-                        <option value='menor'>Menor precio</option>
-                    </select>
-                    <button>MAS COMPRADOS</button>
-                    <button>MAS POPULARES</button>
-                </div>
-                <div className='categorias-productos'>
-                    <div className='categorias-div'>
-                        <div className='categorias-conteiner'>
-                            <ul>
-                                {
-                                    categories?.map((cat: any) => {
-                                        return (
-                                            cat.categoryProducts.length !== 0 ?
-                                                <li key={cat.name}><Link activeClass="active" className="test1" to={cat.name} spy={true} smooth={true} duration={1000}> <button>{cat.name}</button> </Link></li>
-                                                :
-                                                null
-                                        )
-                                    })
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                    <div className='productos-conteiner'>
-                        {
-                            categories?.map((categoria: any) => {
-                                return (
-                                    categoria.categoryProducts.length !== 0 ?
-                                        <div id={categoria.name} key={categoria._id} className='Categoria'>
-                                            <h3>{categoria.name}</h3>
-                                            <div className='Contenedor_cartas'>
-                                                {
-                                                    categoria?.categoryProducts?.map((info: any) => {
-                                                        return <Card onProducEdit={onProducEdit} key={info.name} comidaProps={info} />
-                                                    })
-                                                }
-                                            </div>
-                                        </div>
-                                        :
-                                        null
-                                )
-                            })
-                        }
-                    </div>
-                </div>
+          <select className={select} onChange={(e) => orderSort(e)}>
+            <option value="">Ordenar por nombre:</option>
+            <option value="AZ">AZ</option>
+            <option value="ZA">ZA</option>
+          </select>
+          <select className={select} onChange={(e) => orderSort(e)}>
+            <option value="">Ordenar por precio:</option>
+            <option value="mayor">Mayor precio</option>
+            <option value="menor">Menor precio</option>
+          </select>
+          <button className={buttonclass} >MAS COMPRADOS</button>
+          <button className={buttonclass} >MAS POPULARES</button>
+        </div>
+        <div className="categorias-productos">
+          <div className="categorias-div">
+            <div className="categorias-conteiner">
+            <ListGroup>
+                {categories?.map((cat: any) => {
+                  return cat.categoryProducts.length !== 0 ? (
+                      <Link
+                        activeClass="active"
+                        to={cat.name}
+                        spy={true}
+                        smooth={true}
+                        duration={1000}
+                      >
+                    <ListGroup.Item key={cat.name}>
+                        {" "}
+                        <button>{cat.name}</button>{" "}
+                  </ListGroup.Item>
+                      </Link>
+                  ) : null;
+                })}
+              </ListGroup>
             </div>
-            {editProduct ? <Form setShowModal={setShowModal} showModal={showModal} setFormData={setFormData} newProduct={false} setcreateProduct={setcreateProduct} formData={formData} seteditProduct={seteditProduct} /> : null}
-            {createProduct ? <Form setShowModal={setShowModal} showModal={showModal} setFormData={setFormData} newProduct={true} setcreateProduct={setcreateProduct} formData={formData} seteditProduct={seteditProduct} /> : null}
-        </>
-    )
+          </div>
+          <div className="productos-conteiner">
+            {categories?.map((categoria: any) => {
+              return categoria.categoryProducts.length !== 0 ? (
+                <div
+                  id={categoria.name}
+                  key={categoria._id}
+                  className="Categoria"
+                >
+                  <h1><strong>{categoria.name}</strong></h1>
+                  <div className="Contenedor_cartas">
+                    {categoria?.categoryProducts?.map((info: any) => {
+                      return (
+                        <Card
+                          onProducEdit={onProducEdit}
+                          key={info.name}
+                          comidaProps={info}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : null;
+            })}
+          </div>
+        </div>
+      </div>
+      {editProduct ? (
+        <Form
+          setShowModal={setShowModal}
+          showModal={showModal}
+          setFormData={setFormData}
+          newProduct={false}
+          setcreateProduct={setcreateProduct}
+          formData={formData}
+          seteditProduct={seteditProduct}
+        />
+      ) : null}
+      {createProduct ? (
+        <Form
+          setShowModal={setShowModal}
+          showModal={showModal}
+          setFormData={setFormData}
+          newProduct={true}
+          setcreateProduct={setcreateProduct}
+          formData={formData}
+          seteditProduct={seteditProduct}
+        />
+      ) : null}
+    </>
+  );
 }

@@ -15,7 +15,7 @@ export default function Form({
   setcreateProduct,
   seteditProduct,
   setShowModal,
-  showModal
+  showModal,
 }: any) {
   let dispatch = useAppDispatch();
 
@@ -34,7 +34,7 @@ export default function Form({
   const handleClose = () => {
     setcreateProduct(false);
     seteditProduct(false);
-    setShowModal(false)
+    setShowModal(false);
     setFormData({
       name: "test",
       img: "https://citizengo.org/sites/default/files/images/test_3.png",
@@ -131,19 +131,22 @@ export default function Form({
                     </label>
                   </div>
                   <div className="relative z-0 mb-6 w-full group">
-                    <input
-                      type="text"
+                    <label
+                      htmlFor="message"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                    >
+                      Descripcion
+                    </label>
+                    <textarea
+                      rows={4}
                       onChange={handleChange}
                       defaultValue={newProduct ? null : formData.description}
                       name="description"
                       id="description"
-                      className={inputForm}
-                      placeholder=" "
                       required
-                    />
-                    <label htmlFor="description" className={labelForm}>
-                      Descripcion
-                    </label>
+                      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="Describi de tu producto"
+                    ></textarea>
                   </div>
                   <div className="relative z-0 mb-6 w-full group">
                     <input
@@ -167,6 +170,7 @@ export default function Form({
                       type="button"
                       className={buttonclass}
                       onClick={handleOferta}
+                      id='button2'
                     >
                       Agregar como oferta
                     </button>
@@ -185,7 +189,7 @@ export default function Form({
                       <label htmlFor="off" className={labelForm}>
                         Descuento
                       </label>
-                      <button className={buttonclass} onClick={handleOferta}>
+                      <button id='button2' type="button" className={buttonclass} onClick={handleOferta}>
                         Quitar Oferta
                       </button>
                     </div>
@@ -253,7 +257,7 @@ export default function Form({
                       Crear
                     </button>
                   ) : (
-                    <button className={buttonclass} type="submit">
+                    <button  className={buttonclass} type="submit">
                       Editar
                     </button>
                   )}
