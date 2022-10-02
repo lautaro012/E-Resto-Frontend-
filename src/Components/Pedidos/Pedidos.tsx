@@ -43,6 +43,9 @@ export default function Pedidos() {
     let allcategores = useAppSelector((state:any) => state.allcategories)
     let products = useAppSelector((state: any) => state.products);
 
+    console.log("PRODUCTOS", products)
+    console.log("CATEGORIAS", categories)
+
     return (
         <>
             <NavBar seteditProduct={seteditProduct} setcreateProduct={setcreateProduct} comeback={false} />
