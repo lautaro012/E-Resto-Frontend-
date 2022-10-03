@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../config";
-import { CardForm } from "../../Interfaces/Interfaces";
+import { CardForm, Category, Input, Select, Submit, TextArea } from "../../Interfaces/Interfaces";
 import { buttonclass, inputForm, labelForm } from "../../Style/Clases/Clases";
 import { createProduct, getCategories, editProduct } from "../../redux/actions";
 import { Modal } from "flowbite-react";
@@ -65,20 +65,20 @@ export default function Form({
       setOferta(true);
     }
   };
-  const handleChange = (e: any) => {
+  const handleChange = (e: Input | TextArea)  => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
   };
-  const handleSelect = (e: any) => {
+  const handleSelect = (e: Select) => {
     setInput({
       ...input,
       category: e.target.value,
     });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: Submit) => {
     if (formData.newProduct) {
       return dispatch(createProduct(input));
     }
@@ -113,11 +113,11 @@ export default function Form({
               )}
               <br></br>
               <div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={e => handleSubmit(e)}>
                   <div className="relative z-0 mb-6 w-full group">
                     <input
                       type="text"
-                      onChange={handleChange}
+                      onChange={e => handleChange(e)}
                       maxLength={15}
                       defaultValue={newProduct ? null : formData.name}
                       name="name"
@@ -204,12 +204,12 @@ export default function Form({
                   <select
                     id="countries"
                     defaultValue={formData.category}
-                    onChange={handleSelect}
+                    onChange={e => handleSelect(e)}
                     required
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
                     <option>Seleccione una categoria</option>
-                    {categories.map((cat: any) => {
+                    {categories.map((cat: Category) => {
                       return (
                         <option key={cat.name} value={cat.name}>
                           {cat.name}
