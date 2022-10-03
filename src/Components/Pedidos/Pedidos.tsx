@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../config";
 import { getCategories } from "../../redux/actions";
 import { buttonclass, select } from "../../Style/Clases/Clases";
 import DetailProduct from "../DetailProduct/DetailProduct";
-import VideoHome from '../../Style/videos/VideoIntro.mp4'
+import VideoHome from '../../Style/videos/video.mp4'
 
 export default function Pedidos() {
 
@@ -64,7 +64,7 @@ export default function Pedidos() {
             />
             <div className="Contenedor">
                 <div className="TOP">
-                    <h1>Henry's Foods Proyect</h1>
+                    <h1>Henry's Resto Proyect</h1>
                     <video autoPlay preload="auto" muted loop src={VideoHome}></video>
                 </div>
                 {/* <div className="background_image_gps" /> */}
