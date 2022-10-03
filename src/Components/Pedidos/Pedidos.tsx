@@ -1,4 +1,3 @@
-
 import Card from "../Card/Card";
 import "../Pedidos/Pedidos.css";
 import NavBar from "../NavBar/NavBar";
@@ -10,11 +9,13 @@ import { useAppDispatch, useAppSelector } from "../../config";
 import { getCategories } from "../../redux/actions";
 import { buttonclass, select } from "../../Style/Clases/Clases";
 import DetailProduct from "../DetailProduct/DetailProduct";
+import VideoHome from '../../Style/videos/video.mp4'
 import { CardForm, Category, ProductDetail, Select, StateTypes } from "../../Interfaces/Interfaces";
 
-export default function Pedidos() {
-    const [order, setOrder] = useState("");
 
+export default function Pedidos() {
+
+    const [order, setOrder] = useState("");
     const [createProduct, setcreateProduct] = useState<Boolean>(false);
     const [editProduct, seteditProduct] = useState<Boolean>(false);
     const [showModal, setShowModal] = useState<boolean | undefined>(false);
@@ -32,14 +33,18 @@ export default function Pedidos() {
         category: "",
         newProduct: true,
     });
+
     const onProducEdit = (input: CardForm) => {
+
         seteditProduct(true);
         setcreateProduct(false);
         setFormData(input);
         setShowModal(true);
     };
+
     function orderSort(e: Select) {
         e.preventDefault();
+
         setOrder(e.target.value);
     }
 
@@ -62,7 +67,11 @@ export default function Pedidos() {
                 setcreateProduct={setcreateProduct}
             />
             <div className="Contenedor">
-                <div className="background_image_gps" />
+                <div className="TOP">
+                    <h1>Henry's Resto Proyect</h1>
+                    <video autoPlay preload="auto" muted loop src={VideoHome}></video>
+                </div>
+                {/* <div className="background_image_gps" /> */}
                 <div className="sort-buttons">
                     <select
                         onChange={(e) => orderSort(e)}
