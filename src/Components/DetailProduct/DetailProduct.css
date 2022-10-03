@@ -23,8 +23,7 @@
 
   .detail_label {
     background-color: #EFE1BD;
-    display: flex;
-    flex-direction: column;
+    text-align: center;
     border: solid 1px;
     border-radius: 20px;
     margin: 2%;
@@ -34,4 +33,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  .modal_inputs_details{
+    margin: 5%;
   }

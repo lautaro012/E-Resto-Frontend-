@@ -98,7 +98,7 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                                                         {
                                                                             cat && cat.categoryProducts.map(prod => {
                                                                                 return (
-                                                                                    <div>
+                                                                                    <div className="modal_inputs_details">
                                                                                         <h3 className="text-m font-semibold tracking-tight text-gray-900 dark:text-white">{prod.name}</h3>
                                                                                         <input type="checkbox" value={prod.name}></input>
                                                                                         <label>{prod.name}</label>

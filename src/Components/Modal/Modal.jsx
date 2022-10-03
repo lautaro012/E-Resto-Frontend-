@@ -8,7 +8,9 @@ export default function ModalInDetail({ isOpen, closeModal, title, children }) {
                 <button onClick={closeModal}>X</button>
                 <h1 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{title}</h1>
                 <hr></hr>
-                {children}
+                <div className='tags_modal_children'>
+                    {children}
+                </div>
             </div>
         </div>
     )
