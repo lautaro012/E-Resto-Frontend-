@@ -12,8 +12,8 @@ import DetailProduct from "../DetailProduct/DetailProduct";
 import VideoHome from '../../Style/videos/VideoIntro.mp4'
 
 export default function Pedidos() {
-    const [order, setOrder] = useState("");
 
+    const [order, setOrder] = useState("");
     const [createProduct, setcreateProduct] = useState<Boolean>(false);
     const [editProduct, seteditProduct] = useState<Boolean>(false);
     const [showModal, setShowModal] = useState<boolean | undefined>(false);
@@ -31,12 +31,14 @@ export default function Pedidos() {
         category: "",
         newProduct: true,
     });
+
     const onProducEdit = (input: any) => {
         seteditProduct(true);
         setcreateProduct(false);
         setFormData(input);
         setShowModal(true);
     };
+
     function orderSort(e: any) {
         e.preventDefault(e);
         setOrder(e.target.value);

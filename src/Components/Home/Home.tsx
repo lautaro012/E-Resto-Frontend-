@@ -1,7 +1,7 @@
 import HomeBar from '../HomeBar/HomeBar'
 import './Home.css'
 import Logo from '../../Style/images/Henry_icon.png'
-import { Footer } from "../Footer/Footer"
+//import { Footer } from "../Footer/Footer"
 import Products from "../Products/Products"
 import { useRef } from "react"
 
