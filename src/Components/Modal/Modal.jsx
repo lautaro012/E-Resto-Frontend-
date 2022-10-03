@@ -1,6 +1,6 @@
 import './Modal.css'
 
-export default function Modal({ isOpen, closeModal, title, children }) {
+export default function ModalInDetail({ isOpen, closeModal, title, children }) {
 
     return (
         <div className={`modal ${isOpen && 'modal-open'}`}>

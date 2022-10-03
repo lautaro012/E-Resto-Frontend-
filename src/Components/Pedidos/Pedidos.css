@@ -46,8 +46,8 @@
 .categorias-conteiner {
   background-color: #FFE2D1;
 
-    position: sticky;
-    top: 31%;
+  position: sticky;
+  top: 31%;
 }
 
 .categorias-conteiner ul {
@@ -62,16 +62,12 @@
 .categorias-conteiner ul a li:hover {
   text-decoration: underline;
   cursor: pointer;
-  background-color: #f1ffc491 ;
+  background-color: #f1ffc491;
 }
 
 .categorias-conteiner li {
   font-size: 1.5rem;
   padding: 1%;
-}
-.categorias-conteiner ul a:hover {
- background: none;
-  
 }
 
 .categorias-div {
@@ -82,4 +78,10 @@
 .productos-conteiner {
   width: 70%;
   margin-left: 3%;
+}
+
+#top_button {
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
 }

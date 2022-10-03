@@ -1,18 +1,15 @@
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../config";
 import { deleteProduct } from "../../redux/actions";
 import { Card } from "flowbite-react/lib/esm/components";
 import { buttonclass } from '../../Style/Clases/Clases'
 import PrettyRating from "pretty-rating-react";
-import {
-    faStar,
-    faStarHalfAlt,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-    faStar as farStar,
-} from "@fortawesome/free-regular-svg-icons";
+//import React, { useEffect, useState } from "react";
+//import DetailProduct from "../DetailProduct/DetailProduct";
+import '../Card/Card.css'
 
-export default function CardProduct({ formCard = false, comidaProps, onProducEdit }: any) {
+export default function CardProduct({ formCard = false, comidaProps, onProducEdit, modalOpen, setIdModal }: any) {
+
     let { _id, price, off, description, name, img, rating } = comidaProps
     let dispatch = useAppDispatch()
     let currentprice = price - (price * off / 100)
@@ -25,18 +22,15 @@ export default function CardProduct({ formCard = false, comidaProps, onProducEdi
         dispatch(deleteProduct(_id))
     }
 
-    const icons = {
-        star: {
-            complete: faStar,
-            half: faStarHalfAlt,
-            empty: farStar,
-        }
+    function openModalDetail(_id: string) {
+        console.log("openmodalID",_id)
+        modalOpen(true)
+        setIdModal(_id)
     }
+
     const colors = {
         star: ['#d9ad26', '#d9ad26', '#434b4d'],
     }
-
-    console.log("COMIDAS PROPS", comidaProps)
 
     return (
         <div className="max-w-sm">
@@ -44,7 +38,8 @@ export default function CardProduct({ formCard = false, comidaProps, onProducEdi
                 imgAlt={name}
                 imgSrc={img}
             >
-                <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{name}</h2>
+                <h5 className="text-l font-semibold tracking-tight text-gray-900 dark:text-white">
                     {description}
                 </h5>
                 <div className="mt-2.5 mb-5 flex items-center">
@@ -72,11 +67,11 @@ export default function CardProduct({ formCard = false, comidaProps, onProducEdi
                             null
                             :
                             <div>
-                                <button className={buttonclass}>
-                                    <Link to={`/product/${_id}`}>
-                                        <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
-                                        </path></svg>
-                                    </Link>
+                                <button onClick={() => openModalDetail(_id)} className={buttonclass}>
+                                    {/* <Link to={`/product/${_id}`}> */}
+                                    <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                                    </path></svg>
+                                    {/* </Link> */}
                                 </button>
                                 <button className={buttonclass} onClick={handleEdit}>
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
@@ -88,6 +83,6 @@ export default function CardProduct({ formCard = false, comidaProps, onProducEdi
                     }
                 </div>
             </Card>
-        </div>
+        </div >
     )
 }

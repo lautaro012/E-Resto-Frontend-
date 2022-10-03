@@ -13,7 +13,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/pedidos' element={<Pedidos />} />
         <Route path='/test' element={<Form/>}/>
-        <Route path='/product/:id' element={<DetailProduct/>}/>
+        <Route path='/product/:id' element={<DetailProduct id closeModalDetail/>}/>
         <Route path='/crear' element={<Form/>}/>
       </Routes>
     </Router>

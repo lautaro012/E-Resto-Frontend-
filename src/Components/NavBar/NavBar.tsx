@@ -4,8 +4,8 @@ import SearchBar from '../SearchBar/SearchBar'
 import { NavBarProp } from '../../Interfaces/Interfaces';
 import { buttonclass } from '../../Style/Clases/Clases';
 
+export default function NavBar({ setShowModal, setcreateProduct, seteditProduct }: NavBarProp) {
 
-export default function NavBar({ setShowModal, setcreateProduct,seteditProduct }: NavBarProp) {
     const navigate = useNavigate();
 
     const handleHome = () => {
@@ -23,23 +23,21 @@ export default function NavBar({ setShowModal, setcreateProduct,seteditProduct }
         setShowModal(true)
     }
     return (
-    <>
-        
-        <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
-        <div className="container flex flex-wrap justify-between items-center mx-auto">
-        <a href="#" onClick={handleHome} className="flex items-center">
-            <img width={150} src='http://www.occohelados.com.ar/_nuxt/img/logo.18d63ee.png' alt='LOGO'></img>
-        </a>
-        <SearchBar/>
-        <div className="flex md:order-2">
-            <button onClick={handleCreate} type="button" className={buttonclass}>Crea tu pedido</button>
-        </div>
+        <div id='navBar'>
+            <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+                <div className="container flex flex-wrap justify-between items-center mx-auto">
+                    <a href="#" onClick={handleHome} className="flex items-center">
+                        <img width={150} src='http://www.occohelados.com.ar/_nuxt/img/logo.18d63ee.png' alt='LOGO'></img>
+                    </a>
+                    <SearchBar />
+                    <div className="flex md:order-2">
+                        <button onClick={handleCreate} type="button" className="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Crea tu pedido</button>
+                    </div>
 
+                </div>
+            </nav>
         </div>
-        </nav>
-
-    </>  
-)
+    )
 }
 
 {/* <nav className="pedidos-navbar-conteiner">
