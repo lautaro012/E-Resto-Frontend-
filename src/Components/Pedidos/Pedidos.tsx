@@ -66,16 +66,17 @@ export default function Pedidos() {
                     <select
                         onChange={(e) => orderSort(e)}
                         className={select}
+                        id='selectConfigSize'
                     >
-                        <option>DIETAS</option>
+                        <option>Dietas</option>
                     </select>
 
-                    <select className={select} onChange={(e) => orderSort(e)}>
+                    <select className={select} onChange={(e) => orderSort(e)} id='selectConfigSize'>
                         <option value="">Ordenar por nombre:</option>
                         <option value="AZ">AZ</option>
                         <option value="ZA">ZA</option>
                     </select>
-                    <select className={select} onChange={(e) => orderSort(e)}>
+                    <select className={select} onChange={(e) => orderSort(e)} id='selectConfigSize' >
                         <option value="">Ordenar por precio:</option>
                         <option value="mayor">Mayor precio</option>
                         <option value="menor">Menor precio</option>
@@ -98,7 +99,7 @@ export default function Pedidos() {
                                         >
                                             <ListGroup.Item key={cat.name}>
                                                 {" "}
-                                                <button className={buttonclass}>{cat.name}</button>
+                                                <button id="buttonAsideConfig" className={buttonclass}>{cat.name}</button>
                                                 {" "}
                                             </ListGroup.Item>
                                         </Link>

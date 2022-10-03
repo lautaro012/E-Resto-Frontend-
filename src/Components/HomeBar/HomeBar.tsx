@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import './HomeBar.css'
 import Logo from '../../Style/images/Henry.png'
+import { buttonclass } from '../../Style/Clases/Clases'
 
 export default function HomeBar ({el, home}:any) {
 
@@ -21,15 +22,15 @@ export default function HomeBar ({el, home}:any) {
         <nav className="navbar-conteiner">
             <header>
                 <div className='navbar-buttons'>
-                    <button onClick={handleHome}> HOME </button>
+                    <button onClick={handleHome} className={buttonclass}> HOME </button>
 
-                    <button onClick={() => navigate('/pedidos')}> HACE TU PEDIDO </button>
+                    <button className={buttonclass}  onClick={() => navigate('/pedidos')}> HACE TU PEDIDO </button>
                 </div>
-                <img src={Logo} alt='LOGO'></img>
+                <img className='logoHenryFood' src={Logo} alt='LOGO'></img>
                 <div className='navbar-buttons'>
-                    <button> CATALOGO </button>
+                    <button className={buttonclass} > CATALOGO </button>
 
-                    <button onClick={handleClick}> CONTACTANOS </button>
+                    <button className={buttonclass}  onClick={handleClick}> CONTACTANOS </button>
                 </div>
             </header>
         </nav>

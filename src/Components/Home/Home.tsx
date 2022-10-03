@@ -24,7 +24,6 @@ export default function Home () {
                 <Products/>
             </div>
             <div ref={el}>
-                <Footer/>
             </div>
         </div>
     )
