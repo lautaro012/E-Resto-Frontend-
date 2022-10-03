@@ -1,14 +1,3 @@
-/* .pedidos-navbar-conteiner header {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-
-
+#logoNavBarImg{
+    border-radius: 7px
 }
-.pedidos-navbar-conteiner{
-    background-color: white;
-    position: sticky;
-    top: 0px;
-    z-index: 100;
-    width: 100%;
-} */

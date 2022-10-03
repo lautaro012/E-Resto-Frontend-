@@ -28,7 +28,7 @@ export default function NavBar({ setShowModal, setcreateProduct, seteditProduct 
             <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
                 <div className="container flex flex-wrap justify-between items-center mx-auto">
                     <a href="#" onClick={handleHome} className="flex items-center">
-                        <img width={150} src={Logo} alt='LOGO'></img>
+                        <img id="logoNavBarImg" width={150} src={Logo} alt='LOGO'></img>
                     </a>
                     <SearchBar />
                     <div className="flex md:order-2">
@@ -40,17 +40,3 @@ export default function NavBar({ setShowModal, setcreateProduct, seteditProduct 
         </div>
     )
 }
-
-{/* <nav className="pedidos-navbar-conteiner">
-            <header>
-                <button onClick={handleHome}><img width={150} src='http://www.occohelados.com.ar/_nuxt/img/logo.18d63ee.png' alt='LOGO'></img></button>
-                <div>
-                    <h1>DIETA</h1>
-                </div>
-                <SearchBar></SearchBar>
-                <div className='pedidos-navbar-buttons'>
-                   
-                    <button onClick={handleCreate}> Crear Producto </button>
-                </div>
-                </header>
-            </nav> */}
