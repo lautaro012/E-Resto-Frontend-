@@ -1,3 +1,4 @@
+import { Action, Category, ProductDetail, StateTypes } from "../../Interfaces/Interfaces";
 import {
     GET_CATEGORIES,
     GET_PRODUCTS,
@@ -7,7 +8,7 @@ import {
     EDIT_FORM,
 } from "../actions";
 
-const initialState: any = {
+const initialState: StateTypes = {
     backup: [],
     products: [],
     categories: [],
@@ -16,7 +17,7 @@ const initialState: any = {
 }
 
 
-export default function rootReducer(state = initialState, action: any) {
+export default function rootReducer(state = initialState, action: Action) {
     switch (action.type) {
 
         case GET_PRODUCTS:
@@ -32,8 +33,8 @@ export default function rootReducer(state = initialState, action: any) {
             }
         case GET_PRODUCTS_BY_NAME:
             let categorias = action.payload
-            let Productosfiltrados = categorias.map((producto:any) => {
-                producto.categoryProducts = producto.categoryProducts.filter((data:any) => data.name.toLowerCase().includes(action.name.toLowerCase()))
+            let Productosfiltrados = categorias.map((producto:Category) => {
+                producto.categoryProducts = producto.categoryProducts.filter((data:ProductDetail) => data.name.toLowerCase().includes(action.payload.name.toLowerCase()))
                 return producto
             })
             

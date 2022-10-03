@@ -1,5 +1,6 @@
 import { Dispatch } from "react";
 import axios from 'axios'
+import { Action, CardForm, Category, ProductDetail } from "../../Interfaces/Interfaces";
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const GET_PRODUCTS_BY_NAME = 'GET_PRODUCTS_BY_NAME'
@@ -7,11 +8,7 @@ export const GET_FOOD_BY_ID = "GET_FOOD_BY_ID"
 export const EMPTY_FOOD = "EMPTY_FOOD"
 export const EDIT_FORM ='EDIT_FORM'
 
-type Action = {
-    type: string;
-    payload?: any;
-    name?: String
-};
+
 
 export const getProducts = (sort : String) => {
 
@@ -19,7 +16,7 @@ export const getProducts = (sort : String) => {
         axios('http://localhost:3001/product').then(resp => resp.data)
         .then(resp => {
             if(sort === 'AZ') {
-                resp.sort(function (a:any, b:any) {
+                resp.sort(function (a:ProductDetail, b:ProductDetail) {
                 if (a.name > b.name) {
                   return 1;
                 }
@@ -30,7 +27,7 @@ export const getProducts = (sort : String) => {
               });
             }
             if(sort === 'ZA') {
-                resp.sort(function (a:any, b:any) {
+                resp.sort(function (a:ProductDetail, b:ProductDetail) {
                     if (b.name > a.name) {
                       return 1;
                     }
@@ -41,10 +38,10 @@ export const getProducts = (sort : String) => {
                   });
             }
             if(sort === 'mayor') {
-                resp.sort(function(a:any, b:any){return b.price - a.price})
+                resp.sort(function(a:ProductDetail, b:ProductDetail){return b.price - a.price})
             }
             if(sort === 'menor') {
-                resp.sort(function(a:any, b:any){return a.price - b.price})
+                resp.sort(function(a:ProductDetail, b:ProductDetail){return a.price - b.price})
             }
             //   console.log(resp)
             dispatch({
@@ -63,8 +60,10 @@ export const getProductsByName = (name : String) => {
             .then(res => {
                 dispatch({
                     type: GET_PRODUCTS_BY_NAME,
-                    payload: res,
+                    payload: {
+                    res,
                     name: name
+                    }
                 })
             })
         }
@@ -86,10 +85,10 @@ export const getCategories = (sort: string) => {
         axios('http://localhost:3001/category').then(resp => resp.data)
             .then(resp => {
                 //console.log("RESP", resp)
-                resp.map((cat: any) => {
+                resp.map((cat: Category) => {
 
                     if (sort === 'AZ') {
-                        cat.categoryProducts.sort(function (a: any, b: any) {
+                        cat.categoryProducts.sort(function (a: ProductDetail, b: ProductDetail) {
                             if (a.name > b.name) {
                                 return 1;
                             }
@@ -100,7 +99,7 @@ export const getCategories = (sort: string) => {
                         });
                     }
                     if (sort === 'ZA') {
-                        cat.categoryProducts.sort(function (a: any, b: any) {
+                        cat.categoryProducts.sort(function (a: ProductDetail, b: ProductDetail) {
                             if (b.name > a.name) {
                                 return 1;
                             }
@@ -111,10 +110,10 @@ export const getCategories = (sort: string) => {
                         });
                     }
                     if (sort === 'mayor') {
-                        cat.categoryProducts.sort(function (a: any, b: any) { return b.price - a.price })
+                        cat.categoryProducts.sort(function (a: ProductDetail, b: ProductDetail) { return b.price - a.price })
                     }
                     if (sort === 'menor') {
-                        cat.categoryProducts.sort(function (a: any, b: any) { return a.price - b.price })
+                        cat.categoryProducts.sort(function (a: ProductDetail, b: ProductDetail) { return a.price - b.price })
                     }
                 })
                 dispatch({
@@ -134,7 +133,7 @@ export const clear = function (payload:any) {
     }
 }
 
-export const createProduct = function (input:any) {
+export const createProduct = function (input:CardForm) {
     return function(dispatch:Dispatch<Action>){
         axios.post('http://localhost:3001/product', input)
         .then(res => console.log(res.data))
@@ -142,7 +141,7 @@ export const createProduct = function (input:any) {
     }
 }
 
-export const getFoodById = (id:any) => {
+export const getFoodById = (id:string) => {
     return function(dispatch:Dispatch<Action>) {
         axios(`http://localhost:3001/product/${id}`).then(resp => resp.data)
         .then(resp => {
@@ -162,7 +161,7 @@ export const vaciarComida = function () {
     }
 }
 
-export const fillFormData = (input:any) => {
+export const fillFormData = (input:CardForm) => {
     return function(dispatch:Dispatch<Action>){
         dispatch({
             type:EDIT_FORM,
@@ -171,7 +170,7 @@ export const fillFormData = (input:any) => {
     }
 }
 
-export const editProduct = (input:any, id:number) => {
+export const editProduct = (input:CardForm, id:number) => {
     return function(dispatch:Dispatch<Action>) {
         axios.put(`http://localhost:3001/product/${id}`, input).then(res => res.data)
         .then(resp => {
@@ -181,7 +180,7 @@ export const editProduct = (input:any, id:number) => {
     }
 }
 
-export const deleteProduct = (id:number) => {
+export const deleteProduct = (id:string) => {
     axios.delete(`http://localhost:3001/product/${id}`).then(res => res.data)
     .then(res => console.log(res))
     .catch(err => console.log(err))
