@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../config";
 import { getCategories, getProducts } from "../../redux/actions";
 import { buttonclass, select } from "../../Style/Clases/Clases";
+import DetailProduct from "../DetailProduct/DetailProduct";
 
 export default function Pedidos() {
     const [order, setOrder] = useState("");
@@ -16,6 +17,8 @@ export default function Pedidos() {
     const [createProduct, setcreateProduct] = useState<Boolean>(false);
     const [editProduct, seteditProduct] = useState<Boolean>(false);
     const [showModal, setShowModal] = useState<boolean | undefined>(false);
+    const [showDetailModal, setShowDetailModal] = useState<boolean | undefined>(false);
+    const [idModal, setIdModal] = useState<string>();
 
     const [formData, setFormData] = useState<any>({
         name: "test",
@@ -120,6 +123,8 @@ export default function Pedidos() {
                                                     onProducEdit={onProducEdit}
                                                     key={info.name}
                                                     comidaProps={info}
+                                                    modalOpen={setShowDetailModal}
+                                                    setIdModal={setIdModal}
                                                 />
                                             );
                                         })}
@@ -158,6 +163,21 @@ export default function Pedidos() {
                     />
                 )
                     : null
+            }
+
+            {
+                showDetailModal ?
+                    <>
+                        {
+                            console.log("ID_MODAL PEDIDOS", idModal)
+                        }
+                        <DetailProduct
+                            id={idModal}
+                            closeModalDetail={setShowDetailModal}
+                        />
+                    </>
+                    :
+                    null
             }
             <button className={buttonclass} id='top_button'>
                 <Link activeClass="active" to="navBar" spy={true} smooth={true} duration={1000}>
