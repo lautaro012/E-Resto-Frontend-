@@ -5,11 +5,12 @@ import NavBar from "../NavBar/NavBar";
 import Form from "../Form/Form";
 import { ListGroup } from "flowbite-react";
 import { Link } from "react-scroll";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../config";
 import { getCategories } from "../../redux/actions";
 import { buttonclass, select } from "../../Style/Clases/Clases";
 import DetailProduct from "../DetailProduct/DetailProduct";
+import { CardForm, Category, ProductDetail, Select, StateTypes } from "../../Interfaces/Interfaces";
 
 export default function Pedidos() {
     const [order, setOrder] = useState("");
@@ -20,7 +21,7 @@ export default function Pedidos() {
     const [showDetailModal, setShowDetailModal] = useState<boolean | undefined>(false);
     const [idModal, setIdModal] = useState<string>();
 
-    const [formData, setFormData] = useState<any>({
+    const [formData, setFormData] = useState<CardForm>({
         name: "test",
         img: "https://citizengo.org/sites/default/files/images/test_3.png",
         price: 0,
@@ -31,14 +32,14 @@ export default function Pedidos() {
         category: "",
         newProduct: true,
     });
-    const onProducEdit = (input: any) => {
+    const onProducEdit = (input: CardForm) => {
         seteditProduct(true);
         setcreateProduct(false);
         setFormData(input);
         setShowModal(true);
     };
-    function orderSort(e: any) {
-        e.preventDefault(e);
+    function orderSort(e: Select) {
+        e.preventDefault();
         setOrder(e.target.value);
     }
 
@@ -47,7 +48,7 @@ export default function Pedidos() {
         dispatch(getCategories(order));
     }, [dispatch, order]);
 
-    let categories = useAppSelector((state: any) => state.categories);
+    let categories = useAppSelector((state: StateTypes) => state.categories);
     // let products = useAppSelector((state: any) => state.products);
 
     // console.log("PRODUCTOS", products)
@@ -88,7 +89,7 @@ export default function Pedidos() {
                     <div className="categorias-div">
                         <div className="categorias-conteiner">
                             <ListGroup>
-                                {categories?.map((cat: any) => {
+                                {categories?.map((cat: Category) => {
                                     return cat.categoryProducts.length !== 0 ? (
                                         <Link
                                             activeClass="active"
@@ -110,7 +111,7 @@ export default function Pedidos() {
 
                     </div>
                     <div className="productos-conteiner">
-                        {categories?.map((categoria: any) => {
+                        {categories?.map((categoria: Category) => {
                             return categoria.categoryProducts.length !== 0 ? (
                                 <div
                                     id={categoria.name}
@@ -125,7 +126,7 @@ export default function Pedidos() {
                                     </h1>
 
                                     <div className="Contenedor_cartas">
-                                        {categoria?.categoryProducts?.map((info: any) => {
+                                        {categoria?.categoryProducts?.map((info: ProductDetail) => {
                                             return (
                                                 <Card
                                                     onProducEdit={onProducEdit}

@@ -3,7 +3,7 @@ import './HomeBar.css'
 import Logo from '../../Style/images/Henry.png'
 import { buttonclass } from '../../Style/Clases/Clases'
 
-export default function HomeBar ({el, home}:any) {
+export default function HomeBar ({el}:any) {
 
     const navigate = useNavigate()
 
