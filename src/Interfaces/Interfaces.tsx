@@ -43,7 +43,7 @@ export interface Category {
 export type StateTypes = {
     backup: ProductDetail[] | [],
     products: ProductDetail[] | [],
-    categories: Category | [],
+    categories: Array<Category> | [],
     detail: ProductDetail | [],
     allcategories: Category | [],
 }
