@@ -43,9 +43,9 @@ export interface Category {
 export type StateTypes = {
     backup: ProductDetail[] | [],
     products: ProductDetail[] | [],
-    categories: Array<Category>,
+    categories: Category | [],
     detail: ProductDetail | [],
-    allcategories: Category | []
+    allcategories: Category | [],
 }
 export type Action = {
     type: string;
