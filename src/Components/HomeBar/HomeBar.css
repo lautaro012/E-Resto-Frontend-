@@ -5,7 +5,7 @@
 .navbar-conteiner header {
     display: flex;
     border: 1px solid rgb(0, 0, 0);
-    background-color: #121212;
+    background-color: #1F1F1F;
     justify-content: center;
     align-items: center;
     flex-direction: row;

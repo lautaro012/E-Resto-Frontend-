@@ -1,6 +1,6 @@
 import HomeBar from '../HomeBar/HomeBar'
 import './Home.css'
-import Logo from '../../Style/images/logo.svg'
+import Logo from '../../Style/images/Henry_icon.png'
 import { Footer } from "../Footer/Footer"
 import Products from "../Products/Products"
 import { useRef } from "react"
@@ -17,7 +17,7 @@ export default function Home () {
             <header>
             <HomeBar el={el} home={home}/>
             <div className="logo-conteiner" >
-                <img ref={home} width={400} src={Logo} alt='logo'/>
+                <img id='logo_home' ref={home} width={400} src={Logo} alt='logo'/>
             </div>
             </header>
             <div>

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import SearchBar from '../SearchBar/SearchBar'
 import { NavBarProp } from '../../Interfaces/Interfaces';
 import { buttonclass } from '../../Style/Clases/Clases';
+import Logo from '../../Style/images/Henry.png'
 
 export default function NavBar({ setShowModal, setcreateProduct, seteditProduct }: NavBarProp) {
 
@@ -27,7 +28,7 @@ export default function NavBar({ setShowModal, setcreateProduct, seteditProduct 
             <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
                 <div className="container flex flex-wrap justify-between items-center mx-auto">
                     <a href="#" onClick={handleHome} className="flex items-center">
-                        <img width={150} src='http://www.occohelados.com.ar/_nuxt/img/logo.18d63ee.png' alt='LOGO'></img>
+                        <img width={150} src={Logo} alt='LOGO'></img>
                     </a>
                     <SearchBar />
                     <div className="flex md:order-2">

@@ -1,7 +1,7 @@
-import { useParams, Link } from "react-router-dom";
+//import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from '../../config'
-import { getFoodById, getCategories, vaciarComida } from '../../redux/actions/index'
+import { getFoodById, vaciarComida } from '../../redux/actions/index'
 import '../DetailProduct/DetailProduct.css'
 import ModalInDetail from "../Modal/Modal";
 import useModal from "../../hooks/useModal";
@@ -34,48 +34,52 @@ export default function DetailProduct({ id, closeModalDetail }) {
         closeModalDetail(false)
     }
 
-    console.log("ID POR PARAMS DETAIL", id)
-    console.log("DETAIL_ID", food)
-
     return (
         <div >
             {
                 food && food ?
                     <Modal show={closeModalDetail} size="6xl" popup={true} onClose={closeDetailModal}>
-                        <Modal.Header />
+                        <Modal.Header>
+                            <h1 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{food.name}</h1>
+                        </Modal.Header>
                         <Modal.Body>
+                            <hr></hr>
                             <div id="contenedor_detail">
                                 <div id="detalle_izq">
-                                    <h1>{food.name}</h1>
                                     <img src={food.img} alt="ImagenPOP" id="imagen_detail_modal" ></img>
-                                    <h2>$ {food.price}</h2>
+                                    <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">$
+                                        {food.price}
+                                    </h2>
                                     {
                                         food.off !== 0 ?
-                                            <h2>{food.off}</h2>
+                                            <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{food.off}</h2>
                                             :
                                             null
                                     }
                                 </div>
                                 <div id="detalle_der">
                                     <div>
-                                        <h2>Detalles</h2>
+                                        <h1 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Detalles</h1>
                                         <p>{food.description}</p>
                                     </div>
-                                    <div className="detail_label">
-                                        <button onClick={(event) => modalData("Bebidas sin Alcohol")}><h2>Bebidas sin Alcohol (opcional)</h2></button>
-                                    </div>
-                                    <div className="detail_label">
-                                        <button onClick={(event) => modalData("Cervezas")}><h2>Cervezas (opcional)</h2></button>
-                                    </div>
-                                    <div className="detail_label">
-                                        <button onClick={(event) => modalData("Postres")}><h2>Postres (opcional)</h2></button>
+                                    <div id="detail_contenedor_labels">
+
+                                        <div className="detail_label">
+                                            <button onClick={(event) => modalData("Bebidas sin Alcohol")}><h2>Bebidas sin Alcohol (opcional)</h2></button>
+                                        </div>
+                                        <div className="detail_label">
+                                            <button onClick={(event) => modalData("Cervezas")}><h2>Cervezas (opcional)</h2></button>
+                                        </div>
+                                        <div className="detail_label">
+                                            <button onClick={(event) => modalData("Postres")}><h2>Postres (opcional)</h2></button>
+                                        </div>
                                     </div>
                                     <div>
                                         <h2>Comentarios</h2>
                                         <textarea
                                             name='comentarios'
                                             placeholder="Algo que nos quieras comentar sobre el pedido ?"
-                                            rows={5} cols={55}
+                                            rows={5} cols={40}
                                         />
                                     </div>
                                     <ModalInDetail
@@ -88,16 +92,14 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                                 <div>
                                                     {
                                                         categories && categories.map(cat => {
-
                                                             if (cat.name === datosModal) {
-
                                                                 return (
                                                                     <div>
                                                                         {
                                                                             cat && cat.categoryProducts.map(prod => {
                                                                                 return (
                                                                                     <div>
-                                                                                        <h3>{prod.name}</h3>
+                                                                                        <h3 className="text-m font-semibold tracking-tight text-gray-900 dark:text-white">{prod.name}</h3>
                                                                                         <input type="checkbox" value={prod.name}></input>
                                                                                         <label>{prod.name}</label>
                                                                                     </div>

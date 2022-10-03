@@ -1,7 +1,15 @@
 .max-w-sm img {
-    max-width: 20vw;
+
     max-height: 25vh;
     min-width: 20vw;
     min-height: 25vh;
     object-fit: cover;
+}
+
+.max-w-sm {
+    margin: 1%;
+}
+
+.max-w-sm p {
+    min-height: 10vh;
 }
