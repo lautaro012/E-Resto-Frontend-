@@ -1,6 +1,5 @@
 .home-conteiner {
-    background-color: #121212;
-    color: white;
+    background-color: #E9D5A1;
     transition: 1s;
 }
 
@@ -10,4 +9,8 @@
     flex-direction: column;
     align-items: center;
     margin-top: 5%;
+}
+
+.logo-conteiner img {
+    border-radius: 50%;
 }

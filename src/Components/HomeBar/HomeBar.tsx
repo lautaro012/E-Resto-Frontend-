@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import './HomeBar.css'
+import Logo from '../../Style/images/Henry.png'
+
 export default function HomeBar ({el, home}:any) {
 
     const navigate = useNavigate()
@@ -23,7 +25,7 @@ export default function HomeBar ({el, home}:any) {
 
                     <button onClick={() => navigate('/pedidos')}> HACE TU PEDIDO </button>
                 </div>
-                <img src='http://www.occohelados.com.ar/_nuxt/img/logo.18d63ee.png' alt='LOGO'></img>
+                <img src={Logo} alt='LOGO'></img>
                 <div className='navbar-buttons'>
                     <button> CATALOGO </button>
 

@@ -5,9 +5,9 @@ import NavBar from "../NavBar/NavBar";
 import Form from "../Form/Form";
 import { ListGroup } from "flowbite-react";
 import { Link } from "react-scroll";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../config";
-import { getCategories, getProducts } from "../../redux/actions";
+import { getCategories } from "../../redux/actions";
 import { buttonclass, select } from "../../Style/Clases/Clases";
 import DetailProduct from "../DetailProduct/DetailProduct";
 
@@ -98,7 +98,8 @@ export default function Pedidos() {
                                         >
                                             <ListGroup.Item key={cat.name}>
                                                 {" "}
-                                                <button>{cat.name}</button>{" "}
+                                                <button className={buttonclass}>{cat.name}</button>
+                                                {" "}
                                             </ListGroup.Item>
                                         </Link>
                                     ) : null;
@@ -115,7 +116,13 @@ export default function Pedidos() {
                                     key={categoria._id}
                                     className="Categoria"
                                 >
-                                    <h1><strong>{categoria.name}</strong></h1>
+                                    <h1 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                                        <strong>{categoria.name}</strong>
+                                        <span className="mr-2 ml-3 rounded bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">
+                                            {categoria.categoryProducts.length}
+                                        </span>
+                                    </h1>
+
                                     <div className="Contenedor_cartas">
                                         {categoria?.categoryProducts?.map((info: any) => {
                                             return (
@@ -167,23 +174,18 @@ export default function Pedidos() {
 
             {
                 showDetailModal ?
-                    <>
-                        {
-                            console.log("ID_MODAL PEDIDOS", idModal)
-                        }
-                        <DetailProduct
-                            id={idModal}
-                            closeModalDetail={setShowDetailModal}
-                        />
-                    </>
+                    <DetailProduct
+                        id={idModal}
+                        closeModalDetail={setShowDetailModal}
+                    />
                     :
                     null
             }
-            <button className={buttonclass} id='top_button'>
-                <Link activeClass="active" to="navBar" spy={true} smooth={true} duration={1000}>
+            <Link activeClass="active" to="navBar" spy={true} smooth={true} duration={1000}>
+                <button className={buttonclass} id='top_button'>
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7l4-4m0 0l4 4m-4-4v18"></path></svg>
-                </Link>
-            </button>
+                </button>
+            </Link>
         </>
     );
 }

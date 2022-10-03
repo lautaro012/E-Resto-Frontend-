@@ -21,3 +21,14 @@
     width: 30vw;
     height: 50vh;
 }
+
+.modal button {
+    float: right;
+    font-size: xx-small;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    border-radius: 20px;
+    padding: 1%;
+}
