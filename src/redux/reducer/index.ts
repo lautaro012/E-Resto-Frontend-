@@ -26,37 +26,43 @@ export default function rootReducer(state = initialState, action: Action) {
                 backup: action.payload,
                 products: action.payload
             }
+
         case GET_CATEGORIES:
             return {
                 ...state,
                 categories: action.payload,
             }
+
         case GET_PRODUCTS_BY_NAME:
             let categorias = action.payload.res
-            let Productosfiltrados = categorias.map((producto:Category) => {
-                producto.categoryProducts = producto.categoryProducts.filter((data:ProductDetail) => data.name.toLowerCase().includes(action.payload.name.toLowerCase()))
+            let Productosfiltrados = categorias.map((producto: Category) => {
+                producto.categoryProducts = producto.categoryProducts.filter((data: ProductDetail) => data.name.toLowerCase().includes(action.payload.name.toLowerCase()))
                 return producto
             })
-            
+
             return {
                 ...state,
                 categories: Productosfiltrados
             }
+
         case GET_FOOD_BY_ID:
             return {
                 ...state,
                 detail: action.payload
             }
+
         case EMPTY_FOOD:
             return {
                 ...state,
                 detail: []
             }
+
         case EDIT_FORM:
             return {
                 ...state,
                 FormData: action.payload
             }
+
         default:
             return state;
     }

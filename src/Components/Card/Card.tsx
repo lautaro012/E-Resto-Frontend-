@@ -7,7 +7,7 @@ import PrettyRating from "pretty-rating-react";
 //import React, { useEffect, useState } from "react";
 //import DetailProduct from "../DetailProduct/DetailProduct";
 import '../Card/Card.css'
-import { CardProp } from "../../Interfaces/Interfaces";
+// import { CardProp } from "../../Interfaces/Interfaces";
 
 export default function CardProduct({ formCard = false, comidaProps, onProducEdit, modalOpen, setIdModal }: any) {
 
