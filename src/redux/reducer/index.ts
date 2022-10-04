@@ -32,7 +32,7 @@ export default function rootReducer(state = initialState, action: Action) {
                 categories: action.payload,
             }
         case GET_PRODUCTS_BY_NAME:
-            let categorias = action.payload
+            let categorias = action.payload.res
             let Productosfiltrados = categorias.map((producto:Category) => {
                 producto.categoryProducts = producto.categoryProducts.filter((data:ProductDetail) => data.name.toLowerCase().includes(action.payload.name.toLowerCase()))
                 return producto

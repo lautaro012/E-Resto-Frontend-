@@ -109,11 +109,14 @@ export const getCategories = (sort: string) => {
                             return 0;
                         });
                     }
-                    if (sort === 'mayor') {
+                    if (sort === 'mayorPrecio') {
                         cat.categoryProducts.sort(function (a: ProductDetail, b: ProductDetail) { return b.price - a.price })
                     }
-                    if (sort === 'menor') {
+                    if (sort === 'menorPrecio') {
                         cat.categoryProducts.sort(function (a: ProductDetail, b: ProductDetail) { return a.price - b.price })
+                    }
+                    if (sort === 'mayorRating') {
+                        cat.categoryProducts.sort(function (a: ProductDetail, b: ProductDetail) { return b.rating - a.rating })
                     }
                 })
                 dispatch({
