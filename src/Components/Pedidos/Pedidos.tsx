@@ -11,7 +11,9 @@ import { buttonclass, select } from "../../Style/Clases/Clases";
 import DetailProduct from "../DetailProduct/DetailProduct";
 import VideoHome from '../../Style/videos/video.mp4'
 import { CardForm, Category, ProductDetail, Select, StateTypes } from "../../Interfaces/Interfaces";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 
 export default function Pedidos() {
 
@@ -44,7 +46,6 @@ export default function Pedidos() {
 
     function orderSort(e: Select) {
         e.preventDefault();
-
         setOrder(e.target.value);
     }
 
@@ -88,11 +89,11 @@ export default function Pedidos() {
                     </select>
                     <select className={select} onChange={(e) => orderSort(e)} id='selectConfigSize' >
                         <option value="">Ordenar por precio:</option>
-                        <option value="mayor">Mayor precio</option>
-                        <option value="menor">Menor precio</option>
+                        <option value="mayorPrecio">Mayor precio</option>
+                        <option value="menorPrecio">Menor precio</option>
                     </select>
                     <button className={buttonclass} >MAS COMPRADOS</button>
-                    <button className={buttonclass} >MAS POPULARES</button>
+                    <button className={buttonclass} onClick={(e) => setOrder("mayorRating")}>MAS POPULARES</button>
                 </div>
                 <div className="categorias-productos">
                     <div className="categorias-div">
