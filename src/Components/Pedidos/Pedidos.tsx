@@ -1,4 +1,3 @@
-
 import Card from "../Card/Card";
 import "../Pedidos/Pedidos.css";
 import NavBar from "../NavBar/NavBar";
@@ -10,11 +9,15 @@ import { useAppDispatch, useAppSelector } from "../../config";
 import { getCategories } from "../../redux/actions";
 import { buttonclass, select } from "../../Style/Clases/Clases";
 import DetailProduct from "../DetailProduct/DetailProduct";
+import VideoHome from '../../Style/videos/video.mp4'
 import { CardForm, Category, ProductDetail, Select, StateTypes } from "../../Interfaces/Interfaces";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 
 export default function Pedidos() {
-    const [order, setOrder] = useState("");
 
+    const [order, setOrder] = useState("");
     const [createProduct, setcreateProduct] = useState<Boolean>(false);
     const [editProduct, seteditProduct] = useState<Boolean>(false);
     const [showModal, setShowModal] = useState<boolean | undefined>(false);
@@ -32,12 +35,15 @@ export default function Pedidos() {
         category: "",
         newProduct: true,
     });
+
     const onProducEdit = (input: CardForm) => {
+
         seteditProduct(true);
         setcreateProduct(false);
         setFormData(input);
         setShowModal(true);
     };
+
     function orderSort(e: Select) {
         e.preventDefault();
         setOrder(e.target.value);
@@ -62,15 +68,19 @@ export default function Pedidos() {
                 setcreateProduct={setcreateProduct}
             />
             <div className="Contenedor">
-                <div className="background_image_gps" />
+                <div className="TOP">
+                    <h1>Henry's Resto Proyect</h1>
+                    <video autoPlay preload="auto" muted loop src={VideoHome}></video>
+                </div>
+                {/* <div className="background_image_gps" /> */}
                 <div className="sort-buttons">
-                    <select
+                    {/* <select
                         onChange={(e) => orderSort(e)}
                         className={select}
                         id='selectConfigSize'
                     >
                         <option>Dietas</option>
-                    </select>
+                    </select> */}
 
                     <select className={select} onChange={(e) => orderSort(e)} id='selectConfigSize'>
                         <option value="">Ordenar por nombre:</option>
@@ -79,11 +89,11 @@ export default function Pedidos() {
                     </select>
                     <select className={select} onChange={(e) => orderSort(e)} id='selectConfigSize' >
                         <option value="">Ordenar por precio:</option>
-                        <option value="mayor">Mayor precio</option>
-                        <option value="menor">Menor precio</option>
+                        <option value="mayorPrecio">Mayor precio</option>
+                        <option value="menorPrecio">Menor precio</option>
                     </select>
                     <button className={buttonclass} >MAS COMPRADOS</button>
-                    <button className={buttonclass} >MAS POPULARES</button>
+                    <button className={buttonclass} onClick={(e) => setOrder("mayorRating")}>MAS POPULARES</button>
                 </div>
                 <div className="categorias-productos">
                     <div className="categorias-div">

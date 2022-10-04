@@ -118,7 +118,7 @@ export default function Form({
                     <input
                       type="text"
                       onChange={e => handleChange(e)}
-                      maxLength={15}
+                      maxLength={30}
                       defaultValue={newProduct ? null : formData.name}
                       name="name"
                       id="name"
