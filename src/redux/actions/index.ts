@@ -197,7 +197,7 @@ export const sendSubscribeMail = (mail : String) => {
         return function (dispatch : Dispatch<Action>) {
             axios.post(`http://localhost:3001/sendSubscribeMail/${mail}`)
             .then(res => res.data)
-            .then(res => console.log(res))
+            .then(res => alert(`Gracias por suscribirte a Henry's Food`))
             .catch(err => console.log(err))
         }
     } else {
