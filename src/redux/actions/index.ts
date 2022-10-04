@@ -87,7 +87,6 @@ export const getCategories = (sort: string) => {
             .then(resp => {
                 //console.log("RESP", resp)
                 resp.map((cat: Category) => {
-
                     if (sort === 'AZ') {
                         cat.categoryProducts.sort(function (a: ProductDetail, b: ProductDetail) {
                             if (a.name > b.name) {
@@ -124,6 +123,7 @@ export const getCategories = (sort: string) => {
                     type: GET_CATEGORIES,
                     payload: resp
                 })
+            
             })
     }
 }
@@ -157,19 +157,22 @@ export const getFoodById = (id:string) => {
     }
 }
 
-export const vaciarComida = function () {
-    return function(dispatch:Dispatch<Action>){
-        dispatch({
-            type: EMPTY_FOOD,
-        })
-    }
-}
 
 export const fillFormData = (input:CardForm) => {
     return function(dispatch:Dispatch<Action>){
         dispatch({
             type:EDIT_FORM,
             payload: input
+        })
+    }
+}
+
+// PRODUCTS
+
+export const vaciarComida = function () {
+    return function(dispatch:Dispatch<Action>){
+        dispatch({
+            type: EMPTY_FOOD,
         })
     }
 }
@@ -205,3 +208,23 @@ export const sendSubscribeMail = (mail : String) => {
     }
 }
 
+export const createUser = (input:any) => {
+    return function(dispatch : Dispatch<Action>) {
+        axios.post(`http://localhost:3001/user/register`, input).then(resp => resp.data)
+        .then(res => {
+            console.log('registrado', res)
+            alert('Registrado correctamente')
+        })
+        .catch(err => console.log(err))
+    }
+}
+export const logUser = (input:{mail:string, password:string}) => {
+    return function(dispatch : Dispatch<Action>) {
+        axios.post(`http://localhost:3001/user/login`, input).then(resp => resp.data)
+        .then(res => {
+            console.log('loggeado', res)
+            alert('inicio de sesion correcto')
+        })
+        .catch(err => console.log(err))
+    }
+}

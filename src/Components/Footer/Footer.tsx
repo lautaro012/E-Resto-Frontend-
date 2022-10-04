@@ -1,7 +1,7 @@
 import './Footer.css'
 import Subscribe from '../SubscribeButton/Subscribe'
 
-export function Footer () {
+export default function Footer () {
 
 
     return (
