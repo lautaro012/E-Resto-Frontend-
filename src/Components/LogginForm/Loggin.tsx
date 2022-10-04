@@ -44,7 +44,7 @@ export default function Loggin() {
             <Modal  show={showLoggin} size="sm" popup={true} onClose={handleClose}>
         <Modal.Header />
         <Modal.Body>
-          <div className=''>
+          <div className="form-conteiner transition-opacity">
             <aside>
                 Inicie Sesion
               <br></br>
@@ -52,7 +52,7 @@ export default function Loggin() {
                 <form onSubmit={e => handleSubmit(e)}>
                   <div className="relative z-0 mb-6 w-full group">
                     <input
-                      type="e-mail"
+                      type="email"
                       onChange={e => handleChange(e)}
                       maxLength={30}
                       name="mail"

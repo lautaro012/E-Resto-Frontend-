@@ -7,6 +7,7 @@ import DetailProduct from './Components/DetailProduct/DetailProduct';
 import Footer from './Components/Footer/Footer';
 import { Z_ASCII } from 'zlib';
 import Loggin from './Components/LogginForm/Loggin';
+import Register from './Components/RegisterForm/RegisterForm';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/pedidos' element={<Pedidos />} />
         <Route path='/product/:id' element={<DetailProduct id closeModalDetail/>}/>
-        <Route path='/crear' element={<Loggin/>}/>89e09fe21e5cdd3c47e56c80e00d25562d2fae
+        <Route path='/crear' element={<Register/>}/>
       </Routes>
       <Footer/>
     </Router>
