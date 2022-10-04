@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Pedidos from '../src/Components/Pedidos/Pedidos'
 import Home from '../src/Components/Home/Home'
-import Form from './Components/Form/Form';
 import DetailProduct from './Components/DetailProduct/DetailProduct';
 import Footer from './Components/Footer/Footer';
 import { Z_ASCII } from 'zlib';
@@ -17,8 +16,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/pedidos' element={<Pedidos />} />
         <Route path='/product/:id' element={<DetailProduct id closeModalDetail/>}/>
-        <Route path='/test' element={<Form/>}/>
-        <Route path='/crear' element={<Loggin/>}/>
+        <Route path='/crear' element={<Loggin/>}/>89e09fe21e5cdd3c47e56c80e00d25562d2fae
       </Routes>
       <Footer/>
     </Router>

@@ -7,9 +7,9 @@
 }
 
 .max-w-sm {
+    transition: 0.5s;
     margin: 1%;
     border-radius: 20px;
-    transition: 0.5s;
 }
 
 .max-w-sm p {
