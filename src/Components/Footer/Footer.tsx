@@ -1,22 +1,8 @@
 import './Footer.css'
-import {buttonclass} from "../../Style/Clases/Clases"
-import { useState } from 'react'
-import { useAppDispatch } from '../../config'
-import { sendSubscribeMail } from '../../redux/actions'
+import Subscribe from '../SubscribeButton/Subscribe'
 
 export function Footer () {
-    const [mail, setMail] = useState('')
-    let dispatch = useAppDispatch()
 
-    function handleChange(event:React.ChangeEvent<HTMLInputElement>) {
-        setMail(event.target.value)
-    }
-
-    function handleSubmit(event:React.FormEvent<HTMLFormElement>) {
-        event.preventDefault()
-        dispatch(sendSubscribeMail(mail))
-        setMail("")
-    }
 
     return (
       
@@ -37,10 +23,7 @@ export function Footer () {
 
                 </ul>
                 <span>
-                    <form onSubmit={(event) => handleSubmit(event)}>
-                    <input onChange={(e) => handleChange(e)} type="text" placeholder='Tu mail ...'/>
-                    <button type='submit' className={buttonclass}>Suscribite</button>
-                    </form>
+                    <Subscribe/>
                 </span>
             </footer>
             </div>
