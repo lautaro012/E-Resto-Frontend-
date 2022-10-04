@@ -74,13 +74,13 @@ export default function Pedidos() {
                 </div>
                 {/* <div className="background_image_gps" /> */}
                 <div className="sort-buttons">
-                    <select
+                    {/* <select
                         onChange={(e) => orderSort(e)}
                         className={select}
                         id='selectConfigSize'
                     >
                         <option>Dietas</option>
-                    </select>
+                    </select> */}
 
                     <select className={select} onChange={(e) => orderSort(e)} id='selectConfigSize'>
                         <option value="">Ordenar por nombre:</option>
