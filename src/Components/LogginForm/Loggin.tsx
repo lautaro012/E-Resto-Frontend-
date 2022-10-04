@@ -1,95 +1,98 @@
-import { CardForm, Category, Input, Select, Submit, TextArea } from "../../Interfaces/Interfaces";
-import { buttonclass, inputForm, labelForm } from "../../Style/Clases/Clases";
-import { createProduct, getCategories, editProduct } from "../../redux/actions";
-import { Modal } from "flowbite-react";
+
+import { Modal, Label, TextInput, Checkbox } from "flowbite-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../config";
+import { Input, Submit } from "../../Interfaces/Interfaces";
+import { logUser } from "../../redux/actions";
+import { buttonclass } from "../../Style/Clases/Clases";
 
-export default function Loggin() {
+export default function Loggin({openlog, showLoggin}:any) {
 
-    const [showLoggin, setShowLoggin] = useState<boolean>(false)
-    let dispatch = useAppDispatch()
-    const [input, setInput] = useState<{mail: string, password: string}>({
-        mail: '',
-        password: '',
-      });
+  const navigate = useNavigate()
+  let dispatch = useAppDispatch();
+  const [input, setInput] = useState<{ mail: string; password: string }>({
+    mail: "",
+    password: "",
+  });
 
-
-    const handleChange = (e: Input | TextArea)  => {
+  const handleChange = (e: Input ) => {
     setInput({
-        ...input,
-        [e.target.name]: e.target.value,
+      ...input,
+      [e.target.name]: e.target.value,
     });
-    };
-    const handleClose = () => {
-        setShowLoggin(false)
-    }
+  };
 
-    const handleSubmit = (e: Submit) => {
-    dispatch();
+  const handleSubmit = (e: Submit) => {
+    e.preventDefault()
+    dispatch(logUser(input));
+    console.log(input)
     setInput({
-        mail: '',
-        password: '',
-    })};
-    const openlog = () => {
-        showLoggin ? setShowLoggin(false) : setShowLoggin(true)
-    }
+      mail: "",
+      password: "",
+    });
+  };
+  
 
-    return (
-        <div>
-            <button onClick={openlog} className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" data-modal-toggle="authentication-modal">
-                Toggle modal
-            </button>
 
-            <Modal  show={showLoggin} size="sm" popup={true} onClose={handleClose}>
+  return (
+    <div>
+      <Modal show={showLoggin} size="md" popup={true} onClose={openlog}>
         <Modal.Header />
         <Modal.Body>
-          <div className="form-conteiner transition-opacity">
-            <aside>
-                Inicie Sesion
-              <br></br>
+          <div className="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8">
+            <form onSubmit={handleSubmit}>
+              <h3 className="text-xl font-medium text-gray-900 dark:text-white">
+                Sign in to our platform
+              </h3>
               <div>
-                <form onSubmit={e => handleSubmit(e)}>
-                  <div className="relative z-0 mb-6 w-full group">
-                    <input
-                      type="email"
-                      onChange={e => handleChange(e)}
-                      maxLength={30}
-                      name="mail"
-                      id="mail"
-                      className={inputForm}
-                      placeholder=" "
-                      required
-                    />
-                    <label htmlFor="mail" className={labelForm}>
-                      E-mail
-                    </label>
-                  </div>
-                  <div className="relative z-0 mb-6 w-full group">
-                    <input
-                      type="password"
-                      onChange={e => handleChange(e)}
-                      maxLength={20}
-                      name="password"
-                      id="password"
-                      className={inputForm}
-                      placeholder=" "
-                      required
-                    />
-                    <label htmlFor="password" className={labelForm}>
-                      Password
-                    </label>
-                  </div>
-
-                    <button className={buttonclass} type="submit">
-                      Iniciar Sesion
-                    </button>
-                </form>
+                <div className="mb-2 block">
+                  <Label htmlFor="mail" value="Your mail" />
+                </div>
+                <TextInput
+                  onChange={handleChange}
+                  id="mail"
+                  name='mail'
+                  placeholder="name@company.com"
+                  required={true}
+                />
               </div>
-            </aside>
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="password" value="Your password" />
+                </div>
+                <TextInput name='password' onChange={handleChange} id="password" type="password" required={true} />
+              </div>
+              <div className="flex justify-between">
+                <div className="flex items-center gap-2">
+                  <Checkbox id="remember" />
+                  <Label htmlFor="remember">Remember me</Label>
+                </div>
+                <a
+                  href="/modal"
+                  className="text-sm text-blue-700 hover:underline dark:text-blue-500"
+                >
+                  Lost Password?
+                </a>
+              </div>
+              <div className="w-full">
+                <button type='submit' className={buttonclass}>Log in to your account</button>
+              </div>
+              <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
+                Not registered?{" "}
+
+                <button
+                  onClick={() => navigate('/register')}
+                  className="text-blue-700 hover:underline dark:text-blue-500"
+                >
+                  Create account
+                </button>  
+
+              </div>
+            </form>
           </div>
         </Modal.Body>
       </Modal>
     </div>
-    )
+  );
 }
