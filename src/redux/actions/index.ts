@@ -7,6 +7,7 @@ export const GET_PRODUCTS_BY_NAME = 'GET_PRODUCTS_BY_NAME'
 export const GET_FOOD_BY_ID = "GET_FOOD_BY_ID"
 export const EMPTY_FOOD = "EMPTY_FOOD"
 export const EDIT_FORM ='EDIT_FORM'
+export const SUBSCRIBE_MAIL = 'SUBSCRIBE_MAIL'
 
 
 
@@ -188,3 +189,19 @@ export const deleteProduct = (id:string) => {
     .then(res => console.log(res))
     .catch(err => console.log(err))
 }
+
+//NODEMAILER:
+
+export const sendSubscribeMail = (mail : String) => {
+    if(mail) {
+        return function (dispatch : Dispatch<Action>) {
+            axios.post(`http://localhost:3001/sendSubscribeMail/${mail}`)
+            .then(res => res.data)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+        }
+    } else {
+        console.log(`didn't get email`)
+    }
+}
+
