@@ -55,7 +55,7 @@ export default function Register() {
         <div className="duo-input">
           <div className="mb-3 xl:w-96">
             <label
-              htmlFor="exampleFormControlInput1"
+              htmlFor="name"
               className="form-label inline-block mb-2 text-gray-700"
             >
               Nombre:
@@ -66,13 +66,13 @@ export default function Register() {
               name='name'
               className={inputRegister}
               onChange={handleChange}
-              id="exampleFormControlInput1"
+              id="name"
               placeholder="Nombre"
             />
           </div>
           <div className="mb-3 xl:w-96">
             <label
-              htmlFor="exampleFormControlInput1"
+              htmlFor="lastName"
               className="form-label inline-block mb-2 text-gray-700"
             >
               Apellido:
@@ -82,7 +82,7 @@ export default function Register() {
               name='lastName'
               className={inputRegister}
               onChange={handleChange}
-              id="exampleFormControlInput1"
+              id="lastName"
               placeholder="Apellido"
             />
           </div>
@@ -90,7 +90,7 @@ export default function Register() {
         <div className="duo-input">
           <div className="mb-3 xl:w-96">
             <label
-              htmlFor="exampleFormControlInput1"
+              htmlFor="userName"
               className="form-label inline-block mb-2 text-gray-700"
             >
               Usuario:
@@ -101,13 +101,13 @@ export default function Register() {
               name='userName'
               className={inputRegister}
               onChange={handleChange}
-              id="exampleFormControlInput1"
+              id="userName"
               placeholder="Nombre de Usuario"
             />
           </div>
           <div className="mb-3 xl:w-96">
             <label
-              htmlFor="exampleFormControlInput1"
+              htmlFor="mail"
               className="form-label inline-block mb-2 text-gray-700"
             >
               E-mail:
@@ -117,7 +117,7 @@ export default function Register() {
               name="mail"
               className={inputRegister}
               onChange={handleChange}
-              id="exampleFormControlInput1"
+              id="mail"
               placeholder="E-mail"
             />
           </div>
@@ -125,7 +125,7 @@ export default function Register() {
         <div className="duo-input">
           <div className="mb-3 xl:w-96">
             <label
-              htmlFor="exampleFormControlInput1"
+              htmlFor="password"
               className="form-label inline-block mb-2 text-gray-700"
             >
               Contraseña:
@@ -136,24 +136,24 @@ export default function Register() {
               name='password'
               className={inputRegister}
               onChange={handleChange}
-              id="exampleFormControlInput1"
+              id="password"
               placeholder="Contraseña"
             />
           </div>
           <div className="mb-3 xl:w-96">
             <label
-              htmlFor="exampleFormControlInput1"
+              htmlFor="repeat-password"
               className="form-label inline-block mb-2 text-gray-700"
             >
               Repita su contraseña:
             </label>
             <input
-                 autoComplete="new-password"
-              type="password"
-              name='password'
+                 autrepeat-oComplete="new-password"
+              type="repeat-password"
+              name='repeat-password'
               className={inputRegister}
               onChange={handleChange}
-              id="exampleFormControlInput1"
+              id="repeat-password"
               placeholder="Repita la Contraseña"
             />
           </div>
@@ -161,7 +161,7 @@ export default function Register() {
           <div className="duo-input">
           <div className="mb-3 xl:w-96">
               <label
-                htmlFor="exampleFormControlInput1"
+                htmlFor="adress"
                 className="form-label inline-block mb-2 text-gray-700"
               >
                 Direccion:
@@ -171,13 +171,13 @@ export default function Register() {
                 name='adress'
                 className={inputRegister}
                 onChange={handleChange}
-                id="exampleFormControlInput1"
+                id="adress"
                 placeholder="Direccion"
               />
             </div>
             <div className="mb-3 xl:w-96">
               <label
-                htmlFor="exampleFormControlInput1"
+                htmlFor="img"
                 className="form-label inline-block mb-2 text-gray-700"
               >
                 Imagen:
@@ -187,7 +187,7 @@ export default function Register() {
                 name='img'
                 className={inputRegister}
                 onChange={handleChange}
-                id="exampleFormControlInput1"
+                id="img"
                 placeholder="Ingrese un URL de su imagen"
               />
             </div>

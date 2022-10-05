@@ -46,6 +46,7 @@ export type StateTypes = {
     categories: Array<Category> | [],
     detail: ProductDetail | [],
     allcategories: Category | [],
+    error: any
 }
 export type Action = {
     type: string;

@@ -8,8 +8,8 @@ export const GET_FOOD_BY_ID = "GET_FOOD_BY_ID"
 export const EMPTY_FOOD = "EMPTY_FOOD"
 export const EDIT_FORM ='EDIT_FORM'
 export const SUBSCRIBE_MAIL = 'SUBSCRIBE_MAIL'
-
-
+export const ERROR_HANDLER = 'ERROR_HANDLER'
+export const CLEAN_ERROR = 'CLEAN_ERROR'
 
 export const getProducts = (sort : String) => {
 
@@ -225,6 +225,18 @@ export const logUser = (input:{mail:string, password:string}) => {
             console.log('loggeado', res)
             alert('inicio de sesion correcto')
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            return dispatch({
+            type: ERROR_HANDLER,
+            payload: err
+
+        })})
+    }
+}
+export const cleanError = () => {
+    return function(dispatch: Dispatch<Action>) {
+        dispatch({
+            type: CLEAN_ERROR
+        })
     }
 }
