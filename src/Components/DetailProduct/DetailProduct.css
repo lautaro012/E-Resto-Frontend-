@@ -1,7 +1,6 @@
   #imagen_detail_modal{
     max-width: 35vw;
     max-height: 50vh;
-    min-width: 30vw;
     min-height: 50vh;
     object-fit: cover;
     border-radius: 10px;
@@ -15,10 +14,12 @@
 
   #detalle_der {
     margin: 1%;
+    max-width: 50vw;
   }
   
   #detalle_izq {
     margin: 1%;
+    max-width: 50vw;
   }
 
   .detail_label {

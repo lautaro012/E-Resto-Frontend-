@@ -1,7 +1,7 @@
 //import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from '../../config'
-import { getFoodById, vaciarComida } from '../../redux/actions/index'
+import { addToCart, getFoodById, vaciarComida } from '../../redux/actions/index'
 import '../DetailProduct/DetailProduct.css'
 import ModalInDetail from "../Modal/Modal";
 import useModal from "../../hooks/useModal";
@@ -13,6 +13,7 @@ export default function DetailProduct({ id, closeModalDetail }) {
     const dispatch = useAppDispatch()
     const food = useAppSelector((state) => state.detail[0]);
     const categories = useAppSelector((state) => state.categories);
+    const cart = useAppSelector((state) => state.cart);
 
     useEffect(() => {
         //  dispatch(getCategories())
@@ -24,6 +25,8 @@ export default function DetailProduct({ id, closeModalDetail }) {
 
     const [isOpenModal, openModal, closeModal] = useModal()
     const [datosModal, setDatosModal] = useState()
+    const [cantidad, setCantidad] = useState(1);
+    //const [precio, setPrecio] = useState(food.price);
 
     function modalData(categoria) {
         openModal()
@@ -33,6 +36,39 @@ export default function DetailProduct({ id, closeModalDetail }) {
     function closeDetailModal() {
         closeModalDetail(false)
     }
+
+    function addFoodToCart(cantidad) {
+
+        let itemFound = cart.map(item => item._id).includes(food._id)
+
+        if (!itemFound) {
+
+            let item = {
+                _id: food._id,
+                name: food.name,
+                price: food.price,
+                image: food.img,
+                rating: food.rating,
+                cantidad: cantidad
+            }
+            dispatch(addToCart(item))
+            alert(`Se agrego ${food.name}`)
+            closeDetailModal()
+        }
+        else {
+            let itemFound = cart.find(item => item._id === food._id)
+            itemFound.cantidad++
+            alert(`Se volvio a agregar ${food.name} al carrito`)
+            closeDetailModal()
+        }
+    }
+
+    // function handdlePrice(numero) {
+    //     setCantidad(numero)
+    //     setPrecio(cantidad * precio)
+    // }
+
+
 
     return (
         <div >
@@ -47,15 +83,32 @@ export default function DetailProduct({ id, closeModalDetail }) {
                             <div id="contenedor_detail">
                                 <div id="detalle_izq">
                                     <img src={food.img} alt="ImagenPOP" id="imagen_detail_modal" ></img>
-                                    <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">$
-                                        {food.price}
-                                    </h2>
+                                    {/* {
+                                        precio && precio ?
+                                            <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">$
+                                                {precio}
+                                            </h2>
+                                            :
+                                            <h2>{food.price}</h2>
+                                    } */}
+                                    <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">${food.price * cantidad}</h2>
                                     {
                                         food.off !== 0 ?
                                             <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{food.off}</h2>
                                             :
                                             null
                                     }
+                                    <div className="Label">
+                                        <label>Cantidad</label>
+                                        <input
+                                            type='number'
+                                            value={cantidad}
+                                            name='cantidad'
+                                            min="1" max="10"
+                                            onChange={(event) => setCantidad(Number(event.target.value))}
+                                        />
+                                    </div>
+                                    <button id="buttons_detail_buy" onClick={() => addFoodToCart(cantidad)}>Add to cart 🛒</button>
                                 </div>
                                 <div id="detalle_der">
                                     <div>
@@ -63,16 +116,11 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                         <p>{food.description}</p>
                                     </div>
                                     <div id="detail_contenedor_labels">
+                                        <button className="detail_label" onClick={(event) => modalData("Bebidas sin Alcohol")}><h2>Bebidas sin Alcohol (opcional)</h2></button>
 
-                                        <div className="detail_label">
-                                            <button onClick={(event) => modalData("Bebidas sin Alcohol")}><h2>Bebidas sin Alcohol (opcional)</h2></button>
-                                        </div>
-                                        <div className="detail_label">
-                                            <button onClick={(event) => modalData("Cervezas")}><h2>Cervezas (opcional)</h2></button>
-                                        </div>
-                                        <div className="detail_label">
-                                            <button onClick={(event) => modalData("Postres")}><h2>Postres (opcional)</h2></button>
-                                        </div>
+                                        <button className="detail_label" onClick={(event) => modalData("Cervezas")}><h2>Cervezas (opcional)</h2></button>
+
+                                        <button className="detail_label" onClick={(event) => modalData("Postres")}><h2>Postres (opcional)</h2></button>
                                     </div>
                                     <div>
                                         <h2>Comentarios</h2>

@@ -5,15 +5,16 @@ import {
     GET_PRODUCTS_BY_NAME,
     GET_FOOD_BY_ID,
     EMPTY_FOOD,
-    EDIT_FORM,
+    ACTUALIZAR_CART,
+    ADD_TO_CART,
+    DELETE_FOR_CART
 } from "../actions";
 
 const initialState: StateTypes = {
-    backup: [],
     products: [],
     categories: [],
     detail: [],
-    allcategories: [],
+    cart: [],
 }
 
 
@@ -57,11 +58,48 @@ export default function rootReducer(state = initialState, action: Action) {
                 detail: []
             }
 
-        case EDIT_FORM:
+        case ACTUALIZAR_CART:
             return {
                 ...state,
-                FormData: action.payload
+                cart: action.payload,
             }
+
+        case ADD_TO_CART:
+
+            let itemFound = state.cart.map(item => item._id).includes(action.payload._id)
+            if (!itemFound) {
+
+                return {
+                ...state,
+                cart: [...state.cart, action.payload]
+                }
+            }
+            else {
+
+                return {
+                    ...state
+                }
+            }
+
+        case DELETE_FOR_CART:
+            if (action.payload === "All") {
+                return {
+                    ...state,
+                    cart: [],
+                }
+            }
+            else {
+                return {
+                    ...state,
+                    cart: state.cart.filter((item) => item._id !== action.payload),
+                }
+            }
+
+        // case EDIT_FORM:
+        //     return {
+        //         ...state,
+        //         FormData: action.payload
+        //     }
 
         default:
             return state;

@@ -7,6 +7,9 @@ export const GET_PRODUCTS_BY_NAME = 'GET_PRODUCTS_BY_NAME'
 export const GET_FOOD_BY_ID = "GET_FOOD_BY_ID"
 export const EMPTY_FOOD = "EMPTY_FOOD"
 export const EDIT_FORM = 'EDIT_FORM'
+export const ACTUALIZAR_CART = "ACTUALIZAR_CART"
+export const ADD_TO_CART = "ADD_TO_CART"
+export const DELETE_FOR_CART = " DELETE_FOR_CART"
 
 export const getProducts = (sort: String) => {
 
@@ -35,13 +38,16 @@ export const getProducts = (sort: String) => {
                         return 0;
                     });
                 }
-                if (sort === 'mayor') {
+                if (sort === 'mayorPrecio') {
                     resp.sort(function (a: ProductDetail, b: ProductDetail) { return b.price - a.price })
                 }
-                if (sort === 'menor') {
+                if (sort === 'menorPrecio') {
                     resp.sort(function (a: ProductDetail, b: ProductDetail) { return a.price - b.price })
                 }
-                //   console.log(resp)
+                if (sort === 'mayorRating') {
+                    resp.sort(function (a: ProductDetail, b: ProductDetail) { return b.rating - a.rating })
+                }
+
                 dispatch({
                     type: GET_PRODUCTS,
                     payload: resp
@@ -125,15 +131,6 @@ export const getCategories = (sort: string) => {
     }
 }
 
-export const clear = function (payload: any) {
-    return function (dispatch: Dispatch<Action>) {
-        dispatch({
-            type: 'CLEAR',
-            payload
-        })
-    }
-}
-
 export const createProduct = function (input: CardForm) {
     return function (dispatch: Dispatch<Action>) {
         axios.post('http://localhost:3001/product', input)
@@ -162,14 +159,14 @@ export const vaciarComida = function () {
     }
 }
 
-export const fillFormData = (input: CardForm) => {
-    return function (dispatch: Dispatch<Action>) {
-        dispatch({
-            type: EDIT_FORM,
-            payload: input
-        })
-    }
-}
+// export const fillFormData = (input: CardForm) => {
+//     return function (dispatch: Dispatch<Action>) {
+//         dispatch({
+//             type: EDIT_FORM,
+//             payload: input
+//         })
+//     }
+// }
 
 export const editProduct = (input: CardForm, id: number) => {
     return function (dispatch: Dispatch<Action>) {
@@ -185,4 +182,25 @@ export const deleteProduct = (id: string) => {
     axios.delete(`http://localhost:3001/product/${id}`).then(res => res.data)
         .then(res => console.log(res))
         .catch(err => console.log(err))
+}
+
+export function actualizarCart(food: any) {
+    return {
+        type: ACTUALIZAR_CART,
+        payload: food
+    }
+}
+
+export function addToCart(food: any) {
+    return {
+        type: ADD_TO_CART,
+        payload: food
+    }
+}
+
+export function deleteItemFromCart(id: any) {
+    return {
+        type: DELETE_FOR_CART,
+        payload: id
+    }
 }
