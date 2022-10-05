@@ -1,0 +1,23 @@
+.duo-input{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.register-conteiner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3% 5%;
+}
+
+.register-conteiner form {
+    max-width: 66%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid grey;
+    background-color: ghostwhite;
+    border-radius: 3%;
+    padding: 0 5% 30px 5%;
+}

@@ -1,6 +1,8 @@
 import './Footer.css'
+import Subscribe from '../SubscribeButton/Subscribe'
 
-export function Footer () {
+export default function Footer () {
+
 
     return (
       
@@ -18,7 +20,11 @@ export function Footer () {
                     <li>
                         <a href="#" className="hover:underline">Contacto</a>
                     </li>
+
                 </ul>
+                <span>
+                    <Subscribe/>
+                </span>
             </footer>
             </div>
     )

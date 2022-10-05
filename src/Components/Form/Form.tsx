@@ -101,10 +101,10 @@ export default function Form({
         setcreateProduct={setcreateProduct}
         setShowModal={setShowModal}
       />
-      <Modal show={showModal} size="6xl" popup={true} onClose={handleClose}>
+      <Modal  show={showModal} size="6xl" popup={true} onClose={handleClose}>
         <Modal.Header />
         <Modal.Body>
-          <div className="form-conteiner">
+          <div className="form-conteiner transition-opacity">
             <aside>
               {newProduct ? (
                 <h1> Inserta la informacion de tu Producto:</h1>

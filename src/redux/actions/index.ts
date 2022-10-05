@@ -10,6 +10,8 @@ export const EDIT_FORM = 'EDIT_FORM'
 export const ACTUALIZAR_CART = "ACTUALIZAR_CART"
 export const ADD_TO_CART = "ADD_TO_CART"
 export const DELETE_FOR_CART = " DELETE_FOR_CART"
+export const SUBSCRIBE_MAIL = 'SUBSCRIBE_MAIL'
+
 
 export const getProducts = (sort: String) => {
 
@@ -90,7 +92,6 @@ export const getCategories = (sort: string) => {
             .then(resp => {
                 //console.log("RESP", resp)
                 resp.map((cat: Category) => {
-
                     if (sort === 'AZ') {
                         cat.categoryProducts.sort(function (a: ProductDetail, b: ProductDetail) {
                             if (a.name > b.name) {
@@ -127,6 +128,7 @@ export const getCategories = (sort: string) => {
                     type: GET_CATEGORIES,
                     payload: resp
                 })
+            
             })
     }
 }
@@ -151,13 +153,6 @@ export const getFoodById = (id: string) => {
     }
 }
 
-export const vaciarComida = function () {
-    return function (dispatch: Dispatch<Action>) {
-        dispatch({
-            type: EMPTY_FOOD,
-        })
-    }
-}
 
 // export const fillFormData = (input: CardForm) => {
 //     return function (dispatch: Dispatch<Action>) {
@@ -168,8 +163,19 @@ export const vaciarComida = function () {
 //     }
 // }
 
-export const editProduct = (input: CardForm, id: number) => {
-    return function (dispatch: Dispatch<Action>) {
+
+// PRODUCTS
+
+export const vaciarComida = function () {
+    return function(dispatch:Dispatch<Action>){
+        dispatch({
+            type: EMPTY_FOOD,
+        })
+    }
+}
+
+export const editProduct = (input:CardForm, id:number) => {
+    return function(dispatch:Dispatch<Action>) {
         axios.put(`http://localhost:3001/product/${id}`, input).then(res => res.data)
             .then(resp => {
                 console.log(resp)
@@ -202,5 +208,42 @@ export function deleteItemFromCart(id: any) {
     return {
         type: DELETE_FOR_CART,
         payload: id
+    }
+}
+
+
+//NODEMAILER:
+
+export const sendSubscribeMail = (mail : String) => {
+    if(mail) {
+        return function (dispatch : Dispatch<Action>) {
+            axios.post(`http://localhost:3001/sendSubscribeMail/${mail}`)
+            .then(res => res.data)
+            .then(res => alert(`Gracias por suscribirte a Henry's Food`))
+            .catch(err => console.log(err))
+        }
+    } else {
+        console.log(`didn't get email`)
+    }
+}
+
+export const createUser = (input:any) => {
+    return function(dispatch : Dispatch<Action>) {
+        axios.post(`http://localhost:3001/user/register`, input).then(resp => resp.data)
+        .then(res => {
+            console.log('registrado', res)
+            alert('Registrado correctamente')
+        })
+        .catch(err => console.log(err))
+    }
+}
+export const logUser = (input:{mail:string, password:string}) => {
+    return function(dispatch : Dispatch<Action>) {
+        axios.post(`http://localhost:3001/user/login`, input).then(resp => resp.data)
+        .then(res => {
+            console.log('loggeado', res)
+            alert('inicio de sesion correcto')
+        })
+        .catch(err => console.log(err))
     }
 }

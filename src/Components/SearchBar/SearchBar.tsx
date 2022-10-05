@@ -18,6 +18,7 @@ export default function SearchBar() {
         setName("")
     }
 
+
     return (
         <div className="divPrueba">
             <form onSubmit={(event) => handleSubmit(event)} className='formSearchBarStyle'>
