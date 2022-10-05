@@ -19,7 +19,7 @@ export default function Register() {
     adress: '',
     password: '',
     mail: '',
-    img:'https://citizengo.org/sites/default/files/images/test_3.png',
+    img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW2zB9ZfnqjeJkkgqMS7zen-NVpatbD9U3tiEirtof0QIA8Cx3ApChLYPJO9hVdncSkrA&usqp=CAU',
     admin: false
 })
 
