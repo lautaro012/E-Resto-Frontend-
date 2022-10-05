@@ -49,7 +49,6 @@ export default function CardProduct({ formCard = false, comidaProps, onProducEdi
                     </span>
                 </div>
                 <div className="flex items-center justify-between">
-
                     {
                         !off ?
                             <span className="text-3xl font-bold text-gray-900 dark:text-white">${price}</span>
@@ -61,7 +60,6 @@ export default function CardProduct({ formCard = false, comidaProps, onProducEdi
                                 </div>
                             </div>
                     }
-
                     {
                         formCard ?
                             null

@@ -6,6 +6,7 @@ import Home from '../src/Components/Home/Home'
 import DetailProduct from './Components/DetailProduct/DetailProduct';
 import Footer from './Components/Footer/Footer';
 import Register from './Components/RegisterForm/RegisterForm';
+import UserMenu from './Components/UserMenu/UserMenu';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/pedidos' element={<Pedidos />} />
         <Route path='/product/:id' element={<DetailProduct id closeModalDetail/>}/>
         <Route path='/register' element={<Register/>}/>
+        <Route path='/test' element={<UserMenu/>}/>
       </Routes>
       <Footer/>
     </Router>
