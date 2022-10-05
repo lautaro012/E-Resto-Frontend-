@@ -216,6 +216,9 @@ export const createUser = (input:any) => {
             alert('Registrado correctamente')
         })
         .catch(err => console.log(err))
+        axios.post(`http://localhost:3001/sendWelcomeMail/${input.mail}`)
+        .then(res => console.log('email sent'))
+        .catch(err => console.log('did not sent email'))
     }
 }
 export const logUser = (input:{mail:string, password:string}) => {
