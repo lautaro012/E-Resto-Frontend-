@@ -6,6 +6,8 @@ import {
     GET_FOOD_BY_ID,
     EMPTY_FOOD,
     EDIT_FORM,
+    ERROR_HANDLER,
+    CLEAN_ERROR,
 } from "../actions";
 
 const initialState: StateTypes = {
@@ -14,6 +16,7 @@ const initialState: StateTypes = {
     categories: [],
     detail: [],
     allcategories: [],
+    error: ''
 }
 
 
@@ -56,6 +59,16 @@ export default function rootReducer(state = initialState, action: Action) {
             return {
                 ...state,
                 FormData: action.payload
+            }
+        case ERROR_HANDLER:
+            return {
+                ...state,
+                error: action.payload
+            }
+        case CLEAN_ERROR:
+            return {
+                ...state,
+                error: ''
             }
         default:
             return state;
