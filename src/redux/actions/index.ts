@@ -211,6 +211,22 @@ export const sendSubscribeMail = (mail : String) => {
     }
 }
 
+export const sendResetPassMail = (mail : String) => {
+    if(mail) {
+        return function (dispatch : Dispatch<Action>) {
+            axios.post(`http://localhost:3001/sendRecuperaContra/${mail}`)
+            .then(res => res.data)
+            .then(res => alert('Revisa tu casilla de correo'))
+            .catch(err => console.log(err))
+        }
+    } else {
+        console.log(`didn't get mail`)
+    }
+}
+
+
+
+//USERS:
 
 export const getAllUsers = () => {
         return async function (dispatch : Dispatch<Action>) {
