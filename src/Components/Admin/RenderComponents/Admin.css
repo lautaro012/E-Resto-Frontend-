@@ -3,3 +3,18 @@
     max-width: none;
     max-height: none;
 }
+
+.firstDivProductSizing{
+    margin-top: 40px;
+}
+.firstDivProductSizing h3{
+    background-color: #F1FFC4;
+    padding: 10px;
+    font-weight: bolder;
+}
+
+#irArribaButton{
+    width: 100%;
+    color: black;
+    font-weight: bold;
+}

@@ -228,6 +228,40 @@ export const sendResetPassMail = (mail : String) => {
 
 //USERS:
 
+export const changeBanUser = (id:any) => {
+    return async function (dispatch: Dispatch<Action>) {
+        if(id) {
+            try {
+                axios.put(`http://localhost:3001/banUser/${id}`)
+                .then(res => alert('Usuario Baneado'))
+                
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        else {
+            console.log(`didn't get id`)
+        }
+    }
+}
+
+export const changeNoBanUser= (id:any) => {
+    return async function (dispatch: Dispatch<Action>) {
+        if(id) {
+            try {
+                axios.put(`http://localhost:3001/noBanUser/${id}`)
+                .then(res => alert('El usuario ya no está baneado'))
+                
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        else {
+            console.log(`didn't get id`)
+        }
+    }
+}
+
 export const getAllUsers = () => {
         return async function (dispatch : Dispatch<Action>) {
             try {

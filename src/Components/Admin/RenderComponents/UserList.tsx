@@ -1,18 +1,31 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Admin.css'
 
 import { useAppDispatch, useAppSelector } from '../../../config'
-import { getAllUsers } from '../../../redux/actions'
+import { changeBanUser, changeNoBanUser, getAllUsers } from '../../../redux/actions'
 import { buttonclass, listUsuariosRegistrados, mailUsuarioRegistrado, nameUsuarioRegistrado, titleUsuariosRegistrados } from '../../../Style/Clases/Clases'
 
 const UserList = (render : any) => {
     let dispatch = useAppDispatch()
     const users = useAppSelector((state) => state.allUsers)
+    const [prueba, setPrueba] = useState('')
+    const handleBan = (e : any) => {
+        dispatch(changeBanUser(e.target.value))
+        setPrueba(Math.random().toString())
+    }
     
+    const undoBanUser = (e:any) => {
+        dispatch(changeNoBanUser(e.target.value))
+        setPrueba(Math.random().toString())
+
+    } 
+
 // console.log(users)
     useEffect(() => {
         dispatch(getAllUsers())
-    }, [dispatch, users])
+    }, [dispatch, prueba])
+
+    
 
 
 
@@ -44,7 +57,7 @@ const UserList = (render : any) => {
                                                 </p>
                                             </div>
                                             <div>
-                                                <button className={buttonclass}>Banear</button>
+                                                <button onClick={(e) => {handleBan(e)}} value={user._id} className={buttonclass}>Banear</button>
                                                 <button className={buttonclass}>Hacer Admin</button>
                                             </div>
                                         </div>
@@ -75,7 +88,7 @@ const UserList = (render : any) => {
                                         </p>
                                     </div>
                                     <div>
-                                        <button className={buttonclass}>Deshacer Baneo</button>
+                                        <button onClick={(e) => {undoBanUser(e)}} value={user._id} className={buttonclass}>Deshacer Baneo</button>
                                         <button className={buttonclass}>Hacer Admin</button>
                                     </div>
                                 </div>
@@ -88,7 +101,7 @@ const UserList = (render : any) => {
         
         :
 
-        users?.filter((e : any) => e.admin === true)
+        users?.filter((e : any) => e.admin === true && e.baneado === false)
         .map((user : any) => {
             return (
                 <div className="flow-root">
@@ -107,7 +120,7 @@ const UserList = (render : any) => {
                                         </p>
                                     </div>
                                     <div>
-                                        <button className={buttonclass}>Banear Usuario</button>
+                                    <button onClick={(e) => {handleBan(e)}} value={user._id} className={buttonclass}>Banear Usuario</button>
                                     </div>
                                 </div>
                             </li>
