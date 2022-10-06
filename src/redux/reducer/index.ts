@@ -7,7 +7,12 @@ import {
     EMPTY_FOOD,
     ACTUALIZAR_CART,
     ADD_TO_CART,
-    DELETE_FOR_CART
+    DELETE_FOR_CART,
+    EDIT_FORM,
+    ERROR_HANDLER,
+    CLEAN_ERROR,
+    GET_USER_BY_ID,
+
 } from "../actions";
 
 const initialState: StateTypes = {
@@ -15,6 +20,8 @@ const initialState: StateTypes = {
     categories: [],
     detail: [],
     cart: [],
+    userDetail: [],
+    error: ''
 }
 
 
@@ -50,6 +57,13 @@ export default function rootReducer(state = initialState, action: Action) {
             return {
                 ...state,
                 detail: action.payload
+            }
+
+        case GET_USER_BY_ID: 
+            return {
+                ...state,
+                userDetail: action.payload
+
             }
 
         case EMPTY_FOOD:
@@ -95,11 +109,16 @@ export default function rootReducer(state = initialState, action: Action) {
                 }
             }
 
-        // case EDIT_FORM:
-        //     return {
-        //         ...state,
-        //         FormData: action.payload
-        //     }
+        case ERROR_HANDLER:
+            return {
+                ...state,
+                error: action.payload
+            }
+        case CLEAN_ERROR:
+            return {
+                ...state,
+                error: ''
+            }
 
         default:
             return state;
