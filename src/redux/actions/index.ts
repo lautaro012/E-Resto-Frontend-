@@ -244,10 +244,9 @@ export const editUser = (id : String, input: any) => {
     return function (dispatch:Dispatch<Action>) {
         axios.put(`http://localhost:3001/user/${id}`, input)
         .then(res => {
-            console.log(input)
-            console.log('Se realizó el put correctamente')
             alert('Su contraseña fue modificada correctamente')
         })
+        .catch(err => console.log(err))
     }
 }
 
