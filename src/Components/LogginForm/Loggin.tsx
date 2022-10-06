@@ -1,6 +1,6 @@
 
 import { Modal, Label, TextInput, Checkbox } from "flowbite-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../config";
 import { Input, StateTypes, Submit } from "../../Interfaces/Interfaces";
@@ -11,6 +11,8 @@ export default function Loggin({ openlog, showLoggin }: any) {
 
     const navigate = useNavigate()
     let dispatch = useAppDispatch();
+    let error = useAppSelector((state: StateTypes) => state.error);
+    const [loading, setLoading] = useState<boolean>(false)
     const [input, setInput] = useState<{ mail: string; password: string }>({
         mail: "",
         password: "",
@@ -24,16 +26,22 @@ export default function Loggin({ openlog, showLoggin }: any) {
         dispatch(cleanError())
     };
 
-    let error = useAppSelector((state: StateTypes) => state.error);
-    console.log(error)
+    useEffect(() => {
+        return (
+            setInput({
+                mail: "",
+                password: "",
+            })
+        )
+    }, [])
 
     const handleSubmit = (e: Submit) => {
         e.preventDefault()
-        dispatch(logUser(input));
-        setInput({
-            mail: "",
-            password: "",
-        });
+        setLoading(true)
+        dispatch(logUser(navigate,input));
+        setTimeout(() =>{
+            setLoading(false)
+        }, 1000)
     };
 
 

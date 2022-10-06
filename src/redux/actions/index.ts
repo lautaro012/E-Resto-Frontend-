@@ -1,6 +1,7 @@
 import { Dispatch } from "react";
 import axios from 'axios'
 import { Action, CardForm, Category, ProductDetail } from "../../Interfaces/Interfaces";
+import { Navigate } from "react-router-dom";
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const GET_PRODUCTS_BY_NAME = 'GET_PRODUCTS_BY_NAME'
@@ -13,7 +14,7 @@ export const CLEAN_ERROR = 'CLEAN_ERROR'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 
 export const getProducts = (sort : String) => {
-
+    
     return function(dispatch:Dispatch<Action>) {
         axios('http://localhost:3001/product').then(resp => resp.data)
         .then(resp => {
@@ -209,26 +210,33 @@ export const sendSubscribeMail = (mail : String) => {
     }
 }
 
-//USERS:
 
-export const createUser = (input:any) => {
+
+
+export const createUser = (input:any, navigate:any) => {
     return function(dispatch : Dispatch<Action>) {
         axios.post(`http://localhost:3001/user/register`, input).then(resp => resp.data)
         .then(res => {
             console.log('registrado', res)
             alert('Registrado correctamente')
-        }) .then(resp => axios.post(`http://localhost:3001/sendWelcomeMail/${input.mail}`)
-        ) .then(res => console.log('email sent'))
-
-        .catch(err => console.log(err))
+            axios.post(`http://localhost:3001/sendWelcomeMail/${input.mail}`).then(res => console.log('email sent', res.data))
+            navigate('/pedidos')
+        })  
+        .catch(err => {
+            return dispatch({
+            type: ERROR_HANDLER,
+            payload: err
+        })})
     }
 }
-export const logUser = (input:{mail:string, password:string}) => {
+export const logUser = (navigate:any, input:{mail:string, password:string}) => {
     return function(dispatch : Dispatch<Action>) {
         axios.post(`http://localhost:3001/user/login`, input).then(resp => resp.data)
         .then(res => {
             console.log('loggeado', res)
             alert('inicio de sesion correcto')
+            localStorage.setItem('token', JSON.stringify(res));
+            navigate('/pedidos')
         })
         .catch(err => {
             return dispatch({
