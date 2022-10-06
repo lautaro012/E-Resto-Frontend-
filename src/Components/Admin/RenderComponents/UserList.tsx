@@ -3,7 +3,7 @@ import './Admin.css'
 
 import { useAppDispatch, useAppSelector } from '../../../config'
 import { getAllUsers } from '../../../redux/actions'
-import { buttonclass, firstDiv, listUsuariosRegistrados, mailUsuarioRegistrado, nameUsuarioRegistrado, titleUsuariosRegistrados } from '../../../Style/Clases/Clases'
+import { buttonclass, listUsuariosRegistrados, mailUsuarioRegistrado, nameUsuarioRegistrado, titleUsuariosRegistrados } from '../../../Style/Clases/Clases'
 
 const UserList = () => {
     let dispatch = useAppDispatch()

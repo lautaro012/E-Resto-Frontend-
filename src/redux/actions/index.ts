@@ -240,6 +240,16 @@ export const getAllUsers = () => {
         } 
 }
 
+export const editUser = (id : String, input: any) => {
+    return function (dispatch:Dispatch<Action>) {
+        axios.put(`http://localhost:3001/user/${id}`, input)
+        .then(res => {
+            alert('Su contraseña fue modificada correctamente')
+        })
+        .catch(err => console.log(err))
+    }
+}
+
 
 export const createUser = (input:any, navigate:any) => {
 
