@@ -1,0 +1,24 @@
+.divAdminContainer{
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+#leftAdminContainer {
+    width: 60%;
+    height: 800px;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+#rightAdminContainer {
+    height: 800px;
+}
