@@ -10,6 +10,7 @@ export const EDIT_FORM ='EDIT_FORM'
 export const SUBSCRIBE_MAIL = 'SUBSCRIBE_MAIL'
 export const ERROR_HANDLER = 'ERROR_HANDLER'
 export const CLEAN_ERROR = 'CLEAN_ERROR'
+export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 
 export const getProducts = (sort : String) => {
 
@@ -208,6 +209,8 @@ export const sendSubscribeMail = (mail : String) => {
     }
 }
 
+//USERS:
+
 export const createUser = (input:any) => {
     return function(dispatch : Dispatch<Action>) {
         axios.post(`http://localhost:3001/user/register`, input).then(resp => resp.data)
@@ -235,6 +238,20 @@ export const logUser = (input:{mail:string, password:string}) => {
         })})
     }
 }
+
+export const getUserById = (id: String) => {
+    return function(dispatch:Dispatch<Action>) {
+        axios(`http://localhost:3001/user/${id}`).then(resp => resp.data)
+        .then(resp => {
+            dispatch({
+                type:GET_USER_BY_ID,
+                payload:resp
+            })
+        })
+    }
+}
+
+
 export const cleanError = () => {
     return function(dispatch: Dispatch<Action>) {
         dispatch({
