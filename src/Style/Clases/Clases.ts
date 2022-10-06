@@ -6,9 +6,13 @@ export const buttonclass = "text-gray-900 bg-gradient-to-r from-red-200 via-red-
 export const inputRegister = "block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-outF m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
 
 
+// Cards de usuarios en admin:
 
-
-
+export const firstDiv = "p-4 w-full max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+export const titleUsuariosRegistrados = "text-xl font-bold leading-none text-gray-900 dark:text-white"
+export const listUsuariosRegistrados = "divide-y divide-gray-200 dark:divide-gray-700"
+export const nameUsuarioRegistrado = "text-sm font-medium text-gray-900 truncate dark:text-white"
+export const mailUsuarioRegistrado = "text-sm text-gray-500 truncate dark:text-gray-400"
 
 
 

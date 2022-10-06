@@ -11,6 +11,7 @@ export const SUBSCRIBE_MAIL = 'SUBSCRIBE_MAIL'
 export const ERROR_HANDLER = 'ERROR_HANDLER'
 export const CLEAN_ERROR = 'CLEAN_ERROR'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
+export const GET_ALL_USERS = 'GET_ALL_USERS'
 
 export const getProducts = (sort : String) => {
 
@@ -210,6 +211,19 @@ export const sendSubscribeMail = (mail : String) => {
 }
 
 //USERS:
+
+export const getAllUsers = () => {
+        return async function (dispatch : Dispatch<Action>) {
+            try {
+                const users = await axios.get('http://localhost:3001/user')
+                return dispatch({type: GET_ALL_USERS, payload: users.data})
+            } catch (error) {
+                console.log(error)
+            }
+            
+        } 
+}
+
 
 export const createUser = (input:any) => {
     return function(dispatch : Dispatch<Action>) {

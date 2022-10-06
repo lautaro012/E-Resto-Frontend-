@@ -9,6 +9,7 @@ import Register from './Components/RegisterForm/RegisterForm';
 import UserMenu from './Components/UserMenu/UserMenu';
 import Check from './Components/CheckoutPayment/Check';
 import ForgotPass from './Components/ForgotPass/ForgotPass';
+import Admin from './Components/Admin/Admin';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/admin' element={<Admin/>} />
         <Route path='/recupera/:id' element={<ForgotPass />} />
         <Route path='/check' element={<Check/>} />
         <Route path='/pedidos' element={<Pedidos />} />

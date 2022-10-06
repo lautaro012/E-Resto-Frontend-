@@ -47,6 +47,7 @@ export type StateTypes = {
     detail: ProductDetail | [],
     allcategories: Category | [],
     userDetail: [],
+    allUsers: [],
     error: any
 }
 export type Action = {
