@@ -2,7 +2,6 @@ import React from 'react'
 import UserList from './RenderComponents/UserList'
 import './Admin.css'
 import { buttonclass, firstDiv } from '../../Style/Clases/Clases'
-import NavBar from '../NavBar/NavBar'
 
 const Admin = () => {
   return (
