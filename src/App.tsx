@@ -10,12 +10,21 @@ import UserMenu from './Components/UserMenu/UserMenu';
 import Check from './Components/CheckoutPayment/Check';
 import ForgotPass from './Components/ForgotPass/ForgotPass';
 import Admin from './Components/Admin/Admin';
+import { useEffect, useState } from 'react';
+
 
 function App() {
+
+  const [token, setToken] = useState<string>('');
+
+  useEffect(() => {
+    localStorage.setItem('token', JSON.stringify(token));
+  }, [token]);
+  
   return (
     <>
     
-    <Router>
+    <Router>  
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/admin' element={<Admin/>} />
