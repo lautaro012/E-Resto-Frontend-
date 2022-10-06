@@ -27,4 +27,31 @@
     height: 800px;
     width: 40%;
     max-width: none;
+    overflow: auto;
+}
+
+
+
+#pFoodsFilter{    
+    background-color: #F1FFC4;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+
+#pFoodsFilter a{
+    margin: 5px;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 7px;
+
+}
+
+#pFoodsFilter a:hover{
+   background-color: rgba(0, 0, 0, 0.638);
+   color: wheat;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  {useEffect, useState } from 'react'
 import UserList from './RenderComponents/UserList'
 import './Admin.css'
 import { buttonclass, firstDiv } from '../../Style/Clases/Clases'
@@ -6,6 +6,7 @@ import ProductsList from './RenderComponents/ProductsList'
 
 const Admin = () => {
   const [render, setRender] = useState('registeredUsers')
+
 
   return (
     
@@ -25,7 +26,15 @@ const Admin = () => {
             <UserList render={render} /> 
 
             : render === "allProducts" ? 
+              <div>
+                <div className='spanFoodsFilter'>
+                <p id='pFoodsFilter' className={buttonclass}>
+                <a href='#Pastas'>Pastas</a> <a href='#Milanesas'>Milanesas</a> <a href='#Papas'>Papas</a> <a href='#Sandwiches'>Sandwiches</a> <a href='#Pizzas'>Pizzas</a> <a href='#Ensaladas'>Ensaladas</a> <a href='#Bebidas sin Alcohol'>Bebidas sin Alcohol</a>
+                </p>
+                </div>
+          
               <ProductsList/>
+              </div>
 
             :
             <div>ACA VA EL FORM DE CREACIÓN</div>
