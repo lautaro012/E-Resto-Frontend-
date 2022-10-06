@@ -51,15 +51,17 @@ export default function CardProduct({ formCard = false, comidaProps, onProducEdi
                 <div className="flex items-center justify-between">
 
                     {
-                        !off ?
-                            <span className="text-3xl font-bold text-gray-900 dark:text-white">${price}</span>
-                            :
+                        off ?
                             <div className="off_price">
-                                <span className="text-3xl font-bold text-gray-900 dark:text-white">${price}</span>
+                                <span className="text-3xl font-bold text-gray-900 dark:text-white text-decoration-line: line-through">${price}</span>
                                 <div className="tag_off">
+                                    <h2 className="text-3xs font-bold text-gray-900 dark:text-white">off</h2>
+                                    <h3 className="text-3m font-bold text-gray-900 dark:text-white">{off}</h3>
                                     <span className="text-3xl font-bold text-gray-900 dark:text-white">${currentprice}</span>
                                 </div>
                             </div>
+                            :
+                            <span className="text-3xl font-bold text-gray-900 dark:text-white">${price}</span>
                     }
 
                     {

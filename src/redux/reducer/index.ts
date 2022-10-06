@@ -75,7 +75,7 @@ export default function rootReducer(state = initialState, action: Action) {
                 }
             }
             else {
-
+                
                 return {
                     ...state
                 }

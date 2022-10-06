@@ -156,7 +156,7 @@ export default function Form({
                       name="price"
                       id="price"
                       min={0}
-                      max={9999}
+                      max={20000}
                       className={inputForm}
                       placeholder=" "
                       required
@@ -182,6 +182,8 @@ export default function Form({
                         defaultValue={newProduct ? null : formData.off}
                         name="off"
                         id="off"
+                        min={1}
+                        max={100}
                         className={inputForm}
                         placeholder=" "
                         required

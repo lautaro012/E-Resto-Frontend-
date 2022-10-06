@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from '../../config'
-import { deleteItemFromCart } from "../../redux/actions";
+import { addToCart, deleteItemFromCart } from "../../redux/actions";
 import { Link } from "react-router-dom";
 //import { useNavigate } from "react-router-dom";
+import '../Cart/Cart.css'
 
 export default function Cart() {
 
@@ -12,42 +13,42 @@ export default function Cart() {
 
     const [propina, setPropina] = useState<number>(0);
 
+
     function deleteItem(id: any) {
         dispatch(deleteItemFromCart(id))
+    }
+
+    function handdleCantidad(cantidad: number, item: any, event: any) {
+
+        console.log("CANTIDAD",cantidad)
+        console.log("ITEM",item)
+        //event.preventDefault()
+
+        //CAMBIA TODO EL TIEMPO EL COMPONENTE PORQUE CAMBIA ITEMS, USAR ALGUN ESTADO LOCAL PARA QUE NO PASE ESO, OJO LOCAL STORAGE
+        deleteItem(item._id)
+        dispatch(addToCart({
+            ...item,
+            cantidad : cantidad
+        }))
     }
 
     let subTotal = 0;
     for (let i = 0; i < items.length; i++) {
 
-        if (items.cantidad === 1) {
-            subTotal += items[i].price;
-        }
-        else {
-            subTotal += items[i].price * items[i].cantidad;
-        }
+        subTotal += items[i].price * items[i].cantidad
+
     }
 
     let total = subTotal + propina
 
-    console.log("ITEMS", items)
 
     useEffect(() => {
         localStorage.setItem("products", JSON.stringify(items));
         localStorage.setItem("precioTotal", JSON.stringify(total));
     }, [items, total]);
 
-    // function handleBuy(event){
-    //     event.preventDefault()
-    //     if (userLogged){
-    //         navigate("/cart/formularioPago")
-    //     }
-    //     else{
-    //         swal({title:'You must be logged to buy games'})
-    //     }
-    // }
-
     return (
-        <div>
+        <div className="contenedor_total_carrito">
             <h1>Bienvenido a tu carrito</h1>
             {
                 items && items.length ?
@@ -65,7 +66,17 @@ export default function Cart() {
                                                 <h1>Cantidad</h1>
                                                 <h2>{item.cantidad}</h2>
                                             </div>
-                                            <button onClick={() => { if (window.confirm(`Are you sure delete ${item.name} from your cart ?`)) deleteItem(item._id) }}>🗑</button>
+                                            <div className="Label">
+                                                <label>Cantidad</label>
+                                                <input
+                                                    type='number'
+                                                    value={item.cantidad}
+                                                    name='cantidad'
+                                                    min="1" max="10"
+                                                    onChange={(event) => handdleCantidad(Number(event.target.value), item, event)}
+                                                />
+                                            </div>
+                                            <button onClick={() => { if (window.confirm(`Esta seguro que quiere eliminar ${item.name} de su carrito ?`)) deleteItem(item._id) }}>🗑</button>
                                         </div>
                                     )
                                 })
@@ -89,7 +100,7 @@ export default function Cart() {
                             </div>
                         </div>
                         <div id="caja">
-                            <button onClick={() => { if (window.confirm("Are you sure to empty your cart ?")) deleteItem("All") }}>Vaciar carrito</button>
+                            <button onClick={() => { if (window.confirm("Esta seguro de vaciar su carrito ?")) deleteItem("All") }}>Vaciar carrito</button>
                             <h2>Sub total : ${subTotal}</h2>
                             <h2>Propina : ${propina}</h2>
                             <h1>Total : ${total}</h1>

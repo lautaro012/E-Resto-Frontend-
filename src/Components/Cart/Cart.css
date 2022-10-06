@@ -1,0 +1,8 @@
+.contenedor_total_carrito {
+    margin: 5%;
+    border-style:solid;
+    border-color: black;
+    border-radius: 20px;
+    border-width: 2px;
+    padding: 5%;
+}
