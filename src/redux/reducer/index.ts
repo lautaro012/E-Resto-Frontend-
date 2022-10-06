@@ -9,6 +9,7 @@ import {
     ERROR_HANDLER,
     CLEAN_ERROR,
     GET_USER_BY_ID,
+    GET_ALL_USERS
 } from "../actions";
 
 const initialState: StateTypes = {
@@ -18,6 +19,7 @@ const initialState: StateTypes = {
     detail: [],
     allcategories: [],
     userDetail: [],
+    allUsers: [],
     error: ''
 }
 
@@ -35,6 +37,11 @@ export default function rootReducer(state = initialState, action: Action) {
             return {
                 ...state,
                 categories: action.payload,
+            }
+        case GET_ALL_USERS: 
+            return{
+                ...state,
+                allUsers: action.payload
             }
         case GET_PRODUCTS_BY_NAME:
             let categorias = action.payload.res
