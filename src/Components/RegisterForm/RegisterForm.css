@@ -21,3 +21,8 @@
     border-radius: 3%;
     padding: 0 5% 30px 5%;
 }
+
+.register-conteiner form button:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
