@@ -7,7 +7,7 @@
 }
 
 #leftAdminContainer {
-    width: 60%;
+    width: 50%;
     height: 800px;
     max-width: none;
     display: flex;
@@ -19,6 +19,12 @@
 
 }
 
+#adminButtonSizing{
+    width: 160px;
+}
+
 #rightAdminContainer {
     height: 800px;
+    width: 40%;
+    max-width: none;
 }
