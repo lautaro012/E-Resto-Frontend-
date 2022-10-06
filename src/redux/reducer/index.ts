@@ -8,6 +8,7 @@ import {
     EDIT_FORM,
     ERROR_HANDLER,
     CLEAN_ERROR,
+    GET_USER_BY_ID,
 } from "../actions";
 
 const initialState: StateTypes = {
@@ -16,6 +17,7 @@ const initialState: StateTypes = {
     categories: [],
     detail: [],
     allcategories: [],
+    userDetail: [],
     error: ''
 }
 
@@ -49,6 +51,12 @@ export default function rootReducer(state = initialState, action: Action) {
             return {
                 ...state,
                 detail: action.payload
+            }
+        case GET_USER_BY_ID: 
+            return {
+                ...state,
+                userDetail: action.payload
+
             }
         case EMPTY_FOOD:
             return {

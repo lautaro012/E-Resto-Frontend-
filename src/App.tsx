@@ -8,6 +8,7 @@ import Footer from './Components/Footer/Footer';
 import Register from './Components/RegisterForm/RegisterForm';
 import UserMenu from './Components/UserMenu/UserMenu';
 import Check from './Components/CheckoutPayment/Check';
+import ForgotPass from './Components/ForgotPass/ForgotPass';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/recupera/:id' element={<ForgotPass />} />
         <Route path='/check' element={<Check/>} />
         <Route path='/pedidos' element={<Pedidos />} />
         <Route path='/product/:id' element={<DetailProduct id closeModalDetail/>}/>
