@@ -1,9 +1,8 @@
 
 import axios from 'axios'
-import React, { useState } from 'react'
 import StripeCheckout from 'react-stripe-checkout'
 import { deleteItemFromCart } from "../../redux/actions";
-import { useAppDispatch, useAppSelector } from '../../config';
+import { useAppDispatch } from '../../config';
 
 export default function Check({precio}) {
   

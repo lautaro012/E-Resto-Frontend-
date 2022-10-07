@@ -9,7 +9,6 @@ export default function Cart() {
 
     const dispatch = useAppDispatch()
     const items = useAppSelector((state) => state.cart)
-    const itemsCartStock = useAppSelector((state) => state.products)
 
     const [render, setRender] = useState<string>("")
 

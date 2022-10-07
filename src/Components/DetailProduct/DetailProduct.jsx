@@ -67,14 +67,6 @@ export default function DetailProduct({ id, closeModalDetail }) {
         }
     }
 
-    // function handleRadio(event) {
-    //     event.preventDefault()
-    //     console.log("LABEL", event.target.value)
-    //     console.log("value radio", event.target.value.price)
-    //     setExtra(Number(event.target.value.price))
-    //     setExtraItem(event.target.value)
-    // }
-
     function handleExtraItem(item) {
         setExtraItem(item)
         setExtra(item.price)
@@ -239,12 +231,6 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                                                         {
                                                                             cat && cat.categoryProducts.map(prod => {
                                                                                 return (
-                                                                                    // <div className="modal_inputs_details">
-                                                                                    //     <h1 className="text-m font-semibold tracking-tight text-gray-900 dark:text-white">{prod.name}</h1>
-                                                                                    //     <input type="checkbox" value={prod.price}></input>
-                                                                                    //     <label>{prod.name}</label>
-                                                                                    //     <h2>$ {prod.price}</h2>
-                                                                                    // </div>
                                                                                     <div className="modal_inputs_details">
                                                                                         <h1 className="text-m font-semibold tracking-tight text-gray-900 dark:text-white">{prod.name}</h1>
                                                                                         <input type="radio" onClick={(event) => handleRadio(event)} value={prod.price} id={prod._id} name="extra_item" />
