@@ -269,6 +269,25 @@ export const changeBanUser = (id:any) => {
     }
 }
 
+export const changeUserAsAdmin = (id: any) => {
+    return async function (dispatch: Dispatch<Action>) {
+        if(id) {
+            try {
+                axios.put(`http://localhost:3001/setAdmin/${id}`)
+                .then(res => {
+                    alert('El usuario es ahora administrador')
+                })
+                
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        else {
+            console.log(`didn't get id`)
+        }
+    } 
+}
+
 export const changeNoBanUser= (id:any) => {
     return async function (dispatch: Dispatch<Action>) {
         if(id) {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Admin.css'
 
 import { useAppDispatch, useAppSelector } from '../../../config'
-import { changeBanUser, changeNoBanUser, getAllUsers } from '../../../redux/actions'
+import { changeBanUser, changeNoBanUser, changeUserAsAdmin, getAllUsers } from '../../../redux/actions'
 import { buttonclass, listUsuariosRegistrados, mailUsuarioRegistrado, nameUsuarioRegistrado, titleUsuariosRegistrados } from '../../../Style/Clases/Clases'
 
 const UserList = (render : any) => {
@@ -14,6 +14,11 @@ const UserList = (render : any) => {
         setPrueba(Math.random().toString())
     }
     
+    const handleAdmin = (e: any) => {
+        dispatch(changeUserAsAdmin(e.target.value))
+        setPrueba(Math.random().toString())
+    }
+
     const undoBanUser = (e:any) => {
         dispatch(changeNoBanUser(e.target.value))
         setPrueba(Math.random().toString())
@@ -38,6 +43,7 @@ const UserList = (render : any) => {
         {
                 render.render === 'registeredUsers' ?
                 users?.filter((e : any) => e.baneado === false)
+                .filter((e:any) => e.admin === false)
                 .map((user : any) => {
                     return (
                         
@@ -58,7 +64,7 @@ const UserList = (render : any) => {
                                             </div>
                                             <div>
                                                 <button onClick={(e) => {handleBan(e)}} value={user._id} className={buttonclass}>Banear</button>
-                                                <button className={buttonclass}>Hacer Admin</button>
+                                                <button className={buttonclass} value={user._id} onClick={(e) => handleAdmin(e)}>Hacer Admin</button>
                                             </div>
                                         </div>
                                     </li>
@@ -89,7 +95,7 @@ const UserList = (render : any) => {
                                     </div>
                                     <div>
                                         <button onClick={(e) => {undoBanUser(e)}} value={user._id} className={buttonclass}>Deshacer Baneo</button>
-                                        <button className={buttonclass}>Hacer Admin</button>
+                                        <button className={buttonclass} value={user._id} onClick={(e) => handleAdmin(e)}>Hacer Admin</button>
                                     </div>
                                 </div>
                             </li>
