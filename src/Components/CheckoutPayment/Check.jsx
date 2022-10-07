@@ -1,27 +1,28 @@
 
 import axios from 'axios'
-import React, { useState } from 'react'
 import StripeCheckout from 'react-stripe-checkout'
+import { deleteItemFromCart } from "../../redux/actions";
+import { useAppDispatch } from '../../config';
 
-const Check = () => {
+export default function Check({precio}) {
+  
   let publishableKey = 'pk_test_51Lde2sJXnqrwcfODw8cWGGVzyavpCNgaUXMhWTAbkGIJ3txhY9PVGuUzy9QPzQ5riddbQZdRADa3QTHxqhrSeSZq00dWuMhBM2'
-  const [product, setProduct] = useState({
-    name: 'Producto prueba',
-    price: 10
-  })
-  let priceStripe =  product.price * 100
+  const dispatch = useAppDispatch()
+
   const payNow = async token => {
     try {
       const response = await axios({
         url: 'http://localhost:3001/payment',
         method: 'post',
         data: {
-          amount: priceStripe,
+          amount: precio * 100,
           token,
         }
       })
-      if(response.status === 200) {
+      if (response.status === 200) {
         console.log('payment successful')
+        console.log(precio)
+        dispatch(deleteItemFromCart("All"))
       }
     } catch (error) {
       console.log(error)
@@ -30,25 +31,16 @@ const Check = () => {
 
   return (
     <div>
-      <h1>Prueba pago</h1>
-      <p>
-        <span>Producto:</span>
-          {product.name}
-      </p>
-      <p>
-        Price: {product.price}
-      </p>
+      <h1>Tarjeta de credito</h1>
       <StripeCheckout
         stripeKey={publishableKey}
         label='Pay Now'
         billingAddress
         shippingAddress
-        amount={priceStripe}
+        amount={precio * 100}
         description='Finaliza tu compra'
         token={payNow}
       />
     </div>
   )
 }
-
-export default Check

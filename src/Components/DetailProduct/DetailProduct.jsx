@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from '../../config'
-import { addToCart, getFoodById, vaciarComida } from '../../redux/actions/index'
+import { addToCart, getFoodById, vaciarComida, deleteItemFromCart } from '../../redux/actions/index'
 import '../DetailProduct/DetailProduct.css'
 //import ModalInDetail from "../Modal/Modal";
 //import useModal from "../../hooks/useModal";
@@ -13,6 +13,9 @@ export default function DetailProduct({ id, closeModalDetail }) {
     const categories = useAppSelector((state) => state.categories);
     const cart = useAppSelector((state) => state.cart);
 
+    const [extraItem, setExtraItem] = useState(null);
+    const [extra, setExtra] = useState(0);
+
     useEffect(() => {
         dispatch(getFoodById(id))
         return function limpiar() {
@@ -20,29 +23,29 @@ export default function DetailProduct({ id, closeModalDetail }) {
         }
     }, [dispatch, id])
 
+    function closeDetailModal() {
+        closeModalDetail(false)
+    }
+
     //const [isOpenModal, openModal, closeModal] = useModal()
     //const [datosModal, setDatosModal] = useState()
-    const [extraItem, setExtraItem] = useState(null);
-    const [extra, setExtra] = useState(0);
 
     // function modalData(categoria) {
     //     openModal()
     //     setDatosModal(categoria)
     // }
 
-    function closeDetailModal() {
-        closeModalDetail(false)
-    }
-
     function addFoodToCart() {
 
-        let itemFound = cart.map(item => item._id).includes(food._id)
+        let itemFound = cart.find(item => item._id === food._id)
+
         let itemExtraFound
+
         if (extraItem !== null) {
-            itemExtraFound = cart.map(item => item._id).includes(extraItem._id)
+            itemExtraFound = cart.find(item => item._id === extraItem._id)
         }
 
-        if (!itemFound && food.stock >= 1) {
+        if (!itemFound) {
 
             let item = {
                 ...food,
@@ -57,23 +60,23 @@ export default function DetailProduct({ id, closeModalDetail }) {
                 }
                 dispatch(addToCart(item))
             }
+            else if(itemExtraFound){
+                console.log(itemExtraFound)
+                item = {
+                    ...itemExtraFound,
+                    cantidad: itemExtraFound.cantidad + 1
+                }
+                dispatch(deleteItemFromCart(itemExtraFound._id))
+                dispatch(addToCart(item))
+            }
             alert(`Se agrego ${food.name}`)
             closeDetailModal()
         }
         else {
-            //let itemFound = cart.find(item => item._id === food._id)
-            alert(`Ya esta agregado ${food.name} al carrito`)
+            alert(`Ya esta agregado ${food.name} al carrito, puedes cambiar su cantidad en el carrito`)
             closeDetailModal()
         }
     }
-
-    // function handleRadio(event) {
-    //     event.preventDefault()
-    //     console.log("LABEL", event.target.value)
-    //     console.log("value radio", event.target.value.price)
-    //     setExtra(Number(event.target.value.price))
-    //     setExtraItem(event.target.value)
-    // }
 
     function handleExtraItem(item) {
         setExtraItem(item)
@@ -239,12 +242,6 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                                                         {
                                                                             cat && cat.categoryProducts.map(prod => {
                                                                                 return (
-                                                                                    // <div className="modal_inputs_details">
-                                                                                    //     <h1 className="text-m font-semibold tracking-tight text-gray-900 dark:text-white">{prod.name}</h1>
-                                                                                    //     <input type="checkbox" value={prod.price}></input>
-                                                                                    //     <label>{prod.name}</label>
-                                                                                    //     <h2>$ {prod.price}</h2>
-                                                                                    // </div>
                                                                                     <div className="modal_inputs_details">
                                                                                         <h1 className="text-m font-semibold tracking-tight text-gray-900 dark:text-white">{prod.name}</h1>
                                                                                         <input type="radio" onClick={(event) => handleRadio(event)} value={prod.price} id={prod._id} name="extra_item" />
