@@ -8,10 +8,10 @@ import {
     ACTUALIZAR_CART,
     ADD_TO_CART,
     DELETE_FOR_CART,
-    EDIT_FORM,
     ERROR_HANDLER,
     CLEAN_ERROR,
     GET_USER_BY_ID,
+    GET_ALL_USERS
 
 } from "../actions";
 
@@ -21,6 +21,7 @@ const initialState: StateTypes = {
     detail: [],
     cart: [],
     userDetail: [],
+    allUsers: [],
     error: ''
 }
 
@@ -39,6 +40,12 @@ export default function rootReducer(state = initialState, action: Action) {
             return {
                 ...state,
                 categories: action.payload,
+            }
+
+        case GET_ALL_USERS: 
+            return{
+                ...state,
+                allUsers: action.payload
             }
 
         case GET_PRODUCTS_BY_NAME:

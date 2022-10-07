@@ -46,6 +46,7 @@ export type StateTypes = {
     detail: ProductDetail | [],
     cart:  ProductDetail[] | [],
     userDetail: [],
+    allUsers: [],
     error: any
 }
 

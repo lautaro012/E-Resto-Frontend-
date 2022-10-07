@@ -15,6 +15,7 @@ export const SUBSCRIBE_MAIL = 'SUBSCRIBE_MAIL'
 export const ERROR_HANDLER = 'ERROR_HANDLER'
 export const CLEAN_ERROR = 'CLEAN_ERROR'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
+export const GET_ALL_USERS = 'GET_ALL_USERS'
 
 export const getProducts = (sort : String) => {
     
@@ -231,10 +232,82 @@ export const sendSubscribeMail = (mail : String) => {
     }
 }
 
+export const sendResetPassMail = (mail : String) => {
+    if(mail) {
+        return function (dispatch : Dispatch<Action>) {
+            axios.post(`http://localhost:3001/sendRecuperaContra/${mail}`)
+            .then(res => res.data)
+            .then(res => alert('Revisa tu casilla de correo'))
+            .catch(err => console.log(err))
+        }
+    } else {
+        console.log(`didn't get mail`)
+    }
+}
 
+
+
+//USERS:
+
+export const changeBanUser = (id:any) => {
+    return async function (dispatch: Dispatch<Action>) {
+        if(id) {
+            try {
+                axios.put(`http://localhost:3001/banUser/${id}`)
+                .then(res => alert('Usuario Baneado'))
+                
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        else {
+            console.log(`didn't get id`)
+        }
+    }
+}
+
+export const changeNoBanUser= (id:any) => {
+    return async function (dispatch: Dispatch<Action>) {
+        if(id) {
+            try {
+                axios.put(`http://localhost:3001/noBanUser/${id}`)
+                .then(res => alert('El usuario ya no está baneado'))
+                
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        else {
+            console.log(`didn't get id`)
+        }
+    }
+}
+
+export const getAllUsers = () => {
+        return async function (dispatch : Dispatch<Action>) {
+            try {
+                const users = await axios.get('http://localhost:3001/user')
+                return dispatch({type: GET_ALL_USERS, payload: users.data})
+            } catch (error) {
+                console.log(error)
+            }
+            
+        } 
+}
+
+export const editUser = (id : String, input: any) => {
+    return function (dispatch:Dispatch<Action>) {
+        axios.put(`http://localhost:3001/user/${id}`, input)
+        .then(res => {
+            alert('Su contraseña fue modificada correctamente')
+        })
+        .catch(err => console.log(err))
+    }
+}
 
 
 export const createUser = (input:any, navigate:any) => {
+
     return function(dispatch : Dispatch<Action>) {
         axios.post(`http://localhost:3001/user/register`, input).then(resp => resp.data)
         .then(res => {
