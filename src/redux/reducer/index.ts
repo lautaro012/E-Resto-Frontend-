@@ -87,20 +87,10 @@ export default function rootReducer(state = initialState, action: Action) {
 
         case ADD_TO_CART:
 
-            let itemFound = state.cart.map(item => item._id).includes(action.payload._id)
-            if (!itemFound) {
-
                 return {
                 ...state,
                 cart: [...state.cart, action.payload]
                 }
-            }
-            else {
-                
-                return {
-                    ...state
-                }
-            }
 
         case DELETE_FOR_CART:
             if (action.payload === "All") {

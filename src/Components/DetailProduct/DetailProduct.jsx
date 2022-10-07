@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from '../../config'
-import { addToCart, getFoodById, vaciarComida } from '../../redux/actions/index'
+import { addToCart, getFoodById, vaciarComida, deleteItemFromCart } from '../../redux/actions/index'
 import '../DetailProduct/DetailProduct.css'
 //import ModalInDetail from "../Modal/Modal";
 //import useModal from "../../hooks/useModal";
@@ -13,6 +13,9 @@ export default function DetailProduct({ id, closeModalDetail }) {
     const categories = useAppSelector((state) => state.categories);
     const cart = useAppSelector((state) => state.cart);
 
+    const [extraItem, setExtraItem] = useState(null);
+    const [extra, setExtra] = useState(0);
+
     useEffect(() => {
         dispatch(getFoodById(id))
         return function limpiar() {
@@ -20,24 +23,24 @@ export default function DetailProduct({ id, closeModalDetail }) {
         }
     }, [dispatch, id])
 
+    function closeDetailModal() {
+        closeModalDetail(false)
+    }
+
     //const [isOpenModal, openModal, closeModal] = useModal()
     //const [datosModal, setDatosModal] = useState()
-    const [extraItem, setExtraItem] = useState(null);
-    const [extra, setExtra] = useState(0);
 
     // function modalData(categoria) {
     //     openModal()
     //     setDatosModal(categoria)
     // }
 
-    function closeDetailModal() {
-        closeModalDetail(false)
-    }
-
     function addFoodToCart() {
 
         let itemFound = cart.find(item => item._id === food._id)
+
         let itemExtraFound
+
         if (extraItem !== null) {
             itemExtraFound = cart.find(item => item._id === extraItem._id)
         }
@@ -57,12 +60,20 @@ export default function DetailProduct({ id, closeModalDetail }) {
                 }
                 dispatch(addToCart(item))
             }
+            else if(itemExtraFound){
+                console.log(itemExtraFound)
+                item = {
+                    ...itemExtraFound,
+                    cantidad: itemExtraFound.cantidad + 1
+                }
+                dispatch(deleteItemFromCart(itemExtraFound._id))
+                dispatch(addToCart(item))
+            }
             alert(`Se agrego ${food.name}`)
             closeDetailModal()
         }
         else {
-            //let itemFound = cart.find(item => item._id === food._id)
-            alert(`Ya esta agregado ${food.name} al carrito`)
+            alert(`Ya esta agregado ${food.name} al carrito, puedes cambiar su cantidad en el carrito`)
             closeDetailModal()
         }
     }

@@ -27,15 +27,11 @@ export default function Cart() {
 
     function handdleCantidad(cantidad: number, id: string) {
 
-        console.log("CANTIDAD", cantidad)
-        console.log("ITEM", id)
-
         setRender(`${id + cantidad}`) // este numero no tiene sentido, es solo para renderizar ante cualquier cambio
 
         let itemFound = items.find((itemToModify: any) => itemToModify._id === id)
 
         itemFound.cantidad = cantidad
-        console.log("itemFOUND", itemFound)
 
     }
 
@@ -79,7 +75,7 @@ export default function Cart() {
                     </div>
 
                     :
-                    <div id="no_games_cart">
+                    <div id="no_foods_cart">
                         <h1>No hay pedidos en tu carrito</h1>
                     </div>
             }
