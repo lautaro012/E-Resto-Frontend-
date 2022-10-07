@@ -192,6 +192,7 @@ export const editProduct = (input:CardForm, id:number) => {
 export const deleteProduct = (id: string) => {
     axios.delete(`http://localhost:3001/product/${id}`).then(res => res.data)
         .then(res => console.log(res))
+        .then(res => window.location.reload())
         .catch(err => console.log(err))
 }
 
@@ -254,7 +255,9 @@ export const changeBanUser = (id:any) => {
         if(id) {
             try {
                 axios.put(`http://localhost:3001/banUser/${id}`)
-                .then(res => alert('Usuario Baneado'))
+                .then(res => {
+                    alert('Usuario Baneado')
+                })
                 
             } catch (error) {
                 console.log(error)
