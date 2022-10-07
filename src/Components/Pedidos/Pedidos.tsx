@@ -114,6 +114,8 @@ export default function Pedidos() {
                                                 <Card
                                                     key={info.name}
                                                     comidaProps={info}
+                                                    modalOpen={setShowDetailModal}
+                                                    setIdModal={setIdModal}
                                                 />
                                             );
                                         })}

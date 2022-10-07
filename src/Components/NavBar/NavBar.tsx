@@ -53,7 +53,7 @@ export default function NavBar() {
   let user = useAppSelector((state: StateTypes) => state.user);
 
   return (
-    <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+    <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900" id="navBar">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
           <button onClick={handleHome} className="flex items-center">
             <img id="logoNavBarImg" width={150} src={Logo} alt="LOGO"></img>
@@ -182,9 +182,9 @@ export default function NavBar() {
                 </Link>
             </li>
             <li>
-            <button className={buttonclass} type="button">
+            {/* <button className={buttonclass} type="button">
               Boton random
-            </button>
+            </button> */}
             </li>
           </ul>
         </div>
