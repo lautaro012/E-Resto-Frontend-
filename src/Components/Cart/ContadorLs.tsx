@@ -6,7 +6,7 @@ import Check from "../CheckoutPayment/Check";
 export default function ContadorLs(render: any) {
 
     const items = useAppSelector((state) => state.cart)
-    const [propina, setPropina] = useState<number>(0);
+    const [propina, setPropina] = useState<number>(100);
     const [openModal, setOpenModal] = useState<boolean | undefined>(false)
 
     let subTotal = 0;
@@ -30,13 +30,16 @@ export default function ContadorLs(render: any) {
     return (
         <div>
             <div id="conteiner_propinas">
-                <h1>Propina ? (Sin ellos, su envio no seria posible)</h1>
-                <button onClick={() => setPropina(50)}>$50</button>
-                <button onClick={() => setPropina(100)}>$100</button>
-                <button onClick={() => setPropina(150)}>$150</button>
-                <button onClick={() => setPropina(200)}>$200</button>
+                <h1 className="text-m font-semibold tracking-tight text-gray-900 dark:text-white">Propina ?</h1>
+                <span className="text-m tracking-tight text-gray-900 dark:text-white"> (Sin ellos, su envio no seria posible)</span>
+                <div id="contenedor_propina">
+                    <Button id="propina" color="success" onClick={() => setPropina(50)}>$50</Button>
+                    <Button id="propina" color="success" onClick={() => setPropina(100)}>$100</Button>
+                    <Button id="propina" color="success" onClick={() => setPropina(150)}>$150</Button>
+                    <Button id="propina" color="success" onClick={() => setPropina(200)}>$200</Button>
+                </div>
                 <div className="Label">
-                    <label>Otro monto : $</label>
+                    <label>$ </label>
                     <input
                         type='number'
                         value={propina}
@@ -51,7 +54,7 @@ export default function ContadorLs(render: any) {
                 <h2>Propina : ${propina}</h2>
                 <hr />
                 <h1>Total : ${total}</h1>
-                <Button onClick={() => setOpenModal(true)}>
+                <Button id="pedido_ya" onClick={() => setOpenModal(true)}>
                     Hacer pedido ya !
                 </Button>
                 <Modal
@@ -63,7 +66,7 @@ export default function ContadorLs(render: any) {
                     </Modal.Header>
                     <Modal.Body>
                         <Check
-                        precio={total}
+                            precio={total}
                         ></Check>
                     </Modal.Body>
                     <Modal.Footer>
