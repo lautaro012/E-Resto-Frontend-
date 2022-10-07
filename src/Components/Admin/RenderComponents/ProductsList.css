@@ -1,0 +1,4 @@
+.name-addProduct {
+    display: flex;
+    justify-content: space-between;
+}

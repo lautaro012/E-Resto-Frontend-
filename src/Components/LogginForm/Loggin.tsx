@@ -1,11 +1,12 @@
 
-import { Modal, Label, TextInput, Checkbox } from "flowbite-react";
+import { Modal, Label, Checkbox } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../config";
 import { Input, StateTypes, Submit } from "../../Interfaces/Interfaces";
 import { cleanError, logUser } from "../../redux/actions";
 import { buttonclass } from "../../Style/Clases/Clases";
+import {inputForm} from '../../Style/Clases/Clases'
 
 export default function Loggin({ openlog, showLoggin }: any) {
 
@@ -60,7 +61,8 @@ export default function Loggin({ openlog, showLoggin }: any) {
                                 <div className="mb-2 block">
                                     <Label htmlFor="mail" value="Your mail" />
                                 </div>
-                                <TextInput
+                                <input
+                                    className={inputForm}
                                     onChange={handleChange}
                                     id="mail"
                                     name='mail'
@@ -73,7 +75,7 @@ export default function Loggin({ openlog, showLoggin }: any) {
                                 <div className="mb-2 block">
                                     <Label htmlFor="password" value="Your password" />
                                 </div>
-                                <TextInput name='password' onChange={handleChange} id="password" type="password" required={true} />
+                                <input className={inputForm} name='password' onChange={handleChange} id="password" type="password" required={true} />
                             </div>
                             <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
