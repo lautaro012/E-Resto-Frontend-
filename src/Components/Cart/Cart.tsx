@@ -44,10 +44,6 @@ export default function Cart() {
 
     return (
         <div className="contenedor_total_carrito">
-            <header>
-                <h1 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Bienvenido a tu carrito</h1>
-                <Link to={"/pedidos"}><Button>{`>`}</Button></Link>
-            </header>
             {
                 items && items.length ?
                     <div id="conteinerCart">
@@ -56,30 +52,10 @@ export default function Cart() {
                                 items && items?.map((item: any) => {
                                     console.log(item)
                                     return (
-                                        // <div key={item._id} id='cart-item'>
-                                        //     <div>
-                                        //         <h1>Nombre</h1>
-                                        //         <h2>{item.name}</h2>
-                                        //         <h1>Precio</h1>
-                                        //         <h2>${item.price}</h2>
-                                        //     </div>
-                                        //     <div className="Label">
-                                        //         <label>Cantidad</label>
-                                        //         <input
-                                        //             type='number'
-                                        //             value={item.cantidad}
-                                        //             name='cantidad'
-                                        //             min="1" max="10"
-                                        //             onChange={(event) => handdleCantidad(Number(event.target.value), item._id)}
-                                        //         />
-                                        //     </div>
-                                        //     <button onClick={() => { if (window.confirm(`Esta seguro que quiere eliminar ${item.name} de su carrito ?`)) deleteItem(item._id) }}>🗑</button>
-                                        // </div>
                                         <figure className="food">
                                             <div className="food__hero">
                                                 <img src={item.img} alt={item.name} className="food__img" />
                                             </div>
-
                                             <div className="food__content">
                                                 <div className="food__title">
                                                     <h1 className="food__heading">{item.name}</h1>
@@ -108,6 +84,23 @@ export default function Cart() {
                                                     <label>Cantidad</label>
                                                     <input
                                                         type='number'
+                                                        className="
+                                                        form-control
+                                                        block
+                                                        w-full
+                                                        px-3
+                                                        py-1.5
+                                                        text-base
+                                                        font-normal
+                                                        text-gray-700
+                                                        bg-white bg-clip-padding
+                                                        border border-solid border-gray-300
+                                                        rounded
+                                                        transition
+                                                        ease-in-out
+                                                        m-0
+                                                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                                                      "
                                                         value={item.cantidad}
                                                         name='cantidad'
                                                         min="1" max="10"
@@ -128,7 +121,6 @@ export default function Cart() {
                             <Button id="vaciar_carrito" gradientMonochrome="failure" onClick={() => { if (window.confirm("Esta seguro de vaciar su carrito ?")) deleteItem("All") }}>Vaciar carrito</Button>
                         </div>
                     </div>
-
                     :
                     <div id="no_foods_cart">
                         <h1 className="text-m font-semibold tracking-tight text-gray-900 dark:text-white">No hay pedidos en tu carrito</h1>

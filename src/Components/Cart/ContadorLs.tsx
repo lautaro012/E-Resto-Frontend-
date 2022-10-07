@@ -39,9 +39,25 @@ export default function ContadorLs(render: any) {
                     <Button id="propina" color="success" onClick={() => setPropina(200)}>$200</Button>
                 </div>
                 <div className="Label">
-                    <label>$ </label>
                     <input
                         type='number'
+                        className="
+                        form-control
+                        block
+                        w-full
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        m-0
+                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                      "
                         value={propina}
                         name='propina'
                         min="0" max={subTotal}

@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import Loggin from "../LogginForm/Loggin";
 import { useAppDispatch, useAppSelector } from "../../config";
 import { getUser } from "../../redux/actions";
+import { Modal } from "flowbite-react";
+import Cart from "../Cart/Cart";
 
 export default function NavBar() {
   const dispatch = useAppDispatch();
@@ -16,6 +18,8 @@ export default function NavBar() {
   const [showLoggin, setShowLoggin] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(true);
   const [menuResponsive, setMenuResponsive] = useState<boolean>(true);
+  const [openCart, setOpenCart] = useState<boolean | undefined>(false)
+
   const openlog = () => {
     showLoggin ? setShowLoggin(false) : setShowLoggin(true);
   };
@@ -36,7 +40,7 @@ export default function NavBar() {
   useEffect(() => {
     dispatch(getUser(JSON.parse(token)));
   }, [dispatch, token]);
-  
+
   const handleUser = () => {
     open ? setOpen(false) : setOpen(true);
   };
@@ -52,12 +56,28 @@ export default function NavBar() {
 
   let user = useAppSelector((state: StateTypes) => state.user);
 
+  function closeCart() {
+    setOpenCart(false)
+  }
+
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900" id="navBar">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
-          <button onClick={handleHome} className="flex items-center">
-            <img id="logoNavBarImg" width={150} src={Logo} alt="LOGO"></img>
-          </button>
+        <button onClick={handleHome} className="flex items-center">
+          <img id="logoNavBarImg" width={150} src={Logo} alt="LOGO"></img>
+        </button>
+        <Modal
+          show={openCart}
+          onClose={closeCart}
+          size="7xl"
+        >
+          <Modal.Header>
+            Mi carrito
+          </Modal.Header>
+          <Modal.Body>
+            <Cart></Cart>
+          </Modal.Body>
+        </Modal>
         {JSON.parse(token).token ? (
           <div className="flex items-center md:order-2">
             <button
@@ -89,31 +109,31 @@ export default function NavBar() {
               </div>
               <ul className="py-1" aria-labelledby="user-menu-button">
                 <li>
-                    <button className={aNavbar} onClick={() => navigate('/admin')} type="button">
+                  <button className={aNavbar} onClick={() => navigate('/admin')} type="button">
                     Usuarios Registrados
-                    </button>
+                  </button>
                 </li>
                 <li>
-                    <button className={aNavbar} onClick={() => navigate('/admin')} type="button">
+                  <button className={aNavbar} onClick={() => navigate('/admin')} type="button">
                     Usuarios Baneados
-                    </button>
+                  </button>
                 </li>
                 <li>
-                    <button className={aNavbar} onClick={() => navigate('/admin')}  type="button">
+                  <button className={aNavbar} onClick={() => navigate('/admin')} type="button">
                     Administradores
-                    </button>
+                  </button>
                 </li>
                 <li>
-                    <button className={aNavbar} onClick={() => navigate('/admin')}  type="button">
+                  <button className={aNavbar} onClick={() => navigate('/admin')} type="button">
                     Administrar Productos
-                    </button>
+                  </button>
                 </li>
                 <li>
-                    <button 
+                  <button
                     className={aNavbar}
                     onClick={handleLogout}>
-                        Cerrar sesion
-                    </button>
+                    Cerrar sesion
+                  </button>
                 </li>
               </ul>
             </div>
@@ -161,28 +181,44 @@ export default function NavBar() {
         >
           <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
-                <SearchBar />
+              <SearchBar />
             </li>
             <li className="flex items-center">
-                <Link to={"/cart"}>
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                    ></path>
-                  </svg>
-                </Link>
+              {/* <Link to={"/cart"}>
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  ></path>
+                </svg>
+              </Link> */}
+              <button id="carrito" onClick={() => setOpenCart(true)}>
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  ></path>
+                </svg>
+              </button>
             </li>
             <li>
-            {/* <button className={buttonclass} type="button">
+              {/* <button className={buttonclass} type="button">
               Boton random
             </button> */}
             </li>
