@@ -95,7 +95,6 @@ const UserList = (render : any) => {
                                     </div>
                                     <div>
                                         <button onClick={(e) => {undoBanUser(e)}} value={user._id} className={buttonclass}>Deshacer Baneo</button>
-                                        <button className={buttonclass} value={user._id} onClick={(e) => handleAdmin(e)}>Hacer Admin</button>
                                     </div>
                                 </div>
                             </li>
@@ -134,8 +133,9 @@ const UserList = (render : any) => {
                 </div>
 
                 ) 
+            
             })
-         
+            
         
         
         }
