@@ -1,7 +1,6 @@
 import { Dispatch } from "react";
 import axios from 'axios'
 import { Action, CardForm, Category, ProductDetail } from "../../Interfaces/Interfaces";
-import { Navigate } from "react-router-dom";
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const GET_PRODUCTS_BY_NAME = 'GET_PRODUCTS_BY_NAME'
@@ -15,6 +14,7 @@ export const SUBSCRIBE_MAIL = 'SUBSCRIBE_MAIL'
 export const ERROR_HANDLER = 'ERROR_HANDLER'
 export const CLEAN_ERROR = 'CLEAN_ERROR'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
+export const GET_USER = 'GET_USER'
 export const GET_ALL_USERS = 'GET_ALL_USERS'
 
 export const getProducts = (sort : String) => {
@@ -330,6 +330,7 @@ export const logUser = (navigate:any, input:{mail:string, password:string}) => {
             console.log('loggeado', res)
             alert('inicio de sesion correcto')
             localStorage.setItem('token', JSON.stringify(res));
+            window.location.reload()
             navigate('/pedidos')
         })
         .catch(err => {
@@ -372,3 +373,128 @@ export const modifyItemFromStock = ( newStock:any, id:string) => {
             .catch(err => console.log(err))
     }
 }
+
+export const getUser = (token:{auth:boolean, token:string}) => {
+    return function(dispatch:Dispatch<Action>) {
+        axios
+        .get("http://localhost:3001/user/token", {
+          headers: {
+            "x-access-token": token.token,
+          },
+        })
+        .then((res) => {
+            dispatch({
+                type: GET_USER,
+                payload: res.data
+            })
+        })
+        .catch((err) => {
+            dispatch({
+                type: ERROR_HANDLER,
+                payload: err
+            })
+        });
+    }
+}
+
+
+ // <div id="navBar">
+      {/* <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+                <div className="container flex flex-wrap justify-between items-center mx-auto">
+                    <button onClick={handleHome} className="flex items-center">
+                        <img id="logoNavBarImg" width={150} src={Logo} alt='LOGO'></img>
+                    </button>
+                    <SearchBar />
+                    {
+                        showLoggin ?
+                            <Loggin
+                                openlog={openlog}
+                                showLoggin={showLoggin}
+                            />
+                            :
+                            null
+                    }
+                    {
+                        
+                    }
+                    {
+                        token.length !== 0 ?
+                        <UserMenu></UserMenu>
+                        :
+                        <div className="flex md:order-2">
+                            <button onClick={openlog} className={buttonclass}> Iniciar Sesión </button>
+                        </div>
+                    }
+
+                    <Link to={"/cart"}>
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </Link>
+
+                    <div className="flex md:order-2">
+                        <button onClick={handleCreate} type="button" className={buttonclass}>Crea tu pedido</button>
+                    </div> 
+                </div>
+            </nav> */}
+      {/* <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+        <div className="container flex flex-wrap justify-between items-center mx-auto">
+          <button onClick={handleHome} className="flex items-center">
+            <img id="logoNavBarImg" width={150} src={Logo} alt="LOGO"></img>
+          </button>
+
+          <div
+            className="hidden justify-between items-center w-full md:flex md:w-auto md:order-1"
+            id="mobile-menu-2"
+          >
+            <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+              <li className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                <SearchBar />
+              </li>
+              <li>
+                {showLoggin ? (
+                  <Loggin openlog={openlog} showLoggin={showLoggin} />
+                ) : null}
+              </li>
+              <li>
+              {
+                        JSON.parse(token).token?.length ?
+                        <UserMenu></UserMenu>
+                        :
+                        <div className="flex md:order-2">
+                            <button onClick={openlog} className={buttonclass}> Iniciar Sesión </button>
+                        </div>
+             }
+              </li>
+              <li>
+                <Link to={"/cart"}>
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                </Link>
+              </li>
+              <li>
+                <div className="flex md:order-2">
+                  <button
+                    onClick={handleCreate}
+                    type="button"
+                    className={navbarButtons}
+                  >
+                    Crea tu pedido
+                  </button>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div> */}

@@ -20,11 +20,7 @@ function App() {
 
   const dispatch = useAppDispatch()
 
-  const [token, setToken] = useState<string>('');
-
-  useEffect(() => {
-    localStorage.setItem('token', JSON.stringify(token));
-  }, [token]);
+  const token = JSON.parse(localStorage.getItem("token")!);
 
   const foodsLS = JSON.parse(localStorage.getItem("products")!);
 

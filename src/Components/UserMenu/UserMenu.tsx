@@ -1,32 +1,46 @@
 import { useState } from "react"
+import { useAppSelector } from "../../config"
+import { StateTypes } from "../../Interfaces/Interfaces"
 
 export default function UserMenu() {
     const [open, setOpen] = useState<boolean>(false)
+    const handleUser = () => {
+        open ? setOpen(false) : setOpen(true)
+    }
+
+    const handleLogout = () => {
+        localStorage.setItem("token", JSON.stringify([]))
+        window.location.reload()
+    }
+    let user = useAppSelector((state: StateTypes) => state.user);
+
     return (
-        <div>
+        <div className="usermenu-conteiner">
             <div className="flex flex-col items-center md:order-2">
-                <button onClick={() => open ? setOpen(false) : setOpen(true)} type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+                <button onClick={handleUser} type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                     <span className="sr-only">Open user menu</span>
-                    <img className="w-8 h-8 rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW2zB9ZfnqjeJkkgqMS7zen-NVpatbD9U3tiEirtof0QIA8Cx3ApChLYPJO9hVdncSkrA&usqp=CAU" alt="user photo"/>
+                    <img className="w-8 h-8 rounded-full" src={user.img} alt="user"/>
                 </button>
                 
                 <div hidden={open} className="z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
                     <div className="py-3 px-4">
-                        <span className="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-                        <span className="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                        <span className="block text-sm text-gray-900 dark:text-white"> {user.name} {user.lastName} </span>
+                        <span className="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">{user.mail}</span>
                     </div>
                     <ul className="py-1" aria-labelledby="user-menu-button">
-                        <li>
-                            <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                        <li >
+                            Profile
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                            Mis pedidos
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
+                            Favoritos
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                            <button className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" onClick={handleLogout}>
+                                Cerrar sesion
+                            </button>
                         </li>
                     </ul>
                 </div>

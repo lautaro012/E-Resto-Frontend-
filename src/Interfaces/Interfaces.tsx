@@ -20,9 +20,6 @@ export interface ProductDetail extends CardForm {
 }
 
 export interface NavBarProp {
-    setcreateProduct: Dispatch<SetStateAction<Boolean>>
-    seteditProduct: Dispatch<SetStateAction<Boolean>>
-    setShowModal: Dispatch<SetStateAction<boolean | undefined>>
 }
 
 export interface CardProp {
@@ -47,7 +44,8 @@ export type StateTypes = {
     cart:  ProductDetail[] | [],
     userDetail: [],
     allUsers: [],
-    error: any
+    error: any,
+    user:any
 }
 
 export type Action = {
