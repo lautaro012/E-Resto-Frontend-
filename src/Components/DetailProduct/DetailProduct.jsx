@@ -15,6 +15,7 @@ export default function DetailProduct({ id, closeModalDetail }) {
 
     const [extraItem, setExtraItem] = useState(null);
     const [extra, setExtra] = useState(0);
+    const [comentario, setComentario] = useState("")
 
     useEffect(() => {
         dispatch(getFoodById(id))
@@ -50,7 +51,8 @@ export default function DetailProduct({ id, closeModalDetail }) {
             let item = {
                 ...food,
                 price: food.off ? food.price - ((food.price * food.off) / 100) : food.price,
-                cantidad: 1
+                cantidad: 1,
+                comentario: comentario
             }
             dispatch(addToCart(item))
             if (!itemExtraFound && extraItem !== null) {
@@ -60,8 +62,7 @@ export default function DetailProduct({ id, closeModalDetail }) {
                 }
                 dispatch(addToCart(item))
             }
-            else if(itemExtraFound){
-                console.log(itemExtraFound)
+            else if (itemExtraFound) {
                 item = {
                     ...itemExtraFound,
                     cantidad: itemExtraFound.cantidad + 1
@@ -82,6 +83,13 @@ export default function DetailProduct({ id, closeModalDetail }) {
         setExtraItem(item)
         setExtra(item.price)
     }
+
+    function handleComentario(event) {
+        event.preventDefault()
+        setComentario(event.target.value)
+    }
+
+    console.log(comentario)
 
     return (
         <div >
@@ -212,6 +220,8 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                             name='comentarios'
                                             placeholder="Algo que nos quieras comentar sobre el pedido ?"
                                             rows={5} cols={40}
+                                            value={comentario}
+                                            onChange={(event) => handleComentario(event)}
                                         />
                                     </div>
                                     <div>
