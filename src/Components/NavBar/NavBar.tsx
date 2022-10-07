@@ -6,6 +6,7 @@ import { buttonclass } from '../../Style/Clases/Clases';
 import Logo from '../../Style/images/Henry.png'
 import { useState } from 'react';
 import Loggin from '../LogginForm/Loggin';
+import axios from 'axios';
 
 export default function NavBar({ setShowModal, setcreateProduct, seteditProduct }: NavBarProp) {
 
@@ -29,6 +30,16 @@ export default function NavBar({ setShowModal, setcreateProduct, seteditProduct 
         setcreateProduct(true)
         setShowModal(true)
     }
+    const test = () => {
+        axios.get('http://localhost:3001/user/token',
+            {
+                headers: {
+                    'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzM2NiNzZjYTE5OThhYTM5ZTQ3OTZjNiIsImlhdCI6MTY2NTEwNTcyOSwiZXhwIjoxNjY1MTkyMTI5fQ.sMGYCebvOXeRCQSNsBpw4kTLBnRERt09QtyaMF3Rbdg',
+                }
+            }
+        ).then(res => console.log(res.data))
+        .catch(err => console.log(err))
+    }
     return (
         <div id='navBar'>
             <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
@@ -51,6 +62,9 @@ export default function NavBar({ setShowModal, setcreateProduct, seteditProduct 
                     </div>
                     <div className="flex md:order-2">
                         <button onClick={handleCreate} type="button" className={buttonclass}>Crea tu pedido</button>
+                    </div> 
+                    <div className="flex md:order-2">
+                        <button onClick={test} type="button" className={buttonclass}>Test</button>
                     </div>
                     
                 </div>
