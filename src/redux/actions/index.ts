@@ -288,3 +288,14 @@ export const cleanError = () => {
         })
     }
 }
+
+
+export const modifyItemFromStock = ( newStock:any, id:string) => {
+    return function(dispatch:Dispatch<Action>) {
+        axios.put(`http://localhost:3001/product/${id}`, newStock).then(res => res.data)
+            .then(resp => {
+                console.log(resp)
+            })
+            .catch(err => console.log(err))
+    }
+}

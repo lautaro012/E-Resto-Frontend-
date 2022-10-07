@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from '../../config'
 import { addToCart, getFoodById, vaciarComida } from '../../redux/actions/index'
 import '../DetailProduct/DetailProduct.css'
-import ModalInDetail from "../Modal/Modal";
-import useModal from "../../hooks/useModal";
+//import ModalInDetail from "../Modal/Modal";
+//import useModal from "../../hooks/useModal";
 import { Dropdown, Modal } from "flowbite-react";
 
 export default function DetailProduct({ id, closeModalDetail }) {
@@ -20,15 +20,15 @@ export default function DetailProduct({ id, closeModalDetail }) {
         }
     }, [dispatch, id])
 
-    const [isOpenModal, openModal, closeModal] = useModal()
-    const [datosModal, setDatosModal] = useState()
-    const [extraItem, setExtraItem] = useState();
+    //const [isOpenModal, openModal, closeModal] = useModal()
+    //const [datosModal, setDatosModal] = useState()
+    const [extraItem, setExtraItem] = useState(null);
     const [extra, setExtra] = useState(0);
 
-    function modalData(categoria) {
-        openModal()
-        setDatosModal(categoria)
-    }
+    // function modalData(categoria) {
+    //     openModal()
+    //     setDatosModal(categoria)
+    // }
 
     function closeDetailModal() {
         closeModalDetail(false)
@@ -37,7 +37,10 @@ export default function DetailProduct({ id, closeModalDetail }) {
     function addFoodToCart() {
 
         let itemFound = cart.map(item => item._id).includes(food._id)
-        let itemExtraFound = cart.map(item => item._id).includes(extraItem._id)
+        let itemExtraFound
+        if (extraItem !== null) {
+            itemExtraFound = cart.map(item => item._id).includes(extraItem._id)
+        }
 
         if (!itemFound && food.stock >= 1) {
 
@@ -47,7 +50,7 @@ export default function DetailProduct({ id, closeModalDetail }) {
                 cantidad: 1
             }
             dispatch(addToCart(item))
-            if (!itemExtraFound) {
+            if (!itemExtraFound && extraItem !== null) {
                 let item = {
                     ...extraItem,
                     cantidad: 1
@@ -58,27 +61,24 @@ export default function DetailProduct({ id, closeModalDetail }) {
             closeDetailModal()
         }
         else {
-            let itemFound = cart.find(item => item._id === food._id)
+            //let itemFound = cart.find(item => item._id === food._id)
             alert(`Ya esta agregado ${food.name} al carrito`)
             closeDetailModal()
         }
     }
 
-    function handleRadio(event) {
-        event.preventDefault()
-        console.log("LABEL", event.target.value)
-        console.log("value radio", event.target.value.price)
-        setExtra(Number(event.target.value.price))
-        setExtraItem(event.target.value)
-    }
+    // function handleRadio(event) {
+    //     event.preventDefault()
+    //     console.log("LABEL", event.target.value)
+    //     console.log("value radio", event.target.value.price)
+    //     setExtra(Number(event.target.value.price))
+    //     setExtraItem(event.target.value)
+    // }
 
-    function handleExtraItem(item){
+    function handleExtraItem(item) {
         setExtraItem(item)
         setExtra(item.price)
     }
-
-    console.log("extraItem", extraItem)
-    console.log("FOOD", food)
 
     return (
         <div >
@@ -127,7 +127,7 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                             </div>
                                     }
 
-                                    <button id="buttons_detail_buy" onClick={() => addFoodToCart()}>Add to cart 🛒</button>
+                                    <button id="buttons_detail_buy" onClick={() => addFoodToCart()}>Agregar al carrito 🛒</button>
                                 </div>
                                 <div id="detalle_der">
                                     <div>
@@ -139,10 +139,10 @@ export default function DetailProduct({ id, closeModalDetail }) {
 
                                         <button className="detail_label" onClick={(event) => modalData("Cervezas")}><h2>Cervezas (opcional)</h2></button> */}
 
-                                        <Dropdown label="Extras">
+                                        <Dropdown label="Bebidas (opcional)">
                                             <Dropdown.Header>
                                                 <span className="block text-l">
-                                                    Bebidas sin alcohol (Opcional)
+                                                    Bebidas sin alcohol
                                                 </span>
                                             </Dropdown.Header>
                                             {
@@ -173,7 +173,7 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                             <Dropdown.Divider />
                                             <Dropdown.Header>
                                                 <span className="block text-l">
-                                                    Cervezas (Opcional)
+                                                    Cervezas
                                                 </span>
                                             </Dropdown.Header>
                                             {
@@ -215,7 +215,7 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                         {
                                             extraItem && extraItem ?
                                                 <div>
-                                                    <img src={extraItem.img} alt={extraItem.name} width="200px" height="00px"/>
+                                                    <img src={extraItem.img} alt={extraItem.name} width="200px" height="00px" />
                                                     <h1>{extraItem.name}</h1>
                                                     <h2>$ {extraItem.price}</h2>
                                                 </div>
@@ -268,8 +268,6 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                         }
                                     </ModalInDetail> */}
                                 </div>
-                                {/* <button onClick={() => closeDetailModal()}>CERRAR</button>
-                                <Link to='/pedidos'><button>Volver</button></Link> */}
                             </div>
                         </Modal.Body>
                     </Modal>

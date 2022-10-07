@@ -6,3 +6,12 @@
     border-width: 2px;
     padding: 5%;
 }
+
+#cart-item {
+    margin: 1%;
+    border-style:solid;
+    border-color: black;
+    border-radius: 20px;
+    border-width: 2px;
+    padding: 1%;
+}

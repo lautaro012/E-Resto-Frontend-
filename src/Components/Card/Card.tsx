@@ -11,7 +11,7 @@ import '../Card/Card.css'
 
 export default function CardProduct({ formCard = false, comidaProps, onProducEdit, modalOpen, setIdModal }: any) {
 
-    let { _id, price, off, description, name, img, rating } = comidaProps
+    let { _id, price, off, description, name, img, rating, stock } = comidaProps
     let dispatch = useAppDispatch()
     let currentprice = price - (price * off / 100)
 
@@ -32,6 +32,8 @@ export default function CardProduct({ formCard = false, comidaProps, onProducEdi
         star: ['#d9ad26', '#d9ad26', '#434b4d'],
     }
 
+    console.log(stock)
+
     return (
         <div className="max-w-sm" data-aos="fade-up" data-aos-duration="1500">
             <Card
@@ -50,35 +52,44 @@ export default function CardProduct({ formCard = false, comidaProps, onProducEdi
                 </div>
                 <div className="flex items-center justify-between">
                     {
-                        off ?
-                            <div className="off_price">
-                                <span className="text-3xl font-bold text-gray-900 dark:text-white text-decoration-line: line-through">${price}</span>
-                                <div className="tag_off">
-                                    <h2 className="text-3xs font-bold text-gray-900 dark:text-white">off</h2>
-                                    <h3 className="text-3m font-bold text-gray-900 dark:text-white">{off}</h3>
-                                    <span className="text-3xl font-bold text-gray-900 dark:text-white">${currentprice}</span>
-                                </div>
-                            </div>
-                            :
-                            <span className="text-3xl font-bold text-gray-900 dark:text-white">${price}</span>
-                    }
-                    {
-                        formCard ?
-                            null
-                            :
+                        stock >= 1 ?
                             <div>
-                                <button onClick={() => openModalDetail(_id)} className={buttonclass}>
-                                    <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
-                                    </path></svg>
-                                </button>
-                                <button className={buttonclass} onClick={handleEdit}>
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                                </button>
-                                <button className={buttonclass} onClick={handleDelete}>
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                                </button>
+                                <h2>Disponible</h2>
+                                {
+                                    off ?
+                                        <div className="off_price">
+                                            <span className="text-3xl font-bold text-gray-900 dark:text-white text-decoration-line: line-through">${price}</span>
+                                            <div className="tag_off">
+                                                <h2 className="text-3xs font-bold text-gray-900 dark:text-white">off</h2>
+                                                <h3 className="text-3m font-bold text-gray-900 dark:text-white">{off}</h3>
+                                                <span className="text-3xl font-bold text-gray-900 dark:text-white">${currentprice}</span>
+                                            </div>
+                                        </div>
+                                        :
+                                        <span className="text-3xl font-bold text-gray-900 dark:text-white">${price}</span>
+                                }
+                                {
+                                    formCard ?
+                                        null
+                                        :
+                                        <div>
+                                            <button onClick={() => openModalDetail(_id)} className={buttonclass}>
+                                                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                                                </path></svg>
+                                            </button>
+                                            <button className={buttonclass} onClick={handleEdit}>
+                                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                                            </button>
+                                            <button className={buttonclass} onClick={handleDelete}>
+                                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                            </button>
+                                        </div>
+                                }
                             </div>
+                            :
+                            <h1>Producto sin stock</h1>
                     }
+
                 </div>
             </Card>
         </div >
