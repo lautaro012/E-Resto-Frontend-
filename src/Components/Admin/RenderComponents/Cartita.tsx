@@ -1,13 +1,18 @@
+import { useEffect, useState } from 'react'
 import { useAppDispatch } from '../../../config'
 import { deleteProduct } from '../../../redux/actions'
 import {listUsuariosRegistrados, mailUsuarioRegistrado, nameUsuarioRegistrado, buttonclass} from '../../../Style/Clases/Clases'
 export default function Cartita ({e, onProducEdit, deleted}:any) {
+
+
     const handleEdit = () => {
         onProducEdit(e)
     }
     const handleDelete= () => {
         deleted(e._id)
     }
+
+
     return (
         <div className="flow-root">
                                     <ul role="list" className={listUsuariosRegistrados}>
