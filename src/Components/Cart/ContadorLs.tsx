@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useAppSelector } from '../../config'
+import { Modal, Button } from "flowbite-react";
+import Check from "../CheckoutPayment/Check";
 
 export default function ContadorLs(render: any) {
 
     const items = useAppSelector((state) => state.cart)
     const [propina, setPropina] = useState<number>(0);
+    const [openModal, setOpenModal] = useState<boolean | undefined>(false)
 
     let subTotal = 0;
     for (let i = 0; i < items.length; i++) {
@@ -15,14 +18,14 @@ export default function ContadorLs(render: any) {
 
     let total = subTotal + propina
 
-    function hacerPedido() {
-        console.log("pedido hecho")
-    }
-
     useEffect(() => {
         localStorage.setItem("products", JSON.stringify(items));
         localStorage.setItem("precioTotal", JSON.stringify(total));
     }, [items, total, render]);
+
+    function closeModal() {
+        setOpenModal(false)
+    }
 
     return (
         <div>
@@ -48,8 +51,25 @@ export default function ContadorLs(render: any) {
                 <h2>Propina : ${propina}</h2>
                 <hr />
                 <h1>Total : ${total}</h1>
+                <Button onClick={() => setOpenModal(true)}>
+                    Hacer pedido ya !
+                </Button>
+                <Modal
+                    show={openModal}
+                    onClose={closeModal}
+                >
+                    <Modal.Header>
+                        Elegi tu metodo de pago
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Check
+                        precio={total}
+                        ></Check>
+                    </Modal.Body>
+                    <Modal.Footer>
 
-                <button onClick={() => hacerPedido()}>Hacer pedido ya !</button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         </div>
     )

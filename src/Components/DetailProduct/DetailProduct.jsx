@@ -36,13 +36,13 @@ export default function DetailProduct({ id, closeModalDetail }) {
 
     function addFoodToCart() {
 
-        let itemFound = cart.map(item => item._id).includes(food._id)
+        let itemFound = cart.find(item => item._id === food._id)
         let itemExtraFound
         if (extraItem !== null) {
-            itemExtraFound = cart.map(item => item._id).includes(extraItem._id)
+            itemExtraFound = cart.find(item => item._id === extraItem._id)
         }
 
-        if (!itemFound && food.stock >= 1) {
+        if (!itemFound) {
 
             let item = {
                 ...food,

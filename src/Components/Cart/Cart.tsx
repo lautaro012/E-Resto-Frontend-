@@ -13,8 +13,6 @@ export default function Cart() {
 
     const [render, setRender] = useState<string>("")
 
-    console.log("items carrito", items)
-
     useEffect(() => {
         dispatch(getProducts("AZ"))
         if (items.length === 0) {
