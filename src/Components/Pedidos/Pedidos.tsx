@@ -65,7 +65,7 @@ export default function Pedidos() {
                         <option value="mayorPrecio">Mayor precio</option>
                         <option value="menorPrecio">Menor precio</option>
                     </select>
-                    <button className={buttonclass} >MAS COMPRADOS</button>
+                    {/* <button className={buttonclass} >MAS COMPRADOS</button> */}
                     <button className={buttonclass} onClick={(e) => setOrder("mayorRating")}>MAS POPULARES</button>
                 </div>
                 <div className="categorias-productos">
