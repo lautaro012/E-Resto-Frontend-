@@ -18,31 +18,8 @@ AOS.init();
 export default function Pedidos() {
 
     const [order, setOrder] = useState("");
-    const [createProduct, setcreateProduct] = useState<Boolean>(false);
-    const [editProduct, seteditProduct] = useState<Boolean>(false);
-    const [showModal, setShowModal] = useState<boolean | undefined>(false);
     const [showDetailModal, setShowDetailModal] = useState<boolean | undefined>(false);
     const [idModal, setIdModal] = useState<string>();
-
-    const [formData, setFormData] = useState<CardForm>({
-        name: "test",
-        img: "https://citizengo.org/sites/default/files/images/test_3.png",
-        price: 0,
-        description: "test-description",
-        off: 0,
-        stock: 0,
-        rating: 3,
-        category: "",
-        newProduct: true,
-    });
-
-    const onProducEdit = (input: CardForm) => {
-
-        seteditProduct(true);
-        setcreateProduct(false);
-        setFormData(input);
-        setShowModal(true);
-    };
 
     function orderSort(e: Select) {
         e.preventDefault();
@@ -62,11 +39,7 @@ export default function Pedidos() {
 
     return (
         <>
-            <NavBar
-                setShowModal={setShowModal}
-                seteditProduct={seteditProduct}
-                setcreateProduct={setcreateProduct}
-            />
+            <NavBar/>
             <div className="Contenedor">
                 <div className="TOP">
                     <h1>Henry's Resto Proyect</h1>
@@ -92,7 +65,7 @@ export default function Pedidos() {
                         <option value="mayorPrecio">Mayor precio</option>
                         <option value="menorPrecio">Menor precio</option>
                     </select>
-                    <button className={buttonclass} >MAS COMPRADOS</button>
+                    {/* <button className={buttonclass} >MAS COMPRADOS</button> */}
                     <button className={buttonclass} onClick={(e) => setOrder("mayorRating")}>MAS POPULARES</button>
                 </div>
                 <div className="categorias-productos">
@@ -139,7 +112,6 @@ export default function Pedidos() {
                                         {categoria?.categoryProducts?.map((info: ProductDetail) => {
                                             return (
                                                 <Card
-                                                    onProducEdit={onProducEdit}
                                                     key={info.name}
                                                     comidaProps={info}
                                                     modalOpen={setShowDetailModal}
@@ -154,36 +126,6 @@ export default function Pedidos() {
                     </div>
                 </div>
             </div>
-            {
-                editProduct ? (
-                    <Form
-                        setShowModal={setShowModal}
-                        showModal={showModal}
-                        setFormData={setFormData}
-                        newProduct={false}
-                        setcreateProduct={setcreateProduct}
-                        formData={formData}
-                        seteditProduct={seteditProduct}
-                    />
-                )
-                    :
-                    null
-            }
-            {
-                createProduct ? (
-                    <Form
-                        setShowModal={setShowModal}
-                        showModal={showModal}
-                        setFormData={setFormData}
-                        newProduct={true}
-                        setcreateProduct={setcreateProduct}
-                        formData={formData}
-                        seteditProduct={seteditProduct}
-                    />
-                )
-                    : null
-            }
-
             {
                 showDetailModal ?
                     <DetailProduct

@@ -11,7 +11,8 @@ import {
     ERROR_HANDLER,
     CLEAN_ERROR,
     GET_USER_BY_ID,
-    GET_ALL_USERS
+    GET_ALL_USERS,
+    GET_USER
 
 } from "../actions";
 
@@ -22,7 +23,8 @@ const initialState: StateTypes = {
     cart: [],
     userDetail: [],
     allUsers: [],
-    error: ''
+    error: '',
+    user: ''
 }
 
 
@@ -116,7 +118,12 @@ export default function rootReducer(state = initialState, action: Action) {
                 ...state,
                 error: ''
             }
-
+        
+        case GET_USER:
+            return {
+                ...state,
+                user: action.payload
+            }
         default:
             return state;
     }

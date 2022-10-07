@@ -5,15 +5,14 @@ import { buttonclass, inputForm, labelForm } from "../../Style/Clases/Clases";
 import { createProduct, getCategories, editProduct } from "../../redux/actions";
 import { Modal } from "flowbite-react";
 import Card from "../Card/Card";
-import NavBar from "../NavBar/NavBar";
 import "./Form.css";
 
 export default function Form({
   newProduct,
   setFormData,
   formData,
-  setcreateProduct,
   seteditProduct,
+  setCreateProduct,
   setShowModal,
   showModal,
 }: any) {
@@ -32,9 +31,9 @@ export default function Form({
   });
 
   const handleClose = () => {
-    setcreateProduct(false);
     seteditProduct(false);
     setShowModal(false);
+    setCreateProduct(false);
     setFormData({
       name: "test",
       img: "https://citizengo.org/sites/default/files/images/test_3.png",
@@ -96,11 +95,6 @@ export default function Form({
   };
   return (
     <>
-      <NavBar
-        seteditProduct={seteditProduct}
-        setcreateProduct={setcreateProduct}
-        setShowModal={setShowModal}
-      />
       <Modal  show={showModal} size="6xl" popup={true} onClose={handleClose}>
         <Modal.Header />
         <Modal.Body>

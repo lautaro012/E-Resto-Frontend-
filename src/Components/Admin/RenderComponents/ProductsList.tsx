@@ -1,17 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../config'
-import { getCategories } from '../../../redux/actions'
-import { buttonclass, buttonClassTeal, listUsuariosRegistrados, mailUsuarioRegistrado, nameUsuarioRegistrado } from '../../../Style/Clases/Clases'
+import { deleteProduct, getCategories } from '../../../redux/actions'
+import { buttonClassTeal } from '../../../Style/Clases/Clases'
+import Cartita from './Cartita'
+import './ProductsList.css'
 
-const ProductsList = () => {
+const ProductsList = ({onProducEdit, openForm}:any) => {
+    let dispatch = useAppDispatch()
     let cats = useAppSelector((state) => state.categories)
 
-    let dispatch = useAppDispatch()
+    const deleted = (id:any) => {
+        dispatch(deleteProduct(id));
+        dispatch(getCategories('AZ'))
+        
+    }
 
-    console.log(cats)
+
+
+
     useEffect(() => {
         dispatch(getCategories('AZ'))
     }, [dispatch])
+    
 
 
   return (
@@ -19,45 +29,17 @@ const ProductsList = () => {
         {cats.map((el:any) => {
             return(
                 <div id={el.name}>
-                    <h3>{el.name}</h3>
+                    <h3><div className='name-addProduct'>{el.name} <button onClick={openForm}>+ Agregar Producto</button></div></h3>
                     {el.categoryProducts?.map((e : any) => {
                         return (
-                    
-                            <div className="flow-root">
-                                    <ul role="list" className={listUsuariosRegistrados}>
-                                        <li className="py-3 sm:py-4">
-                                            <div className="flex items-center space-x-4">
-                                                <div className="flex-shrink-0">
-                                                    <img className="w-8 h-8 rounded-full" src={e.img} alt="Product image"/>
-                                                </div>
-                                                <div className="flex-1 min-w-0">
-                                                    <p className={nameUsuarioRegistrado}>
-                                                        {e.name}
-                                                    </p>
-                                                    <p className={mailUsuarioRegistrado}>
-                                                        {e.decription}
-                                                    </p>
-                                                </div>
-                                                <div>
-                                                    <button className={buttonclass}>Editar Producto</button>
-                                                    <button className={buttonclass}>Eliminar Producto</button>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                            </div>
+                            <Cartita  deleted={deleted} onProducEdit={onProducEdit} e={e}/>
                         )
                     })}
                 <a href='#pFoodsFilter'><button id='irArribaButton' className={buttonClassTeal}>Ir arriba</button></a>
-
                 </div>
-                
-                
             )
         })
-        
         }
-
     </div>
   )
 }
