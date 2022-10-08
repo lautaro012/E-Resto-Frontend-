@@ -60,6 +60,12 @@ export default function Cart() {
                                                 <div className="food__title">
                                                     <h1 className="food__heading">{item.name}</h1>
                                                     <div className="food__tag food__tag--1">{item.category}</div>
+                                                    {
+                                                        item.off ?
+                                                            <div className="food__tag food__tag--2">%{item.off} Off !</div>
+                                                            :
+                                                            null
+                                                    }
                                                 </div>
 
                                                 {
