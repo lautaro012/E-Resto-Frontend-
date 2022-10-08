@@ -1,7 +1,6 @@
 import Card from "../Card/Card";
 import "../Pedidos/Pedidos.css";
 import NavBar from "../NavBar/NavBar";
-import Form from "../Form/Form";
 import { ListGroup } from "flowbite-react";
 import { Link } from "react-scroll";
 import React, { useEffect, useState } from "react";
@@ -10,9 +9,10 @@ import { getCategories } from "../../redux/actions";
 import { buttonclass, select } from "../../Style/Clases/Clases";
 import DetailProduct from "../DetailProduct/DetailProduct";
 import VideoHome from '../../Style/videos/video.mp4'
-import { CardForm, Category, ProductDetail, Select, StateTypes } from "../../Interfaces/Interfaces";
+import { Category, ProductDetail, Select, StateTypes } from "../../Interfaces/Interfaces";
+import ScrollToTop from "react-scroll-to-top";
 import AOS from 'aos';
-import 'aos/dist/aos.css'; 
+import 'aos/dist/aos.css';
 AOS.init();
 
 export default function Pedidos() {
@@ -32,20 +32,15 @@ export default function Pedidos() {
     }, [dispatch, order]);
 
     let categories = useAppSelector((state: StateTypes) => state.categories);
-    // let products = useAppSelector((state: any) => state.products);
-
-    // console.log("PRODUCTOS", products)
-    // console.log("CATEGORIAS", categories)
 
     return (
         <>
-            <NavBar/>
+            <NavBar />
             <div className="Contenedor">
                 <div className="TOP">
                     <h1>Henry's Resto Proyect</h1>
                     <video autoPlay preload="auto" muted loop src={VideoHome}></video>
                 </div>
-                {/* <div className="background_image_gps" /> */}
                 <div className="sort-buttons">
                     {/* <select
                         onChange={(e) => orderSort(e)}
@@ -135,11 +130,7 @@ export default function Pedidos() {
                     :
                     null
             }
-            <Link activeClass="active" to="navBar" spy={true} smooth={true} duration={1000}>
-                <button className={buttonclass} id='top_button'>
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7l4-4m0 0l4 4m-4-4v18"></path></svg>
-                </button>
-            </Link>
+            <ScrollToTop className={buttonclass} id='top_button' smooth viewBox="0 0 24 24" svgPath="M5 15l7-7 7 7" />
         </>
     );
 }
