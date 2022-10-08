@@ -4,7 +4,7 @@ import { addToCart, getFoodById, vaciarComida, deleteItemFromCart } from '../../
 import '../DetailProduct/DetailProduct.css'
 //import ModalInDetail from "../Modal/Modal";
 //import useModal from "../../hooks/useModal";
-import { Dropdown, Modal } from "flowbite-react";
+import { Button, Dropdown, Modal } from "flowbite-react";
 
 export default function DetailProduct({ id, closeModalDetail }) {
 
@@ -89,7 +89,10 @@ export default function DetailProduct({ id, closeModalDetail }) {
         setComentario(event.target.value)
     }
 
-    console.log(comentario)
+    function removeExtraItem() {
+        setExtra(0)
+        setExtraItem(null)
+    }
 
     return (
         <div >
@@ -108,11 +111,19 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                         {
                                             extraItem && extraItem ?
                                                 <div>
-                                                    <h1>Bebida</h1>
-                                                    <img src={extraItem.img} alt={extraItem.name} width="200px" height="00px" />
-                                                    <h1>{extraItem.name}</h1>
-                                                    <h2>$ {extraItem.price}</h2>
-                                                    <button onClick={()=>setExtraItem(null)}>Quitar bebida</button>
+                                                    <h1 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Bebida</h1>
+                                                    <hr />
+                                                    <div className="extra_item_detalel_conteiner">
+                                                        <img src={extraItem.img} alt={extraItem.name} />
+                                                        <div className="extra_item_detalel_conteiner2">
+                                                            <h1>{extraItem.name}</h1>
+                                                            <h2 className="food__tag--1_card">$ {extraItem.price}</h2>
+                                                            <Button onClick={() => removeExtraItem()} color="failure">
+                                                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                                                Quitar bebida
+                                                            </Button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 :
                                                 null
@@ -207,15 +218,17 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                                         extra ?
                                                             <div>
                                                                 <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white text-decoration-line: line-through">${food.price}</h2>
-                                                                <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">OFF : {food.off}</h2>
-                                                                <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Extras : ${extra}</h2>
-                                                                <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Total $ {(food.price - ((food.price * food.off) / 100)) + extra}</h2>
+                                                                <h2 className="food__tag--2_card">% {food.off} Off</h2>
+                                                                <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Adicional (Bebida): ${extra}</h2>
+                                                                <br />
+                                                                <h2 className="food__tag--1_card">Total $ {(food.price - ((food.price * food.off) / 100)) + extra}</h2>
                                                             </div>
                                                             :
                                                             <div>
                                                                 <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white text-decoration-line: line-through">${food.price}</h2>
-                                                                <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">OFF : {food.off}</h2>
-                                                                <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Total $ {food.price - ((food.price * food.off) / 100)}</h2>
+                                                                <h2 className="food__tag--2_card">% {food.off} Off</h2>
+                                                                <br />
+                                                                <h2 className="food__tag--1_card">Total $ {food.price - ((food.price * food.off) / 100)}</h2>
                                                             </div>
                                                     }
                                                 </div>
@@ -225,17 +238,21 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                                         extra ?
                                                             <div>
                                                                 <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">${food.price}</h2>
-                                                                <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Extras : ${extra}</h2>
-                                                                <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Total $ {food.price + extra}</h2>
+                                                                <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Adicional (Bebida): ${extra}</h2>
+                                                                <br />
+                                                                <h2 className="food__tag--1_card">Total $ {food.price + extra}</h2>
                                                             </div>
                                                             :
-                                                            <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">${food.price}</h2>
+                                                            <h2 className="food__tag--1_card">Total $ {food.price}</h2>
                                                     }
                                                 </div>
                                         }
 
                                     </div>
-                                    <button id="buttons_detail_buy" onClick={() => addFoodToCart()}>Agregar al carrito 🛒</button>
+                                    <Button id="buttons_detail_buy" onClick={() => addFoodToCart()}>
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                                        Agregar al carrito
+                                    </Button>
                                 </div>
                             </div>
                         </Modal.Body>

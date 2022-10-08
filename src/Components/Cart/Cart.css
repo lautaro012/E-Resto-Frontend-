@@ -95,7 +95,7 @@
     background: linear-gradient(to bottom, #67b26f, #4ca2cd);
     writing-mode: vertical-rl;
     color: white;
-    font-size: 18px;
+    font-size: 30px;
     padding: 10px;
 
     grid-area: price;
@@ -127,14 +127,17 @@
     background-color: #67b26f;
 }
 
+.food__tag--2 {
+    background-color: #b26767;
+}
+
 .food__description {
     font-size: 14px;
 }
 
 .food__details {
+    margin-top: 5%;
     display: flex;
-    margin-top: 4rem;
-
     align-items: center;
     justify-content: space-between;
 }
