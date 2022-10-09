@@ -9,19 +9,25 @@ const UserList = (render : any) => {
     let dispatch = useAppDispatch()
     const users = useAppSelector((state) => state.allUsers)
     const [prueba, setPrueba] = useState('')
+    
+    const getRandom = () => {
+        let num = Math.random()*Math.random()
+        return num.toString()
+    }
+
     const handleBan = (e : any) => {
         dispatch(changeBanUser(e.target.value))
-        setPrueba(Math.random().toString())
+        setPrueba(getRandom())
     }
     
     const handleAdmin = (e: any) => {
         dispatch(changeUserAsAdmin(e.target.value))
-        setPrueba(Math.random().toString())
+        setPrueba(getRandom())
     }
 
     const undoBanUser = (e:any) => {
         dispatch(changeNoBanUser(e.target.value))
-        setPrueba(Math.random().toString())
+        setPrueba(getRandom())
 
     } 
 
