@@ -25,6 +25,7 @@
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
     "react-scroll": "^1.8.7",
+    "react-scroll-to-top": "^3.0.0",
     "react-stripe-checkout": "^2.6.3",
     "redux-devtools-extension": "^2.13.9",
     "stripe": "^10.12.0",
