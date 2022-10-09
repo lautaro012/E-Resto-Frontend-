@@ -1,5 +1,6 @@
 import './Footer.css'
 import Subscribe from '../SubscribeButton/Subscribe'
+import { Link } from "react-router-dom";
 
 export default function Footer () {
 
@@ -12,7 +13,7 @@ export default function Footer () {
                 </span>
                 <ul id='colorFooterUlConfig' className="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
                     <li>
-                        <a href="#" className="mr-4 hover:underline md:mr-6 ">Sobre Nosotros</a>
+                        <Link to="/about" className="mr-4 hover:underline md:mr-6 ">Sobre Nosotros</Link>
                     </li>
                     <li>
                         <a href="/pedidos" className="mr-4 hover:underline md:mr-6">Hacé tu pedido</a>
