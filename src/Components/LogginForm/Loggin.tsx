@@ -7,6 +7,7 @@ import { Input, StateTypes, Submit } from "../../Interfaces/Interfaces";
 import { cleanError, logUser } from "../../redux/actions";
 import { buttonclass } from "../../Style/Clases/Clases";
 import {inputForm} from '../../Style/Clases/Clases'
+import Login from "../Auth/Login";
 import './Loggin.css'
 
 export default function Loggin({ openlog, showLoggin }: any) {
@@ -90,14 +91,15 @@ export default function Loggin({ openlog, showLoggin }: any) {
                                     Lost Password?
                                 </a>
                             </div>
-                            {
+                            <Login></Login>
+                            {/* {
                                 error.length === 0 ?
                                     null
                                     :
                                     <h3 className="text-xl font-medium text-gray-900 dark:text-white">
                                         {error.name}
                                     </h3>
-                            }
+                            } */}
                             {
                                 loading ?
                                     <div className="loggin-conteiner">

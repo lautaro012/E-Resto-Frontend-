@@ -13,9 +13,6 @@ import ForgotPass from './Components/ForgotPass/ForgotPass.jsx';
 import Admin from './Components/Admin/Admin';
 import SendMail from './Components/ForgotPass/SendMail';
 import About from './Components/About_us/About';
-import Login from './Components/Auth/Login.jsx';
-
-
 
 function App() {
 
@@ -42,7 +39,6 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path='/auth' element={<Login/>} />
           <Route path='/' element={<Home />} />
           <Route path='/admin' element={<Admin />} />
           <Route path='/modal' element={<SendMail />} />
