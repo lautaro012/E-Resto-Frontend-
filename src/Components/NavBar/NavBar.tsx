@@ -39,7 +39,7 @@ export default function NavBar() {
 
   useEffect(() => {
     dispatch(getUser(JSON.parse(token)));
-  }, [dispatch, token]);
+  }, []);
 
 
 

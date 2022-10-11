@@ -1,4 +1,4 @@
-import  {useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import UserList from './RenderComponents/UserList'
 import './Admin.css'
 import { buttonclass, firstDiv } from '../../Style/Clases/Clases'
@@ -25,81 +25,77 @@ const Admin = () => {
     rating: 3,
     category: "",
     newProduct: true,
-});
+  });
 
-const onProducEdit = (input: CardForm) => {
-  seteditProduct(true);
-  setFormData(input);
-  setShowModal(true);
-};
-const openForm = () => {
-  setCreateProduct(true)
-  setShowModal(true)
-}
+  const onProducEdit = (input: CardForm) => {
+    seteditProduct(true);
+    setFormData(input);
+    setShowModal(true);
+  };
+  const openForm = () => {
+    setCreateProduct(true)
+    setShowModal(true)
+  }
 
   return (
-    <>
-                   <NavBar/>
     <div className='divAdminContainer'>
-   
-        <div className={firstDiv} id='leftAdminContainer'>
-          <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW2zB9ZfnqjeJkkgqMS7zen-NVpatbD9U3tiEirtof0QIA8Cx3ApChLYPJO9hVdncSkrA&usqp=CAU' alt='test' className='w-60 h-60 rounded-full'></img>
-          <button id='adminButtonSizing' className={buttonclass} onClick={() => setRender('registeredUsers')}>Usuarios Registrados</button>
-          <button id='adminButtonSizing' className={buttonclass} onClick={() => setRender('bannedUsers')} >Usuarios Baneados</button>
-          <button id='adminButtonSizing' className={buttonclass} onClick={() => setRender('adminUsers')} >Administradores</button>
-          <button id='adminButtonSizing' className={buttonclass} onClick={() => setRender('allProducts')} >Administrar Productos</button>
+      <div className={firstDiv} id='leftAdminContainer'>
+        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW2zB9ZfnqjeJkkgqMS7zen-NVpatbD9U3tiEirtof0QIA8Cx3ApChLYPJO9hVdncSkrA&usqp=CAU' alt='test' className='w-60 h-60 rounded-full'></img>
+        <button id='adminButtonSizing' className={buttonclass} onClick={() => setRender('registeredUsers')}>Usuarios Registrados</button>
+        <button id='adminButtonSizing' className={buttonclass} onClick={() => setRender('bannedUsers')} >Usuarios Baneados</button>
+        <button id='adminButtonSizing' className={buttonclass} onClick={() => setRender('adminUsers')} >Administradores</button>
+        <button id='adminButtonSizing' className={buttonclass} onClick={() => setRender('allProducts')} >Administrar Productos</button>
 
-        </div>
-        <div className={firstDiv} id='rightAdminContainer'>
-          {render && render === "registeredUsers" || render === "bannedUsers" || render === "adminUsers" ?
-            <UserList render={render} /> 
+      </div>
+      <div className={firstDiv} id='rightAdminContainer'>
+        {render && render === "registeredUsers" || render === "bannedUsers" || render === "adminUsers" ?
+          <UserList render={render} />
 
-            : render === "allProducts" ? 
-              <div>
-                <div className='spanFoodsFilter'>
+          : render === "allProducts" ?
+            <div>
+              <div className='spanFoodsFilter'>
                 <p id='pFoodsFilter' className={buttonclass}>
-                <a href='#Pastas'>Pastas</a> <a href='#Milanesas'>Milanesas</a> <a href='#Papas'>Papas</a> <a href='#Sandwiches'>Sandwiches</a> <a href='#Pizzas'>Pizzas</a> <a href='#Ensaladas'>Ensaladas</a> <a href='#Bebidas sin Alcohol'>Bebidas sin Alcohol</a>
+                  <a href='#Pastas'>Pastas</a> <a href='#Milanesas'>Milanesas</a> <a href='#Papas'>Papas</a> <a href='#Sandwiches'>Sandwiches</a> <a href='#Pizzas'>Pizzas</a> <a href='#Ensaladas'>Ensaladas</a> <a href='#Bebidas sin Alcohol'>Bebidas sin Alcohol</a>
                 </p>
-                </div>
-          
-              <ProductsList openForm={openForm} onProducEdit={onProducEdit}/>
               </div>
-              :
-              null
-          }
-          {
-            createProduct ? (
-                <Form
-                    setShowModal={setShowModal}
-                    showModal={showModal}
-                    setFormData={setFormData}
-                    newProduct={true}
-                    formData={formData}
-                    seteditProduct={seteditProduct}
-                    setCreateProduct={setCreateProduct}
-                />
-            )
+
+              <ProductsList openForm={openForm} onProducEdit={onProducEdit} />
+            </div>
             :
             null
-           }
-            {
-            editProduct ? (
-                <Form
-                    setShowModal={setShowModal}
-                    showModal={showModal}
-                    setFormData={setFormData}
-                    newProduct={false}
-                    formData={formData}
-                    seteditProduct={seteditProduct}
-                    setCreateProduct={setCreateProduct}
-                />
-            )
+        }
+        {
+          createProduct ? (
+            <Form
+              setShowModal={setShowModal}
+              showModal={showModal}
+              setFormData={setFormData}
+              newProduct={true}
+              formData={formData}
+              seteditProduct={seteditProduct}
+              setCreateProduct={setCreateProduct}
+            />
+          )
             :
             null
-           }
-        </div>
+        }
+        {
+          editProduct ? (
+            <Form
+              setShowModal={setShowModal}
+              showModal={showModal}
+              setFormData={setFormData}
+              newProduct={false}
+              formData={formData}
+              seteditProduct={seteditProduct}
+              setCreateProduct={setCreateProduct}
+            />
+          )
+            :
+            null
+        }
+      </div>
     </div>
-    </>
   )
 }
 
