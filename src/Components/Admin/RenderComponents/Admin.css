@@ -18,3 +18,25 @@
     color: black;
     font-weight: bold;
 }
+
+.secondDivSizingAdmin{
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#selectConfigSizeAdmin{
+    color: black;
+    width: 190px;
+    margin-bottom: 5%;
+}
+
+.searchBarDivAdmin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin-bottom: 3%;
+}
