@@ -12,9 +12,7 @@ export default function ContadorLs(render: any) {
 
     let subTotal = 0;
     for (let i = 0; i < items.length; i++) {
-
         subTotal += items[i].price * items[i].cantidad
-
     }
 
     let total = subTotal + propina

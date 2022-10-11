@@ -5,12 +5,6 @@ import jwt_decode from 'jwt-decode'
 const Login = () => {
     function handleCallbackResponse(response) {
         console.log(jwt_decode(response.credential))
-        let user = {
-            ...jwt_decode(response.credential),
-            auth: true
-        }
-        localStorage.setItem("token", JSON.stringify(user))
-        window.location.reload()
     }
     useEffect(() => {
 
@@ -22,16 +16,16 @@ const Login = () => {
         });
         google.accounts.id.renderButton(
             document.getElementById('signInDiv'),
-            { theme: 'outline', size: 'large' }
+            {theme: 'outline', size: 'large'}
         );
-        google.accounts.id.prompt()
-    }, [])
-
+        //google.accounts.id.prompt()
+    },[])
+  
     return (
-        <div>
-            <div id='signInDiv'></div>
-        </div>
-    )
+    <div>
+        <div id='signInDiv'></div>
+    </div>
+  )
 }
 
 export default Login
