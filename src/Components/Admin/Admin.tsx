@@ -55,7 +55,7 @@ const Admin = () => {
             <div>
               <div className='spanFoodsFilter'>
                 <p id='pFoodsFilter' className={buttonclass}>
-                  <a href='#Pastas'>Pastas</a> <a href='#Milanesas'>Milanesas</a> <a href='#Papas'>Papas</a> <a href='#Sandwiches'>Sandwiches</a> <a href='#Pizzas'>Pizzas</a> <a href='#Ensaladas'>Ensaladas</a> <a href='#Bebidas sin Alcohol'>Bebidas sin Alcohol</a>
+                  <a href='#PastasAd'>Pastas</a> <a href='#MilanesasAd'>Milanesas</a> <a href='#PapasAd'>Papas</a> <a href='#SandwichesAd'>Sandwiches</a> <a href='#PizzasAd'>Pizzas</a> <a href='#EnsaladasAd'>Ensaladas</a> <a href='#Bebidas sin AlcoholAd'>Bebidas sin Alcohol</a>
                 </p>
               </div>
 

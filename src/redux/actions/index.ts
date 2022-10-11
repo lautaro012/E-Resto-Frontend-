@@ -225,10 +225,13 @@ export function deleteItemFromCart(id: any) {
 export const sendSubscribeMail = (mail: String) => {
     if (mail) {
         return function (dispatch: Dispatch<Action>) {
-            axios.post(`http://localhost:3001/sendSubscribeMail/${mail}`)
-                .then(res => res.data)
-                .then(res => alert(`Gracias por suscribirte a Henry's Food`))
-                .catch(err => alert(err.response.data))
+            axios.post('http://localhost:3001/newsletter', {mail:mail})
+            .then(
+             res => axios.post(`http://localhost:3001/sendSubscribeMail/${mail}`) 
+            ).then(res => res.data)
+            .then(res => alert(`Gracias por suscribirte a Henry's Food`))
+            .catch(err => alert(err.response.data))
+            
         }
     } else {
         console.log(`didn't get email`)
