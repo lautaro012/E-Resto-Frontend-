@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { modificarUser } from '../../redux/actions';
-import { stringify } from 'querystring';
+//import { stringify } from 'querystring';
 
 
 export default function DatosPerfil(data: any) {
@@ -32,14 +32,14 @@ export default function DatosPerfil(data: any) {
         let errors: any = {}
         for (const key in input) {
             if (!input[key]) {
-                errors[key] = `Is ${key} required`
+                errors[key] = `El campo ${key} es requerido`
             }
             else if (input[key]?.trim().length < 3) { //el .trim() saca los espacios del inicio y el fin de la palabra
-                errors[key] = "Must be at least 3 characters"
+                errors[key] = "Debe tener al menos 3 caracteres"
             }
             else if ((/[^a-zA-Z0-9 ]/.test(input[key]))) { //validacion para que el name no pueda contener caracteres especiales
                 if (key !== "img") {
-                    errors[key] = "Can't contain special characters"
+                    errors[key] = "No puede tener caracteres especiales"
                 }
             }
         }
@@ -55,7 +55,7 @@ export default function DatosPerfil(data: any) {
             swal({ title: 'Debe salvar errores' })
         }
         else if (Object.keys(input).length === 0) {
-            swal({ title: "Nothing to edit" })
+            swal({ title: "No hay nada para editar" })
         }
         else {
             console.log("INPUT", input)
@@ -97,7 +97,7 @@ export default function DatosPerfil(data: any) {
 
     return (
         <div className="modificar_perfil">
-            <h1>Mi perfil</h1>
+            <h1 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">Mi perfil</h1>
             <div>
                 <h2>{mail}</h2>
                 {
@@ -109,8 +109,8 @@ export default function DatosPerfil(data: any) {
             </div>
             <hr></hr>
             <form onSubmit={(event) => handleSubmit(event)} className="Form">
-                <div className="Label">
-                    <h2>User</h2>
+                <div className="Label_user">
+                    <h2 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">User</h2>
                     <label>{userName}</label>
                     <button onClick={(event) => abrirForm(event, "user name")}>Editar</button>
                     {
@@ -119,7 +119,7 @@ export default function DatosPerfil(data: any) {
                                 <input
                                     id="User"
                                     type='text'
-                                    size={80}
+                                    size={60}
                                     value={input.userName}
                                     name='userName'
                                     placeholder="User..."
@@ -135,8 +135,8 @@ export default function DatosPerfil(data: any) {
                     }
                 </div>
                 <hr></hr>
-                <div className="Label">
-                    <h2>Nombre</h2>
+                <div className="Label_user">
+                    <h2 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Nombre</h2>
                     <label>{name}</label>
                     <button onClick={(event) => abrirForm(event, "name")}>Editar</button>
                     {
@@ -146,7 +146,7 @@ export default function DatosPerfil(data: any) {
                                     required
                                     id="Name"
                                     type='text'
-                                    size={80}
+                                    size={60}
                                     value={input.name}
                                     name='name'
                                     placeholder="Nombre..."
@@ -163,8 +163,8 @@ export default function DatosPerfil(data: any) {
 
                 </div>
                 <hr></hr>
-                <div className="Label">
-                    <h2>Apellido</h2>
+                <div className="Label_user">
+                    <h2 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Apellido</h2>
                     <label>{lastName}</label>
                     <button onClick={(event) => abrirForm(event, "last name")}>Editar</button>
                     {
@@ -173,7 +173,7 @@ export default function DatosPerfil(data: any) {
                                 <input
                                     id="Last name"
                                     type='text'
-                                    size={80}
+                                    size={60}
                                     value={input.lastName}
                                     name='lastName'
                                     placeholder="Apellido..."
@@ -190,8 +190,8 @@ export default function DatosPerfil(data: any) {
 
                 </div>
                 <hr></hr>
-                <div className="Label">
-                    <h2>Direccion</h2>
+                <div className="Label_user">
+                    <h2 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Direccion</h2>
                     <label>{adress}</label>
                     <button onClick={(event) => abrirForm(event, "address")}>Editar</button>
                     {
@@ -200,7 +200,7 @@ export default function DatosPerfil(data: any) {
                                 <input
                                     id="Address"
                                     type='text'
-                                    size={80}
+                                    size={60}
                                     value={input.adress}
                                     name='adress'
                                     placeholder="Direccion..."
@@ -216,15 +216,15 @@ export default function DatosPerfil(data: any) {
                     }
                 </div>
                 <hr></hr>
-                <div className="Label">
-                    <h2>Foto de perfil</h2>
+                <div className="Label_user">
+                    <h2 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Foto de perfil</h2>
                     <button id="edit_img" onClick={(event) => abrirForm(event, "image")}>Editar</button>
                     {
                         form && form === "image" ?
                             <div>
                                 <input
                                     type='text'
-                                    size={80}
+                                    size={60}
                                     name='img'
                                     placeholder="Inserte una URL para su foto de perfil"
                                     onChange={(event) => handleInput(event)}

@@ -17,6 +17,7 @@ export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const GET_USER = 'GET_USER'
 export const GET_ALL_USERS = 'GET_ALL_USERS'
 export const GET_USER_LOGGED = "GET_USER_LOGGED"
+export const CLEAR_USER = 'CLEAR_USER'
 
 export const getProducts = (sort: String) => {
 
@@ -224,10 +225,13 @@ export function deleteItemFromCart(id: any) {
 export const sendSubscribeMail = (mail: String) => {
     if (mail) {
         return function (dispatch: Dispatch<Action>) {
-            axios.post(`http://localhost:3001/sendSubscribeMail/${mail}`)
-                .then(res => res.data)
-                .then(res => alert(`Gracias por suscribirte a Henry's Food`))
-                .catch(err => console.log(err))
+            axios.post('http://localhost:3001/newsletter', {mail:mail})
+            .then(
+             res => axios.post(`http://localhost:3001/sendSubscribeMail/${mail}`) 
+            ).then(res => res.data)
+            .then(res => alert(`Gracias por suscribirte a Henry's Food`))
+            .catch(err => alert(err.response.data))
+            
         }
     } else {
         console.log(`didn't get email`)
@@ -347,6 +351,16 @@ export const createUser = (input: any, navigate: any) => {
             })
     }
 }
+
+export const clearUser = () => {
+    return function (dispatch:Dispatch<Action>) {
+        return dispatch({
+            type: CLEAR_USER
+        })
+    }
+}
+
+
 export const logUser = (navigate: any, input: any) => {
     return function (dispatch: Dispatch<Action>) {
         axios.post(`http://localhost:3001/user/login`, input).then(resp => resp.data)
@@ -373,10 +387,40 @@ export const getUserById = (id: String) => {
                     payload: resp
                 })
             })
+        }
     }
-}
+    
+    export const getUser = (token: { auth: boolean, token: string }) => {
+        return function (dispatch: Dispatch<Action>) {
+            axios
+                .get("http://localhost:3001/user/token", {
+                    headers: {
+                        "x-access-token": token.token,
+                    },
+                })
+                .then((res) => {
+                    dispatch({
+                        type: GET_USER,
+                        payload: res.data
+                    })
+                })
+                .catch((err) => {
+                    dispatch({
+                        type: ERROR_HANDLER,
+                        payload: err
+                    })
+                });
+        }
+    }
+    
+    export function modificarUser(_id: string, payload: any) {
+        return function () {
+            axios.put(`http://localhost:3001/user/${_id}`, payload)
+        }
+    }
 
-
+    
+// ERROR HANDLER
 export const cleanError = () => {
     return function (dispatch: Dispatch<Action>) {
         dispatch({
@@ -396,34 +440,6 @@ export const modifyItemFromStock = (newStock: any, id: string) => {
     }
 }
 
-export const getUser = (token: { auth: boolean, token: string }) => {
-    return function (dispatch: Dispatch<Action>) {
-        axios
-            .get("http://localhost:3001/user/token", {
-                headers: {
-                    "x-access-token": token.token,
-                },
-            })
-            .then((res) => {
-                dispatch({
-                    type: GET_USER,
-                    payload: res.data
-                })
-            })
-            .catch((err) => {
-                dispatch({
-                    type: ERROR_HANDLER,
-                    payload: err
-                })
-            });
-    }
-}
-
-export function modificarUser(_id: string, payload: any) {
-    return function () {
-        axios.put(`http://localhost:3001/user/${_id}`, payload)
-    }
-}
 
 export function createOrder(payload:any) {
     return function () {

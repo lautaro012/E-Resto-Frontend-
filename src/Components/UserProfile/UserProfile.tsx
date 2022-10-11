@@ -1,21 +1,24 @@
-import { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../../config'
+//import { useEffect } from 'react'
+import { useAppSelector } from '../../config'
 import './UserProfile.css'
 import { useState } from 'react'
-import { getUser } from '../../redux/actions'
+//import { getUser } from '../../redux/actions'
 import DatosPerfil from './DatosPerfil'
+import Orders from './Orders'
+import { buttonclass } from "../../Style/Clases/Clases";
+import { Button } from 'flowbite-react'
 
 export default function Profile() {
 
-    let dispatch = useAppDispatch()
+    //let dispatch = useAppDispatch()
 
     const user = useAppSelector((state) => state.user)
 
-    const token = JSON.parse(localStorage.getItem("token")!);
+    // const token = JSON.parse(localStorage.getItem("token")!);
 
-    useEffect(() => {
-        dispatch(getUser(token))
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getUser(token))
+    // }, [dispatch])
 
     const [render, setRender] = useState("perfil")
 
@@ -29,12 +32,12 @@ export default function Profile() {
             <div className='User_options_conteiner'>
                 <aside className='User_options'>
                     <div>
-                        <h1>Bienvenido {user.name}</h1>
+                        <h1 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">{user.userName}</h1>
                         <img src={user.img} alt={user.name} />
                     </div>
-                    <button id='profile_buttons' onClick={() => handleRender("perfil")}>Mi perfil</button>
-                    {/* <button id='profile_buttons' onClick={() => handleRender("orders")}>Mis compras</button>
-                    <button id='profile_buttons' onClick={() => handleRender("favoritos")}>Favoritos</button> */}
+                    <Button id='profile_buttons' onClick={() => handleRender("perfil")}>Mi perfil</Button>
+                    <Button id='profile_buttons' onClick={() => handleRender("orders")}>Mis compras</Button>
+                    {/* <button id='profile_buttons' onClick={() => handleRender("favoritos")}>Favoritos</button> */}
                 </aside>
             </div>
 
@@ -44,7 +47,10 @@ export default function Profile() {
                         render && render === "perfil" ?
                             <DatosPerfil data={user}></DatosPerfil>
                             :
-                            null
+                            render === "orders" ?
+                                <Orders></Orders>
+                                :
+                                null
                     }
                 </div>
             </div>

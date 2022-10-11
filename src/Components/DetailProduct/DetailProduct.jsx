@@ -5,6 +5,7 @@ import '../DetailProduct/DetailProduct.css'
 //import ModalInDetail from "../Modal/Modal";
 //import useModal from "../../hooks/useModal";
 import { Button, Dropdown, Modal } from "flowbite-react";
+import swal from "sweetalert";
 
 export default function DetailProduct({ id, closeModalDetail }) {
 
@@ -64,11 +65,11 @@ export default function DetailProduct({ id, closeModalDetail }) {
                 dispatch(deleteItemFromCart(itemExtraFound._id))
                 dispatch(addToCart(item))
             }
-            alert(`Se agrego ${food.name}`)
+            swal({ title: `Se agrego ${food.name}` })
             closeDetailModal()
         }
         else {
-            alert(`Ya esta agregado ${food.name} al carrito, puedes cambiar su cantidad en el carrito`)
+            swal({ title: `Ya esta agregado ${food.name} al carrito, puedes cambiar su cantidad en el carrito` })
             closeDetailModal()
         }
     }
