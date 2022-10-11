@@ -12,7 +12,7 @@ export default function DatosPerfil(data: any) {
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    //const [errors, setErrors] = useState<any>({})
+    const [errors, setErrors] = useState<any>({})
 
     const [input, setInput] = useState<any>({})
 
@@ -22,51 +22,48 @@ export default function DatosPerfil(data: any) {
             ...input,
             [event.target.name]: event.target.value
         })
-        // setErrors(validations({
-        //     ...input,
-        //     [event.target.name]: event.target.value
-        // }))
+        setErrors(validations({
+            ...input,
+            [event.target.name]: event.target.value
+        }))
     }
 
-    // const validations = (input: any) => { // VARIABLE PARA GUARDAR UN MENSAJE EN CASO DE FALTANTES DEL INPUT
-    //     let errors = {}
-    //     for (const key in input) {
-    //         if (!input[key]) {
-    //             errors[key] = `Is ${key} required`
-    //         }
-    //         else if (input[key]?.trim().length < 3) { //el .trim() saca los espacios del inicio y el fin de la palabra
-    //             errors[key] = "Must be at least 3 characters"
-    //         }
-    //         else if ((/[^a-zA-Z0-9 ]/.test(input[key]))) { //validacion para que el name no pueda contener caracteres especiales
-    //             if (key !== "img") {
-    //                 errors[key] = "Can't contain special characters"
-    //             }
-    //         }
-    //     }
-    //     return errors
-    // }
+    const validations = (input: any) => { // VARIABLE PARA GUARDAR UN MENSAJE EN CASO DE FALTANTES DEL INPUT
+        let errors: any = {}
+        for (const key in input) {
+            if (!input[key]) {
+                errors[key] = `Is ${key} required`
+            }
+            else if (input[key]?.trim().length < 3) { //el .trim() saca los espacios del inicio y el fin de la palabra
+                errors[key] = "Must be at least 3 characters"
+            }
+            else if ((/[^a-zA-Z0-9 ]/.test(input[key]))) { //validacion para que el name no pueda contener caracteres especiales
+                if (key !== "img") {
+                    errors[key] = "Can't contain special characters"
+                }
+            }
+        }
+        return errors
+    }
 
     function handleSubmit(event: any) {
         event.preventDefault()
-        // let error = validations(input)
-        // let error2 = Object.keys(error)
+        let error = validations(input)
+        let error2 = Object.keys(error)
 
-        // if (error2.length > 0) {
-        //     swal({ title: 'Debe salvar errores' })
-        // }
-        // else if (Object.keys(input).length === 0) {
-        //     swal({ title: "Nothing to edit" })
-        // }
-        // else {
-        //     dispatch(modificarUser(_id, input))
-        //     swal({ title: "User edited!" })
-        //     setInput({})
-        // }
-        console.log("INPUT", input)
-        dispatch(modificarUser(_id, input))
-        swal({ title: "Usuario editado!" })
-        setInput({})
-        navigate("/")
+        if (error2.length > 0) {
+            swal({ title: 'Debe salvar errores' })
+        }
+        else if (Object.keys(input).length === 0) {
+            swal({ title: "Nothing to edit" })
+        }
+        else {
+            console.log("INPUT", input)
+            dispatch(modificarUser(_id, input))
+            swal({ title: "Usuario editado!" })
+            setInput({})
+            navigate("/")
+        }
     }
 
     const [form, setForm] = useState("")
@@ -128,9 +125,9 @@ export default function DatosPerfil(data: any) {
                                     placeholder="User..."
                                     onChange={(event) => handleInput(event)}
                                 />
-                                {/* {
+                                {
                                     !errors.userName ? null : <span>{errors.userName}</span>
-                                } */}
+                                }
                                 <button onClick={(event) => abrirForm(event, "")}>X</button>
                             </div>
                             :
@@ -155,9 +152,9 @@ export default function DatosPerfil(data: any) {
                                     placeholder="Nombre..."
                                     onChange={(event) => handleInput(event)}
                                 />
-                                {/* {
+                                {
                                     !errors.name ? null : <span>{errors.name}</span>
-                                } */}
+                                }
                                 <button onClick={(event) => abrirForm(event, "")}>X</button>
                             </div>
                             :
@@ -182,9 +179,9 @@ export default function DatosPerfil(data: any) {
                                     placeholder="Apellido..."
                                     onChange={(event) => handleInput(event)}
                                 />
-                                {/* {
+                                {
                                     !errors.lastName ? null : <span>{errors.lastName}</span>
-                                } */}
+                                }
                                 <button onClick={(event) => abrirForm(event, "")}>X</button>
                             </div>
                             :
@@ -209,9 +206,9 @@ export default function DatosPerfil(data: any) {
                                     placeholder="Direccion..."
                                     onChange={(event) => handleInput(event)}
                                 />
-                                {/* {
+                                {
                                     !errors.adress ? null : <span>{errors.adress}</span>
-                                } */}
+                                }
                                 <button onClick={(event) => abrirForm(event, "")}>X</button>
                             </div>
                             :
@@ -232,9 +229,9 @@ export default function DatosPerfil(data: any) {
                                     placeholder="Inserte una URL para su foto de perfil"
                                     onChange={(event) => handleInput(event)}
                                 />
-                                {/* {
+                                {
                                     !errors.img ? null : <span>{errors.img}</span>
-                                } */}
+                                }
                                 <button onClick={(event) => abrirForm(event, "")}>X</button>
                             </div>
                             :
