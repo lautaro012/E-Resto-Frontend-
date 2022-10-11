@@ -11,7 +11,6 @@ export default function Profile() {
     //let dispatch = useAppDispatch()
 
     const user = useAppSelector((state) => state.user)
-    console.log(user)
 
     // const token = JSON.parse(localStorage.getItem("token")!);
 

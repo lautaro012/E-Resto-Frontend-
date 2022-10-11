@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { useAppSelector } from "../../config";
+import { useAppDispatch, useAppSelector } from "../../config";
 import { StateTypes } from "../../Interfaces/Interfaces";
 import { aNavbar } from "../../Style/Clases/Clases";
 //import { useNavigate } from "react-router-dom";
 import { Modal } from "flowbite-react";
 import Admin from "../Admin/Admin";
 import Profile from "../UserProfile/UserProfile";
+import { clearUser } from "../../redux/actions";
 
 
 export default function Panel({ menuResponsive, setMenuResponsive }: any) {
-
+    let dispatch = useAppDispatch()
     let user = useAppSelector((state: StateTypes) => state.user);
     const [open, setOpen] = useState<boolean>(true);
     const [openAdmin, setOpenAdmin] = useState<boolean>(false)
@@ -23,6 +24,7 @@ export default function Panel({ menuResponsive, setMenuResponsive }: any) {
 
     const handleLogout = () => {
         localStorage.setItem("token", JSON.stringify([]));
+        dispatch(clearUser())
         setMenuResponsive(true)
         window.location.reload()
     };
