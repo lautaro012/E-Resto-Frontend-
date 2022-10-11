@@ -5,6 +5,8 @@ import { useState } from 'react'
 //import { getUser } from '../../redux/actions'
 import DatosPerfil from './DatosPerfil'
 import Orders from './Orders'
+import { buttonclass } from "../../Style/Clases/Clases";
+import { Button } from 'flowbite-react'
 
 export default function Profile() {
 
@@ -30,11 +32,11 @@ export default function Profile() {
             <div className='User_options_conteiner'>
                 <aside className='User_options'>
                     <div>
-                        <h1>Bienvenido {user.name}</h1>
+                        <h1 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">{user.userName}</h1>
                         <img src={user.img} alt={user.name} />
                     </div>
-                    <button id='profile_buttons' onClick={() => handleRender("perfil")}>Mi perfil</button>
-                    <button id='profile_buttons' onClick={() => handleRender("orders")}>Mis compras</button>
+                    <Button id='profile_buttons' onClick={() => handleRender("perfil")}>Mi perfil</Button>
+                    <Button id='profile_buttons' onClick={() => handleRender("orders")}>Mis compras</Button>
                     {/* <button id='profile_buttons' onClick={() => handleRender("favoritos")}>Favoritos</button> */}
                 </aside>
             </div>
@@ -45,10 +47,10 @@ export default function Profile() {
                         render && render === "perfil" ?
                             <DatosPerfil data={user}></DatosPerfil>
                             :
-                            render === "orders"?
-                            <Orders></Orders>
-                            :
-                            null
+                            render === "orders" ?
+                                <Orders></Orders>
+                                :
+                                null
                     }
                 </div>
             </div>
