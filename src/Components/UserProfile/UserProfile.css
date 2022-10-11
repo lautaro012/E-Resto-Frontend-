@@ -1,6 +1,8 @@
 .Profile {
     display: flex;
     font-size: large;
+    max-height: 80vh;
+    min-height: 80vh;
 }
 
 .modificar_perfil button {
@@ -153,27 +155,6 @@
     margin-left: 0%;
 }
 
-#conteiner_order {
-    border-style: solid;
-    border-radius: 20px;
-    padding: 5%;
-    font-size: small;
-}
-
-#conteinerCart_order {
-    border-style: groove;
-    display: flex;
-    border-radius: 20px;
-    justify-content: space-between;
-    padding: 2%;
-    align-items: center;
-    margin: 5%;
-}
-
-#conteinerCart_order img {
-    max-width: 250px;
-}
-
 #imagenPerfil {
     max-width: 30%;
     border-radius: 100%;
@@ -210,4 +191,27 @@
 
 .modificar_perfil h2 {
     color: rgb(34, 34, 34)
+}
+
+.main_conteiner_order{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    max-height: 70vh;
+    overflow-x: clip;
+}
+
+#conteinerCart_order {
+    border-style: groove;
+    display: flex;
+    border-radius: 20px;
+    justify-content: space-between;
+    padding: 2%;
+    align-items: center;
+    margin: 5%;
+
+}
+
+#conteinerCart_order img {
+    max-width: 250px;
 }
