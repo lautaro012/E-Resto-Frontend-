@@ -12,7 +12,6 @@ const Login = () => {
     let navigate = useNavigate()
     function handleCallbackResponse(response) {
         const data = jwt_decode(response.credential)
-        console.log(data)
         const input = {
             mail: data.email,
             password: 'SECRET_PASSWORD',
