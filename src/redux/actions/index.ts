@@ -347,12 +347,10 @@ export const createUser = (input: any, navigate: any) => {
             })
     }
 }
-export const logUser = (navigate: any, input: { mail: string, password: string }) => {
+export const logUser = (navigate: any, input: any) => {
     return function (dispatch: Dispatch<Action>) {
         axios.post(`http://localhost:3001/user/login`, input).then(resp => resp.data)
             .then(res => {
-                console.log('loggeado', res)
-                alert('inicio de sesion correcto')
                 localStorage.setItem('token', JSON.stringify(res));
                 window.location.reload()
                 navigate('/pedidos')
@@ -361,7 +359,6 @@ export const logUser = (navigate: any, input: { mail: string, password: string }
                 return dispatch({
                     type: ERROR_HANDLER,
                     payload: err
-
                 })
             })
     }

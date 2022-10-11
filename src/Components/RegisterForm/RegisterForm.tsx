@@ -15,12 +15,14 @@ export default function Register() {
     let dispatch = useAppDispatch()
     let navigate = useNavigate()
     const [loading, setLoading] = useState<boolean>(false)
+    const [passwordError, setPasswordError] = useState<boolean>(false)
     const [input, setInput] = useState<any>({
         name: '',
         lastName: '',
         userName: '',
         adress: '',
         password: '',
+        repeatpassword:'',
         mail: '',
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW2zB9ZfnqjeJkkgqMS7zen-NVpatbD9U3tiEirtof0QIA8Cx3ApChLYPJO9hVdncSkrA&usqp=CAU',
         admin: false
@@ -34,6 +36,7 @@ export default function Register() {
                 userName: '',
                 adress: '',
                 password: '',
+                repeatpassword:'',
                 mail: '',
                 img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW2zB9ZfnqjeJkkgqMS7zen-NVpatbD9U3tiEirtof0QIA8Cx3ApChLYPJO9hVdncSkrA&usqp=CAU',
                 admin: false
@@ -47,12 +50,18 @@ export default function Register() {
             [e.target.name]: e.target.value,
         });
         dispatch(cleanError())
+        setPasswordError(false)
     };
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
+        console.log(input)
         setLoading(true)
-        dispatch(createUser(input, navigate));
+        if(input.password === input.repeatpassword){
+            dispatch(createUser(input, navigate));
+        }else{
+            setPasswordError(true)
+        }
         setTimeout(() => {
             setLoading(false)
         }, 2000)
@@ -80,6 +89,7 @@ export default function Register() {
                             onChange={handleChange}
                             id="name"
                             placeholder="Nombre"
+                            required
                         />
                     </div>
                     <div className="mb-3 xl:w-96">
@@ -96,6 +106,7 @@ export default function Register() {
                             onChange={handleChange}
                             id="lastName"
                             placeholder="Apellido"
+                            required
                         />
                     </div>
                 </div>
@@ -131,6 +142,7 @@ export default function Register() {
                             onChange={handleChange}
                             id="mail"
                             placeholder="E-mail"
+                            required
                         />
                     </div>
                 </div>
@@ -149,23 +161,24 @@ export default function Register() {
                             className={inputRegister}
                             onChange={handleChange}
                             id="password"
+                            required
                             placeholder="Contraseña"
                         />
                     </div>
                     <div className="mb-3 xl:w-96">
                         <label
-                            htmlFor="repeat-password"
+                            htmlFor="repeatpassword"
                             className="form-label inline-block mb-2 text-gray-700"
                         >
                             Repita su contraseña:
                         </label>
                         <input
                             autrepeat-oComplete="new-password"
-                            type="repeat-password"
-                            name='repeat-password'
+                            type="password"
+                            name='repeatpassword'
                             className={inputRegister}
                             onChange={handleChange}
-                            id="repeat-password"
+                            id="repeatpassword"
                             placeholder="Repita la Contraseña"
                         />
                     </div>
@@ -201,14 +214,21 @@ export default function Register() {
                             onChange={handleChange}
                             id="img"
                             placeholder="Ingrese un URL de su imagen"
+                            
                         />
                     </div>
                 </div>
                 {
                     error.length !== 0 ?
-                        <h1> {error.name} </h1>
+                        <h1 className="text-amber-700 text-xl"> {error.response.data} </h1>
                         :
                         null
+                }
+                {
+                    passwordError ?
+                    <h1 className="text-amber-700 text-xl"> Las contraseñas no coinciden </h1>
+                    :
+                    null
                 }
                 {
                     loading ?
