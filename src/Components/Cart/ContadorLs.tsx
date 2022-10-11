@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppSelector } from '../../config'
 import { Modal, Button } from "flowbite-react";
 import Check from "../CheckoutPayment/Check";
+import swal from "sweetalert";
 
 export default function ContadorLs(render: any) {
 
@@ -33,7 +34,7 @@ export default function ContadorLs(render: any) {
             setOpenModal(boolean)
         }
         else {
-            alert("Debes estar loggeado para hacer la compra")
+            swal({ title: "Debes estar loggeado para hacer la compra" })
         }
     }
 
