@@ -10,7 +10,6 @@ import github from '../../Style/images/github.png'
 export default function About() {
     return (
         <div>
-            <h1> About Us: </h1>
             <div className="container_about">
                 <div className="cardAbout card0" >
                     <div className="border_about">
