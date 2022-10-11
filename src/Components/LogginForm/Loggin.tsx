@@ -16,9 +16,10 @@ export default function Loggin({ openlog, showLoggin }: any) {
     let dispatch = useAppDispatch();
     let error = useAppSelector((state: StateTypes) => state.error);
     const [loading, setLoading] = useState<boolean>(false)
-    const [input, setInput] = useState<{ mail: string; password: string }>({
+    const [input, setInput] = useState<{ mail: string; password: string; google: boolean }>({
         mail: "",
         password: "",
+        google: false
     });
 
     const handleChange = (e: Input) => {
@@ -34,7 +35,9 @@ export default function Loggin({ openlog, showLoggin }: any) {
             setInput({
                 mail: "",
                 password: "",
-            })
+                google:false
+            }),
+            dispatch(cleanError())
         )
     }, [])
 
@@ -44,21 +47,27 @@ export default function Loggin({ openlog, showLoggin }: any) {
         dispatch(logUser(navigate, input));
         setTimeout(() => {
             setLoading(false)
-        }, 2000)
+        }, 1000)
     };
 
 
 
     return (
         <div>
-            <Modal show={showLoggin} size="md" popup={true} onClose={openlog}>
+            <Modal show={showLoggin} size="lg" popup={true} onClose={openlog}>
                 <Modal.Header />
                 <Modal.Body>
                     <div className="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8">
                         <form onSubmit={handleSubmit}>
-                            <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-                                Sign in to our platform
-                            </h3>
+                            <div className="loggin-conteiner">
+                                <h3 className="text-xl font-medium text-gray-900 dark:text-white">
+                                    Sign in to our platform
+                                </h3>
+                            </div>
+                            <br></br>
+                            <hr></hr>
+                            <br></br>
+
                             <div>
                                 <div className="mb-2 block">
                                     <Label htmlFor="mail" value="Your mail" />
@@ -73,12 +82,14 @@ export default function Loggin({ openlog, showLoggin }: any) {
                                     required={true}
                                 />
                             </div>
+                            <br></br>
                             <div>
                                 <div className="mb-2 block">
                                     <Label htmlFor="password" value="Your password" />
                                 </div>
                                 <input className={inputForm} name='password' onChange={handleChange} id="password" type="password" required={true} />
                             </div>
+                            <br></br>
                             <div className="flex justify-between">
                                 <div className="flex items-center gap-2">
                                     <Checkbox id="remember" />
@@ -91,15 +102,24 @@ export default function Loggin({ openlog, showLoggin }: any) {
                                     Lost Password?
                                 </a>
                             </div>
-                            <Login></Login>
                             {/* {
                                 error.length === 0 ?
-                                    null
+                                null
                                     :
                                     <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-                                        {error.name}
+                                    {error.name}
                                     </h3>
-                            } */}
+                                } */}
+                                {
+                                    error ?
+                                    <div className="loggin-conteiner">
+                                        <h1 className="text-amber-700 text-xl">{error.response.data}</h1>
+                                    </div>
+                                    
+                                    :
+                                    null
+                                }
+                                <br></br>
                             {
                                 loading ?
                                     <div className="loggin-conteiner">
@@ -114,6 +134,13 @@ export default function Loggin({ openlog, showLoggin }: any) {
                                         <button type='submit' className={buttonclass}>Log in to your account</button>
                                     </div>
                             }
+                            <br></br>
+                            <hr></hr>
+                            <br></br>
+                            <div className="loggin-conteiner">
+                                <Login></Login>
+                            </div>
+                            <br></br>
                             <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                                 Not registered?{" "}
 
