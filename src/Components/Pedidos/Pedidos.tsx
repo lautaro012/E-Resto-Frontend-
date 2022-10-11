@@ -97,12 +97,13 @@ export default function Pedidos() {
                                     key={categoria._id}
                                     className="Categoria"
                                 >
-                                    <h1 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                                    <h1 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">
                                         <strong>{categoria.name}</strong>
-                                        <span className="mr-2 ml-3 rounded bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">
+                                        <span className="mr-2 ml-3 rounded bg-blue-100 px-2.5 py-0.5 text-4xl font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">
                                             {categoria.categoryProducts.length}
                                         </span>
                                     </h1>
+                                    <br></br>
 
                                     <div className="Contenedor_cartas">
                                         {categoria?.categoryProducts?.map((info: ProductDetail) => {
