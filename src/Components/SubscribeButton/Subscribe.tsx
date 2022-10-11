@@ -30,7 +30,7 @@ const Subscribe = () => {
     <div>
         <form onSubmit={(event) => handleSubmit(event)}>
         {
-        user.length ?           
+        user?.mail ?           
             <button type='submit' className={buttonclass}>Suscribite</button>
         :
         <div>   
@@ -38,7 +38,7 @@ const Subscribe = () => {
             <button type='submit' className={buttonclass}>Suscribite</button>
         </div>
         }
-            </form>
+        </form>
     </div>
   )
 }
