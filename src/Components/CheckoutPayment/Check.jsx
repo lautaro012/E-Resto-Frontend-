@@ -43,7 +43,8 @@ export default function Check({ precio }) {
           paid: true,
           description: 'no se para que poner description',
           products: products,
-          cantidad: cantidad
+          cantidad: cantidad,
+          items: items
         }
 
         dispatch(createOrder(payload))
