@@ -427,3 +427,14 @@ export function modificarUser(_id: string, payload: any) {
         axios.put(`http://localhost:3001/user/${_id}`, payload)
     }
 }
+
+export function createOrder(payload:any) {
+    return function () {
+        axios.post('http://localhost:3001/order', payload).then(res => res.data)
+        .then(resp => {
+            console.log(resp)
+            window.location.reload()
+        })
+        .catch(error => console.log(error))
+    }
+}
