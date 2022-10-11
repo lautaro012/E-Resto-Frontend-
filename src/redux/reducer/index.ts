@@ -12,7 +12,7 @@ import {
     CLEAN_ERROR,
     GET_USER_BY_ID,
     GET_ALL_USERS,
-    GET_USER
+    GET_USER,
 
 } from "../actions";
 
@@ -24,7 +24,7 @@ const initialState: StateTypes = {
     userDetail: [],
     allUsers: [],
     error: '',
-    user: ''
+    user: '',
 }
 
 
@@ -44,8 +44,8 @@ export default function rootReducer(state = initialState, action: Action) {
                 categories: action.payload,
             }
 
-        case GET_ALL_USERS: 
-            return{
+        case GET_ALL_USERS:
+            return {
                 ...state,
                 allUsers: action.payload
             }
@@ -68,7 +68,7 @@ export default function rootReducer(state = initialState, action: Action) {
                 detail: action.payload
             }
 
-        case GET_USER_BY_ID: 
+        case GET_USER_BY_ID:
             return {
                 ...state,
                 userDetail: action.payload
@@ -89,10 +89,10 @@ export default function rootReducer(state = initialState, action: Action) {
 
         case ADD_TO_CART:
 
-                return {
+            return {
                 ...state,
                 cart: [...state.cart, action.payload]
-                }
+            }
 
         case DELETE_FOR_CART:
             if (action.payload === "All") {
@@ -118,12 +118,13 @@ export default function rootReducer(state = initialState, action: Action) {
                 ...state,
                 error: ''
             }
-        
+
         case GET_USER:
             return {
                 ...state,
                 user: action.payload
             }
+
         default:
             return state;
     }

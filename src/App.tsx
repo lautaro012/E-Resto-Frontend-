@@ -13,6 +13,7 @@ import ForgotPass from './Components/ForgotPass/ForgotPass.jsx';
 import Admin from './Components/Admin/Admin';
 import SendMail from './Components/ForgotPass/SendMail';
 import About from './Components/About_us/About';
+import { Profile } from './Components/UserProfile/UserProfile';
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
           <Route path='/product/:id' element={<DetailProduct id closeModalDetail />} />
           <Route path='/register' element={<Register />} />
           <Route path='/about' element={<About />} />
+          <Route path='/user' element={<Profile />} />
         </Routes>
         <Footer />
       </Router>

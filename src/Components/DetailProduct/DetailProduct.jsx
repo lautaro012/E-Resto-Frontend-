@@ -28,13 +28,7 @@ export default function DetailProduct({ id, closeModalDetail }) {
         closeModalDetail(false)
     }
 
-    //const [isOpenModal, openModal, closeModal] = useModal()
-    //const [datosModal, setDatosModal] = useState()
-
-    // function modalData(categoria) {
-    //     openModal()
-    //     setDatosModal(categoria)
-    // }
+    //VERIFICAR STOCK DE ITEM EXTRA ANTES DE MANDAR PEDIDO
 
     function addFoodToCart() {
 
