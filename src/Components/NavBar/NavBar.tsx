@@ -39,7 +39,7 @@ export default function NavBar() {
 
   useEffect(() => {
     dispatch(getUser(JSON.parse(token)));
-  }, [dispatch, token]);
+  }, []);
 
 
 
@@ -78,8 +78,7 @@ export default function NavBar() {
             (
               <div className="flex md:order-2">
                 <button onClick={openlog} className={buttonclass}>
-                  {" "}
-                  Iniciar Sesión{" "}
+                  Iniciar Sesión
                 </button>
               </div>
             )

@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { getUser } from '../../redux/actions'
 import DatosPerfil from './DatosPerfil'
 
-export function Profile() {
+export default function Profile() {
 
     let dispatch = useAppDispatch()
 

@@ -1,12 +1,6 @@
 .Profile {
     display: flex;
-    margin-top: 10%;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 2%;
-    color: white;
     font-size: large;
-    min-height: 1060px;
 }
 
 .modificar_perfil button {
