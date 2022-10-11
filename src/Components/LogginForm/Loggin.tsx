@@ -102,14 +102,7 @@ export default function Loggin({ openlog, showLoggin }: any) {
                                     Lost Password?
                                 </a>
                             </div>
-                            {/* {
-                                error.length === 0 ?
-                                null
-                                    :
-                                    <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-                                    {error.name}
-                                    </h3>
-                                } */}
+                                <br></br>
                                 {
                                     error ?
                                     <div className="loggin-conteiner">
