@@ -13,6 +13,7 @@ import {
     GET_USER_BY_ID,
     GET_ALL_USERS,
     GET_USER,
+    CLEAR_USER
 
 } from "../actions";
 
@@ -123,6 +124,11 @@ export default function rootReducer(state = initialState, action: Action) {
             return {
                 ...state,
                 user: action.payload
+            }
+        case CLEAR_USER:
+            return {
+                ...state,
+                user: ''
             }
 
         default:
