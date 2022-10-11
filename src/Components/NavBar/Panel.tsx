@@ -2,19 +2,20 @@ import { useState } from "react";
 import { useAppSelector } from "../../config";
 import { StateTypes } from "../../Interfaces/Interfaces";
 import { aNavbar } from "../../Style/Clases/Clases";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import { Modal } from "flowbite-react";
 import Admin from "../Admin/Admin";
-import { Profile } from "../UserProfile/UserProfile";
+import Profile from "../UserProfile/UserProfile";
+
 
 export default function Panel({ menuResponsive, setMenuResponsive }: any) {
 
     let user = useAppSelector((state: StateTypes) => state.user);
     const [open, setOpen] = useState<boolean>(true);
-    const [openAdmin, setOpenAdmin] = useState<boolean | undefined>(false)
-    const [openUser, setOpenUser] = useState<boolean | undefined>(false)
+    const [openAdmin, setOpenAdmin] = useState<boolean>(false)
+    const [openUser, setOpenUser] = useState<boolean>(false)
 
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     const handleUser = () => {
         open ? setOpen(false) : setOpen(true);
@@ -77,10 +78,10 @@ export default function Panel({ menuResponsive, setMenuResponsive }: any) {
                 </div>
                 <ul className="py-1" aria-labelledby="user-menu-button">
                     {
-                        user && user.admin ?
+                        user && user.admin === true ?
                             <div>
                                 <li>
-                                    <button className={aNavbar} onClick={() => navigate('/admin')} type="button">
+                                    <button className={aNavbar} onClick={() => handlePanel('/admin')} type="button">
                                         Perfil de admin
                                     </button>
                                 </li>
@@ -100,7 +101,7 @@ export default function Panel({ menuResponsive, setMenuResponsive }: any) {
                             :
                             <div>
                                 <li>
-                                    <button className={aNavbar} onClick={() => navigate('/user')} type="button">
+                                    <button className={aNavbar} onClick={() => handlePanel('/user')} type="button">
                                         Perfil de usuario
                                     </button>
                                 </li>
