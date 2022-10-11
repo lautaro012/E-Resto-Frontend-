@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from '../../config'
 import { deleteItemFromCart, getProducts } from "../../redux/actions";
-import { Link } from "react-router-dom";
+
 import '../Cart/Cart.css'
 import ContadorLs from "./ContadorLs";
-import { FooterBrand } from "flowbite-react/lib/esm/components/Footer/FooterBrand";
+
 import PrettyRating from "pretty-rating-react";
 import { Button } from "flowbite-react";
+import Logo from '../../Style/images/Henry_icon.png'
 
 export default function Cart() {
 
@@ -128,7 +129,8 @@ export default function Cart() {
                     </div>
                     :
                     <div id="no_foods_cart">
-                        <h1 className="text-m font-semibold tracking-tight text-gray-900 dark:text-white">No hay pedidos en tu carrito</h1>
+                        <h1 id="h1_nofood">No hay pedidos en tu carrito</h1>
+                        <img src={Logo} alt="Logo" />
                     </div>
             }
         </div>

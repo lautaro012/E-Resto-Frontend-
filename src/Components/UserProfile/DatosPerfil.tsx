@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { modificarUser } from '../../redux/actions';
-import { stringify } from 'querystring';
+//import { stringify } from 'querystring';
 
 
 export default function DatosPerfil(data: any) {

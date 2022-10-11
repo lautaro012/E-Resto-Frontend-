@@ -157,3 +157,17 @@
     font-size: 20px;
     margin-right: 3px;
 }
+
+#no_foods_cart{
+    height: fit-content;
+    min-height: inherit;
+    text-align: -webkit-center;
+}
+
+#h1_nofood {
+    font-size: xx-large;
+}
+
+#no_foods_cart img {
+    min-height: inherit;
+}
