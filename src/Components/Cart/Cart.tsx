@@ -50,7 +50,6 @@ export default function Cart() {
                         <div id="conteinerCart_left">
                             {
                                 items && items?.map((item: any) => {
-                                    console.log(item)
                                     return (
                                         <figure className="food">
                                             <div className="food__hero">
@@ -109,7 +108,7 @@ export default function Cart() {
                                                       "
                                                         value={item.cantidad}
                                                         name='cantidad'
-                                                        min="1" max="10"
+                                                        min="1" max={item.stock}
                                                         onChange={(event) => handdleCantidad(Number(event.target.value), item._id)}
                                                     />
                                                 </div>

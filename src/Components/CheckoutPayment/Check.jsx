@@ -4,12 +4,13 @@ import StripeCheckout from 'react-stripe-checkout'
 import { deleteItemFromCart } from "../../redux/actions";
 import { useAppDispatch } from '../../config';
 
-export default function Check({precio}) {
-  
+export default function Check({ precio }) {
+
   let publishableKey = 'pk_test_51Lde2sJXnqrwcfODw8cWGGVzyavpCNgaUXMhWTAbkGIJ3txhY9PVGuUzy9QPzQ5riddbQZdRADa3QTHxqhrSeSZq00dWuMhBM2'
   const dispatch = useAppDispatch()
 
   const payNow = async token => {
+
     try {
       const response = await axios({
         url: 'http://localhost:3001/payment',
@@ -20,8 +21,6 @@ export default function Check({precio}) {
         }
       })
       if (response.status === 200) {
-        console.log('payment successful')
-        console.log(precio)
         dispatch(deleteItemFromCart("All"))
       }
     } catch (error) {

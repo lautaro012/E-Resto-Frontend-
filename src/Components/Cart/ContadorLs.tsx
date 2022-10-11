@@ -8,6 +8,7 @@ export default function ContadorLs(render: any) {
     const items = useAppSelector((state) => state.cart)
     const [propina, setPropina] = useState<number>(100);
     const [openModal, setOpenModal] = useState<boolean | undefined>(false)
+    const token = JSON.parse(localStorage.getItem("token")!);
 
     let subTotal = 0;
     for (let i = 0; i < items.length; i++) {
@@ -25,6 +26,15 @@ export default function ContadorLs(render: any) {
 
     function closeModal() {
         setOpenModal(false)
+    }
+
+    function handleModal(boolean: boolean) {
+        if (token.hasOwnProperty("token")) {
+            setOpenModal(boolean)
+        }
+        else {
+            alert("Debes estar loggeado para hacer la compra")
+        }
     }
 
     return (
@@ -70,7 +80,7 @@ export default function ContadorLs(render: any) {
                 <h2>Propina : ${propina}</h2>
                 <hr />
                 <h1>Total : ${total}</h1>
-                <Button id="pedido_ya" onClick={() => setOpenModal(true)}>
+                <Button id="pedido_ya" onClick={() => handleModal(true)}>
                     Hacer pedido ya !
                 </Button>
                 <Modal
