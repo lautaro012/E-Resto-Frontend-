@@ -1,57 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useAppDispatch } from '../src/config'
+import { actualizarCart } from './redux/actions';
+
+import Pedidos from '../src/Components/Pedidos/Pedidos'
+import Home from '../src/Components/Home/Home'
+import DetailProduct from './Components/DetailProduct/DetailProduct';
+import Footer from './Components/Footer/Footer';
+import Register from './Components/RegisterForm/RegisterForm';
+import ForgotPass from './Components/ForgotPass/ForgotPass.jsx';
+import SendMail from './Components/ForgotPass/SendMail';
+import About from './Components/About_us/About';
 
 function App() {
+
+  const dispatch = useAppDispatch()
+
+  const token = JSON.parse(localStorage.getItem("token")!);
+
+  const foodsLS = JSON.parse(localStorage.getItem("products")!);
+
+  useEffect(() => {
+    if (!token) {
+      localStorage.setItem("token", JSON.stringify([]));
+    }
+    if (!foodsLS) {
+      localStorage.setItem("products", JSON.stringify([]));
+    }
+  }, [foodsLS, token])
+
+  useEffect(() => {
+    dispatch(actualizarCart(foodsLS));
+  }, [dispatch, foodsLS]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/modal' element={<SendMail />} />
+          <Route path='/recupera/:id' element={<ForgotPass />} />
+          <Route path='/pedidos' element={<Pedidos />} />
+          <Route path='/product/:id' element={<DetailProduct id closeModalDetail />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/about' element={<About />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </>
   );
 }
 

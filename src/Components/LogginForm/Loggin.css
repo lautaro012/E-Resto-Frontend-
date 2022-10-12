@@ -1,0 +1,10 @@
+.loggin-conteiner button:disabled {
+    opacity: 0.5;
+    cursor:not-allowed;
+}
+
+.loggin-conteiner {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

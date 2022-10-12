@@ -1,0 +1,27 @@
+.navbar-conteiner{
+    position: sticky;
+    top: 0;
+}
+.navbar-conteiner header {
+    display: flex;
+    border: 1px solid rgb(0, 0, 0);
+    background-color: #FFFFFF;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+ 
+}
+
+.navbar-buttons {
+    display: flex;
+}
+
+.logoHenryFood{
+    height: 75px;
+    border-radius: 11px;
+    margin: 10px;
+}
+
+.logoHenryFood:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,4 @@
+.form-conteiner {
+    display: flex;
+    justify-content: space-around;
+}

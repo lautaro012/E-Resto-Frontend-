@@ -1,0 +1,39 @@
+.max-w-sm img {
+    max-height: 20vh;
+    min-height: 25vh;
+    object-fit: cover;
+}
+
+.max-w-sm {
+    transition: 0.5s;
+    margin: 1%;
+    border-radius: 20px;
+    transition: 0.5s;
+    min-width: 24rem;
+
+}
+
+.max-w-sm p {
+    min-height: 10vh;
+}
+
+.food__tag--1_card{
+    background-color: #67b26f;
+    font-weight: bolder;
+    text-align: center;
+    border-style: solid;
+    border-radius: 10px;
+}
+
+.food__tag--2_card{
+    background-color: #b26767;
+    font-weight: bolder;
+    text-align: center;
+    border-style: solid;
+    border-radius: 10px;
+}
+
+.contenedor_precio{
+    display: contents;
+}
+

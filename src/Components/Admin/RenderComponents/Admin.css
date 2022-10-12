@@ -1,0 +1,42 @@
+#sizingDivAdmin{
+    width: fit-content;
+    max-width: none;
+    max-height: none;
+}
+
+.firstDivProductSizing{
+    margin-top: 40px;
+}
+.firstDivProductSizing h3{
+    background-color: #F1FFC4;
+    padding: 10px;
+    font-weight: bolder;
+}
+
+#irArribaButton{
+    width: 100%;
+    color: black;
+    font-weight: bold;
+}
+
+.secondDivSizingAdmin{
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#selectConfigSizeAdmin{
+    color: black;
+    width: 190px;
+    margin-bottom: 5%;
+}
+
+.searchBarDivAdmin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin-bottom: 3%;
+}

@@ -1,15 +1,18 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
+
+import { store } from '../src/redux/store/index';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(
+
+  const view  = render(
     <Provider store={store}>
       <App />
     </Provider>
   );
 
-  expect(getByText(/learn/i)).toBeInTheDocument();
-});
+  describe('App', () => {
+    it('should render', () => { 
+        expect(view).toBeTruthy()
+    })
+  })

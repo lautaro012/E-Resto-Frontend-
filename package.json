@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/free-regular-svg-icons": "^6.2.0",
     "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -11,11 +12,26 @@
     "@types/node": "^17.0.45",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
+    "aos": "^2.3.4",
+    "axios": "^0.27.2",
+    "dotenv-webpack": "^8.0.1",
+    "flowbite": "^1.5.3",
+    "flowbite-react": "^0.1.11",
+    "fortawesome": "^0.0.1-security",
+    "jwt-decode": "^3.1.2",
+    "mercadopago": "^1.5.14",
+    "pretty-rating-react": "^2.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.4",
+    "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
+    "react-scroll": "^1.8.7",
+    "react-scroll-to-top": "^3.0.0",
+    "react-stripe-checkout": "^2.6.3",
     "redux-devtools-extension": "^2.13.9",
+    "stripe": "^10.12.0",
+    "sweetalert": "^2.1.2",
     "typescript": "^4.8.3",
     "web-vitals": "^2.1.4"
   },
@@ -42,5 +58,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/aos": "^3.0.4",
+    "@types/react-scroll": "^1.8.4",
+    "autoprefixer": "^10.4.12",
+    "postcss": "^8.4.17",
+    "tailwindcss": "^3.1.8"
   }
 }

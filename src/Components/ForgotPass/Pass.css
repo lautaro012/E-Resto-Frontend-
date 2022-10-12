@@ -1,0 +1,39 @@
+.divFormPass {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    width: 50%;
+    height: 90vh;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.formPassReset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formPassReset input {
+    margin: 10px;
+}
+
+.pruebaDivCenter{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    background-color: #F1FFC4;
+}
+
+.forgot_password {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    background-color: #F1FFC4;
+}

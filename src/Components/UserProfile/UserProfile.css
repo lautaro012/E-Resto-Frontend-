@@ -1,0 +1,234 @@
+.Profile {
+    display: flex;
+    font-size: large;
+    max-height: 80vh;
+    min-height: 80vh;
+}
+
+.Profile hr {
+    border-color: #000000;
+}
+
+.modificar_perfil button {
+    padding: 5px 15px;
+    border: unset;
+    border-radius: 15px;
+    color: #212121;
+    z-index: 1;
+    background: #e8e8e8;
+    position: relative;
+    font-weight: 1000;
+    font-size: 17px;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    transition: all 250ms;
+    overflow: hidden;
+}
+
+.modificar_perfil button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 15px;
+    background-color: #505050;
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    transition: all 250ms
+}
+
+.modificar_perfil button:hover {
+    color: #e8e8e8;
+}
+
+.modificar_perfil button:hover::before {
+    width: 100%;
+}
+
+.Profile input {
+    line-height: 28px;
+    border: 2px solid transparent;
+    border-bottom-color: #777;
+    padding: .2rem 0;
+    outline: none;
+    background-color: transparent;
+    color: #000000;
+    transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.Profile input:hover {
+    outline: none;
+    padding: .2rem 1rem;
+    border-radius: 1rem;
+    border-color: #7a9cc6;
+}
+
+.Profile input::placeholder {
+    color: #777;
+}
+
+.Profile input:focus::placeholder {
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+.User_options_conteiner {
+    width: 30%;
+    background-color: #E9D5A1;
+}
+
+.User_data_conteiner {
+    width: 70%;
+    background-color: #efe1bd;
+}
+
+.User_options {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.User_options div {
+    text-align: -webkit-center;
+}
+
+.User_options img {
+    object-fit: cover;
+    border-radius: 25px;
+    max-width: 85%;
+    margin-top: 5%;
+}
+
+/* .User_options button,
+.User_options button::after {
+    padding: 16px 20px;
+    font-size: 18px;
+    background: linear-gradient(45deg, transparent 5%, #ff013c 5%);
+    border: 0;
+    color: #fff;
+    letter-spacing: 3px;
+    line-height: 1;
+    box-shadow: 6px 0px 0px #000000;
+    outline: transparent;
+    position: relative;
+}
+
+.User_options button::after {
+    --slice-0: inset(50% 50% 50% 50%);
+    --slice-1: inset(80% -6px 0 0);
+    --slice-2: inset(50% -6px 30% 0);
+    --slice-3: inset(10% -6px 85% 0);
+    --slice-4: inset(40% -6px 43% 0);
+    --slice-5: inset(80% -6px 5% 0);
+    content: "GAME STORE";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 3%, #000000 3%, #000000 5%, #ff013c 5%);
+    text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #000000;
+    clip-path: var(--slice-0);
+}
+
+.User_options button:hover::after {
+    cursor: pointer;
+    animation: 1s glitch;
+    animation-timing-function: steps(2, end);
+} */
+
+.User_data {
+    padding: 8%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.Form button {
+    margin-left: 5%;
+}
+
+#submit {
+    margin-top: 5%;
+}
+
+#edit_img {
+    margin-left: 0%;
+}
+
+#imagenPerfil {
+    max-width: 30%;
+    border-radius: 100%;
+}
+
+.profile-game-list {
+    font-size: small;
+    display: flex;
+    align-items: center;
+    transition: 0.5s;
+    padding: 2%;
+}
+
+.profile-game-list:hover {
+    backdrop-filter: blur(1px);
+    border-radius: 29px;
+    margin: 2%;
+    background-color: #ffffff7f;
+}
+
+.modificar_perfil span {
+    color: red;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.modificar_perfil h1 {
+    color: #000000;
+}
+
+.modificar_perfil h2 {
+    color: rgb(34, 34, 34)
+}
+
+.main_conteiner_order{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    max-height: 70vh;
+    overflow-x: clip;
+}
+
+#conteinerCart_order {
+    border-style: groove;
+    display: flex;
+    border-radius: 20px;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 5%;
+    border-color: black;
+    border-width: 1px;
+}
+
+#conteinerCart_order img {
+    max-width: 10VW;
+    max-height: 10vh;
+}
+
+#conteiner_order {
+    margin: 1%;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 25px;
+    padding: 3%;
+}
+
+.Label_user {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
