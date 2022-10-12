@@ -24,7 +24,7 @@ export const getProducts = (sort: String) => {
 
     return function (dispatch: Dispatch<Action>) {
 
-        axios('http://localhost:3001/product').then(resp => resp.data)
+        axios('/product').then(resp => resp.data)
             .then(resp => {
                 if (sort === 'AZ') {
                     resp.sort(function (a: ProductDetail, b: ProductDetail) {
@@ -70,7 +70,7 @@ export const getProducts = (sort: String) => {
 export const getProductsByName = (name: String) => {
     if (name) {
         return function (dispatch: Dispatch<Action>) {
-            axios('http://localhost:3001/category').then(resp => resp.data)
+            axios('/category').then(resp => resp.data)
                 .then(res => {
                     dispatch({
                         type: GET_PRODUCTS_BY_NAME,
@@ -83,7 +83,7 @@ export const getProductsByName = (name: String) => {
         }
     } else {
         return function (dispatch: Dispatch<Action>) {
-            axios('http://localhost:3001/category').then(resp => resp.data)
+            axios('/category').then(resp => resp.data)
                 .then(resp => {
                     dispatch({
                         type: GET_CATEGORIES,
@@ -96,7 +96,7 @@ export const getProductsByName = (name: String) => {
 
 export const getCategories = (sort: string) => {
     return function (dispatch: Dispatch<Action>) {
-        axios('http://localhost:3001/category').then(resp => resp.data)
+        axios('/category').then(resp => resp.data)
             .then(resp => {
                 //console.log("RESP", resp)
                 resp.map((cat: Category) => {
@@ -143,7 +143,7 @@ export const getCategories = (sort: string) => {
 
 export const createProduct = function (input: CardForm) {
     return function (dispatch: Dispatch<Action>) {
-        axios.post('http://localhost:3001/product', input)
+        axios.post('/product', input)
             .then(res => swal( {title : "Producto creado correctamente"}))
             .catch(error => console.log(error))
     }
@@ -151,7 +151,7 @@ export const createProduct = function (input: CardForm) {
 
 export const getFoodById = (id: string) => {
     return function (dispatch: Dispatch<Action>) {
-        axios(`http://localhost:3001/product/${id}`).then(resp => resp.data)
+        axios(`/product/${id}`).then(resp => resp.data)
             .then(resp => {
                 dispatch({
                     type: GET_FOOD_BY_ID,
@@ -184,7 +184,7 @@ export const vaciarComida = function () {
 
 export const editProduct = (input: CardForm, id: number) => {
     return function (dispatch: Dispatch<Action>) {
-        axios.put(`http://localhost:3001/product/${id}`, input).then(res => res.data)
+        axios.put(`/product/${id}`, input).then(res => res.data)
             .then(resp => {
                 console.log(resp)
             })
@@ -193,7 +193,7 @@ export const editProduct = (input: CardForm, id: number) => {
 }
 
 export const deleteProduct = (id: string) => {
-    axios.delete(`http://localhost:3001/product/${id}`).then(res => res.data)
+    axios.delete(`/product/${id}`).then(res => res.data)
         .then(res => console.log(res))
         .then(res => window.location.reload())
         .catch(err => console.log(err))
@@ -226,9 +226,9 @@ export function deleteItemFromCart(id: any) {
 export const sendSubscribeMail = (mail: String) => {
     if (mail) {
         return function (dispatch: Dispatch<Action>) {
-            axios.post('http://localhost:3001/newsletter', { mail: mail })
+            axios.post('/newsletter', { mail: mail })
                 .then(
-                    res => axios.post(`http://localhost:3001/sendSubscribeMail/${mail}`)
+                    res => axios.post(`/sendSubscribeMail/${mail}`)
                 ).then(res => res.data)
                 .then(res => swal({ title: `Gracias por suscribirte a Henry's Food` }))
                 .catch(err => swal({ title: `${err.response.data}`}))
@@ -242,7 +242,7 @@ export const sendSubscribeMail = (mail: String) => {
 export const sendResetPassMail = (mail: String) => {
     if (mail) {
         return function (dispatch: Dispatch<Action>) {
-            axios.post(`http://localhost:3001/sendRecuperaContra/${mail}`)
+            axios.post(`/sendRecuperaContra/${mail}`)
                 .then(res => res.data)
                 .then(res => swal({ title: 'Revisa tu casilla de correo' }))
                 .catch(err => console.log(err))
@@ -260,7 +260,7 @@ export const changeBanUser = (id: any) => {
     return async function (dispatch: Dispatch<Action>) {
         if (id) {
             try {
-                axios.put(`http://localhost:3001/banUser/${id}`)
+                axios.put(`/banUser/${id}`)
                     .then(res => {
                         swal({ title: 'Usuario baneado' })
                     })
@@ -279,7 +279,7 @@ export const changeUserAsAdmin = (id: any) => {
     return async function (dispatch: Dispatch<Action>) {
         if (id) {
             try {
-                axios.put(`http://localhost:3001/setAdmin/${id}`)
+                axios.put(`/setAdmin/${id}`)
                     .then(res => {
                         swal({ title: 'El usuario es ahora administrador' })
                     })
@@ -298,7 +298,7 @@ export const changeNoBanUser = (id: any) => {
     return async function (dispatch: Dispatch<Action>) {
         if (id) {
             try {
-                axios.put(`http://localhost:3001/noBanUser/${id}`)
+                axios.put(`/noBanUser/${id}`)
                     .then(res => swal({ title: 'El usuario ya no está baneado' }))
 
             } catch (error) {
@@ -314,7 +314,7 @@ export const changeNoBanUser = (id: any) => {
 export const getAllUsers = () => {
     return async function (dispatch: Dispatch<Action>) {
         try {
-            const users = await axios.get('http://localhost:3001/user')
+            const users = await axios.get('/user')
             return dispatch({ type: GET_ALL_USERS, payload: users.data })
         } catch (error) {
             console.log(error)
@@ -325,7 +325,7 @@ export const getAllUsers = () => {
 
 export const editUser = (id: String, input: any) => {
     return function (dispatch: Dispatch<Action>) {
-        axios.put(`http://localhost:3001/user/${id}`, input)
+        axios.put(`/user/${id}`, input)
             .then(res => {
                 swal({ title: 'Su contraseña fue modificada correctamente' })
             })
@@ -337,11 +337,11 @@ export const editUser = (id: String, input: any) => {
 export const createUser = (input: any, navigate: any) => {
 
     return function (dispatch: Dispatch<Action>) {
-        axios.post(`http://localhost:3001/user/register`, input).then(resp => resp.data)
+        axios.post(`/user/register`, input).then(resp => resp.data)
             .then(res => {
                 console.log('registrado', res)
                 swal({ title: 'Registrado correctamente' })
-                axios.post(`http://localhost:3001/sendWelcomeMail/${input.mail}`).then(res => console.log('email sent', res.data))
+                axios.post(`/sendWelcomeMail/${input.mail}`).then(res => console.log('email sent', res.data))
                 navigate('/pedidos')
             })
             .catch(err => {
@@ -364,7 +364,7 @@ export const clearUser = () => {
 
 export const logUser = (navigate: any, input: any) => {
     return function (dispatch: Dispatch<Action>) {
-        axios.post(`http://localhost:3001/user/login`, input).then(resp => resp.data)
+        axios.post(`/user/login`, input).then(resp => resp.data)
             .then(res => {
                 localStorage.setItem('token', JSON.stringify(res));
                 window.location.reload()
@@ -381,7 +381,7 @@ export const logUser = (navigate: any, input: any) => {
 
 export const getUserById = (id: String) => {
     return function (dispatch: Dispatch<Action>) {
-        axios(`http://localhost:3001/user/${id}`).then(resp => resp.data)
+        axios(`/user/${id}`).then(resp => resp.data)
             .then(resp => {
                 dispatch({
                     type: GET_USER_BY_ID,
@@ -394,7 +394,7 @@ export const getUserById = (id: String) => {
 export const getUser = (token: { auth: boolean, token: string }) => {
     return function (dispatch: Dispatch<Action>) {
         axios
-            .get("http://localhost:3001/user/token", {
+            .get("/user/token", {
                 headers: {
                     "x-access-token": token.token,
                 },
@@ -416,7 +416,7 @@ export const getUser = (token: { auth: boolean, token: string }) => {
 
 export function modificarUser(_id: string, payload: any) {
     return function () {
-        axios.put(`http://localhost:3001/user/${_id}`, payload)
+        axios.put(`/user/${_id}`, payload)
     }
 }
 
@@ -433,7 +433,7 @@ export const cleanError = () => {
 
 export const modifyItemFromStock = (newStock: any, id: string) => {
     return function (dispatch: Dispatch<Action>) {
-        axios.put(`http://localhost:3001/product/${id}`, newStock).then(res => res.data)
+        axios.put(`/product/${id}`, newStock).then(res => res.data)
             .then(resp => {
                 console.log(resp)
             })
@@ -444,7 +444,7 @@ export const modifyItemFromStock = (newStock: any, id: string) => {
 
 export function createOrder(payload: any) {
     return function () {
-        axios.post('http://localhost:3001/order', payload).then(res => res.data)
+        axios.post('/order', payload).then(res => res.data)
             .then(resp => {
                 console.log(resp)
                 window.location.reload()
