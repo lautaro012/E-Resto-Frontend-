@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from '../../config'
 import { addToCart, getFoodById, vaciarComida, deleteItemFromCart } from '../../redux/actions/index'
 import '../DetailProduct/DetailProduct.css'
-//import ModalInDetail from "../Modal/Modal";
-//import useModal from "../../hooks/useModal";
 import { Button, Dropdown, Modal } from "flowbite-react";
 import swal from "sweetalert";
 
@@ -101,7 +99,7 @@ export default function DetailProduct({ id, closeModalDetail }) {
                         popup={true}
                         onClose={closeDetailModal}
                         data-aos="zoom-in-down"
-                        data-aos-duration="2000"
+                        data-aos-duration="500"
                     >
                         <Modal.Header>
                             <h1 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{food.name}</h1>
@@ -158,14 +156,19 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                                                     <div>
                                                                         {
                                                                             cat && cat.categoryProducts.map(prod => {
-                                                                                return (
-                                                                                    <button onClick={() => handleExtraItem(prod)}>
-                                                                                        <Dropdown.Item>
-                                                                                            {prod.name}
-                                                                                        </Dropdown.Item>
-                                                                                    </button>
+                                                                                if (prod.stock >= 1) {
+                                                                                    return (
+                                                                                        <button onClick={() => handleExtraItem(prod)}>
+                                                                                            <Dropdown.Item>
+                                                                                                {prod.name}
+                                                                                            </Dropdown.Item>
+                                                                                        </button>
 
-                                                                                )
+                                                                                    )
+                                                                                }
+                                                                                else {
+                                                                                    return null
+                                                                                }
                                                                             })
                                                                         }
                                                                     </div>
@@ -189,14 +192,19 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                                                     <div>
                                                                         {
                                                                             cat && cat.categoryProducts.map(prod => {
-                                                                                return (
-                                                                                    <button onClick={() => handleExtraItem(prod)}>
-                                                                                        <Dropdown.Item>
-                                                                                            {prod.name}
-                                                                                        </Dropdown.Item>
-                                                                                    </button>
+                                                                                if (prod.stock >= 1) {
+                                                                                    return (
+                                                                                        <button onClick={() => handleExtraItem(prod)}>
+                                                                                            <Dropdown.Item>
+                                                                                                {prod.name}
+                                                                                            </Dropdown.Item>
+                                                                                        </button>
 
-                                                                                )
+                                                                                    )
+                                                                                }
+                                                                                else {
+                                                                                    return null
+                                                                                }
                                                                             })
                                                                         }
                                                                     </div>

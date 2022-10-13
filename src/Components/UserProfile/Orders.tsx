@@ -5,7 +5,7 @@ export default function Orders() {
 
     const user = useAppSelector(state => state.user)
 
-    console.log(user)
+    console.log(user.orders)
 
     return (
         <div className='main_conteiner_order' data-aos="fade-left" data-aos-duration="1500">
