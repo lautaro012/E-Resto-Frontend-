@@ -21,8 +21,14 @@ export default function Orders() {
                                 <h3 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Pago</h3>
                                 <p>{order.payment}</p>
                                 <hr />
-                                <h3 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Total</h3>
+                                <h3 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Propina</h3>
+                                <p>$ {order.propina}</p>
+                                <hr />
+                                <h3 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Sub total</h3>
                                 <p>$ {order.subtotal}</p>
+                                <hr />
+                                <h3 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Total</h3>
+                                <p>$ {order.total}</p>
                                 <hr />
                                 <h3 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Pedidos</h3>
                                 {

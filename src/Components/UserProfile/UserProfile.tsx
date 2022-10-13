@@ -1,11 +1,8 @@
-//import { useEffect } from 'react'
 import { useAppSelector } from '../../config'
 import './UserProfile.css'
 import { useState } from 'react'
-//import { getUser } from '../../redux/actions'
 import DatosPerfil from './DatosPerfil'
 import Orders from './Orders'
-import { buttonclass } from "../../Style/Clases/Clases";
 import { Button } from 'flowbite-react'
 
 export default function Profile() {

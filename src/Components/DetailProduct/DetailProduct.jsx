@@ -250,7 +250,7 @@ export default function DetailProduct({ id, closeModalDetail }) {
                         </Modal.Body>
                     </Modal>
                     :
-                    <h3>Loading</h3>
+                    <h3>Cargando</h3>
             }
 
         </div >

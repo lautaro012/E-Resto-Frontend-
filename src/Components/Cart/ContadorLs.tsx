@@ -92,6 +92,8 @@ export default function ContadorLs(render: any) {
                     <Modal.Body>
                         <Check
                             precio={total}
+                            subtotal={subTotal}
+                            propina={propina}
                         ></Check>
                     </Modal.Body>
                     <Modal.Footer>

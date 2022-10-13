@@ -158,10 +158,15 @@
     margin-right: 3px;
 }
 
-#no_foods_cart{
-    height: fit-content;
+#no_foods_cart {
+    height: -moz-fit-content;
+
     min-height: inherit;
-    text-align: -webkit-center;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #h1_nofood {
@@ -169,5 +174,5 @@
 }
 
 #no_foods_cart img {
-    min-height: inherit;
+    border-radius: 50%;
 }
