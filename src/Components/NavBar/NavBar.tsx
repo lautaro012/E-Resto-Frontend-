@@ -1,23 +1,32 @@
 import "./NavBar.css";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
-//import { StateTypes } from "../../Interfaces/Interfaces";
 import { buttonclass } from "../../Style/Clases/Clases";
 import Logo from "../../Style/images/Henry.png";
 import { useEffect, useState } from "react";
 import Loggin from "../LogginForm/Loggin";
-import { useAppDispatch } from "../../config";
+import { useAppDispatch, useAppSelector } from "../../config";
 import { getUser } from "../../redux/actions";
 import { Modal } from "flowbite-react";
 import Cart from "../Cart/Cart";
 import Panel from "./Panel";
+import { ModalHeader } from "flowbite-react/lib/esm/components/Modal/ModalHeader";
+import { ModalBody } from "flowbite-react/lib/esm/components/Modal/ModalBody";
+import { ModalFooter } from "flowbite-react/lib/esm/components/Modal/ModalFooter";
+import SendMail from "../ForgotPass/SendMail";
+import Register from "../RegisterForm/RegisterForm";
 
 export default function NavBar() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   const [showLoggin, setShowLoggin] = useState<boolean>(false);
   const [openCart, setOpenCart] = useState<boolean | undefined>(false)
   const [menuResponsive, setMenuResponsive] = useState<boolean>(true);
+  const [forgotPW, setForgotPW] = useState<boolean>(false)
+  const [openRegister, setOpenRegister] = useState<boolean>(false)
+
+  const items = useAppSelector((state) => state.cart)
 
   let token: any = localStorage.getItem("token");
 
@@ -41,10 +50,16 @@ export default function NavBar() {
     dispatch(getUser(JSON.parse(token)));
   }, []);
 
-
-
   function closeCart() {
     setOpenCart(false)
+  }
+
+  function closeForgotPW() {
+    setForgotPW(false)
+  }
+
+  function closeRegister() {
+    setOpenRegister(false)
   }
 
   return (
@@ -53,12 +68,14 @@ export default function NavBar() {
         <button onClick={handleHome} className="flex items-center">
           <img id="logoNavBarImg" width={150} src={Logo} alt="LOGO"></img>
         </button>
+
+        {/* Modal carrito */}
         <Modal
           show={openCart}
           onClose={closeCart}
           size="6xl"
           data-aos="zoom-in-up"
-          data-aos-duration="1500"
+          data-aos-duration="500"
         >
           <Modal.Header>
             Mi carrito
@@ -66,6 +83,44 @@ export default function NavBar() {
           <Modal.Body>
             <Cart></Cart>
           </Modal.Body>
+        </Modal>
+
+        {/* Modal recuperacion pass */}
+        <Modal
+          show={forgotPW}
+          onClose={closeForgotPW}
+          size="4xl"
+          data-aos="zoom-in-up"
+          data-aos-duration="500"
+        >
+          <ModalHeader>
+            Recuperacion de contraseña en Henry's Resto Proyect
+          </ModalHeader>
+          <ModalBody>
+            <SendMail></SendMail>
+          </ModalBody>
+          <ModalFooter>
+            <a href="/">Henry's Resto Project™</a>
+          </ModalFooter>
+        </Modal>
+
+        {/* Modal registrarse */}
+        <Modal
+          show={openRegister}
+          onClose={closeRegister}
+          size="5xl"
+          data-aos="zoom-in-down"
+          data-aos-duration="500"
+        >
+          <ModalHeader>
+            Registro en Henry's Resto Proyect
+          </ModalHeader>
+          <ModalBody>
+            <Register></Register>
+          </ModalBody>
+          <ModalFooter>
+            <a href="/">Henry's Resto Project™</a>
+          </ModalFooter>
         </Modal>
 
         {
@@ -86,9 +141,19 @@ export default function NavBar() {
             )
         }
 
-        {showLoggin ? (
-          <Loggin openlog={openlog} showLoggin={showLoggin} />
-        ) : null}
+        {
+          showLoggin ?
+            (
+              <Loggin
+                openlog={openlog}
+                showLoggin={showLoggin}
+                setForgotPW={setForgotPW}
+                setOpenRegister={setOpenRegister}
+              />
+            )
+            :
+            null
+        }
 
         <div
           hidden={menuResponsive}
@@ -118,6 +183,7 @@ export default function NavBar() {
               </button>
             </li>
             <li>
+              <h1>{items.length}</h1>
             </li>
           </ul>
         </div>

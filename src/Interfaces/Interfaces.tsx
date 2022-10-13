@@ -40,6 +40,7 @@ export type StateTypes = {
 
     products: ProductDetail[] | [],
     categories: Array<Category> | [],
+    backUpCategories: Array<Category> | [],
     detail: ProductDetail | [],
     cart: ProductDetail[] | [],
     userDetail: [],

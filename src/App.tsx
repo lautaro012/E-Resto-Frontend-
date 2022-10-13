@@ -6,12 +6,10 @@ import { actualizarCart } from './redux/actions';
 
 import Pedidos from '../src/Components/Pedidos/Pedidos'
 import Home from '../src/Components/Home/Home'
-//import DetailProduct from './Components/DetailProduct/DetailProduct';
 import Footer from './Components/Footer/Footer';
-//import Register from './Components/RegisterForm/RegisterForm';
 import ForgotPass from './Components/ForgotPass/ForgotPass.jsx';
-//import SendMail from './Components/ForgotPass/SendMail';
-//import About from './Components/About_us/About';
+
+//import Register from './Components/RegisterForm/RegisterForm';
 
 function App() {
 
@@ -39,12 +37,9 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Home />} />
-          {/* <Route path='/modal' element={<SendMail />} /> */}
           <Route path='/recupera/:id' element={<ForgotPass />} />
           <Route path='/pedidos' element={<Pedidos />} />
-          {/* <Route path='/product/:id' element={<DetailProduct id closeModalDetail />} /> */}
           {/* <Route path='/register' element={<Register />} /> */}
-          {/* <Route path='/about' element={<About />} /> */}
         </Routes>
         <Footer />
       </Router>
