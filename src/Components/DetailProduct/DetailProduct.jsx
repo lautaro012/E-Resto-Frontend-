@@ -93,7 +93,14 @@ export default function DetailProduct({ id, closeModalDetail }) {
         <div >
             {
                 food && food ?
-                    <Modal show={closeModalDetail} size="6xl" popup={true} onClose={closeDetailModal}>
+                    <Modal
+                        show={closeModalDetail}
+                        size="6xl"
+                        popup={true}
+                        onClose={closeDetailModal}
+                        data-aos="zoom-in-down"
+                        data-aos-duration="2000"
+                    >
                         <Modal.Header>
                             <h1 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{food.name}</h1>
                         </Modal.Header>
@@ -105,7 +112,8 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                     <div className="extra_item_detalle">
                                         {
                                             extraItem && extraItem ?
-                                                <div>
+                                                <div data-aos="fade-left"
+                                                    data-aos-duration="2000">
                                                     <h1 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Bebida</h1>
                                                     <hr />
                                                     <div className="extra_item_detalel_conteiner">

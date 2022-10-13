@@ -144,7 +144,7 @@ export const getCategories = (sort: string) => {
 export const createProduct = function (input: CardForm) {
     return function (dispatch: Dispatch<Action>) {
         axios.post('/product', input)
-            .then(res => swal( {title : "Producto creado correctamente"}))
+            .then(res => swal({ title: "Producto creado correctamente" }))
             .catch(error => console.log(error))
     }
 }
@@ -231,7 +231,7 @@ export const sendSubscribeMail = (mail: String) => {
                     res => axios.post(`/sendSubscribeMail/${mail}`)
                 ).then(res => res.data)
                 .then(res => swal({ title: `Gracias por suscribirte a Henry's Food` }))
-                .catch(err => swal({ title: `${err.response.data}`}))
+                .catch(err => swal({ title: `${err.response.data}` }))
 
         }
     } else {
@@ -368,7 +368,7 @@ export const logUser = (navigate: any, input: any) => {
             .then(res => {
                 localStorage.setItem('token', JSON.stringify(res));
                 window.location.reload()
-                navigate('/pedidos')
+                //navigate('/pedidos')
             })
             .catch(err => {
                 return dispatch({

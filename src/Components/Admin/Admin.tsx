@@ -52,7 +52,7 @@ const Admin = () => {
           <UserList render={render} />
 
           : render === "allProducts" ?
-            <div>
+            <div data-aos="fade-left" data-aos-duration="1500">
               <div className='spanFoodsFilter'>
                 <p id='pFoodsFilter' className={buttonclass}>
                   <a href='#PastasAd'>Pastas</a> <a href='#MilanesasAd'>Milanesas</a> <a href='#PapasAd'>Papas</a> <a href='#SandwichesAd'>Sandwiches</a> <a href='#PizzasAd'>Pizzas</a> <a href='#EnsaladasAd'>Ensaladas</a> <a href='#Bebidas sin AlcoholAd'>Bebidas sin Alcohol</a>

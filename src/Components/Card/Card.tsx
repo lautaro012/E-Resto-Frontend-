@@ -22,7 +22,7 @@ export default function CardProduct({ formCard = false, comidaProps, modalOpen, 
     }
 
     return (
-        <div className="max-w-sm" data-aos="fade-up" data-aos-duration="1500">
+        <div className="max-w-sm" data-aos="fade-left" data-aos-duration="1500">
             <Card
                 imgAlt={name}
                 imgSrc={img}
