@@ -11,7 +11,7 @@ export default function DetailProduct({ id, closeModalDetail }) {
 
     const dispatch = useAppDispatch()
     const food = useAppSelector((state) => state.detail[0]);
-    const categories = useAppSelector((state) => state.categories);
+    const categories = useAppSelector((state) => state.backUpCategories);
     const cart = useAppSelector((state) => state.cart);
 
     const [extraItem, setExtraItem] = useState(null);
@@ -89,6 +89,8 @@ export default function DetailProduct({ id, closeModalDetail }) {
         setExtraItem(null)
     }
 
+    console.log(food)
+
     return (
         <div >
             {
@@ -138,69 +140,74 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                         <h1 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Detalles</h1>
                                         <p>{food.description}</p>
                                     </div>
-                                    <div id="detail_contenedor_labels">
-                                        <Dropdown label="Bebidas (opcional)">
-                                            <Dropdown.Header>
-                                                <span className="block text-l">
-                                                    Bebidas sin alcohol
-                                                </span>
-                                            </Dropdown.Header>
-                                            {
-                                                categories && categories.map(cat => {
-                                                    if (cat.name === "Bebidas sin Alcohol") {
-                                                        return (
-                                                            <div>
-                                                                {
-                                                                    cat && cat.categoryProducts.map(prod => {
-                                                                        return (
-                                                                            <button onClick={() => handleExtraItem(prod)}>
-                                                                                <Dropdown.Item>
-                                                                                    {prod.name}
-                                                                                </Dropdown.Item>
-                                                                            </button>
+                                    {
+                                        food.category === "Cervezas" || food.category === "Bebidas sin Alcohol" ?
+                                            null
+                                            :
+                                            <div id="detail_contenedor_labels">
+                                                <Dropdown label="Bebidas (opcional)">
+                                                    <Dropdown.Header>
+                                                        <span className="block text-l">
+                                                            Bebidas sin alcohol
+                                                        </span>
+                                                    </Dropdown.Header>
+                                                    {
+                                                        categories && categories.map(cat => {
+                                                            if (cat.name === "Bebidas sin Alcohol") {
+                                                                return (
+                                                                    <div>
+                                                                        {
+                                                                            cat && cat.categoryProducts.map(prod => {
+                                                                                return (
+                                                                                    <button onClick={() => handleExtraItem(prod)}>
+                                                                                        <Dropdown.Item>
+                                                                                            {prod.name}
+                                                                                        </Dropdown.Item>
+                                                                                    </button>
 
-                                                                        )
-                                                                    })
-                                                                }
-                                                            </div>
-                                                        )
+                                                                                )
+                                                                            })
+                                                                        }
+                                                                    </div>
+                                                                )
+                                                            }
+                                                            return null
+
+                                                        })
+
                                                     }
-                                                    return null
+                                                    <Dropdown.Divider />
+                                                    <Dropdown.Header>
+                                                        <span className="block text-l">
+                                                            Cervezas
+                                                        </span>
+                                                    </Dropdown.Header>
+                                                    {
+                                                        categories && categories.map(cat => {
+                                                            if (cat.name === "Cervezas") {
+                                                                return (
+                                                                    <div>
+                                                                        {
+                                                                            cat && cat.categoryProducts.map(prod => {
+                                                                                return (
+                                                                                    <button onClick={() => handleExtraItem(prod)}>
+                                                                                        <Dropdown.Item>
+                                                                                            {prod.name}
+                                                                                        </Dropdown.Item>
+                                                                                    </button>
 
-                                                })
-
-                                            }
-                                            <Dropdown.Divider />
-                                            <Dropdown.Header>
-                                                <span className="block text-l">
-                                                    Cervezas
-                                                </span>
-                                            </Dropdown.Header>
-                                            {
-                                                categories && categories.map(cat => {
-                                                    if (cat.name === "Cervezas") {
-                                                        return (
-                                                            <div>
-                                                                {
-                                                                    cat && cat.categoryProducts.map(prod => {
-                                                                        return (
-                                                                            <button onClick={() => handleExtraItem(prod)}>
-                                                                                <Dropdown.Item>
-                                                                                    {prod.name}
-                                                                                </Dropdown.Item>
-                                                                            </button>
-
-                                                                        )
-                                                                    })
-                                                                }
-                                                            </div>
-                                                        )
+                                                                                )
+                                                                            })
+                                                                        }
+                                                                    </div>
+                                                                )
+                                                            }
+                                                            return null
+                                                        })
                                                     }
-                                                    return null
-                                                })
-                                            }
-                                        </Dropdown>
-                                    </div>
+                                                </Dropdown>
+                                            </div>
+                                    }
                                     <div className="comentarios_detalle">
                                         <h2>Comentarios</h2>
                                         <textarea

@@ -1,8 +1,5 @@
 
 import { Modal, Label, Checkbox } from "flowbite-react";
-import { ModalBody } from "flowbite-react/lib/esm/components/Modal/ModalBody";
-import { ModalFooter } from "flowbite-react/lib/esm/components/Modal/ModalFooter";
-import { ModalHeader } from "flowbite-react/lib/esm/components/Modal/ModalHeader";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../config";
@@ -10,19 +7,15 @@ import { Input, StateTypes, Submit } from "../../Interfaces/Interfaces";
 import { cleanError, logUser } from "../../redux/actions";
 import { buttonclass } from "../../Style/Clases/Clases";
 import { inputForm } from '../../Style/Clases/Clases'
-import Login from "../Auth/Login";
-import SendMail from "../ForgotPass/SendMail";
-import Register from "../RegisterForm/RegisterForm";
+import GoogleLoggin from "../Auth/GoogleLoggin";
 import './Loggin.css'
 
-export default function Loggin({ openlog, showLoggin }: any) {
+export default function Loggin({ openlog, showLoggin, setForgotPW, setOpenRegister }: any) {
 
     const navigate = useNavigate()
     let dispatch = useAppDispatch();
     let error = useAppSelector((state: StateTypes) => state.error);
     const [loading, setLoading] = useState<boolean>(false)
-    const [openRegister, setOpenRegister] = useState<boolean>(false)
-    const [forgotPW, setForgotPW] = useState<boolean>(false)
 
     const [input, setInput] = useState<{ mail: string; password: string; google: boolean }>({
         mail: "",
@@ -57,14 +50,6 @@ export default function Loggin({ openlog, showLoggin }: any) {
             setLoading(false)
         }, 1000)
     };
-
-    function closeRegister() {
-        setOpenRegister(false)
-    }
-
-    function closeForgotPW() {
-        setForgotPW(false)
-    }
 
     return (
         <Modal show={showLoggin} size="lg" popup={true} onClose={openlog} data-aos="zoom-in" data-aos-duration="100">
@@ -110,11 +95,11 @@ export default function Loggin({ openlog, showLoggin }: any) {
                             </div>
                             <button
                                 onClick={() => setForgotPW(true)}
+                                type="button"
                                 className="text-sm text-blue-700 hover:underline dark:text-blue-500"
                             >
                                 ¿ Olvidaste la contraseña ?
                             </button>
-
                         </div>
                         <br></br>
                         {
@@ -122,7 +107,6 @@ export default function Loggin({ openlog, showLoggin }: any) {
                                 <div className="loggin-conteiner">
                                     <h1 className="text-amber-700 text-xl">{error.response.data}</h1>
                                 </div>
-
                                 :
                                 null
                         }
@@ -144,7 +128,7 @@ export default function Loggin({ openlog, showLoggin }: any) {
                         <hr></hr>
                         <br></br>
                         <div className="loggin-conteiner">
-                            <Login></Login>
+                            <GoogleLoggin></GoogleLoggin>
                         </div>
                         <br></br>
                         <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
@@ -155,49 +139,8 @@ export default function Loggin({ openlog, showLoggin }: any) {
                             >
                                 Crear cuenta
                             </button>
-                            <Modal
-                                show={openRegister}
-                                onClose={closeRegister}
-                                size="5xl"
-                                data-aos="zoom-in-down"
-                                data-aos-duration="1500"
-                            >
-                                <ModalHeader>
-                                    Registro en Henry's Resto Proyect
-                                </ModalHeader>
-                                <ModalBody>
-                                    <Register></Register>
-                                </ModalBody>
-                                <ModalFooter>
-                                    <a href="/">Henry's Resto Project™</a>
-                                </ModalFooter>
-                            </Modal>
                         </div>
                     </form>
-                    {
-                        forgotPW === true ?
-                            <div>
-                                <Modal
-                                    show={forgotPW}
-                                    onClose={closeForgotPW}
-                                    size="4xl"
-                                    data-aos="zoom-in-up"
-                                    data-aos-duration="1500"
-                                >
-                                    <ModalHeader>
-                                        Recuperacion de contraseña en Henry's Resto Proyect
-                                    </ModalHeader>
-                                    <ModalBody>
-                                        <SendMail></SendMail>
-                                    </ModalBody>
-                                    <ModalFooter>
-                                        <a href="/">Henry's Resto Project™</a>
-                                    </ModalFooter>
-                                </Modal>
-                            </div>
-                            :
-                            null
-                    }
                 </div>
             </Modal.Body>
         </Modal>
