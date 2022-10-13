@@ -10,6 +10,7 @@ import Home from '../src/Components/Home/Home'
 import Footer from './Components/Footer/Footer';
 //import Register from './Components/RegisterForm/RegisterForm';
 import ForgotPass from './Components/ForgotPass/ForgotPass.jsx';
+import Mapa from './Components/Map/Map';
 //import SendMail from './Components/ForgotPass/SendMail';
 //import About from './Components/About_us/About';
 
@@ -45,6 +46,7 @@ function App() {
           {/* <Route path='/product/:id' element={<DetailProduct id closeModalDetail />} /> */}
           {/* <Route path='/register' element={<Register />} /> */}
           {/* <Route path='/about' element={<About />} /> */}
+          <Route path='/test' element={<Mapa/>}/>
         </Routes>
         <Footer />
       </Router>
