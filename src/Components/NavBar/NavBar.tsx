@@ -56,7 +56,9 @@ export default function NavBar() {
         <Modal
           show={openCart}
           onClose={closeCart}
-          size="7xl"
+          size="6xl"
+          data-aos="zoom-in-up"
+          data-aos-duration="1500"
         >
           <Modal.Header>
             Mi carrito

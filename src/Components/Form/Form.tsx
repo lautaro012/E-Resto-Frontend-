@@ -64,7 +64,7 @@ export default function Form({
       setOferta(true);
     }
   };
-  const handleChange = (e: Input | TextArea)  => {
+  const handleChange = (e: Input | TextArea) => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -95,7 +95,7 @@ export default function Form({
   };
   return (
     <>
-      <Modal  show={showModal} size="6xl" popup={true} onClose={handleClose}>
+      <Modal show={showModal} size="6xl" popup={true} onClose={handleClose} data-aos="fade-up-right" data-aos-duration="1500">
         <Modal.Header />
         <Modal.Body>
           <div className="form-conteiner transition-opacity">
@@ -253,7 +253,7 @@ export default function Form({
                       Crear
                     </button>
                   ) : (
-                    <button  className={buttonclass} type="submit">
+                    <button className={buttonclass} type="submit">
                       Editar
                     </button>
                   )}

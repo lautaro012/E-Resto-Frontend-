@@ -1,116 +1,139 @@
 .container_about {
-    height: 90vh;
-    width: 100vw;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0 auto;
-    background-color: #F1FFC4;
-  }
-  .container_about h2 {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: #fff;
-    margin: 20px;
-    opacity: 0;
-    transition: opacity 1s;
-    font-size: xx-large;
-  }
-  .border_about {
-    height: 369px;
-    width: 290px;
-    background: transparent;
-    border-radius: 10px;
-    transition: border 1s;
-    position: relative;
-  }
-  .border_about:hover {
-    border: 1px solid #fff;
-  }
-  .cardAbout {
-    height: 379px;
-    width: 300px;
-    background: #808080;
-    border-radius: 10px;
-    transition: background 0.8s;
-    overflow: hidden;
-    background: #000;
-    box-shadow: 0 70px 63px -60px #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-  .card0 {
-    background: url("../../Style/images/Sergio.jpg") center center no-repeat;
-    background-size: 300px;
-  }
-  .card0:hover {
-    background: url("../../Style/images/Sergio.jpg") left center no-repeat;
-    background-size: 600px;
-  }
-  .card0:hover h2 {
-    opacity: 1;
-  }
-  .card0:hover .fa {
-    opacity: 1;
-  }
-  .card1 {
-    background: url( "../../Style/images/lautaro.jpeg") center center no-repeat;
-    background-size: 300px;
-  }
-  .card1:hover {
-    background: url( "../../Style/images/lautaro.jpeg") left center no-repeat;
-    background-size: 600px;
-  }
-  .card1:hover h2 {
-    opacity: 1;
-  }
-  .card1:hover .fa {
-    opacity: 1;
-  }
-  .card2 {
-    background: url("../../Style/images/Luciana.jpg") center center no-repeat;
-    background-size: 300px;
-  }
-  .card2:hover {
-    background: url("../../Style/images/Luciana.jpg") left center no-repeat;
-    background-size: 600px;
-  }
-  .card2:hover h2 {
-    opacity: 1;
-  }
-  .card2:hover .fa {
-    opacity: 1;
-  }
-  .card3 {
-    background: url( "../../Style/images/Pierino.jpg") center center no-repeat;
-    background-size: 300px;
-  }
-  .card3:hover {
-    background: url( "../../Style/images/Pierino.jpg") left center no-repeat;
-    background-size: 600px;
-  }
-  .card3:hover h2 {
-    opacity: 1;
-  }
-  .card3:hover .fa {
-    opacity: 1;
-  }
-  .fa {
-    opacity: 0;
-    transition: opacity 1s;
-  }
-  .icons_about {
-    position: absolute;
-    fill: #fff;
-    color: #fff;
-    height: 130px;
-    top: 226px;
-    width: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-  }
-  
+.container_about h2 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #fff;
+  margin: 20px;
+  opacity: 0;
+  transition: opacity 1s;
+  font-size: xx-large;
+}
+
+.border_about {
+  height: 369px;
+  width: 290px;
+  background: transparent;
+  border-radius: 10px;
+  transition: border 1s;
+  position: relative;
+}
+
+.border_about:hover {
+  border: 1px solid #fff;
+}
+
+.border_about:hover .icons_about {
+  z-index: 10;
+}
+
+.cardAbout {
+  height: 379px;
+  width: 300px;
+  background: #808080;
+  border-radius: 10px;
+  transition: background 0.8s;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 70px 63px -60px #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.card0 {
+  background: url("../../Style/images/Sergio.jpg") center center no-repeat;
+  background-size: 300px;
+}
+
+.card0:hover {
+  background: url("../../Style/images/Sergio.jpg") left center no-repeat;
+  background-size: 600px;
+}
+
+.card0:hover h2 {
+  opacity: 1;
+}
+
+.card0:hover .fa {
+  opacity: 1;
+}
+
+.card1 {
+  background: url("../../Style/images/lautaro.jpeg") center center no-repeat;
+  background-size: 300px;
+}
+
+.card1:hover {
+  background: url("../../Style/images/lautaro.jpeg") left center no-repeat;
+  background-size: 600px;
+}
+
+.card1:hover h2 {
+  opacity: 1;
+}
+
+.card1:hover .fa {
+  opacity: 1;
+}
+
+.card2 {
+  background: url("../../Style/images/Luciana.jpg") center center no-repeat;
+  background-size: 300px;
+}
+
+.card2:hover {
+  background: url("../../Style/images/Luciana.jpg") left center no-repeat;
+  background-size: 600px;
+}
+
+.card2:hover h2 {
+  opacity: 1;
+}
+
+.card2:hover .fa {
+  opacity: 1;
+}
+
+.card3 {
+  background: url("../../Style/images/Pierino.jpg") center center no-repeat;
+  background-size: 300px;
+}
+
+.card3:hover {
+  background: url("../../Style/images/Pierino.jpg") left center no-repeat;
+  background-size: 600px;
+}
+
+.card3:hover h2 {
+  opacity: 1;
+}
+
+.card3:hover .fa {
+  opacity: 1;
+}
+
+.fa {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.icons_about {
+  position: absolute;
+  fill: #fff;
+  color: #fff;
+  height: 130px;
+  top: 226px;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  z-index: -10;
+}

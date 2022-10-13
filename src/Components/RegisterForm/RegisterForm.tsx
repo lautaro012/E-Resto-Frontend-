@@ -16,13 +16,14 @@ export default function Register() {
     let navigate = useNavigate()
     const [loading, setLoading] = useState<boolean>(false)
     const [passwordError, setPasswordError] = useState<boolean>(false)
+
     const [input, setInput] = useState<any>({
         name: '',
         lastName: '',
         userName: '',
         adress: '',
         password: '',
-        repeatpassword:'',
+        repeatpassword: '',
         mail: '',
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW2zB9ZfnqjeJkkgqMS7zen-NVpatbD9U3tiEirtof0QIA8Cx3ApChLYPJO9hVdncSkrA&usqp=CAU',
         admin: false
@@ -36,7 +37,7 @@ export default function Register() {
                 userName: '',
                 adress: '',
                 password: '',
-                repeatpassword:'',
+                repeatpassword: '',
                 mail: '',
                 img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW2zB9ZfnqjeJkkgqMS7zen-NVpatbD9U3tiEirtof0QIA8Cx3ApChLYPJO9hVdncSkrA&usqp=CAU',
                 admin: false
@@ -55,17 +56,21 @@ export default function Register() {
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
-        console.log(input)
+        //        console.log(input)
         setLoading(true)
-        if(input.password === input.repeatpassword){
+        if (input.password !== "" && input.password === input.repeatpassword) {
+            console.log("ENTRO IF")
             dispatch(createUser(input, navigate));
-        }else{
+        }
+        else {
+            console.log("ENTRO ELSE")
             setPasswordError(true)
         }
         setTimeout(() => {
             setLoading(false)
         }, 2000)
     }
+
     return (
         <div className="register-conteiner">
             <form onSubmit={handleSubmit}>
@@ -126,6 +131,7 @@ export default function Register() {
                             onChange={handleChange}
                             id="userName"
                             placeholder="Nombre de Usuario"
+                            required
                         />
                     </div>
                     <div className="mb-3 xl:w-96">
@@ -161,8 +167,8 @@ export default function Register() {
                             className={inputRegister}
                             onChange={handleChange}
                             id="password"
-                            required
                             placeholder="Contraseña"
+                            required
                         />
                     </div>
                     <div className="mb-3 xl:w-96">
@@ -180,6 +186,7 @@ export default function Register() {
                             onChange={handleChange}
                             id="repeatpassword"
                             placeholder="Repita la Contraseña"
+                            required
                         />
                     </div>
                 </div>
@@ -214,7 +221,7 @@ export default function Register() {
                             onChange={handleChange}
                             id="img"
                             placeholder="Ingrese un URL de su imagen"
-                            
+
                         />
                     </div>
                 </div>
@@ -226,9 +233,9 @@ export default function Register() {
                 }
                 {
                     passwordError ?
-                    <h1 className="text-amber-700 text-xl"> Las contraseñas no coinciden </h1>
-                    :
-                    null
+                        <h1 className="text-amber-700 text-xl"> Las contraseñas no coinciden </h1>
+                        :
+                        null
                 }
                 {
                     loading ?

@@ -8,7 +8,7 @@ export default function Orders() {
     console.log(user)
 
     return (
-        <div className='main_conteiner_order'>
+        <div className='main_conteiner_order' data-aos="fade-left" data-aos-duration="1500">
             <h1 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">Mis compras</h1>
             {
                 user.orders && user.orders.length > 0 ?
