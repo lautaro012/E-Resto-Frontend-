@@ -20,6 +20,7 @@ import {
 const initialState: StateTypes = {
     products: [],
     categories: [],
+    backUpCategories: [],
     detail: [],
     cart: [],
     userDetail: [],
@@ -43,6 +44,7 @@ export default function rootReducer(state = initialState, action: Action) {
             return {
                 ...state,
                 categories: action.payload,
+                backUpCategories: action.payload,
             }
 
         case GET_ALL_USERS:

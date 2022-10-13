@@ -5,7 +5,7 @@ import { logUser } from '../../redux/actions'
 import { useNavigate } from 'react-router-dom'
 
 
-const Login = () => {
+export default function GoogleLoggin() {
     // password,lastName,userName,name,google
 
     let dispatch = useAppDispatch()
@@ -18,7 +18,7 @@ const Login = () => {
             lastName: data.given_name,
             userName: data.name,
             name: data.family_name,
-            google:true,
+            google: true,
             img: data.picture,
             adress: 'Av. Simpre Viva N° 742'
         }
@@ -34,16 +34,14 @@ const Login = () => {
         });
         google.accounts.id.renderButton(
             document.getElementById('signInDiv'),
-            {theme: 'outline', size: 'large'}
+            { theme: 'outline', size: 'large' }
         );
         //google.accounts.id.prompt()
-    },[])
-  
-    return (
-    <div>
-        <div id='signInDiv'></div>
-    </div>
-  )
-}
+    }, [])
 
-export default Login
+    return (
+        <div>
+            <div id='signInDiv'></div>
+        </div>
+    )
+}
