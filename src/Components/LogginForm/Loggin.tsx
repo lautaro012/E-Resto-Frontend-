@@ -130,9 +130,9 @@ export default function Loggin({ openlog, showLoggin }: any) {
                             <br></br>
                             <hr></hr>
                             <br></br>
-                            <div className="loggin-conteiner">
+                            {/* <div className="loggin-conteiner">
                                 <Login></Login>
-                            </div>
+                            </div> */}
                             <br></br>
                             <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                                 Not registered?{" "}
