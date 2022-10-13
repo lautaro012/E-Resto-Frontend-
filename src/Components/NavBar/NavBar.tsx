@@ -11,6 +11,7 @@ import { getUser } from "../../redux/actions";
 import { Modal } from "flowbite-react";
 import Cart from "../Cart/Cart";
 import Panel from "./Panel";
+import Login from "../Auth/Login";
 
 export default function NavBar() {
   const dispatch = useAppDispatch();
@@ -116,6 +117,9 @@ export default function NavBar() {
               </button>
             </li>
             <li>
+              <div>
+                <Login></Login>
+              </div>
             </li>
           </ul>
         </div>
