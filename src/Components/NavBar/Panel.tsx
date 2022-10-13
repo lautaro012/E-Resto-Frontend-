@@ -92,6 +92,8 @@ export default function Panel({ menuResponsive, setMenuResponsive }: any) {
                                     show={openAdmin}
                                     onClose={closeAdmin}
                                     size="7xl"
+                                    data-aos="fade-right"
+                                    data-aos-duration="500"
                                 >
                                     <Modal.Header>
                                         Admin
@@ -112,6 +114,8 @@ export default function Panel({ menuResponsive, setMenuResponsive }: any) {
                                     show={openUser}
                                     onClose={closeUser}
                                     size="7xl"
+                                    data-aos="fade-left"
+                                    data-aos-duration="500"
                                 >
                                     <Modal.Header>
                                         User

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../config'
 import { editUser, getUserById } from '../../redux/actions'
 import { buttonclass } from '../../Style/Clases/Clases'
@@ -10,6 +10,7 @@ import './Pass.css'
 export default function ForgotPass() {
   let { id } = useParams()
   let dispatch = useAppDispatch()
+  const navigate = useNavigate();
   const [firstPass, setFirstPass] = useState('')
   const [secondPass, setSecondPass] = useState('')
   const [input, setInput] = useState({
@@ -19,7 +20,7 @@ export default function ForgotPass() {
   const userDetail = useAppSelector((state) => state.userDetail)
 
   const handleChange = (e) => {
-    if (e.target.name == 'passFirst') {
+    if (e.target.name === 'passFirst') {
       setFirstPass(e.target.value)
 
     } else {
@@ -32,6 +33,7 @@ export default function ForgotPass() {
 
     if (firstPass === secondPass) {
       dispatch(editUser(id, input))
+      navigate("/")
     } else {
       swal({ title: 'Las constraseñas no coinciden' })
     }
@@ -39,14 +41,13 @@ export default function ForgotPass() {
 
   useEffect(() => {
     dispatch(getUserById(id))
-  }, [dispatch])
+  }, [dispatch, id])
 
   useEffect(() => {
     setInput({
       password: firstPass
     })
   }, [firstPass])
-
 
   return (
     <div className='forgot_password'>

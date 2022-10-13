@@ -93,7 +93,7 @@ export default function Pedidos() {
                         {categories?.map((categoria: Category) => {
                             return categoria.categoryProducts.length !== 0 ? (
                                 <div
-                                data-aos="fade-up" data-aos-duration="1500"
+                                    data-aos="fade-up" data-aos-duration="1500"
                                     id={categoria.name}
                                     key={categoria._id}
                                     className="Categoria"

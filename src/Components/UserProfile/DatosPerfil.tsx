@@ -96,7 +96,7 @@ export default function DatosPerfil(data: any) {
     // }
 
     return (
-        <div className="modificar_perfil">
+        <div className="modificar_perfil" data-aos="fade-left" data-aos-duration="1500" >
             <h1 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">Mi perfil</h1>
             <div>
                 <h2>{mail}</h2>
