@@ -19,6 +19,7 @@ export default function Form({
   let dispatch = useAppDispatch();
 
   const [oferta, setOferta] = useState<Boolean>(false);
+  const [loading, setLoading] = useState<Boolean>(false);
   const [input, setInput] = useState<CardForm>({
     name: formData.name,
     img: formData.img,
@@ -70,6 +71,31 @@ export default function Form({
       [e.target.name]: e.target.value,
     });
   };
+  const handleImageChange = (e: any) => {
+    if(e.target.files && e.target.files[0]) {
+        setLoading(true)
+        const data = new FormData()
+        data.append("file", e.target.files[0])
+        data.append("upload_preset", "FoodHen")
+        fetch (
+            "https://api.cloudinary.com/v1_1/luubermudezz/image/upload", {
+             method: "POST",
+             body: data
+            // mode: 'no-cors'
+            }
+        ).then(resp => resp.json())
+                .then(file => {
+                    if(file) {
+                    setInput({
+                    ...input,
+                    img: `${file.secure_url}`
+                    })
+                    setLoading(false)
+                }
+                })
+
+    }
+}
   const handleSelect = (e: Select) => {
     setInput({
       ...input,
@@ -234,13 +260,12 @@ export default function Form({
 
                   <div className="relative z-0 mb-6 w-full group">
                     <input
-                      type="url"
-                      onChange={handleChange}
+                      type="file"
+                      onChange={handleImageChange}
                       defaultValue={newProduct ? null : formData.img}
                       name="img"
                       id="img"
                       className={inputForm}
-                      placeholder=" "
                       required
                     />
                     <label htmlFor="img" className={labelForm}>
