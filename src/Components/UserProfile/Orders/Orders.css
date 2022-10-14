@@ -1,0 +1,32 @@
+.main_conteiner_order {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    max-height: 70vh;
+    overflow-x: clip;
+}
+
+#conteinerCart_order {
+    border-style: groove;
+    display: flex;
+    border-radius: 20px;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 5%;
+    border-color: black;
+    border-width: 1px;
+}
+
+#conteinerCart_order img {
+    max-width: 10VW;
+    max-height: 10vh;
+}
+
+#conteiner_order {
+    margin: 1%;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 25px;
+    padding: 3%;
+}
