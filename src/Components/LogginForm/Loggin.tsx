@@ -7,7 +7,7 @@ import { Input, StateTypes, Submit } from "../../Interfaces/Interfaces";
 import { cleanError, logUser } from "../../redux/actions";
 import { buttonclass } from "../../Style/Clases/Clases";
 import { inputForm } from '../../Style/Clases/Clases'
-import GoogleLoggin from "../Auth/GoogleLoggin";
+import GoogleLoggin from "../Auth/GoogleLoggin.jsx";
 import './Loggin.css'
 
 export default function Loggin({ openlog, showLoggin, setForgotPW, setOpenRegister }: any) {
@@ -129,7 +129,7 @@ export default function Loggin({ openlog, showLoggin, setForgotPW, setOpenRegist
                         <hr></hr>
                         <br></br>
                         <div className="loggin-conteiner">
-                            <GoogleLoggin></GoogleLoggin>
+                            <GoogleLoggin/>
                         </div>
                         <br></br>
                         <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
