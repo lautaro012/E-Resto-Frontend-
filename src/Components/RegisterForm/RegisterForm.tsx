@@ -53,6 +53,31 @@ export default function Register() {
         dispatch(cleanError())
         setPasswordError(false)
     };
+    const handleImageChange = (e: any) => {
+        if(e.target.files && e.target.files[0]) {
+            setLoading(true)
+            const data = new FormData()
+            data.append("file", e.target.files[0])
+            data.append("upload_preset", "FoodHen")
+            fetch (
+                "https://api.cloudinary.com/v1_1/luubermudezz/image/upload", {
+                 method: "POST",
+                 body: data
+                // mode: 'no-cors'
+                }
+            ).then(resp => resp.json())
+                    .then(file => {
+                        if(file) {
+                        setInput({
+                        ...input,
+                        img: `${file.secure_url}`
+                        })
+                        setLoading(false)
+                    }
+                    })
+  
+        }
+    }
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
@@ -215,12 +240,11 @@ export default function Register() {
                             Imagen:
                         </label>
                         <input
-                            type="url"
+                            type="file"
                             name='img'
                             className={inputRegister}
-                            onChange={handleChange}
+                            onChange={handleImageChange}
                             id="img"
-                            placeholder="Ingrese un URL de su imagen"
 
                         />
                     </div>

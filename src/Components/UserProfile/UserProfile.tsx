@@ -2,8 +2,9 @@ import { useAppSelector } from '../../config'
 import './UserProfile.css'
 import { useState } from 'react'
 import DatosPerfil from './DatosPerfil'
-import Orders from './Orders'
+import Orders from './Orders/Orders'
 import { Button } from 'flowbite-react'
+import OrderDetail from '../OrderDetail/OrderDetail'
 
 export default function Profile() {
 
@@ -46,8 +47,11 @@ export default function Profile() {
                             :
                             render === "orders" ?
                                 <Orders></Orders>
-                                :
-                                null
+                            :
+                            render === 'detail' ?
+                                <OrderDetail></OrderDetail>
+                            :
+                            null
                     }
                 </div>
             </div>

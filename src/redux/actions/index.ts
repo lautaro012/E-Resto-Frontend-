@@ -2,6 +2,7 @@ import { Dispatch } from "react";
 import axios from 'axios'
 import { Action, CardForm, Category, ProductDetail } from "../../Interfaces/Interfaces";
 import swal from "sweetalert";
+import Swal from 'sweetalert2'
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const GET_PRODUCTS_BY_NAME = 'GET_PRODUCTS_BY_NAME'
@@ -193,10 +194,40 @@ export const editProduct = (input: CardForm, id: number) => {
 }
 
 export const deleteProduct = (id: string) => {
-    axios.delete(`/product/${id}`).then(res => res.data)
-        .then(res => console.log(res))
-        .then(res => window.location.reload())
-        .catch(err => console.log(err))
+    return async function (dispatch: Dispatch<Action>) {
+        if (id) {
+            Swal.fire({
+                title: '¿Estás seguro que deseas eliminar este producto?',
+                text: "Ya no estará disponible en la tienda virtual",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonText: 'Cancelar',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, confirmar'
+                }).then((result:any) => {
+                if (result.isConfirmed) {
+                    try {
+                        axios.delete(`http://localhost:3001/product/${id}`)
+                        .then(res => {
+                            Swal.fire(
+                                'Listo!',
+                                'El producto ha sido eliminado correctamente',
+                                'success'
+                                )
+                                .then((res:any) => window.location.reload())
+
+                        })
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }
+                })
+        }
+        else {
+            console.log(`didn't get id`)
+        }
+    }
 }
 
 export function actualizarCart(food: any) {
@@ -259,15 +290,34 @@ export const sendResetPassMail = (mail: String) => {
 export const changeBanUser = (id: any) => {
     return async function (dispatch: Dispatch<Action>) {
         if (id) {
-            try {
-                axios.put(`/banUser/${id}`)
-                    .then(res => {
-                        swal({ title: 'Usuario baneado' })
-                    })
+            Swal.fire({
+                title: '¿Estás seguro que deseas banear al usuario?',
+                text: "Se le informará al usuario el cambio en su cuenta",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonText: 'Cancelar',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, confirmar'
+                }).then((result:any) => {
+                if (result.isConfirmed) {
+                    try {
+                        axios.put(`http://localhost:3001/banUser/${id}`)
+                        .then(res => {
+                            Swal.fire(
+                                'Listo!',
+                                'El usuario ha sido baneado correctamente',
+                                'success'
+                                )
+                            
+                        })
+                    } catch (error) {
+                        console.log(error)
+                    }
 
-            } catch (error) {
-                console.log(error)
-            }
+                }
+                })
+
         }
         else {
             console.log(`didn't get id`)
@@ -278,15 +328,33 @@ export const changeBanUser = (id: any) => {
 export const changeUserAsAdmin = (id: any) => {
     return async function (dispatch: Dispatch<Action>) {
         if (id) {
-            try {
-                axios.put(`/setAdmin/${id}`)
-                    .then(res => {
-                        swal({ title: 'El usuario es ahora administrador' })
-                    })
+            Swal.fire({
+                title: '¿Estás seguro que deseas convertir al usuario en administrador?',
+                text: "Podrá modificar, agregar productos y administrar los usuarios",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonText: 'Cancelar',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, confirmar'
+                }).then((result:any) => {
+                if (result.isConfirmed) {
+                    try {
+                        axios.put(`http://localhost:3001/setAdmin/${id}`)
+                        .then(res => {
+                            Swal.fire(
+                                'Listo!',
+                                'El usuario es ahora administrador',
+                                'success'
+                                )
+                            
+                        })
+                    } catch (error) {
+                        console.log(error)
+                    }
 
-            } catch (error) {
-                console.log(error)
-            }
+                }
+                })
         }
         else {
             console.log(`didn't get id`)
@@ -297,13 +365,33 @@ export const changeUserAsAdmin = (id: any) => {
 export const changeNoBanUser = (id: any) => {
     return async function (dispatch: Dispatch<Action>) {
         if (id) {
-            try {
-                axios.put(`/noBanUser/${id}`)
-                    .then(res => swal({ title: 'El usuario ya no está baneado' }))
+            Swal.fire({
+                title: '¿Estás seguro que deseas devolver la cuenta al usuario?',
+                text: "Podrá acceder al sitio nuevamente",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonText: 'Cancelar',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, confirmar'
+                }).then((result:any) => {
+                if (result.isConfirmed) {
+                    try {
+                        axios.put(`http://localhost:3001/noBanUser/${id}`)
+                        .then(res => {
+                            Swal.fire(
+                                'Listo!',
+                                'El usuario ahora puede ingresar al sitio',
+                                'success'
+                                )
+                            
+                        })
+                    } catch (error) {
+                        console.log(error)
+                    }
 
-            } catch (error) {
-                console.log(error)
-            }
+                }
+                })
         }
         else {
             console.log(`didn't get id`)

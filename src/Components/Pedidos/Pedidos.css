@@ -17,9 +17,10 @@
 }
 
 #selectConfigSize {
-  width: 176px;
+  width: 180px;
   height: inherit;
   color: black;
+  text-align: center;
 }
 
 #buttonAsideConfig {

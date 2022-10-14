@@ -51,15 +51,13 @@ export default function Pedidos() {
                     </select> */}
 
                     <select className={select} onChange={(e) => orderSort(e)} id='selectConfigSize'>
-                        <option value="">Ordenar por nombre:</option>
+                        <option value="">Ordenar Productos</option>
                         <option value="AZ">AZ</option>
                         <option value="ZA">ZA</option>
-                    </select>
-                    <select className={select} onChange={(e) => orderSort(e)} id='selectConfigSize' >
-                        <option value="">Ordenar por precio:</option>
                         <option value="mayorPrecio">Mayor precio</option>
                         <option value="menorPrecio">Menor precio</option>
                     </select>
+
                     {/* <button className={buttonclass} >MAS COMPRADOS</button> */}
                     <button className={buttonclass} onClick={(e) => setOrder("mayorRating")}>MAS POPULARES</button>
                 </div>
