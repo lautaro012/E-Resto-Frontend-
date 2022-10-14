@@ -29,7 +29,7 @@ export default function Cartita({ e, onProducEdit, deleted }: any) {
                             <button className={buttonclass} onClick={handleEdit}>
                                 Editar Producto
                             </button>
-                            <button onClick={() => { if (window.confirm(`¿ Esta seguro de eliminar este producto ?`)) handleDelete() }} className={buttonclass}>Eliminar Producto</button>
+                            <button onClick={handleDelete} className={buttonclass}>Eliminar Producto</button>
                         </div>
                     </div>
                 </li>

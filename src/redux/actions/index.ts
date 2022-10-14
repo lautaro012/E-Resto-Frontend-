@@ -194,11 +194,41 @@ export const editProduct = (input: CardForm, id: number) => {
 }
 
 export const deleteProduct = (id: string) => {
-    
-    axios.delete(`http://localhost:3001/product/${id}`).then(res => res.data)
-        .then(res => console.log(res))
-        .then(res => window.location.reload())
-        .catch(err => console.log(err))
+    return async function (dispatch: Dispatch<Action>) {
+        if (id) {
+            Swal.fire({
+                title: '¿Estás seguro que deseas eliminar este producto?',
+                text: "Ya no estará disponible en la tienda virtual",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonText: 'Cancelar',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, confirmar'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    try {
+                        axios.delete(`http://localhost:3001/product/${id}`)
+                        .then(res => {
+                            Swal.fire(
+                                'Listo!',
+                                'El producto ha sido eliminado correctamente',
+                                'success'
+                                )
+                                .then(res => window.location.reload())
+
+                        })
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }
+                })
+        }
+        else {
+            console.log(`didn't get id`)
+        }
+    }
+
 }
 
 export function actualizarCart(food: any) {
@@ -267,6 +297,7 @@ export const changeBanUser = (id: any) => {
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
+                cancelButtonText: 'Cancelar',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Si, confirmar'
                 }).then((result) => {
@@ -304,6 +335,7 @@ export const changeUserAsAdmin = (id: any) => {
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
+                cancelButtonText: 'Cancelar',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Si, confirmar'
                 }).then((result) => {
@@ -341,6 +373,7 @@ export const changeNoBanUser = (id: any) => {
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
+                cancelButtonText: 'Cancelar',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Si, confirmar'
                 }).then((result) => {
