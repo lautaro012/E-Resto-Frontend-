@@ -2,7 +2,7 @@ import { useAppSelector } from '../../config'
 import './UserProfile.css'
 import { useState } from 'react'
 import DatosPerfil from './DatosPerfil'
-import Orders from './Orders'
+import Orders from './Orders/Orders'
 import { Button } from 'flowbite-react'
 
 export default function Profile() {
