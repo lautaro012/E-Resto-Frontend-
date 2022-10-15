@@ -7,6 +7,7 @@ import Register from '../RegisterForm/RegisterForm'
 import { CardForm } from '../../Interfaces/Interfaces'
 import Form from '../Form/Form'
 import NavBar from '../NavBar/NavBar'
+import Orderlist from './RenderComponents/OrderList/OrderList'
 
 const Admin = () => {
   const [render, setRender] = useState('registeredUsers')
@@ -32,7 +33,11 @@ const Admin = () => {
     setFormData(input);
     setShowModal(true);
   };
-  const openForm = () => {
+  const openForm = (value:string) => {
+    setFormData({
+      ...formData,
+      category:value
+    })
     setCreateProduct(true)
     setShowModal(true)
   }
@@ -41,6 +46,7 @@ const Admin = () => {
     <div className='divAdminContainer'>
       <div className={firstDiv} id='leftAdminContainer'>
         <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW2zB9ZfnqjeJkkgqMS7zen-NVpatbD9U3tiEirtof0QIA8Cx3ApChLYPJO9hVdncSkrA&usqp=CAU' alt='test' className='w-60 h-60 rounded-full'></img>
+        <button id='adminButtonSizing' className={buttonclass} onClick={() => setRender('allOrders')} >Administrar Pedidos</button>
         <button id='adminButtonSizing' className={buttonclass} onClick={() => setRender('registeredUsers')}>Usuarios Registrados</button>
         <button id='adminButtonSizing' className={buttonclass} onClick={() => setRender('bannedUsers')} >Usuarios Baneados</button>
         <button id='adminButtonSizing' className={buttonclass} onClick={() => setRender('adminUsers')} >Administradores</button>
@@ -59,8 +65,10 @@ const Admin = () => {
                 </p>
               </div>
 
-              <ProductsList openForm={openForm} onProducEdit={onProducEdit} />
+              <ProductsList setFormData={setFormData} openForm={openForm} onProducEdit={onProducEdit} />
             </div>
+          : render === 'allOrders' ?
+            <Orderlist></Orderlist>
             :
             null
         }

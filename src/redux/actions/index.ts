@@ -20,6 +20,8 @@ export const GET_USER = 'GET_USER'
 export const GET_ALL_USERS = 'GET_ALL_USERS'
 export const GET_USER_LOGGED = "GET_USER_LOGGED"
 export const CLEAR_USER = 'CLEAR_USER'
+export const GET_ORDER_ID = 'GET_ORDER_ID'
+export const GET_ALL_ORDERS = 'GET_ALL_ORDERS'
 
 export const getProducts = (sort: String) => {
 
@@ -529,7 +531,17 @@ export const modifyItemFromStock = (newStock: any, id: string) => {
     }
 }
 
-
+export function getAllOrders() {
+    return function (dispatch: Dispatch<Action>) {
+        axios.get('/order').then(res => res.data)
+        .then(resp => {
+            dispatch({
+                type: GET_ALL_ORDERS,
+                payload: resp
+            })
+        })
+    }
+}
 export function createOrder(payload: any) {
     return function () {
         axios.post('/order', payload).then(res => res.data)
@@ -538,5 +550,17 @@ export function createOrder(payload: any) {
                 window.location.reload()
             })
             .catch(error => console.log(error))
+    }
+}
+
+export function getOrdenByID(id:number) {
+    return function (dispatch: Dispatch<Action>) {
+        axios.get(`/order/${id}`).then(res => res.data)
+        .then(res => {
+            dispatch({
+                type: GET_ORDER_ID,
+                payload: res
+            })
+        })
     }
 }

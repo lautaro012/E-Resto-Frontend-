@@ -239,7 +239,7 @@ export default function Form({
                       );
                     })}
                   </select>
-
+                  <br/>
                   <div className="relative z-0 mb-6 w-full group">
                     <input
                       type="number"
@@ -262,11 +262,9 @@ export default function Form({
                     <input
                       type="file"
                       onChange={handleImageChange}
-                      defaultValue={newProduct ? null : formData.img}
                       name="img"
                       id="img"
                       className={inputForm}
-                      required
                     />
                     <label htmlFor="img" className={labelForm}>
                       Imagen

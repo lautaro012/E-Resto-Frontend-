@@ -13,7 +13,9 @@ import {
     GET_USER_BY_ID,
     GET_ALL_USERS,
     GET_USER,
-    CLEAR_USER
+    CLEAR_USER,
+    GET_ORDER_ID,
+    GET_ALL_ORDERS
 
 } from "../actions";
 
@@ -27,6 +29,8 @@ const initialState: StateTypes = {
     allUsers: [],
     error: '',
     user: '',
+    ordenDetail: [],
+    allOrders: []
 }
 
 
@@ -131,6 +135,16 @@ export default function rootReducer(state = initialState, action: Action) {
             return {
                 ...state,
                 user: ''
+            }
+        case GET_ORDER_ID:
+            return{
+                ...state,
+                ordenDetail: action.payload
+            }
+        case GET_ALL_ORDERS:
+            return{
+                ...state,
+                allOrders: action.payload
             }
 
         default:

@@ -1,0 +1,74 @@
+.Timeline-conteiner {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeline-buttons {
+    width: 400px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.orden-details-conteiner{
+    display: flex;
+    max-height: 769px;
+    align-items: center;
+}
+
+.asdasd{
+    display: flex;
+    width: 100%;
+    padding: 1%;
+    justify-content: space-between;
+}
+
+.details-order{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.detail-price-conteiner{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 100%;
+    background-color: white;
+    padding: 2% 2% 1% 2%;
+}
+
+.resumen-conteiner{
+    width: 100%;
+    border-radius: 10px;
+    background-color: white;
+    padding: 2% 2% 1% 2%;
+}
+
+.resumen-precios{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: white;
+    padding: 2% 2% 1% 2%;
+}
+
+.resumen-precios span {
+    display: flex;
+    justify-content: space-around;
+}
+
+.timer-conteiner {
+    display: flex;
+    width: 100%;
+    border-radius: 10px;
+    background-color: white;
+    padding: 2% 2% 1% 2%;
+    flex-direction: column;
+}
+
+#imagen-timeline{
+    max-width: 45px !important;
+}

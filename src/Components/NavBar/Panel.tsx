@@ -15,7 +15,6 @@ export default function Panel({ menuResponsive, setMenuResponsive }: any) {
     const [open, setOpen] = useState<boolean>(true);
     const [openAdmin, setOpenAdmin] = useState<boolean>(false)
     const [openUser, setOpenUser] = useState<boolean>(false)
-    console.log(user)
 
     //const navigate = useNavigate();
 

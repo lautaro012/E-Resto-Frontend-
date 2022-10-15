@@ -25,6 +25,9 @@ const ProductsList = ({ onProducEdit, openForm }: any) => {
         e.preventDefault();
         setOrder(e.target.value);
     }
+    const handleAddProduct = (e:any) => {
+        openForm(e.target.value)
+    }
 
     return (
         <div className='firstDivProductSizing'>
@@ -48,7 +51,7 @@ const ProductsList = ({ onProducEdit, openForm }: any) => {
             {cats.map((el: any) => {
                 return el.categoryProducts.length !== 0 ? (
                     <div id={`${el.name}Ad`}>
-                        <h3><div className='name-addProduct'>{el.name} <button onClick={openForm}>+ Agregar Producto</button></div></h3>
+                        <h3><div className='name-addProduct'>{el.name} <button value={el.name} onClick={handleAddProduct}>+ Agregar Producto</button></div></h3>
                         {el.categoryProducts?.map((e: any) => {
                             return (
                                 <Cartita deleted={deleted} onProducEdit={onProducEdit} e={e} />
