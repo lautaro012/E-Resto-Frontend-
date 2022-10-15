@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/free-regular-svg-icons": "^6.2.0",
+    "@react-google-maps/api": "^2.13.1",
     "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -14,6 +15,7 @@
     "@types/react-dom": "^18.0.6",
     "aos": "^2.3.4",
     "axios": "^0.27.2",
+    "dotenv-webpack": "^8.0.1",
     "flowbite": "^1.5.3",
     "flowbite-react": "^0.1.11",
     "fortawesome": "^0.0.1-security",

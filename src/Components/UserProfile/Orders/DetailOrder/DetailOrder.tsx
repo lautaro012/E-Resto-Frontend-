@@ -1,6 +1,5 @@
 export default function DetailOrder({ order }: any) {
 
-    console.log(order)
     return (
         <div>
             {
