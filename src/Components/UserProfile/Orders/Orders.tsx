@@ -18,7 +18,7 @@ export default function Orders() {
         setCalificacion(false)
     }
 
-    console.log(user.orders)
+    console.log(user)
 
     function handleOrderDatailModal(order: any) {
         setOrderId(order)
@@ -52,7 +52,7 @@ export default function Orders() {
                                     user.orders.delivered === true ?
                                         <button onClick={() => handleOrderDatailModal(order)}>Calificar</button>
                                         :
-                                        <button>Seguimiento</button>
+                                        <button onClick={() => handleOrderDatailModal(order)}>Calificar</button>
                                 }
                             </div>
                         )

@@ -1,0 +1,14 @@
+#conteinerCard_order {
+    border-style: groove;
+    display: flex;
+    border-radius: 20px;
+    justify-content: space-evenly;
+    align-items: center;
+    border-color: black;
+    border-width: 1px;
+}
+
+#conteinerCard_order img {
+    max-width: 10VW;
+    max-height: 10vh;
+}

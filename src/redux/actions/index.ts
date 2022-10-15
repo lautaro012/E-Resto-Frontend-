@@ -452,3 +452,15 @@ export function createOrder(payload: any) {
             .catch(error => console.log(error))
     }
 }
+
+export function postReview(input: any) {
+    console.log("ACTION POST", input)
+    return function () {
+        axios.post('http://localhost:3001/review', input).then(res => res.data)
+            .then(resp => {
+                console.log(resp)
+                window.location.reload()
+            })
+            .catch(error => console.log(error))
+    }
+}
