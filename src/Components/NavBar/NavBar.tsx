@@ -184,7 +184,7 @@ export default function NavBar() {
               </button>
             </li>
             <li>
-              <h1>{items.length}</h1>
+              <h1>{items?.length}</h1>
             </li>
           </ul>
         </div>

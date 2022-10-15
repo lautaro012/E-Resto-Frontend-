@@ -6,11 +6,14 @@ import Orders from './Orders/Orders'
 import { Button } from 'flowbite-react'
 import OrderTimeline from '../OrderTimeline/OrderTimeline'
 
+
 export default function Profile() {
 
     //let dispatch = useAppDispatch()
 
     const user = useAppSelector((state) => state.user)
+
+    console.log(user)
 
     // const token = JSON.parse(localStorage.getItem("token")!);
 
@@ -21,7 +24,7 @@ export default function Profile() {
     const [render, setRender] = useState("perfil")
     const [idOrden, setIdOrden] = useState(0)
 
-    function handleRender(componente: string, orden:number = 0) {
+    function handleRender(componente: string, orden: number = 0) {
         setRender(componente)
         setIdOrden(orden)
     }
@@ -51,11 +54,11 @@ export default function Profile() {
                             :
                             render === "orders" ?
                                 <Orders handleRender={handleRender} ></Orders>
-                            :
-                            render === 'detail' ?
-                                <OrderTimeline idOrden={idOrden} ></OrderTimeline>
-                            :
-                            null
+                                :
+                                render === 'detail' ?
+                                    <OrderTimeline idOrden={idOrden} ></OrderTimeline>
+                                    :
+                                    null
                     }
                 </div>
             </div>

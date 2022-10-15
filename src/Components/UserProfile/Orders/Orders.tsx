@@ -36,7 +36,7 @@ export default function Orders({ handleRender }: any) {
                             <div id="conteiner_order" key={order.date}>
 
                                 {
-                                    user.orders.delivered === true ?
+                                    order.delivered === true ?
                                         <span>🟢 Entregado</span>
                                         :
                                         <span>🔵 En proceso</span>
@@ -51,7 +51,7 @@ export default function Orders({ handleRender }: any) {
                                 <p>$ {order.total}</p>
                                 <hr />
                                 {
-                                    user.orders.delivered === true ?
+                                    order.delivered === true ?
                                         <button onClick={() => handleOrderDatailModal(order)}>Calificar</button>
                                         :
                                         <button value={order._id} onClick={(e) => handleOrderDetail(e)}>Seguimiento</button>
