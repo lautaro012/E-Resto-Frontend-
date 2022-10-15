@@ -109,7 +109,7 @@ export default function Cart() {
                                                       "
                                                         value={item.cantidad}
                                                         name='cantidad'
-                                                        min="1" max={item.stock}
+                                                        min={1} max={item.stock}
                                                         onChange={(event) => handdleCantidad(Number(event.target.value), item._id)}
                                                     />
                                                 </div>

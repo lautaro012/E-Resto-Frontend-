@@ -15,7 +15,6 @@ export default function Panel({ menuResponsive, setMenuResponsive }: any) {
     const [open, setOpen] = useState<boolean>(true);
     const [openAdmin, setOpenAdmin] = useState<boolean>(false)
     const [openUser, setOpenUser] = useState<boolean>(false)
-    console.log(user)
 
     //const navigate = useNavigate();
 
@@ -68,7 +67,7 @@ export default function Panel({ menuResponsive, setMenuResponsive }: any) {
             {/* <!-- Dropdown menu --> */}
             <div
                 hidden={open}
-                className=" absolute top-20 right-0 z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                className=" absolute top-20 z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                 id="user-dropdown"
             >
                 <div className="py-3 px-4">

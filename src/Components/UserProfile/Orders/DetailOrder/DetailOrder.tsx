@@ -50,7 +50,6 @@ export default function DetailOrder({ order }: any) {
 
     }
 
-
     return (
         <div>
             <Accordion>

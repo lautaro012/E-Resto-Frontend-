@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-
+    background-color: #f9f6f4;
 }
 
 #leftAdminContainer {
@@ -16,7 +16,6 @@
     align-content: center;
     justify-content: space-evenly;
     align-items: center;
-
 }
 
 #adminButtonSizing{
@@ -25,7 +24,7 @@
 
 #rightAdminContainer {
     height: 800px;
-    width: 55%;
+    width: 70%;
     max-width: none;
     overflow: auto;
 }

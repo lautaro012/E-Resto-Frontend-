@@ -5,10 +5,14 @@ import { store } from '../src/redux/store/index';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import axios from 'axios'
+import dotenv from "dotenv";
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
+// dotenv.config();
+axios.defaults.baseURL =  "http://localhost:3001";
 root.render(
   <React.StrictMode>
     <Provider store={store}>

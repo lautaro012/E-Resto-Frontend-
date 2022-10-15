@@ -77,12 +77,12 @@
 
 .User_options_conteiner {
     width: 30%;
-    background-color: #E9D5A1;
+    background-color: #f9f6f4;
 }
 
 .User_data_conteiner {
     width: 70%;
-    background-color: #efe1bd;
+    background-color: #f9f6f4;
 }
 
 .User_options {
@@ -105,7 +105,7 @@
 }
 
 .User_data {
-    padding: 8%;
+    padding-top: 50px;
     max-width: 100%;
     max-height: 100%;
 }
@@ -160,4 +160,12 @@
 .Label_user {
     margin-top: 1%;
     margin-bottom: 1%;
+}
+
+.shadow-div {
+    height: 70%;
+    margin: 100px 20px 100px 20px;
+    box-shadow: 1px 1px 16px 4px rgba(114, 113, 113, 0.634);
+    -webkit-box-shadow: 1px 1px 16px 4px rgba(114, 113, 113, 0.634);
+    -moz-box-shadow: 1px 1px 16px 4px rgba(114, 113, 113, 0.634);
 }

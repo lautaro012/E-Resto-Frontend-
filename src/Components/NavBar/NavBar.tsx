@@ -16,6 +16,7 @@ import { ModalFooter } from "flowbite-react/lib/esm/components/Modal/ModalFooter
 import SendMail from "../ForgotPass/SendMail";
 import Register from "../RegisterForm/RegisterForm";
 
+
 export default function NavBar() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -64,7 +65,7 @@ export default function NavBar() {
 
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900" id="navBar">
-      <div className="container flex flex-wrap justify-between items-center mx-auto">
+      <div className="container flex flex-wrap justify-evenly items-center mx-auto">
         <button onClick={handleHome} className="flex items-center">
           <img id="logoNavBarImg" width={150} src={Logo} alt="LOGO"></img>
         </button>
