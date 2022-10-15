@@ -7,7 +7,7 @@ import { useState } from "react";
 import './Orders.css'
 import DetailOrder from './DetailOrder/DetailOrder'
 
-export default function Orders({handleRender}:any) {
+export default function Orders({ handleRender }: any) {
 
     const user = useAppSelector(state => state.user)
     const [calificacion, setCalificacion] = useState<boolean>(false)
@@ -22,7 +22,7 @@ export default function Orders({handleRender}:any) {
         setOrderId(order)
         setCalificacion(true)
     }
-    const handleOrderDetail = (e:any) => {
+    const handleOrderDetail = (e: any) => {
         handleRender('detail', e.target.value)
     }
 
@@ -36,7 +36,7 @@ export default function Orders({handleRender}:any) {
                             <div id="conteiner_order" key={order.date}>
 
                                 {
-                                    user.orders.delivered === true ?
+                                    order.delivered === true ?
                                         <span>🟢 Entregado</span>
                                         :
                                         <span>🔵 En proceso</span>
@@ -51,7 +51,7 @@ export default function Orders({handleRender}:any) {
                                 <p>$ {order.total}</p>
                                 <hr />
                                 {
-                                    user.orders.delivered === true ?
+                                    order.delivered === true ?
                                         <button onClick={() => handleOrderDatailModal(order)}>Calificar</button>
                                         :
                                         <button value={order._id} onClick={(e) => handleOrderDetail(e)}>Seguimiento</button>

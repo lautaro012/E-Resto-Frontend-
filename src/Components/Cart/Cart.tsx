@@ -46,7 +46,7 @@ export default function Cart() {
     return (
         <div className="contenedor_total_carrito">
             {
-                items && items.length ?
+                items && items?.length ?
                     <div id="conteinerCart">
                         <div id="conteinerCart_left">
                             {

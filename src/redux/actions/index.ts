@@ -2,7 +2,7 @@ import { Dispatch } from "react";
 import axios from 'axios'
 import { Action, CardForm, Category, ProductDetail } from "../../Interfaces/Interfaces";
 import swal from "sweetalert";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const GET_PRODUCTS_BY_NAME = 'GET_PRODUCTS_BY_NAME'
@@ -207,24 +207,24 @@ export const deleteProduct = (id: string) => {
                 cancelButtonText: 'Cancelar',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Si, confirmar'
-                }).then((result:any) => {
+            }).then((result: any) => {
                 if (result.isConfirmed) {
                     try {
                         axios.delete(`http://localhost:3001/product/${id}`)
-                        .then(res => {
-                            Swal.fire(
-                                'Listo!',
-                                'El producto ha sido eliminado correctamente',
-                                'success'
+                            .then(res => {
+                                Swal.fire(
+                                    'Listo!',
+                                    'El producto ha sido eliminado correctamente',
+                                    'success'
                                 )
-                                .then((res:any) => window.location.reload())
+                                    .then((res: any) => window.location.reload())
 
-                        })
+                            })
                     } catch (error) {
                         console.log(error)
                     }
                 }
-                })
+            })
         }
         else {
             console.log(`didn't get id`)
@@ -301,24 +301,24 @@ export const changeBanUser = (id: any) => {
                 cancelButtonText: 'Cancelar',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Si, confirmar'
-                }).then((result:any) => {
+            }).then((result: any) => {
                 if (result.isConfirmed) {
                     try {
                         axios.put(`http://localhost:3001/banUser/${id}`)
-                        .then(res => {
-                            Swal.fire(
-                                'Listo!',
-                                'El usuario ha sido baneado correctamente',
-                                'success'
+                            .then(res => {
+                                Swal.fire(
+                                    'Listo!',
+                                    'El usuario ha sido baneado correctamente',
+                                    'success'
                                 )
-                            
-                        })
+
+                            })
                     } catch (error) {
                         console.log(error)
                     }
 
                 }
-                })
+            })
 
         }
         else {
@@ -339,24 +339,24 @@ export const changeUserAsAdmin = (id: any) => {
                 cancelButtonText: 'Cancelar',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Si, confirmar'
-                }).then((result:any) => {
+            }).then((result: any) => {
                 if (result.isConfirmed) {
                     try {
                         axios.put(`http://localhost:3001/setAdmin/${id}`)
-                        .then(res => {
-                            Swal.fire(
-                                'Listo!',
-                                'El usuario es ahora administrador',
-                                'success'
+                            .then(res => {
+                                Swal.fire(
+                                    'Listo!',
+                                    'El usuario es ahora administrador',
+                                    'success'
                                 )
-                            
-                        })
+
+                            })
                     } catch (error) {
                         console.log(error)
                     }
 
                 }
-                })
+            })
         }
         else {
             console.log(`didn't get id`)
@@ -376,24 +376,24 @@ export const changeNoBanUser = (id: any) => {
                 cancelButtonText: 'Cancelar',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Si, confirmar'
-                }).then((result:any) => {
+            }).then((result: any) => {
                 if (result.isConfirmed) {
                     try {
                         axios.put(`http://localhost:3001/noBanUser/${id}`)
-                        .then(res => {
-                            Swal.fire(
-                                'Listo!',
-                                'El usuario ahora puede ingresar al sitio',
-                                'success'
+                            .then(res => {
+                                Swal.fire(
+                                    'Listo!',
+                                    'El usuario ahora puede ingresar al sitio',
+                                    'success'
                                 )
-                            
-                        })
+
+                            })
                     } catch (error) {
                         console.log(error)
                     }
 
                 }
-                })
+            })
         }
         else {
             console.log(`didn't get id`)
@@ -534,12 +534,12 @@ export const modifyItemFromStock = (newStock: any, id: string) => {
 export function getAllOrders() {
     return function (dispatch: Dispatch<Action>) {
         axios.get('/order').then(res => res.data)
-        .then(resp => {
-            dispatch({
-                type: GET_ALL_ORDERS,
-                payload: resp
+            .then(resp => {
+                dispatch({
+                    type: GET_ALL_ORDERS,
+                    payload: resp
+                })
             })
-        })
     }
 }
 export function createOrder(payload: any) {
@@ -552,15 +552,26 @@ export function createOrder(payload: any) {
             .catch(error => console.log(error))
     }
 }
+export function postReview(input: any) {
+    console.log("ACTION POST", input)
+    return function () {
+        axios.post('http://localhost:3001/review', input).then(res => res.data)
+            .then(resp => {
+                console.log(resp)
+                window.location.reload()
+            })
+            .catch(error => console.log(error))
+    }
+}
 
-export function getOrdenByID(id:number) {
+export function getOrdenByID(id: number) {
     return function (dispatch: Dispatch<Action>) {
         axios.get(`/order/${id}`).then(res => res.data)
-        .then(res => {
-            dispatch({
-                type: GET_ORDER_ID,
-                payload: res
+            .then(res => {
+                dispatch({
+                    type: GET_ORDER_ID,
+                    payload: res
+                })
             })
-        })
     }
 }
