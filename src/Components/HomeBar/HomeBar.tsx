@@ -39,7 +39,7 @@ export default function HomeBar({ el }: any) {
                 <img className='logoHenryFood' src={Logo} alt='LOGO'></img>
                 <div className='navbar-buttons'>
                     <button className={buttonclass} > CATALOGO </button>
-                    <button onClick={() => setDeliveryModal(true)} className={buttonclass} > Soy delivery </button>
+                    <button onClick={() => setDeliveryModal(true)} className={buttonclass} > SOY REPARTIDOR </button>
                     <button className={buttonclass} onClick={handleClick}> CONTACTANOS </button>
                 </div>
             </header>

@@ -35,18 +35,14 @@ const ProductsList = ({ onProducEdit, openForm }: any) => {
             <div className='secondDivSizingAdmin'>
                 <div>
                     <select className={select} onChange={(e) => orderSort(e)} id='selectConfigSizeAdmin'>
-                        <option value="">Ordenar por nombre:</option>
+                        <option value="">Ordenar productos:</option>
                         <option value="AZ">AZ</option>
                         <option value="ZA">ZA</option>
-                    </select>
-                </div>
-                <div>
-                    <select className={select} onChange={(e) => orderSort(e)} id='selectConfigSizeAdmin'>
-                        <option value="">Ordenar por precio:</option>
                         <option value="mayorPrecio">Mayor precio</option>
                         <option value="menorPrecio">Menor precio</option>
                     </select>
                 </div>
+
             </div>
             {cats.map((el: any) => {
                 return el.categoryProducts.length !== 0 ? (
