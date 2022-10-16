@@ -53,7 +53,7 @@ const UserList = (render : any) => {
                 .map((user : any) => {
                     return (
                         
-                        <div className="flow-root">
+                        <div className="flow-root" key={user._id}>
                                 <ul role="list" className={listUsuariosRegistrados}>
                                     <li className="py-3 sm:py-4">
                                         <div className="flex items-center space-x-4">
@@ -84,7 +84,7 @@ const UserList = (render : any) => {
         users?.filter((e : any) => e.baneado === true)
         .map((user : any) => {
             return (
-                <div className="flow-root">
+                <div className="flow-root" key={user._id}>
                         <ul role="list" className={listUsuariosRegistrados}>
                             <li className="py-3 sm:py-4">
                                 <div className="flex items-center space-x-4">
@@ -115,7 +115,7 @@ const UserList = (render : any) => {
         users?.filter((e : any) => e.admin === true && e.baneado === false)
         .map((user : any) => {
             return (
-                <div className="flow-root">
+                <div className="flow-root" key={user._id}>
                         <ul role="list" className={listUsuariosRegistrados}>
                             <li className="py-3 sm:py-4">
                                 <div className="flex items-center space-x-4">
