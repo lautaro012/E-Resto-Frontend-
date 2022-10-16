@@ -548,7 +548,7 @@ export function createOrder(payload: any) {
         axios.post('/order', payload).then(res => res.data)
             .then(resp => {
                 console.log(resp)
-                window.location.reload()
+                // window.location.reload()
             })
             .catch(error => console.log(error))
     }
@@ -597,7 +597,8 @@ export const createNewDelivery = (input: any) => {
             axios.post(`/delivery/register`, input).then(resp => resp.data)
             .then(res => {
                 console.log('registrado', res)
-                swal({ title: 'Registrado correctamente' })
+                Swal.fire('Registrado correctamente')
+                .then((res) => {if(res.isConfirmed) window.location.reload()})
             })
             .catch(err => {
                 if(err.response.status == 400) {

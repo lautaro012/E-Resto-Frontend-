@@ -13,7 +13,7 @@ export default function Profile() {
 
     const user = useAppSelector((state) => state.user)
 
-    console.log(user)
+    // console.log(user)
 
     // const token = JSON.parse(localStorage.getItem("token")!);
 
