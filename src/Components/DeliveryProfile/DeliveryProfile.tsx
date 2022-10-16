@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../config'
 import { StateTypes } from '../../Interfaces/Interfaces'
 import { getDelivery, getDeliveryByID, getOrdenByID } from '../../redux/actions'
@@ -13,12 +14,11 @@ export default function DeliveryProfile () {
     const [render, setRender] = useState('registeredUsers')
 
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
 
-    const token = JSON.parse(localStorage.getItem("delivery")!)
 
     useEffect(() => {
-        dispatch(getDeliveryByID(token?.find[0]?._id))
-        dispatch(getOrdenByID(delivery.orders[0]))
+        dispatch(getOrdenByID(delivery?.orders[0]))
     }, [])
 
     let detalles = useAppSelector((state: StateTypes) => state.ordenDetail);
@@ -28,6 +28,10 @@ export default function DeliveryProfile () {
     let delivery = useAppSelector(state => state.deliveryProfile)
     console.log(delivery)
 
+    const handleLogout = () => {
+        localStorage.setItem("delivery", JSON.stringify([]))
+        navigate('/home')
+    }
 
     return (
         <div className="delivery-conteiner">
@@ -43,7 +47,7 @@ export default function DeliveryProfile () {
                             <br></br>
                             <button className={buttonclass}> Historial de Pedidos </button>
                             <br></br>
-                            <button className={buttonclass}> Cerrar Sesion </button>
+                            <button onClick={handleLogout} className={buttonclass}> Cerrar Sesion </button>
                         </div>
                     </aside>
                     <div className='order-delivery-conteiner'>

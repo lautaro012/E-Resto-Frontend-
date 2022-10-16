@@ -606,6 +606,7 @@ export function logDelivery (navigate:any,input:any) {
         axios.post('/delivery/login', input).then(res => res.data)
         .then(res => {
             localStorage.setItem('delivery', JSON.stringify(res));
+            getDeliveryByID(res.find[0]._id)
             window.location.reload()
         })
         .catch(err => {
