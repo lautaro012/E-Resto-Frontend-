@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../config'
-import { getDelivery, getDeliveryByID } from '../../redux/actions'
+import { StateTypes } from '../../Interfaces/Interfaces'
+import { getDelivery, getDeliveryByID, getOrdenByID } from '../../redux/actions'
 import { buttonclass } from '../../Style/Clases/Clases'
+import Greencheck from '../../Style/images/icons8-checkmark-40.png'
+import Redcheck from '../../Style/images/red-check.png'
+import OrderDelivery from '../OrderDelivery/OrderDelivery'
 import './DeliveryProfile.css'
 
 export default function DeliveryProfile () {
@@ -14,9 +18,17 @@ export default function DeliveryProfile () {
 
     useEffect(() => {
         dispatch(getDeliveryByID(token?.find[0]?._id))
+        dispatch(getOrdenByID(delivery.orders[0]))
     }, [])
 
+    let detalles = useAppSelector((state: StateTypes) => state.ordenDetail);
+    console.log(detalles)
+
+
     let delivery = useAppSelector(state => state.deliveryProfile)
+    console.log(delivery)
+
+
     return (
         <div className="delivery-conteiner">
             {
@@ -29,11 +41,18 @@ export default function DeliveryProfile () {
                             <br></br>
                             <button className={buttonclass}> Pedido Actual </button>
                             <br></br>
-                            <button className={buttonclass}> Historial </button>
+                            <button className={buttonclass}> Historial de Pedidos </button>
+                            <br></br>
+                            <button className={buttonclass}> Cerrar Sesion </button>
                         </div>
                     </aside>
                     <div className='order-delivery-conteiner'>
-                        ORDEN SI HAY ALGUNA
+                        {
+                            detalles.length ?
+                            <OrderDelivery detalles={detalles}></OrderDelivery>
+                        :
+                        <h1>Cargando..</h1>
+                        }
                     </div>
                 </div>
                 :

@@ -54,7 +54,7 @@ function App() {
             :
             <Route path='/delivery' element={<LogginDelivery/>}></Route>
           }
-          <Route path='/test' element={<DeliveryList/>}/>
+          {/* <Route path='/test' element={<DeliveryList id={10}/>}/> */}
         </Routes>
         <Footer />
       </Router>
