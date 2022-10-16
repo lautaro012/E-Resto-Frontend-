@@ -1,0 +1,26 @@
+.formRegisterDeliveryStyle{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+.divDeliveryRegister h3{
+    text-align: center;
+    margin: 2%;
+}
+
+.formRegisterDeliveryStyle input {
+    margin: 1%
+}
+
+#divMailInput{
+    margin-top: 3%;
+}
+
+
+.formRegisterDeliveryStyle button {
+    width: 100%;
+    margin-left: 1%;
+    margin-top: 2%;
+}

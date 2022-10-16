@@ -589,6 +589,28 @@ export function getDelivery () {
     }
 }
 
+
+export const createNewDelivery = (input: any) => {
+
+    return function (dispatch: Dispatch<Action>) {
+        if(input) {
+            axios.post(`/delivery/register`, input).then(resp => resp.data)
+            .then(res => {
+                console.log('registrado', res)
+                swal({ title: 'Registrado correctamente' })
+            })
+            .catch(err => {
+                if(err.response.status == 400) {
+                    swal('El mail ya está registrado')
+                }
+                if(err.response.status == 404) {
+                    swal('Faltó ingresar datos requeridos')
+                }
+                else console.log(err)
+            })
+        }else {console.log(`didn't get input`)}}}
+
+
 export function getDeliveryByID (input:any) {
     return function (dispatch: Dispatch<Action>) {
         axios.get(`/delivery/${input}`).then(res => res.data)
@@ -622,5 +644,5 @@ export function asignOrder (id:number, deli_id:number) {
     return function (dispatch: Dispatch<Action>) {
         axios.put(`/order/add/${id}`, {deli_id}).then(res => res.data)
         .then(res => swal({ title: 'Pedido Asignado Exitosamente' }))
-    }
-}
+
+    }}
