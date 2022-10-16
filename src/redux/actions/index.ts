@@ -646,3 +646,11 @@ export function asignOrder (id:number, deli_id:number) {
         .then(res => swal({ title: 'Pedido Asignado Exitosamente' }))
 
     }}
+
+export function getMailContact(input:any) {
+    return function (dispatch: Dispatch<Action>) {
+        axios.post('/contactMailing', input)
+        .then(res => swal({title: 'Hemos recibido tu consulta, te responderemos a la brevedad'}))
+        .catch(res => swal({title: 'No pudimos recibir el mail'}))
+    }
+}

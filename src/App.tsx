@@ -11,6 +11,7 @@ import ForgotPass from './Components/ForgotPass/ForgotPass.jsx';
 import DeliveryList from './Components/DeliveryList/DeliveryList';
 import DeliveryProfile from './Components/DeliveryProfile/DeliveryProfile';
 import LogginDelivery from './Components/LogginDelivery/LogginDelivery';
+import ContactForm from './Components/ContactForm/ContactForm';
 //import SendMail from './Components/ForgotPass/SendMail';
 //import About from './Components/About_us/About';
 
@@ -44,6 +45,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/contacto' element={<ContactForm/>} />
           <Route path='/recupera/:id' element={<ForgotPass />} />
           <Route path='/pedidos' element={<Pedidos />} />
           {/* <Route path='/register' element={<Register />} /> */}

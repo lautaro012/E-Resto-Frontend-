@@ -1,0 +1,19 @@
+.divFormContactComponent{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    background-color: #F1FFC4;
+}
+
+
+.divFormContactComponent textarea{
+    width: 42vh;
+    height: 15vh;
+    margin-top: 3vh;
+    margin-bottom: 2vh;
+
+}

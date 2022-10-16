@@ -21,7 +21,7 @@ export default function Footer() {
                 </span>
                 <ul id='colorFooterUlConfig' className="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
                     <li>
-                        <button onClick={() => setOpenAbout(true)} className="mr-4 hover:underline md:mr-6 ">Sobre Nosotros</button>
+                        <a onClick={() => setOpenAbout(true)} className="mr-4 hover:underline md:mr-6">Sobre Nosotros</a>
                     </li>
                     <li>
                         <a href="/pedidos" className="mr-4 hover:underline md:mr-6">Hacé tu pedido</a>
