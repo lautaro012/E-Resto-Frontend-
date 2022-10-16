@@ -6,6 +6,7 @@ import { useAppSelector } from '../../../config'
 import { useState } from "react";
 import './Orders.css'
 import DetailOrder from './DetailOrder/DetailOrder'
+import { buttonclass } from '../../../Style/Clases/Clases'
 
 export default function Orders({ handleRender }: any) {
 

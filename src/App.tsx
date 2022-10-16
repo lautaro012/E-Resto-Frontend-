@@ -8,14 +8,20 @@ import Pedidos from '../src/Components/Pedidos/Pedidos'
 import Home from '../src/Components/Home/Home'
 import Footer from './Components/Footer/Footer';
 import ForgotPass from './Components/ForgotPass/ForgotPass.jsx';
+
 import Mapa from './Components/Map/Map'
+
+import DeliveryList from './Components/DeliveryList/DeliveryList';
+import DeliveryProfile from './Components/DeliveryProfile/DeliveryProfile';
+import LogginDelivery from './Components/LogginDelivery/LogginDelivery';
+
 
 function App() {
 
   const dispatch = useAppDispatch()
 
   const token = JSON.parse(localStorage.getItem("token")!);
-
+  const delivery = JSON.parse(localStorage.getItem("delivery")!);
   const foodsLS = JSON.parse(localStorage.getItem("products")!);
 
   useEffect(() => {
@@ -25,7 +31,10 @@ function App() {
     if (!foodsLS) {
       localStorage.setItem("products", JSON.stringify([]));
     }
-  }, [foodsLS, token])
+    if (!delivery) {
+      localStorage.setItem("delivery", JSON.stringify([]));
+    }
+  }, [foodsLS, token, delivery])
 
   useEffect(() => {
     dispatch(actualizarCart(foodsLS));
@@ -39,6 +48,13 @@ function App() {
           <Route path='/recupera/:id' element={<ForgotPass />} />
           <Route path='/pedidos' element={<Pedidos />} />
           <Route path='/test' element={<Mapa />} />
+          {
+            delivery?.find ?
+            <Route path='/delivery' element={<DeliveryProfile/>}></Route>
+            :
+            <Route path='/delivery' element={<LogginDelivery/>}></Route>
+          }
+          {/* <Route path='/test' element={<DeliveryList id={10}/>}/> */}
         </Routes>
         <Footer />
       </Router>

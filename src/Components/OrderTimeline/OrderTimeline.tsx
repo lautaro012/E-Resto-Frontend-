@@ -15,7 +15,6 @@ export default function OrderTimeline({ idOrden }: any) {
     }, [dispatch, idOrden])
 
     let detalles = useAppSelector((state: StateTypes) => state.ordenDetail);
-    console.log(detalles)
 
     return (
         <>
