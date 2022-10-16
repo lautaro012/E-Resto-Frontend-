@@ -11,7 +11,6 @@ import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter
 export default function HomeBar({ el }: any) {
 
     const navigate = useNavigate()
-    const [deliveryModal, setDeliveryModal] = useState<boolean>(false)
 
     const handleClick = () => {
         el.current?.scrollIntoView({ behavior: 'smooth' });
@@ -25,9 +24,7 @@ export default function HomeBar({ el }: any) {
         });
     }
 
-    function closeDelilveryModal() {
-        setDeliveryModal(false)
-    }
+
     return (
         <nav className="navbar-conteiner">
             <header>
@@ -38,21 +35,10 @@ export default function HomeBar({ el }: any) {
                 </div>
                 <img className='logoHenryFood' src={Logo} alt='LOGO'></img>
                 <div className='navbar-buttons'>
-                    <button className={buttonclass} > CATALOGO </button>
-                    <button onClick={() => setDeliveryModal(true)} className={buttonclass} > SOY REPARTIDOR </button>
+                    <button onClick={() => navigate('/delivery')} className={buttonclass} > SOY REPARTIDOR </button>
                     <button className={buttonclass} onClick={handleClick}> CONTACTANOS </button>
                 </div>
             </header>
-            <Modal
-                show={deliveryModal}
-                onClose={closeDelilveryModal}
-            >
-                <ModalHeader></ModalHeader>
-                <ModalBody>
-                    <h1>Loggin Delivery</h1>
-                </ModalBody>
-                <ModalFooter></ModalFooter>
-            </Modal>
         </nav>
     )
 }
