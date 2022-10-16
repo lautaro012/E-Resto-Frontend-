@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../../../config";
 import { StateTypes } from "../../../../Interfaces/Interfaces";
 import { getAllOrders } from "../../../../redux/actions";
 import { buttonclass } from "../../../../Style/Clases/Clases";
+import DeliveryList from "../../../DeliveryList/DeliveryList";
 import './OrderList.css'
 
 export default function Orderlist() {
@@ -17,6 +18,8 @@ export default function Orderlist() {
   useEffect(() => {
     dispatch(getAllOrders());
   }, [dispatch]);
+
+
 
 
   const handleConfirm = (e: any) => {
@@ -59,7 +62,7 @@ export default function Orderlist() {
                       <table className="orderlist_price_conteiner">
                         {items?.items.map((item: any) => {
                           return (
-                            <div>
+                            <div key={item.name}>
                               <tr className="orderlist_item_conteiner">
                                 <td><img width={60} src={item.img} alt="alt"></img></td>
                                 <td>{item.cantidad}</td>
@@ -136,16 +139,14 @@ export default function Orderlist() {
                         onClose={handleCloseRepartidores}
                       >
                         <ModalHeader>
-                          <h1>{items._id}</h1>
+                          Repartidores Disponibles:
                         </ModalHeader>
                         <ModalBody>
-
+                          <DeliveryList handleCloseRepartidores={handleCloseRepartidores} id={items._id}></DeliveryList>
                         </ModalBody>
                       </Modal>
                     </div>
                   );
-
-
                 }
                 return null
               })}

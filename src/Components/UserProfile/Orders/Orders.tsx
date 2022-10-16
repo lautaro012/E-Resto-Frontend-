@@ -6,6 +6,7 @@ import { useAppSelector } from '../../../config'
 import { useState } from "react";
 import './Orders.css'
 import DetailOrder from './DetailOrder/DetailOrder'
+import { buttonclass } from '../../../Style/Clases/Clases'
 
 export default function Orders({ handleRender }: any) {
 
@@ -54,7 +55,7 @@ export default function Orders({ handleRender }: any) {
                                     order.delivered === true ?
                                         <button onClick={() => handleOrderDatailModal(order)}>Calificar</button>
                                         :
-                                        <button value={order._id} onClick={(e) => handleOrderDetail(e)}>Seguimiento</button>
+                                        <button className={buttonclass} value={order._id} onClick={(e) => handleOrderDetail(e)}>Seguimiento</button>
                                 }
                             </div>
                         )

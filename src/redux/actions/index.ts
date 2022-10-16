@@ -22,7 +22,8 @@ export const GET_USER_LOGGED = "GET_USER_LOGGED"
 export const CLEAR_USER = 'CLEAR_USER'
 export const GET_ORDER_ID = 'GET_ORDER_ID'
 export const GET_ALL_ORDERS = 'GET_ALL_ORDERS'
-
+export const GET_DELIVERY = 'GET_DELIVERY'
+export const GET_DELIVERY_BY_ID= 'GET_DELIVERY_BY_ID'
 export const getProducts = (sort: String) => {
 
     return function (dispatch: Dispatch<Action>) {
@@ -573,5 +574,52 @@ export function getOrdenByID(id: number) {
                     payload: res
                 })
             })
+    }
+}
+
+export function getDelivery () {
+    return function (dispatch: Dispatch<Action>) {
+        axios.get('/delivery').then(res => res.data)
+        .then(res => {
+            dispatch({
+                type:GET_DELIVERY,
+                payload: res
+            })
+        })
+    }
+}
+
+export function getDeliveryByID (input:any) {
+    return function (dispatch: Dispatch<Action>) {
+        axios.get(`/delivery/${input}`).then(res => res.data)
+        .then(res=> {
+            dispatch({
+                type: GET_DELIVERY_BY_ID,
+                payload: res
+            })
+        })
+    }
+}
+
+export function logDelivery (navigate:any,input:any) {
+    return function (dispatch: Dispatch<Action>) {
+        axios.post('/delivery/login', input).then(res => res.data)
+        .then(res => {
+            localStorage.setItem('delivery', JSON.stringify(res));
+            window.location.reload()
+        })
+        .catch(err => {
+            return dispatch({
+                type: ERROR_HANDLER,
+                payload: err
+            })
+        })
+    }
+}
+
+export function asignOrder (id:number, deli_id:number) {
+    return function (dispatch: Dispatch<Action>) {
+        axios.put(`/order/add/${id}`, {deli_id}).then(res => res.data)
+        .then(res => swal({ title: 'Pedido Asignado Exitosamente' }))
     }
 }

@@ -48,7 +48,9 @@ export type StateTypes = {
     error: any,
     user: any,
     ordenDetail: any,
-    allOrders: any
+    allOrders: any,
+    delivery: any,
+    deliveryProfile: any
 }
 
 export type Action = {
