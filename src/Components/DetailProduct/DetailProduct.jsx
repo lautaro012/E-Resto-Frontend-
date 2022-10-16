@@ -87,7 +87,7 @@ export default function DetailProduct({ id, closeModalDetail }) {
         setExtraItem(null)
     }
 
-    console.log(food)
+    // console.log(food)
 
     return (
         <div >
