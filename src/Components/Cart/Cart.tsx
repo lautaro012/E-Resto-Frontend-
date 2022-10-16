@@ -4,6 +4,7 @@ import { deleteItemFromCart, getProducts } from "../../redux/actions";
 import swal from "sweetalert";
 import '../Cart/Cart.css'
 import ContadorLs from "./ContadorLs";
+import Swal from "sweetalert2";
 
 import PrettyRating from "pretty-rating-react";
 import { Button } from "flowbite-react";
@@ -25,8 +26,49 @@ export default function Cart() {
         }
     }, [dispatch, items]);
 
-    function deleteItem(id: any) {
-        dispatch(deleteItemFromCart(id))
+    function deleteItem(id: any, item: string) {
+        if (id === "All") {
+            Swal.fire({
+                title: 'Esta seguro que quiere vaciar su carrito?',
+                text: "No podra deshacer esta accion",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Si, vaciar carrito!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    dispatch(deleteItemFromCart(id))
+                    Swal.fire(
+                        'Carrito ahora esta vacio',
+                        'Tus items fueros removidos.',
+                        'success'
+                    )
+                }
+            })
+        }
+        else {
+            Swal.fire({
+                title: `Esta seguro que quiere eliminar ${item} de su carrito?`,
+                text: "Podra volver a agregarla desde la seccion de Pedidos",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: `Si, eliminar ${item}`
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    dispatch(deleteItemFromCart(id))
+                    Swal.fire(
+                        'Item eliminado',
+                        'El item fue removido.',
+                        'success'
+                    )
+                }
+            })
+        }
     }
 
     function handdleCantidad(cantidad: number, id: string, stock: number) {
@@ -58,7 +100,7 @@ export default function Cart() {
                             {
                                 items && items?.map((item: any) => {
                                     return (
-                                        <figure className="food">
+                                        <figure className="food" key={item._id}>
                                             <div className="food__hero">
                                                 <img src={item.img} alt={item.name} className="food__img" />
                                             </div>
@@ -87,7 +129,7 @@ export default function Cart() {
                                                 <div className="food__details">
                                                     <p className="food__detail"><span className="emoji">⭐️</span>{item.rating}</p>
                                                     <PrettyRating value={item.rating} colors={colors.star} />
-                                                    <button className="food__detail" onClick={() => { if (window.confirm(`Esta seguro que quiere eliminar ${item.name} de su carrito ?`)) deleteItem(item._id) }}>
+                                                    <button className="food__detail" onClick={() => deleteItem(item._id, item.name)}>
                                                         <span className="emoji">🗑</span>
                                                     </button>
                                                 </div>
@@ -131,7 +173,7 @@ export default function Cart() {
                             <ContadorLs
                                 render={render}
                             ></ContadorLs>
-                            <Button id="vaciar_carrito" gradientMonochrome="failure" onClick={() => { if (window.confirm("Esta seguro de vaciar su carrito ?")) deleteItem("All") }}>Vaciar carrito</Button>
+                            <Button id="vaciar_carrito" gradientMonochrome="failure" onClick={() => deleteItem("All", "")}>Vaciar carrito</Button>
                         </div>
                     </div>
                     :

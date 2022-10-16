@@ -14,16 +14,24 @@ export default function DetailOrder({ order }: any) {
     const [input, setInput] = useState({
         user_id: user._id,
         product_id: "",
-        rating: 1,
+        rating: 3,
         comment: ""
     })
 
     function handleInput(event: any) {
         event.preventDefault()
-        setInput({
-            ...input,
-            [event.target.name]: event.target.value
-        })
+        if (event.target.name === "rating") {
+            setInput({
+                ...input,
+                [event.target.name]: Number(event.target.value)
+            })
+        }
+        else {
+            setInput({
+                ...input,
+                [event.target.name]: event.target.value
+            })
+        }
     }
 
     function handleIdComida(e: any, foodId: string) {
@@ -40,13 +48,11 @@ export default function DetailOrder({ order }: any) {
         setInput({
             user_id: "",
             product_id: "",
-            rating: 1,
+            rating: 3,
             comment: ""
         })
         swal({ title: "Comentario enviado!" })
     }
-
-    console.log("ORDER", order)
 
     return (
         <div className="conteiner_calificacion">
@@ -59,7 +65,7 @@ export default function DetailOrder({ order }: any) {
                                 {
                                     order.items.map((item: any) => {
                                         return (
-                                            <div className="asdasd">
+                                            <div className="asdasd" key={item._id}>
                                                 <img src={item.img} alt='alt'></img>
                                                 <h2>{item.cantidad}</h2>
                                                 <h2>{item.name}</h2>
@@ -98,7 +104,7 @@ export default function DetailOrder({ order }: any) {
                     {
                         order && order.items.map((food: any) => {
                             return (
-                                <Accordion.Panel>
+                                <Accordion.Panel key={food._id}>
                                     <Accordion.Title>
                                         <div id="conteinerCard_order" key={food.naem}>
                                             <h1>{food.name}</h1>
@@ -138,7 +144,7 @@ export default function DetailOrder({ order }: any) {
                                                       "
                                                 value={input.rating}
                                                 name='rating'
-                                                min="1" max="5"
+                                                min={1} max={5}
                                                 required
                                                 onChange={(event) => handleInput(event)}
                                             />
