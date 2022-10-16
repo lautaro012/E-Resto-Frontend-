@@ -564,3 +564,26 @@ export function getOrdenByID(id:number) {
         })
     }
 }
+
+export const createNewDelivery = (input: any) => {
+
+    return function (dispatch: Dispatch<Action>) {
+        if(input) {
+            axios.post(`/delivery/register`, input).then(resp => resp.data)
+            .then(res => {
+                console.log('registrado', res)
+                swal({ title: 'Registrado correctamente' })
+            })
+            .catch(err => {
+                if(err.response.status == 400) {
+                    swal('El mail ya está registrado')
+                }
+                if(err.response.status == 404) {
+                    swal('Faltó ingresar datos requeridos')
+                }
+                else console.log(err)
+            })
+        }else {console.log(`didn't get input`)}
+
+    }
+}

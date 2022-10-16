@@ -8,6 +8,7 @@ import { CardForm } from '../../Interfaces/Interfaces'
 import Form from '../Form/Form'
 import NavBar from '../NavBar/NavBar'
 import Orderlist from './RenderComponents/OrderList/OrderList'
+import DeliveryRegister from './RenderComponents/DeliveryRegister'
 
 const Admin = () => {
   const [render, setRender] = useState('registeredUsers')
@@ -51,6 +52,7 @@ const Admin = () => {
         <button id='adminButtonSizing' className={buttonclass} onClick={() => setRender('bannedUsers')} >Usuarios Baneados</button>
         <button id='adminButtonSizing' className={buttonclass} onClick={() => setRender('adminUsers')} >Administradores</button>
         <button id='adminButtonSizing' className={buttonclass} onClick={() => setRender('allProducts')} >Administrar Productos</button>
+        <button id='adminButtonSizing' className={buttonclass} onClick={() => setRender('newDelivery')} >Registrar Repartidores</button>
 
       </div>
       <div className={firstDiv} id='rightAdminContainer'>
@@ -69,8 +71,9 @@ const Admin = () => {
             </div>
           : render === 'allOrders' ?
             <Orderlist></Orderlist>
-            :
-            null
+          : render === 'newDelivery' ?
+              <DeliveryRegister/>
+          : null
         }
         {
           createProduct ? (
