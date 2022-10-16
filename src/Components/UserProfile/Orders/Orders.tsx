@@ -1,4 +1,4 @@
-import { Modal } from 'flowbite-react'
+import { Button, Modal } from 'flowbite-react'
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
@@ -27,35 +27,35 @@ export default function Orders({ handleRender }: any) {
     }
 
     return (
-        <div className='main_conteiner_order' data-aos="fade-left" data-aos-duration="1500">
+        <div className='main_conteiner_order' data-aos="fade-left" data-aos-duration="500">
             <h1 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">Mis compras</h1>
             {
                 user.orders && user.orders.length > 0 ?
                     user.orders.map((order: any) => {
                         return (
                             <div id="conteiner_order" key={order.date}>
-
-                                {
-                                    order.delivered === true ?
-                                        <span>🟢 Entregado</span>
-                                        :
-                                        <span>🔵 En proceso</span>
-                                }
+                                <div id='estado_order_coteiner'>
+                                    {
+                                        order.delivered === true ?
+                                            <span>🟢 Entregado</span>
+                                            :
+                                            <span>🔵 En proceso</span>
+                                    }
+                                    {
+                                        order.delivered === true ?
+                                            <Button onClick={() => handleOrderDatailModal(order)}>Calificar</Button>
+                                            :
+                                            <Button value={order._id} onClick={(e) => handleOrderDetail(e)}>Seguimiento</Button>
+                                    }
+                                </div>
                                 <h3 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Fecha</h3>
-                                <p>{order.date}</p>
+                                <p>{order.date.slice(0, 10)}</p>
                                 <hr />
                                 <h3 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Pago</h3>
                                 <p>{order.payment}</p>
                                 <hr />
                                 <h3 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Total</h3>
                                 <p>$ {order.total}</p>
-                                <hr />
-                                {
-                                    order.delivered === true ?
-                                        <button onClick={() => handleOrderDatailModal(order)}>Calificar</button>
-                                        :
-                                        <button value={order._id} onClick={(e) => handleOrderDetail(e)}>Seguimiento</button>
-                                }
                             </div>
                         )
                     })
@@ -67,6 +67,9 @@ export default function Orders({ handleRender }: any) {
             <Modal
                 show={calificacion}
                 onClose={closeCalificacion}
+                size="5xl"
+                data-aos="fade-right"
+                data-aos-duration="500"
             >
                 <ModalHeader></ModalHeader>
                 <ModalBody>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from '../../config'
 import { deleteItemFromCart, getProducts } from "../../redux/actions";
-
+import swal from "sweetalert";
 import '../Cart/Cart.css'
 import ContadorLs from "./ContadorLs";
 
@@ -18,7 +18,7 @@ export default function Cart() {
 
     useEffect(() => {
         dispatch(getProducts("AZ"))
-        if (items.length === 0) {
+        if (items?.length === 0) {
             let total = 0
             localStorage.setItem("products", JSON.stringify(items));
             localStorage.setItem("precioTotal", JSON.stringify(total));
@@ -29,13 +29,19 @@ export default function Cart() {
         dispatch(deleteItemFromCart(id))
     }
 
-    function handdleCantidad(cantidad: number, id: string) {
+    function handdleCantidad(cantidad: number, id: string, stock: number) {
 
-        setRender(`${id + cantidad}`) // este numero no tiene sentido, es solo para renderizar ante cualquier cambio
+        if (cantidad < 1 || cantidad > stock) {
+            swal({ title: "Cantidad erronea" })
+        }
+        else {
 
-        let itemFound = items.find((itemToModify: any) => itemToModify._id === id)
+            setRender(`${id + cantidad}`) // este numero no tiene sentido, es solo para renderizar ante cualquier cambio
 
-        itemFound.cantidad = cantidad
+            let itemFound = items.find((itemToModify: any) => itemToModify._id === id)
+
+            itemFound.cantidad = cantidad
+        }
     }
 
 
@@ -109,8 +115,9 @@ export default function Cart() {
                                                       "
                                                         value={item.cantidad}
                                                         name='cantidad'
+                                                        required
                                                         min={1} max={item.stock}
-                                                        onChange={(event) => handdleCantidad(Number(event.target.value), item._id)}
+                                                        onChange={(event) => handdleCantidad(Number(event.target.value), item._id, item.stock)}
                                                     />
                                                 </div>
                                             </div>

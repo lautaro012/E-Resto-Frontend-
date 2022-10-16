@@ -8,11 +8,7 @@ import Pedidos from '../src/Components/Pedidos/Pedidos'
 import Home from '../src/Components/Home/Home'
 import Footer from './Components/Footer/Footer';
 import ForgotPass from './Components/ForgotPass/ForgotPass.jsx';
-import Mapa from './Components/Map/Map';
-import OrderTimeline from './Components/OrderTimeline/OrderTimeline';
-//import SendMail from './Components/ForgotPass/SendMail';
-//import About from './Components/About_us/About';
-
+import Mapa from './Components/Map/Map'
 
 function App() {
 
@@ -42,9 +38,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/recupera/:id' element={<ForgotPass />} />
           <Route path='/pedidos' element={<Pedidos />} />
-          {/* <Route path='/register' element={<Register />} /> */}
-          {/* <Route path='/about' element={<About />} /> */}
-          <Route path='/test' element={<OrderTimeline/>}/>
+          <Route path='/test' element={<Mapa />} />
         </Routes>
         <Footer />
       </Router>
