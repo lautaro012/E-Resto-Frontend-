@@ -7,13 +7,15 @@ import { Modal } from 'flowbite-react';
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody';
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader';
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter';
+import ContactForm from '../ContactForm/ContactForm';
 
 export default function HomeBar({ el }: any) {
 
     const navigate = useNavigate()
+    const [contacto, setContacto] = useState<boolean>(false)
 
-    const handleClick = () => {
-        navigate('/contacto');
+    function closeContacto() {
+        setContacto(false)
     }
     const handleHome = () => {
         // home.current?.scrollIntoView({behavior: 'smooth'});
@@ -36,9 +38,23 @@ export default function HomeBar({ el }: any) {
                 <img className='logoHenryFood' src={Logo} alt='LOGO'></img>
                 <div className='navbar-buttons'>
                     <button onClick={() => navigate('/delivery')} className={buttonclass} > SOY REPARTIDOR </button>
-                    <button className={buttonclass} onClick={handleClick}> CONTACTANOS </button>
+                    <button className={buttonclass} onClick={() => setContacto(true)}> CONTACTANOS </button>
                 </div>
             </header>
+            <Modal
+                show={contacto}
+                onClose={closeContacto}
+            >
+                <ModalHeader>
+                    Contactanos
+                </ModalHeader>
+                <ModalBody>
+                    <ContactForm></ContactForm>
+                </ModalBody>
+                <ModalFooter>
+                    © 2022 Henry's Resto Project™
+                </ModalFooter>
+            </Modal>
         </nav>
     )
 }
