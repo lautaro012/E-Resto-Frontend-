@@ -42,24 +42,14 @@ export default function Pedidos() {
                     <video autoPlay preload="auto" muted loop src={VideoHome}></video>
                 </div>
                 <div className="sort-buttons">
-                    {/* <select
-                        onChange={(e) => orderSort(e)}
-                        className={select}
-                        id='selectConfigSize'
-                    >
-                        <option>Dietas</option>
-                    </select> */}
-
                     <select className={select} onChange={(e) => orderSort(e)} id='selectConfigSize'>
                         <option value="">Ordenar Productos</option>
-                        <option value="AZ">AZ</option>
-                        <option value="ZA">ZA</option>
-                        <option value="mayorPrecio">Mayor precio</option>
-                        <option value="menorPrecio">Menor precio</option>
+                        <option value="AZ">A-z</option>
+                        <option value="ZA">Z-a</option>
+                        <option value="mayorPrecio">Precio +</option>
+                        <option value="menorPrecio">Precio -</option>
+                        <option value="mayorRating">Rating +</option>
                     </select>
-
-                    {/* <button className={buttonclass} >MAS COMPRADOS</button> */}
-                    <button className={buttonclass} onClick={(e) => setOrder("mayorRating")}>MAS POPULARES</button>
                 </div>
                 <div className="categorias-productos">
                     <div className="categorias-div">

@@ -95,7 +95,7 @@ export default function Panel({ menuResponsive, setMenuResponsive }: any) {
                                     data-aos-duration="500"
                                 >
                                     <Modal.Header>
-                                        Admin
+                                        Perfil de admin
                                     </Modal.Header>
                                     <Modal.Body>
                                         <Admin></Admin>
@@ -117,7 +117,7 @@ export default function Panel({ menuResponsive, setMenuResponsive }: any) {
                                     data-aos-duration="500"
                                 >
                                     <Modal.Header>
-                                        User
+                                        Perfil de usuario
                                     </Modal.Header>
                                     <Modal.Body>
                                         <Profile></Profile>

@@ -96,7 +96,7 @@ export default function DatosPerfil(data: any) {
     // }
 
     return (
-        <div className="modificar_perfil" data-aos="fade-left" data-aos-duration="1500" >
+        <div className="modificar_perfil" data-aos="fade-left" data-aos-duration="500" >
             <h1 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">Mi perfil</h1>
             <div>
                 <h2>{mail}</h2>
@@ -119,16 +119,16 @@ export default function DatosPerfil(data: any) {
                                 <input
                                     id="User"
                                     type='text'
-                                    size={60}
+                                    size={40}
                                     value={input.userName}
                                     name='userName'
                                     placeholder="User..."
                                     onChange={(event) => handleInput(event)}
                                 />
+                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                                 {
                                     !errors.userName ? null : <span>{errors.userName}</span>
                                 }
-                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                             </div>
                             :
                             null
@@ -146,16 +146,16 @@ export default function DatosPerfil(data: any) {
                                     required
                                     id="Name"
                                     type='text'
-                                    size={60}
+                                    size={40}
                                     value={input.name}
                                     name='name'
                                     placeholder="Nombre..."
                                     onChange={(event) => handleInput(event)}
                                 />
+                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                                 {
                                     !errors.name ? null : <span>{errors.name}</span>
                                 }
-                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                             </div>
                             :
                             null
@@ -173,16 +173,16 @@ export default function DatosPerfil(data: any) {
                                 <input
                                     id="Last name"
                                     type='text'
-                                    size={60}
+                                    size={40}
                                     value={input.lastName}
                                     name='lastName'
                                     placeholder="Apellido..."
                                     onChange={(event) => handleInput(event)}
                                 />
+                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                                 {
                                     !errors.lastName ? null : <span>{errors.lastName}</span>
                                 }
-                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                             </div>
                             :
                             null
@@ -200,16 +200,16 @@ export default function DatosPerfil(data: any) {
                                 <input
                                     id="Address"
                                     type='text'
-                                    size={60}
+                                    size={40}
                                     value={input.adress}
                                     name='adress'
                                     placeholder="Direccion..."
                                     onChange={(event) => handleInput(event)}
                                 />
+                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                                 {
                                     !errors.adress ? null : <span>{errors.adress}</span>
                                 }
-                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                             </div>
                             :
                             null
@@ -224,15 +224,15 @@ export default function DatosPerfil(data: any) {
                             <div>
                                 <input
                                     type='text'
-                                    size={60}
+                                    size={40}
                                     name='img'
                                     placeholder="Inserte una URL para su foto de perfil"
                                     onChange={(event) => handleInput(event)}
                                 />
+                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                                 {
                                     !errors.img ? null : <span>{errors.img}</span>
                                 }
-                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                             </div>
                             :
                             null

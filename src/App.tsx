@@ -8,12 +8,16 @@ import Pedidos from '../src/Components/Pedidos/Pedidos'
 import Home from '../src/Components/Home/Home'
 import Footer from './Components/Footer/Footer';
 import ForgotPass from './Components/ForgotPass/ForgotPass.jsx';
+
+import Mapa from './Components/Map/Map'
+
 import DeliveryList from './Components/DeliveryList/DeliveryList';
 import DeliveryProfile from './Components/DeliveryProfile/DeliveryProfile';
 import LogginDelivery from './Components/LogginDelivery/LogginDelivery';
 import ContactForm from './Components/ContactForm/ContactForm';
 //import SendMail from './Components/ForgotPass/SendMail';
 //import About from './Components/About_us/About';
+
 
 
 function App() {
@@ -48,8 +52,7 @@ function App() {
           <Route path='/contacto' element={<ContactForm/>} />
           <Route path='/recupera/:id' element={<ForgotPass />} />
           <Route path='/pedidos' element={<Pedidos />} />
-          {/* <Route path='/register' element={<Register />} /> */}
-          {/* <Route path='/about' element={<About />} /> */}
+          <Route path='/test' element={<Mapa />} />
           {
             delivery?.find ?
             <Route path='/delivery' element={<DeliveryProfile/>}></Route>

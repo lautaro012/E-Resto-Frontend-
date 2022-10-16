@@ -11,36 +11,37 @@ const Subscribe = () => {
     const [mail, setMail] = useState('')
     let dispatch = useAppDispatch()
 
-    function handleChange(event:React.ChangeEvent<HTMLInputElement>) {
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
         setMail(event.target.value)
     }
 
-    function handleSubmit(event:React.FormEvent<HTMLFormElement>) {
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        if(user) {
+        if (user) {
             dispatch(sendSubscribeMail(user.mail))
         } else {
             dispatch(sendSubscribeMail(mail))
         }
         setMail("")
     }
-  
+
     return (
-    
-    <div>
-        <form onSubmit={(event) => handleSubmit(event)}>
-        {
-        user?.mail ?           
-            <button type='submit' className={buttonclass}>Suscribite</button>
-        :
-        <div>   
-            <input onChange={(e) => handleChange(e)} type="text" placeholder='Tu mail ...'/>                    
-            <button type='submit' className={buttonclass}>Suscribite</button>
+
+        <div>
+            <form onSubmit={(event) => handleSubmit(event)}>
+                {
+                    user?.mail ?
+                        <button type='submit' className={buttonclass}>Suscribite</button>
+                        :
+                        <div>
+                            <input onChange={(e) => handleChange(e)} type="text" placeholder='Tu mail ...' />
+
+                            <button type='submit' className={buttonclass}>Suscribite</button>
+                        </div>
+                }
+            </form>
         </div>
-        }
-        </form>
-    </div>
-  )
+    )
 }
 
 export default Subscribe
