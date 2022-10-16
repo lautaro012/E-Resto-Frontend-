@@ -13,7 +13,7 @@ export default function HomeBar({ el }: any) {
     const navigate = useNavigate()
 
     const handleClick = () => {
-        el.current?.scrollIntoView({ behavior: 'smooth' });
+        navigate('/contacto');
     }
     const handleHome = () => {
         // home.current?.scrollIntoView({behavior: 'smooth'});
