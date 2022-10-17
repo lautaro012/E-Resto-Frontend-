@@ -1,15 +1,37 @@
-import { useEffect } from "react"
+import axios from "axios"
+import { useEffect, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../config"
 import { getUserById } from "../../redux/actions"
 import { buttonclass } from "../../Style/Clases/Clases"
+import swal from "sweetalert";
 
 
-export default function OrderDelivery ({detalles}:any) {
+export default function OrderDelivery ({delivery, detalles}:any) {
+    const [loading, setLoading] = useState(false)
+
+    const deli_id = {
+        deli_id: delivery
+    }
+    console.log(detalles)
+    const handleDelivered = () => {
+        setLoading(true)
+        axios.put(`/order/delivered/${detalles[0]._id}`, deli_id )
+        .then(res => {
+            console.log(res);
+            return res.data
+        })
+        .then(res => {
+            setLoading(false)
+            console.log(res)
+            swal({ title: "Pedido entregado correctamente" })
+        })
+        .catch(err => {
+            setLoading(false)
+            console.log(err)
+        })
     
-    const dispatch = useAppDispatch()
- 
-    const user = useAppSelector(state => state.userDetail)
-    console.log(user)
+    }
+
     return (
         <div className="orden-details-conteiner">
                                 {
@@ -41,17 +63,27 @@ export default function OrderDelivery ({detalles}:any) {
                                             </div>
                                         </div>
                                         <br />
-                                        {/* <h3>Detalles[0] de la entrega:</h3>
-                                        <div className="timer-conteiner">
-                                            <h1><strong>Para:</strong> {detalles[0].User__[0].name} {detalles[0].User__[0].lastName}</h1>
-                                            <h1><strong>Direccion:</strong> {detalles[0].User__[0].adress}</h1>
-                                            <h1><strong>Horario:</strong> {detalles[0].date.slice(11, -5)}</h1>
-                                        </div>
-                                        <br></br>
-                                        <div className="timeline-buttons">
-                                            <button className={buttonclass}> Pedido Entregado </button>
-                                        </div>
-                                        <br /> */}
+                                        <h3>Detalles de la entrega:</h3>
+                                        {
+                                            detalles[0].user ?
+                                                <div className="timer-conteiner">
+                                                    <h1><strong>Para:</strong> {detalles[0].user[0].name} {detalles[0].user[0].lastName}</h1>
+                                                    <h1><strong>Direccion:</strong> {detalles[0].user[0].adress}</h1>
+                                                    <h1><strong>Horario:</strong> {detalles[0].date.slice(11, -5)}</h1>
+                                                </div>
+                                                :
+                                                null
+                                        }
+                                            <br></br>
+                                                <div className="timeline-buttons">
+                                                    {
+                                                        loading ?
+                                                        <button disabled className={buttonclass}> Cargando </button>
+                                                        :
+                                                        <button onClick={handleDelivered} className={buttonclass}> Pedido Entregado </button>
+                                                    }
+                                                </div>
+                                        <br />
                                     </div>
                                     :
                                     <h1>No Posee ninguna orden asignada</h1>

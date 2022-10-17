@@ -11,6 +11,7 @@ import ForgotPass from './Components/ForgotPass/ForgotPass.jsx';
 import Mapa from './Components/Map/Map'
 import DeliveryProfile from './Components/DeliveryProfile/DeliveryProfile';
 import LogginDelivery from './Components/LogginDelivery/LogginDelivery';
+import Map from './Components/Map/Map';
 
 
 function App() {
@@ -51,7 +52,7 @@ function App() {
             :
             <Route path='/delivery' element={<LogginDelivery/>}></Route>
           }
-          {/* <Route path='/test' element={<DeliveryList id={10}/>}/> */}
+          <Route path='/test' element={< Map/>}/> 
         </Routes>
         <Footer />
       </Router>
