@@ -17,7 +17,8 @@ import {
     GET_ORDER_ID,
     GET_ALL_ORDERS,
     GET_DELIVERY,
-    GET_DELIVERY_BY_ID
+    GET_DELIVERY_BY_ID,
+    CLEAN_ORDER
 
 } from "../actions";
 
@@ -160,6 +161,11 @@ export default function rootReducer(state = initialState, action: Action) {
             return {
                 ...state,
                 deliveryProfile: action.payload
+            }
+        case CLEAN_ORDER:
+            return {
+                ...state,
+                ordenDetail: []
             }
         default:
             return state;

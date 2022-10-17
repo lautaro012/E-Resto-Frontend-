@@ -24,6 +24,7 @@ export const GET_ORDER_ID = 'GET_ORDER_ID'
 export const GET_ALL_ORDERS = 'GET_ALL_ORDERS'
 export const GET_DELIVERY = 'GET_DELIVERY'
 export const GET_DELIVERY_BY_ID = 'GET_DELIVERY_BY_ID'
+export const CLEAN_ORDER = 'CLEAN_ORDER'
 export const getProducts = (sort: String) => {
 
     return function (dispatch: Dispatch<Action>) {
@@ -614,16 +615,27 @@ export const createNewDelivery = (input: any) => {
 }
 
 
-export function getDeliveryByID(input: any) {
 
+export function getDeliveryByID (token: { auth: boolean, token: string }) {
     return function (dispatch: Dispatch<Action>) {
-        axios.get(`/delivery/${input}`).then(res => res.data)
-            .then(res => {
+        axios
+            .get("/delivery/token", {
+                headers: {
+                    "x-access-token": token.token,
+                },
+            })
+            .then((res) => {
                 dispatch({
                     type: GET_DELIVERY_BY_ID,
-                    payload: res
+                    payload: res.data
                 })
             })
+            .catch((err) => {
+                dispatch({
+                    type: ERROR_HANDLER,
+                    payload: err
+                })
+            });       
     }
 }
 
@@ -658,3 +670,10 @@ export function getMailContact(input: any) {
     }
 }
 
+export function cleanOrder() {
+    return function (dispatch: Dispatch<Action>) {
+        dispatch({
+            type: CLEAN_ORDER
+        })
+    }
+}
