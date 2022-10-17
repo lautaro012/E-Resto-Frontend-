@@ -38,6 +38,7 @@ export default function Orderlist() {
     //PARA ASIGNARLE LA ORDEN (id de la orden por params y id del delivery por body)
     console.log(e.target.value)
   }
+  console.log(detalles)
 
   function handleCloseRepartidores() {
     setModalRepartidores(false)
@@ -102,24 +103,30 @@ export default function Orderlist() {
                           </span>
 
                         </div>
-                        <div className="orderlist_details_conteiner">
-                          <span>
-                            <h1>
-                              <strong>Para:</strong> {items.User__[0].name}{" "}
-                              {items.User__[0].lastName}
-                            </h1>
-                          </span>
-                          <span>
-                            <h1>
-                              <strong>Direccion:</strong> {items.User__[0].adress}
-                            </h1>
-                          </span>
-                          <span>
-                            <h1>
-                              <strong>Horario:</strong> {items.date.slice(11, -5)}
-                            </h1>
-                          </span>
-                        </div>
+                        {
+                          items.User__.length ?
+                          <div className="orderlist_details_conteiner">
+                            <span>
+
+                              <h1>
+                                <strong>Para:</strong> {items.User__[0].name}{" "}
+                                {items.User__[0].lastName}
+                              </h1>
+                            </span>
+                            <span>
+                              <h1>
+                                <strong>Direccion:</strong> {items.User__[0].adress}
+                              </h1>
+                            </span>
+                            <span>
+                              <h1>
+                                <strong>Horario:</strong> {items.date.slice(11, -5)}
+                              </h1>
+                            </span>
+                          </div>
+                          :
+                          null
+                        }
                       </div>
 
                       <br></br>

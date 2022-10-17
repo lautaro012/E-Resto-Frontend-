@@ -23,6 +23,7 @@ export default function DeliveryProfile () {
 
 
     let delivery = useAppSelector(state => state.deliveryProfile)
+    console.log(delivery)
 
     const handleLogout = () => {
         localStorage.setItem("delivery", JSON.stringify([]))

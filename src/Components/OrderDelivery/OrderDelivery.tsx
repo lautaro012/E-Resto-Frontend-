@@ -7,9 +7,7 @@ import { buttonclass } from "../../Style/Clases/Clases"
 export default function OrderDelivery ({detalles}:any) {
     
     const dispatch = useAppDispatch()
-    useEffect(()=> {
-        dispatch(getUserById(detalles[0].user_id))
-    },[])
+ 
     const user = useAppSelector(state => state.userDetail)
     console.log(user)
     return (
@@ -56,7 +54,7 @@ export default function OrderDelivery ({detalles}:any) {
                                         <br /> */}
                                     </div>
                                     :
-                                    <h1>cargando..</h1>
+                                    <h1>No Posee ninguna orden asignada</h1>
                                 }
                         </div>
     )
