@@ -9,12 +9,13 @@ import swal from "sweetalert";
 export default function OrderDelivery ({delivery, detalles}:any) {
     const [loading, setLoading] = useState(false)
 
-    const user = useAppSelector(state => state.userDetail)
-
-    console.log(detalles[0]._id, delivery)
+    const deli_id = {
+        deli_id: delivery
+    }
+    console.log(detalles)
     const handleDelivered = () => {
         setLoading(true)
-        axios.put(`/order/delivered/${detalles[0]._id}`, delivery )
+        axios.put(`/order/delivered/${detalles[0]._id}`, deli_id )
         .then(res => {
             console.log(res);
             return res.data
@@ -22,7 +23,7 @@ export default function OrderDelivery ({delivery, detalles}:any) {
         .then(res => {
             setLoading(false)
             console.log(res)
-            swal({ title: "Producto creado correctamente" })
+            swal({ title: "Pedido entregado correctamente" })
         })
         .catch(err => {
             setLoading(false)

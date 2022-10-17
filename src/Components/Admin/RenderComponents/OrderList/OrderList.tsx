@@ -32,12 +32,6 @@ let detalles = JSON.parse(JSON.stringify(detalles2))
       .catch(err => console.log(err))
   }
 
-  const handleDelivery = (e: any) => {
-    //Pasa ID de la orden y deberia mostrar lista de Delivery para asignar
-    //RENDERIZAR UN MODAL CON TODOS LOS DELIVERY, DESPUES HACER UN PUT A /order/add/:id 
-    //PARA ASIGNARLE LA ORDEN (id de la orden por params y id del delivery por body)
-    console.log(e.target.value)
-  }
 
   function handleCloseRepartidores() {
     setModalRepartidores(false)
