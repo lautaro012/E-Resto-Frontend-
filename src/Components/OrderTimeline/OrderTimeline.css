@@ -29,6 +29,7 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
+    padding: 2%;
 }
 
 .detail-price-conteiner{
@@ -71,4 +72,10 @@
 
 #imagen-timeline{
     max-width: 45px !important;
+}
+
+.asdasd img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
 }

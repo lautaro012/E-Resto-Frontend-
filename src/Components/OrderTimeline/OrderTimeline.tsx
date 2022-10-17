@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../config";
 import { StateTypes } from "../../Interfaces/Interfaces";
-import { getOrdenByID } from "../../redux/actions";
+import { getOrdenByID, cleanOrder } from "../../redux/actions";
 import { buttonclass } from "../../Style/Clases/Clases";
 import "./OrderTimeline.css";
 import Greencheck from '../../Style/images/icons8-checkmark-40.png'
@@ -10,9 +10,12 @@ import Redcheck from '../../Style/images/red-check.png'
 export default function OrderTimeline({ idOrden }: any) {
 
     const dispatch = useAppDispatch()
+
+
     useEffect(() => {
         dispatch(getOrdenByID(idOrden))
-    }, [dispatch, idOrden])
+        return dispatch(cleanOrder())
+    }, [])
 
     let detalles = useAppSelector((state: StateTypes) => state.ordenDetail);
 
@@ -23,7 +26,7 @@ export default function OrderTimeline({ idOrden }: any) {
                 detalles.length === 0 ?
                     <h1> CARGANDO .... </h1>
                     :
-                    <div className="orden-details-conteiner">
+                    <div className="orden-details-conteiner" data-aos="fade-left" data-aos-duration="500">
                         <div className="Timeline-conteiner">
                             <ol className="relative border-l border-gray-200 dark:border-gray-700">
 
@@ -141,7 +144,6 @@ export default function OrderTimeline({ idOrden }: any) {
 
                             <br></br>
                             <div className="timeline-buttons">
-                                <button className={buttonclass}> Cancelar Orden</button>
                                 {
                                     detalles[0].Delivery__.length !== 0 ?
                                         <button className={buttonclass}>Ver mapa </button>

@@ -23,7 +23,8 @@ export const CLEAR_USER = 'CLEAR_USER'
 export const GET_ORDER_ID = 'GET_ORDER_ID'
 export const GET_ALL_ORDERS = 'GET_ALL_ORDERS'
 export const GET_DELIVERY = 'GET_DELIVERY'
-export const GET_DELIVERY_BY_ID= 'GET_DELIVERY_BY_ID'
+export const GET_DELIVERY_BY_ID = 'GET_DELIVERY_BY_ID'
+export const CLEAN_ORDER = 'CLEAN_ORDER'
 export const getProducts = (sort: String) => {
 
     return function (dispatch: Dispatch<Action>) {
@@ -548,7 +549,7 @@ export function createOrder(payload: any) {
         axios.post('/order', payload).then(res => res.data)
             .then(resp => {
                 console.log(resp)
-                window.location.reload()
+                // window.location.reload()
             })
             .catch(error => console.log(error))
     }
@@ -559,7 +560,6 @@ export function postReview(input: any) {
         axios.post('http://localhost:3001/review', input).then(res => res.data)
             .then(resp => {
                 console.log(resp)
-                window.location.reload()
             })
             .catch(error => console.log(error))
     }
@@ -577,38 +577,43 @@ export function getOrdenByID(id: number) {
     }
 }
 
-export function getDelivery () {
+export function getDelivery() {
     return function (dispatch: Dispatch<Action>) {
         axios.get('/delivery').then(res => res.data)
-        .then(res => {
-            dispatch({
-                type:GET_DELIVERY,
-                payload: res
+            .then(res => {
+                dispatch({
+                    type: GET_DELIVERY,
+                    payload: res
+                })
             })
-        })
     }
 }
+
 
 
 export const createNewDelivery = (input: any) => {
 
     return function (dispatch: Dispatch<Action>) {
-        if(input) {
+        if (input) {
             axios.post(`/delivery/register`, input).then(resp => resp.data)
-            .then(res => {
-                console.log('registrado', res)
-                swal({ title: 'Registrado correctamente' })
-            })
-            .catch(err => {
-                if(err.response.status == 400) {
-                    swal('El mail ya está registrado')
-                }
-                if(err.response.status == 404) {
-                    swal('Faltó ingresar datos requeridos')
-                }
-                else console.log(err)
-            })
-        }else {console.log(`didn't get input`)}}}
+                .then(res => {
+                    console.log('registrado', res)
+                    Swal.fire('Registrado correctamente')
+                        .then((res) => { if (res.isConfirmed) window.location.reload() })
+                })
+                .catch(err => {
+                    if (err.response.status === 400) {
+                        swal('El mail ya está registrado')
+                    }
+                    if (err.response.status === 404) {
+                        swal('Faltó ingresar datos requeridos')
+                    }
+                    else console.log(err)
+                })
+        } else { console.log(`didn't get input`) }
+    }
+}
+
 
 
 export function getDeliveryByID (token: { auth: boolean, token: string }) {
@@ -634,26 +639,41 @@ export function getDeliveryByID (token: { auth: boolean, token: string }) {
     }
 }
 
-export function logDelivery (navigate:any,input:any) {
+export function logDelivery(navigate: any, input: any) {
     return function (dispatch: Dispatch<Action>) {
         axios.post('/delivery/login', input).then(res => res.data)
-        .then(res => {
-            localStorage.setItem('delivery', JSON.stringify(res));
-            getDeliveryByID(res.find[0]._id)
-            window.location.reload()
-        })
-        .catch(err => {
-            return dispatch({
-                type: ERROR_HANDLER,
-                payload: err
+            .then(res => {
+                localStorage.setItem('delivery', JSON.stringify(res));
+                window.location.reload()
             })
-        })
+            .catch(err => {
+                return dispatch({
+                    type: ERROR_HANDLER,
+                    payload: err
+                })
+            })
     }
 }
 
-export function asignOrder (id:number, deli_id:number) {
+export function asignOrder(id: number, deli_id: number) {
     return function (dispatch: Dispatch<Action>) {
-        axios.put(`/order/add/${id}`, {deli_id}).then(res => res.data)
-        .then(res => swal({ title: 'Pedido Asignado Exitosamente' }))
+        axios.put(`/order/add/${id}`, { deli_id }).then(res => res.data)
+            .then(res => swal({ title: 'Pedido Asignado Exitosamente' }))
+    }
+}
 
-    }}
+export function getMailContact(input: any) {
+    return function (dispatch: Dispatch<Action>) {
+        axios.post('/contactMailing', input)
+            .then(res => swal({ title: 'Hemos recibido tu consulta, te responderemos a la brevedad' }))
+            .catch(res => swal({ title: 'No pudimos recibir el mail' }))
+    }
+}
+
+export function cleanOrder() {
+    return function (dispatch: Dispatch<Action>) {
+        dispatch({
+            type: CLEAN_ORDER
+        })
+    }
+}

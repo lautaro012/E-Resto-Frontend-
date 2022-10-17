@@ -17,7 +17,7 @@ export default function Check({ precio, subtotal, propina }) {
 
     try {
       const response = await axios({
-        url: 'http://localhost:3001/payment',
+        url: '/payment',
         method: 'post',
         data: {
           amount: precio * 100,
@@ -25,7 +25,7 @@ export default function Check({ precio, subtotal, propina }) {
         }
       })
       if (response.status === 200) {
-
+        console.log(token.card.address_line1)
         let cantidad = items.map(item => {
           return {
             name: item.name,

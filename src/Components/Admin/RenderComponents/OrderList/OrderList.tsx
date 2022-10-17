@@ -44,7 +44,7 @@ export default function Orderlist() {
   }
 
   return (
-    <div>
+    <div data-aos="fade-left" data-aos-duration="500">
       {
         detalles.length === 0 ?
           (
