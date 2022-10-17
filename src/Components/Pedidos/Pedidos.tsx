@@ -33,6 +33,15 @@ export default function Pedidos() {
 
     let categories = useAppSelector((state: StateTypes) => state.categories);
 
+    function setDarkMode() {
+        if (document.documentElement.classList.toggle('dark')) {
+            localStorage.theme = "dark"
+        }
+        else {
+            localStorage.theme = "light"
+        }
+    }
+
     return (
         <>
             <NavBar />
@@ -41,6 +50,15 @@ export default function Pedidos() {
                     <h1>Henry's Resto Proyect</h1>
                     <video autoPlay preload="auto" muted loop src={VideoHome}></video>
                 </div>
+                <button className="theme-toggle--button" aria-label="Toggle Theme" onClick={() => setDarkMode()}>
+                    <span className="shape moon"></span>
+                    <span className="rays--container">
+                        <span className="ray"></span>
+                        <span className="ray"></span>
+                        <span className="ray"></span>
+                        <span className="ray"></span>
+                    </span>
+                </button>
                 <div className="sort-buttons">
                     <select className={select} onChange={(e) => orderSort(e)} id='selectConfigSize'>
                         <option value="">Ordenar Productos</option>
