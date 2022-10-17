@@ -117,7 +117,7 @@ export default function NavBar() {
             Registro en Henry's Resto Proyect
           </ModalHeader>
           <ModalBody>
-            <Register></Register>
+            <Register closeRegister={closeRegister}></Register>
           </ModalBody>
           <ModalFooter>
             <a href="/">Henry's Resto Project™</a>

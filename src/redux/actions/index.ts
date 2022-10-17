@@ -432,9 +432,9 @@ export const createUser = (input: any, navigate: any) => {
         axios.post(`/user/register`, input).then(resp => resp.data)
             .then(res => {
                 console.log('registrado', res)
-                swal({ title: 'Registrado correctamente' })
                 axios.post(`/sendWelcomeMail/${input.mail}`).then(res => console.log('email sent', res.data))
-                navigate('/pedidos')
+                swal({ title: 'Registrado correctamente' })
+                //navigate('/pedidos')
             })
             .catch(err => {
                 return dispatch({
@@ -616,7 +616,7 @@ export const createNewDelivery = (input: any) => {
 
 
 
-export function getDeliveryByID (token: { auth: boolean, token: string }) {
+export function getDeliveryByID(token: { auth: boolean, token: string }) {
     return function (dispatch: Dispatch<Action>) {
         axios
             .get("/delivery/token", {
@@ -635,7 +635,7 @@ export function getDeliveryByID (token: { auth: boolean, token: string }) {
                     type: ERROR_HANDLER,
                     payload: err
                 })
-            });       
+            });
     }
 }
 
