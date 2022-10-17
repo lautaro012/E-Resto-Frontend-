@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../config"
 import { StateTypes } from "../../Interfaces/Interfaces"
-import { asignOrder, getDelivery } from "../../redux/actions"
+import { asignOrder, getAllOrders, getDelivery } from "../../redux/actions"
 import { buttonclass } from "../../Style/Clases/Clases"
 import './DeliveryList.css'
 
@@ -18,6 +18,7 @@ export default function DeliveryList ({handleCloseRepartidores, id}:{handleClose
     const handleAsign = (e:any) => {
         dispatch(asignOrder(id, e.target.value))
         handleCloseRepartidores()
+        dispatch(getAllOrders())
     }
 
     return (
