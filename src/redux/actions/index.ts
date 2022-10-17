@@ -647,9 +647,10 @@ export function logDelivery(navigate: any, input: any) {
                 window.location.reload()
             })
             .catch(err => {
+                console.log(err.response.data)
                 return dispatch({
                     type: ERROR_HANDLER,
-                    payload: err
+                    payload: err.response.data
                 })
             })
     }
