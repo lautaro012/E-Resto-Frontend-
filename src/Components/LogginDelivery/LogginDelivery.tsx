@@ -13,7 +13,6 @@ export default function LogginDelivery () {
     const navigate = useNavigate()
     let dispatch = useAppDispatch();
     let error = useAppSelector((state: StateTypes) => state.error);
-    console.log(error)
     const [loading, setLoading] = useState<boolean>(false)
 
     const [input, setInput] = useState<{ mail: string; password: string; google: boolean }>({
@@ -47,7 +46,8 @@ export default function LogginDelivery () {
         dispatch(logDelivery(navigate, input));
         setTimeout(() => {
             setLoading(false)
-        }, 1000)
+            window.location.reload()
+        }, 1000)    
     };
     return (
         <div className="loggin-delivery-conteiner">
@@ -86,7 +86,7 @@ export default function LogginDelivery () {
                         {
                             error ?
                                 <div className="loggin-conteiner">
-                                    <h1 className="text-amber-700 text-xl">{error.response.data}</h1>
+                                    <h1 className="text-amber-700 text-xl">{error.response}</h1>
                                 </div>
                                 :
                                 null

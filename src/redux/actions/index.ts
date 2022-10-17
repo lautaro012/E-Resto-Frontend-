@@ -611,15 +611,26 @@ export const createNewDelivery = (input: any) => {
         }else {console.log(`didn't get input`)}}}
 
 
-export function getDeliveryByID (input:any) {
+export function getDeliveryByID (token: { auth: boolean, token: string }) {
     return function (dispatch: Dispatch<Action>) {
-        axios.get(`/delivery/${input}`).then(res => res.data)
-        .then(res=> {
-            dispatch({
-                type: GET_DELIVERY_BY_ID,
-                payload: res
+        axios
+            .get("/delivery/token", {
+                headers: {
+                    "x-access-token": token.token,
+                },
             })
-        })
+            .then((res) => {
+                dispatch({
+                    type: GET_DELIVERY_BY_ID,
+                    payload: res.data
+                })
+            })
+            .catch((err) => {
+                dispatch({
+                    type: ERROR_HANDLER,
+                    payload: err
+                })
+            });       
     }
 }
 

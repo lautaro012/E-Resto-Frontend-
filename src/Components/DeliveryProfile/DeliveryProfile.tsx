@@ -11,26 +11,22 @@ import './DeliveryProfile.css'
 
 export default function DeliveryProfile () {
 
-    const [render, setRender] = useState('registeredUsers')
 
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
+    const token = JSON.parse(localStorage.getItem("delivery")!);
 
 
     useEffect(() => {
-        dispatch(getOrdenByID(delivery?.orders[0]))
+        dispatch(getDeliveryByID(token))
     }, [])
-
-    let detalles = useAppSelector((state: StateTypes) => state.ordenDetail);
-    console.log(detalles)
 
 
     let delivery = useAppSelector(state => state.deliveryProfile)
-    console.log(delivery)
 
     const handleLogout = () => {
         localStorage.setItem("delivery", JSON.stringify([]))
-        navigate('/home')
+        window.location.reload()
     }
 
     return (
@@ -52,10 +48,10 @@ export default function DeliveryProfile () {
                     </aside>
                     <div className='order-delivery-conteiner'>
                         {
-                            detalles.length ?
-                            <OrderDelivery detalles={detalles}></OrderDelivery>
-                        :
-                        <h1>Cargando..</h1>
+                            delivery.orders ?
+                            <OrderDelivery detalles={delivery.orders}></OrderDelivery>
+                            :
+                            <h1>Cargando..</h1>
                         }
                     </div>
                 </div>

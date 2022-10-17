@@ -49,7 +49,7 @@ function App() {
           {/* <Route path='/register' element={<Register />} /> */}
           {/* <Route path='/about' element={<About />} /> */}
           {
-            delivery?.find ?
+            delivery.token ?
             <Route path='/delivery' element={<DeliveryProfile/>}></Route>
             :
             <Route path='/delivery' element={<LogginDelivery/>}></Route>
