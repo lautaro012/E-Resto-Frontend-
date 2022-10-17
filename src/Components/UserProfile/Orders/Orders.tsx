@@ -2,11 +2,12 @@ import { Button, Modal } from 'flowbite-react'
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
-import { useAppSelector } from '../../../config'
+import { useAppDispatch, useAppSelector } from '../../../config'
 import { useState } from "react";
 import './Orders.css'
 import DetailOrder from './DetailOrder/DetailOrder'
 import { buttonclass } from '../../../Style/Clases/Clases'
+import { getOrdenByID } from '../../../redux/actions'
 
 export default function Orders({ handleRender }: any) {
 
@@ -14,7 +15,7 @@ export default function Orders({ handleRender }: any) {
     const [calificacion, setCalificacion] = useState<boolean>(false)
 
     const [orderId, setOrderId] = useState<object>()
-
+    const dispatch = useAppDispatch()
     function closeCalificacion() {
         setCalificacion(false)
     }
@@ -24,7 +25,7 @@ export default function Orders({ handleRender }: any) {
         setCalificacion(true)
     }
     const handleOrderDetail = (e: any) => {
-        handleRender('detail', e.target.value)
+        handleRender('detail', e)
     }
 
     return (
@@ -46,7 +47,7 @@ export default function Orders({ handleRender }: any) {
                                         order.delivered === true ?
                                             <Button onClick={() => handleOrderDatailModal(order)}>Calificar</Button>
                                             :
-                                            <Button value={order._id} onClick={(e) => handleOrderDetail(e)}>Seguimiento</Button>
+                                            <Button value={order._id} name={order._id} onClick={(e) => handleOrderDetail(order._id)}>Seguimiento</Button>
                                     }
                                 </div>
                                 <h3 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Fecha</h3>

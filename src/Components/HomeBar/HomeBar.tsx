@@ -44,6 +44,7 @@ export default function HomeBar({ el }: any) {
             <Modal
                 show={contacto}
                 onClose={closeContacto}
+                size='3x1'
             >
                 <ModalHeader>
                     Contactanos

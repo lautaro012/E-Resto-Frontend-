@@ -46,10 +46,10 @@ function App() {
           <Route path='/pedidos' element={<Pedidos />} />
           <Route path='/test' element={<Mapa />} />
           {
-            delivery?.find ?
-              <Route path='/delivery' element={<DeliveryProfile />}></Route>
-              :
-              <Route path='/delivery' element={<LogginDelivery />}></Route>
+            delivery?.token ?
+            <Route path='/delivery' element={<DeliveryProfile/>}></Route>
+            :
+            <Route path='/delivery' element={<LogginDelivery/>}></Route>
           }
           {/* <Route path='/test' element={<DeliveryList id={10}/>}/> */}
         </Routes>

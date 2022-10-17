@@ -17,7 +17,7 @@ export default function Check({ precio, subtotal, propina }) {
 
     try {
       const response = await axios({
-        url: 'http://localhost:3001/payment',
+        url: '/payment',
         method: 'post',
         data: {
           amount: precio * 100,
