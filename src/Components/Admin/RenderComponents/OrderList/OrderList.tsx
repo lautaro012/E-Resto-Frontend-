@@ -12,7 +12,7 @@ import './OrderList.css'
 
 export default function Orderlist() {
   const dispatch = useAppDispatch();
-  let detalles = useAppSelector((state: StateTypes) => state.allOrders);
+  let detalles2 = useAppSelector((state: StateTypes) => state.allOrders)
   const [modalRepartidores, setModalRepartidores] = useState<boolean>(false)
 
   useEffect(() => {
@@ -20,15 +20,15 @@ export default function Orderlist() {
   }, [dispatch]);
 
 
-
+let detalles = JSON.parse(JSON.stringify(detalles2))
 
   const handleConfirm = (e: any) => {
-    const preprared = {
+    const prepared = {
       prepared: true
     }
-    axios.put(`/order/edit/${e.target.value}`, preprared)
+    axios.put(`/order/edit/${e.target.value}`, prepared)
       .then(resp => resp.data)
-      .then(res => console.log(res))
+      .then(res => dispatch(getAllOrders()))
       .catch(err => console.log(err))
   }
 
@@ -134,6 +134,9 @@ export default function Orderlist() {
                       <div className="h1-conteiner">
                         {
                           items.prepared ?
+                            items.Delivery__.length ?
+                            <button className={buttonclass} disabled> Repartidor asignado </button>
+                            :
                             <button onClick={() => setModalRepartidores(true)} className={buttonclass}> Asignar Repartidor </button>
                             :
                             <button value={items._id} onClick={handleConfirm} className={buttonclass}> Confirmar Pedido </button>
