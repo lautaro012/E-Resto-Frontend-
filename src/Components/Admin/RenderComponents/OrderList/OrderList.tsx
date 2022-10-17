@@ -135,7 +135,7 @@ let detalles = JSON.parse(JSON.stringify(detalles2))
                         {
                           items.prepared ?
                             items.Delivery__.length ?
-                            <button className={buttonclass} disabled> Repartidor asignado </button>
+                            <button className={buttonclass} disabled > Repartidor asignado </button>
                             :
                             <button onClick={() => setModalRepartidores(true)} className={buttonclass}> Asignar Repartidor </button>
                             :

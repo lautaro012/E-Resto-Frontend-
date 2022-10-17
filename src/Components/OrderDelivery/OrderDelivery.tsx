@@ -6,10 +6,13 @@ import { buttonclass } from "../../Style/Clases/Clases"
 
 export default function OrderDelivery ({detalles}:any) {
     
-    const dispatch = useAppDispatch()
  
     const user = useAppSelector(state => state.userDetail)
-    console.log(user)
+
+    const handleDelivered = () => {
+        console.log('ENTREGADO')
+    }
+
     return (
         <div className="orden-details-conteiner">
                                 {
@@ -41,17 +44,22 @@ export default function OrderDelivery ({detalles}:any) {
                                             </div>
                                         </div>
                                         <br />
-                                        {/* <h3>Detalles[0] de la entrega:</h3>
-                                        <div className="timer-conteiner">
-                                            <h1><strong>Para:</strong> {detalles[0].User__[0].name} {detalles[0].User__[0].lastName}</h1>
-                                            <h1><strong>Direccion:</strong> {detalles[0].User__[0].adress}</h1>
-                                            <h1><strong>Horario:</strong> {detalles[0].date.slice(11, -5)}</h1>
-                                        </div>
-                                        <br></br>
-                                        <div className="timeline-buttons">
-                                            <button className={buttonclass}> Pedido Entregado </button>
-                                        </div>
-                                        <br /> */}
+                                        <h3>Detalles de la entrega:</h3>
+                                        {
+                                            detalles[0].user ?
+                                                <div className="timer-conteiner">
+                                                    <h1><strong>Para:</strong> {detalles[0].user[0].name} {detalles[0].user[0].lastName}</h1>
+                                                    <h1><strong>Direccion:</strong> {detalles[0].user[0].adress}</h1>
+                                                    <h1><strong>Horario:</strong> {detalles[0].date.slice(11, -5)}</h1>
+                                                </div>
+                                                :
+                                                null
+                                        }
+                                            <br></br>
+                                                <div className="timeline-buttons">
+                                                    <button onClick={handleDelivered} className={buttonclass}> Pedido Entregado </button>
+                                                </div>
+                                        <br />
                                     </div>
                                     :
                                     <h1>No Posee ninguna orden asignada</h1>
