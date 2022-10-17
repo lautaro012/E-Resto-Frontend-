@@ -1,16 +1,34 @@
-import { useEffect } from "react"
+import axios from "axios"
+import { useEffect, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../config"
 import { getUserById } from "../../redux/actions"
 import { buttonclass } from "../../Style/Clases/Clases"
+import swal from "sweetalert";
 
 
-export default function OrderDelivery ({detalles}:any) {
-    
- 
+export default function OrderDelivery ({delivery, detalles}:any) {
+    const [loading, setLoading] = useState(false)
+
     const user = useAppSelector(state => state.userDetail)
 
+    console.log(detalles[0]._id, delivery)
     const handleDelivered = () => {
-        console.log('ENTREGADO')
+        setLoading(true)
+        axios.put(`/order/delivered/${detalles[0]._id}`, delivery )
+        .then(res => {
+            console.log(res);
+            return res.data
+        })
+        .then(res => {
+            setLoading(false)
+            console.log(res)
+            swal({ title: "Producto creado correctamente" })
+        })
+        .catch(err => {
+            setLoading(false)
+            console.log(err)
+        })
+    
     }
 
     return (
@@ -57,7 +75,12 @@ export default function OrderDelivery ({detalles}:any) {
                                         }
                                             <br></br>
                                                 <div className="timeline-buttons">
-                                                    <button onClick={handleDelivered} className={buttonclass}> Pedido Entregado </button>
+                                                    {
+                                                        loading ?
+                                                        <button disabled className={buttonclass}> Cargando </button>
+                                                        :
+                                                        <button onClick={handleDelivered} className={buttonclass}> Pedido Entregado </button>
+                                                    }
                                                 </div>
                                         <br />
                                     </div>

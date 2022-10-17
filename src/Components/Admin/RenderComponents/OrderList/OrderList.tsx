@@ -38,7 +38,6 @@ let detalles = JSON.parse(JSON.stringify(detalles2))
     //PARA ASIGNARLE LA ORDEN (id de la orden por params y id del delivery por body)
     console.log(e.target.value)
   }
-  console.log(detalles)
 
   function handleCloseRepartidores() {
     setModalRepartidores(false)

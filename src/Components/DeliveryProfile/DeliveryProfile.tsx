@@ -23,8 +23,7 @@ export default function DeliveryProfile () {
 
 
     let delivery = useAppSelector(state => state.deliveryProfile)
-    console.log(delivery)
-
+    console.log('deliveryyyyyyyy',delivery.orders)
     const handleLogout = () => {
         localStorage.setItem("delivery", JSON.stringify([]))
         window.location.reload()
@@ -50,7 +49,7 @@ export default function DeliveryProfile () {
                     <div className='order-delivery-conteiner'>
                         {
                             delivery.orders ?
-                            <OrderDelivery detalles={delivery.orders}></OrderDelivery>
+                            <OrderDelivery delivery={delivery._id} detalles={delivery.orders}></OrderDelivery>
                             :
                             <h1>Cargando..</h1>
                         }
