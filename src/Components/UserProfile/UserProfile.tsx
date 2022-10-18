@@ -9,7 +9,7 @@ import OrderTimeline from '../OrderTimeline/OrderTimeline'
 
 export default function Profile() {
 
-    const user = useAppSelector((state) => state.user)
+    const user2 = useAppSelector((state) => state.user)
 
     const [render, setRender] = useState("perfil")
     const [idOrden, setIdOrden] = useState(0)
@@ -18,7 +18,7 @@ export default function Profile() {
         setRender(componente)
         setIdOrden(orden)
     }
-
+    const user = JSON.parse(JSON.stringify(user2))
     return (
         <div className='Profile'>
 

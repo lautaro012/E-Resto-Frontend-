@@ -44,5 +44,13 @@ box-shadow: 0px 0px 0px 5px #A0A0A0, inset 0px 10px 27px -8px #141414, inset 0px
     background: azure;
     display: flex;
     justify-content: center;
-    align-items: center;
+    overflow-y: scroll;
+}
+
+.h1-noOrder{
+    align-self: center;
+}
+
+.Delivery-orders-conteiner{
+    padding: 5%
 }

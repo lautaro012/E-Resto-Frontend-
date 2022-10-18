@@ -1,7 +1,7 @@
 
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
-import { createOrder, deleteItemFromCart } from "../../redux/actions";
+import { createOrder, deleteItemFromCart, getUser } from "../../redux/actions";
 import { useAppDispatch, useAppSelector } from '../../config';
 //import { useNavigate } from 'react-router-dom';
 import swal from "sweetalert";
@@ -13,6 +13,7 @@ export default function Check({ precio, subtotal, propina }) {
   const user = useAppSelector(state => state.user)
   const dispatch = useAppDispatch()
   //const navigate = useNavigate()
+  let token = localStorage.getItem("token");
   const payNow = async token => {
 
     try {
@@ -49,9 +50,11 @@ export default function Check({ precio, subtotal, propina }) {
           items: items
         }
 
-        dispatch(createOrder(payload))
-        dispatch(deleteItemFromCart("All"))
+        dispatch(createOrder(payload));
+        dispatch(deleteItemFromCart("All"));
+        dispatch(getUser(JSON.parse(token)));
         swal({ title: ('COMPRA EXITOSA') })
+        window.location.reload()
       }
     } catch (error) {
       console.log(error)
