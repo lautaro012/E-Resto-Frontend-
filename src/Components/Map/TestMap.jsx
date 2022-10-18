@@ -1,7 +1,7 @@
   import {
     useJsApiLoader,
     GoogleMap,
-    Marker,
+    MarkerF,
     Autocomplete,
     DirectionsRenderer,
   } from '@react-google-maps/api'
@@ -63,7 +63,7 @@ import { buttonclass } from '../../Style/Clases/Clases'
           {/* Google Map div */}
           <GoogleMap
             center={center}
-            zoom={15}
+            zoom={18}
             mapContainerStyle={{ width: '100vh', height: '100vh' }}
             options={{
               zoomControl: false,
@@ -73,7 +73,8 @@ import { buttonclass } from '../../Style/Clases/Clases'
             }}
             onLoad={map => setMap(map)}
           >
-            <Marker position={center} />
+            <MarkerF position={center}/>
+
             {directionsResponse && (
               <DirectionsRenderer directions={directionsResponse} />
             )}
@@ -113,7 +114,7 @@ import { buttonclass } from '../../Style/Clases/Clases'
             <button className={buttonclass}
               onClick={() => {
                 map.panTo(center)
-                map.setZoom(15)
+                map.setZoom(18)
               }}
             >CENTRAR</button>
           </div>
