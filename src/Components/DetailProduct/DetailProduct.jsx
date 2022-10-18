@@ -4,6 +4,10 @@ import { addToCart, getFoodById, vaciarComida, deleteItemFromCart } from '../../
 import '../DetailProduct/DetailProduct.css'
 import { Button, Dropdown, Modal } from "flowbite-react";
 import swal from "sweetalert";
+import { ModalHeader } from "flowbite-react/lib/esm/components/Modal/ModalHeader";
+import { ModalBody } from "flowbite-react/lib/esm/components/Modal/ModalBody";
+import { ModalFooter } from "flowbite-react/lib/esm/components/Modal/ModalFooter";
+import PrettyRating from "pretty-rating-react";
 
 export default function DetailProduct({ id, closeModalDetail }) {
 
@@ -15,6 +19,7 @@ export default function DetailProduct({ id, closeModalDetail }) {
     const [extraItem, setExtraItem] = useState(null);
     const [extra, setExtra] = useState(0);
     const [comentario, setComentario] = useState("")
+    const [opinionesModal, setOpinionesModal] = useState(false);
 
     useEffect(() => {
         dispatch(getFoodById(id))
@@ -26,8 +31,6 @@ export default function DetailProduct({ id, closeModalDetail }) {
     function closeDetailModal() {
         closeModalDetail(false)
     }
-
-    //VERIFICAR STOCK DE ITEM EXTRA ANTES DE MANDAR PEDIDO
 
     function addFoodToCart() {
 
@@ -87,10 +90,48 @@ export default function DetailProduct({ id, closeModalDetail }) {
         setExtraItem(null)
     }
 
-    // console.log(food)
+    function closeOpinionesModal() {
+        setOpinionesModal(false)
+    }
+
+    const colors = {
+        star: ['#d9ad26', '#d9ad26', '#434b4d'],
+    }
 
     return (
         <div >
+            <Modal
+                show={opinionesModal}
+                onClose={closeOpinionesModal}
+            ><fieldset disabled="disabled"></fieldset>
+                <ModalHeader>
+                    <h1>Calificaciones de {food?.name}</h1>
+                </ModalHeader>
+                <ModalBody>
+                    {
+                        food && food.reviewList.length > 0 ?
+                            <div className="conteiner_calificaciones_detalle">
+                                {
+                                    food.reviewList.map(rev => {
+                                        return (
+                                            <div>
+                                                <p>{rev.date.slice(0, 10)}</p>
+                                                <p>"{rev.comment}"</p>
+                                                <PrettyRating value={rev.rating} colors={colors.star} />
+                                                <br />
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                            :
+                            <div>
+                                <h1>No hay calificaciones para este producto</h1>
+                            </div>
+                    }
+
+                </ModalBody>
+            </Modal>
             {
                 food && food ?
                     <Modal
@@ -136,7 +177,13 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                 <div id="detalle_der">
                                     <div className="descripcion_detalles">
                                         <h1 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Detalles</h1>
+                                        <br />
                                         <p>{food.description}</p>
+                                        <br />
+                                        <PrettyRating value={food.rating} colors={colors.star} />
+                                        <span className="mr-2 ml-3 rounded bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">
+                                            {food.rating.toFixed(2)}
+                                        </span>
                                     </div>
                                     {
                                         food.category === "Cervezas" || food.category === "Bebidas sin Alcohol" ?
@@ -216,6 +263,7 @@ export default function DetailProduct({ id, closeModalDetail }) {
                                                 </Dropdown>
                                             </div>
                                     }
+                                    <Button onClick={() => setOpinionesModal(true)}> Ver calificaciones </Button>
                                     <div className="comentarios_detalle">
                                         <h2>Comentarios</h2>
                                         <textarea

@@ -14,13 +14,16 @@ export default function Orderlist() {
   const dispatch = useAppDispatch();
   let detalles2 = useAppSelector((state: StateTypes) => state.allOrders)
   const [modalRepartidores, setModalRepartidores] = useState<boolean>(false)
+  const [idOrder, setIdOrder] = useState<number>(0)
 
   useEffect(() => {
     dispatch(getAllOrders());
   }, [dispatch]);
 
 
-let detalles = JSON.parse(JSON.stringify(detalles2))
+  let detalles = JSON.parse(JSON.stringify(detalles2))
+
+console.log(detalles)
 
   const handleConfirm = (e: any) => {
     const prepared = {
@@ -35,6 +38,11 @@ let detalles = JSON.parse(JSON.stringify(detalles2))
 
   function handleCloseRepartidores() {
     setModalRepartidores(false)
+  }
+
+  const handleAsign = (e:any) => {
+    setIdOrder(e.target.value)
+    setModalRepartidores(true)
   }
 
   return (
@@ -63,6 +71,7 @@ let detalles = JSON.parse(JSON.stringify(detalles2))
                                 <td>{item.name}</td>
                                 <td><p> $ {item.price} </p></td>
                               </tr>
+                              <h5>{item.comentario ? item.comentario : null}</h5>
                               <br></br>
                             </div>
                           );
@@ -98,27 +107,27 @@ let detalles = JSON.parse(JSON.stringify(detalles2))
                         </div>
                         {
                           items.User__.length ?
-                          <div className="orderlist_details_conteiner">
-                            <span>
+                            <div className="orderlist_details_conteiner">
+                              <span>
 
-                              <h1>
-                                <strong>Para:</strong> {items.User__[0].name}{" "}
-                                {items.User__[0].lastName}
-                              </h1>
-                            </span>
-                            <span>
-                              <h1>
-                                <strong>Direccion:</strong> {items.User__[0].adress}
-                              </h1>
-                            </span>
-                            <span>
-                              <h1>
-                                <strong>Horario:</strong> {items.date.slice(11, -5)}
-                              </h1>
-                            </span>
-                          </div>
-                          :
-                          null
+                                <h1>
+                                  <strong>Para:</strong> {items.User__[0].name}{" "}
+                                  {items.User__[0].lastName}
+                                </h1>
+                              </span>
+                              <span>
+                                <h1>
+                                  <strong>Direccion:</strong> {items.User__[0].adress}
+                                </h1>
+                              </span>
+                              <span>
+                                <h1>
+                                  <strong>Horario:</strong> {items.date.slice(11, -5)}
+                                </h1>
+                              </span>
+                            </div>
+                            :
+                            null
                         }
                       </div>
 
@@ -126,17 +135,25 @@ let detalles = JSON.parse(JSON.stringify(detalles2))
 
                       <div className="h1-conteiner">
                         {
-                          items.prepared ?
-                            items.Delivery__.length ?
-                            <button className={buttonclass} disabled > Repartidor asignado </button>
-                            :
-                            <button onClick={() => setModalRepartidores(true)} className={buttonclass}> Asignar Repartidor </button>
-                            :
-                            <button value={items._id} onClick={handleConfirm} className={buttonclass}> Confirmar Pedido </button>
+
+                          !items.prepared ?
+                          <button value={items._id} onClick={handleConfirm} className={buttonclass}> Confirmar Pedido </button>
+                          :
+                          items.Delivery__.length ?
+                          <h1> Pedido Asignado a {items.Delivery__[0].name} {items.Delivery__[0].lastName} </h1>
+                          :
+                          <button  value={items._id} onClick={(e) => handleAsign(e)} className={buttonclass}> Asignar Repartidor </button>
+
                         }
+                        
                       </div>
                       <br />
 
+                    </div>
+                  );
+                }
+                return null
+              })}
                       <Modal
                         show={modalRepartidores}
                         onClose={handleCloseRepartidores}
@@ -145,14 +162,9 @@ let detalles = JSON.parse(JSON.stringify(detalles2))
                           Repartidores Disponibles:
                         </ModalHeader>
                         <ModalBody>
-                          <DeliveryList handleCloseRepartidores={handleCloseRepartidores} id={items._id}></DeliveryList>
+                          <DeliveryList handleCloseRepartidores={handleCloseRepartidores} id={idOrder}></DeliveryList>
                         </ModalBody>
                       </Modal>
-                    </div>
-                  );
-                }
-                return null
-              })}
             </div>
           )
       }

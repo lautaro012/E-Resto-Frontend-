@@ -20,6 +20,10 @@ export default function Pedidos() {
     const [order, setOrder] = useState("");
     const [showDetailModal, setShowDetailModal] = useState<boolean | undefined>(false);
     const [idModal, setIdModal] = useState<string>();
+    const [render, setRender] = useState<boolean>(false)
+    const theme = localStorage.getItem("theme")!;
+
+    let categories = useAppSelector((state: StateTypes) => state.categories);
 
     function orderSort(e: Select) {
         e.preventDefault();
@@ -31,7 +35,16 @@ export default function Pedidos() {
         dispatch(getCategories(order));
     }, [dispatch, order]);
 
-    let categories = useAppSelector((state: StateTypes) => state.categories);
+    function setDarkMode() {
+        document.getElementById("boton_dark")?.classList.toggle("sun")
+        if (document.documentElement.classList.toggle('dark')) {
+            localStorage.theme = "dark"
+        }
+        else {
+            localStorage.theme = "light"
+        }
+        render ? setRender(false) : setRender(true)
+    }
 
     return (
         <>
@@ -41,6 +54,15 @@ export default function Pedidos() {
                     <h1>Henry's Resto Proyect</h1>
                     <video autoPlay preload="auto" muted loop src={VideoHome}></video>
                 </div>
+                <button className="theme-toggle--button" aria-label="Toggle Theme" onClick={() => setDarkMode()}>
+                    <span className={theme === "dark" ? "shape sun" : "shape moon"}></span>
+                    <span className="rays--container">
+                        <span className="ray"></span>
+                        <span className="ray"></span>
+                        <span className="ray"></span>
+                        <span className="ray"></span>
+                    </span>
+                </button>
                 <div className="sort-buttons">
                     <select className={select} onChange={(e) => orderSort(e)} id='selectConfigSize'>
                         <option value="">Ordenar Productos</option>

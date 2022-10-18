@@ -2,17 +2,22 @@ import { useEffect, useState } from "react";
 import './RegisterForm.css'
 import {
     buttonclass,
+    inputForm,
     inputRegister,
+    inputRegisterDelivery,
 } from "../../Style/Clases/Clases";
 import { Input, StateTypes } from "../../Interfaces/Interfaces";
 import { useAppDispatch, useAppSelector } from "../../config";
 import { cleanError, createUser } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
+import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 
-export default function Register() {
+export default function Register({ closeRegister }: any) {
 
     let error = useAppSelector((state: StateTypes) => state.error);
     let dispatch = useAppDispatch()
+ 
+
     let navigate = useNavigate()
     const [loading, setLoading] = useState<boolean>(false)
     const [passwordError, setPasswordError] = useState<boolean>(false)
@@ -28,6 +33,13 @@ export default function Register() {
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW2zB9ZfnqjeJkkgqMS7zen-NVpatbD9U3tiEirtof0QIA8Cx3ApChLYPJO9hVdncSkrA&usqp=CAU',
         admin: false
     })
+
+const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: "AIzaSyBcEkktrtcI1S6HvtWDNe83I75TECaSBgU",
+    libraries: ['places']
+    })
+      
 
     useEffect(() => {
         return (
@@ -54,46 +66,44 @@ export default function Register() {
         setPasswordError(false)
     };
     const handleImageChange = (e: any) => {
-        if(e.target.files && e.target.files[0]) {
+        if (e.target.files && e.target.files[0]) {
             setLoading(true)
             const data = new FormData()
             data.append("file", e.target.files[0])
             data.append("upload_preset", "FoodHen")
-            fetch (
+            fetch(
                 "https://api.cloudinary.com/v1_1/luubermudezz/image/upload", {
-                 method: "POST",
-                 body: data
+                method: "POST",
+                body: data
                 // mode: 'no-cors'
-                }
+            }
             ).then(resp => resp.json())
-                    .then(file => {
-                        if(file) {
+                .then(file => {
+                    if (file) {
                         setInput({
-                        ...input,
-                        img: `${file.secure_url}`
+                            ...input,
+                            img: `${file.secure_url}`
                         })
                         setLoading(false)
                     }
-                    })
-  
+                })
+
         }
     }
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
-        //        console.log(input)
         setLoading(true)
-        if (input.password !== "" && input.password === input.repeatpassword) {
-            console.log("ENTRO IF")
+        if (input.password === input.repeatpassword) {
             dispatch(createUser(input, navigate));
         }
         else {
-            console.log("ENTRO ELSE")
             setPasswordError(true)
         }
         setTimeout(() => {
             setLoading(false)
         }, 2000)
+        closeRegister()
     }
 
     return (
@@ -101,7 +111,7 @@ export default function Register() {
             <form onSubmit={handleSubmit}>
                 <h1> Ingrese sus datos : </h1>
                 <div className="image-subida">
-                    <img width={350} src={input.img} alt='test-img' />
+                    <img src={input.img} alt='test-img' />
                 </div>
                 <div className="duo-input">
                     <div className="mb-3 xl:w-96">
@@ -115,7 +125,7 @@ export default function Register() {
                             autoComplete="username"
                             type="text"
                             name='name'
-                            className={inputRegister}
+                            className={inputRegisterDelivery}
                             onChange={handleChange}
                             id="name"
                             placeholder="Nombre"
@@ -132,7 +142,7 @@ export default function Register() {
                         <input
                             type="text"
                             name='lastName'
-                            className={inputRegister}
+                            className={inputRegisterDelivery}
                             onChange={handleChange}
                             id="lastName"
                             placeholder="Apellido"
@@ -152,7 +162,7 @@ export default function Register() {
                             autoComplete="username"
                             type="text"
                             name='userName'
-                            className={inputRegister}
+                            className={inputRegisterDelivery}
                             onChange={handleChange}
                             id="userName"
                             placeholder="Nombre de Usuario"
@@ -169,7 +179,7 @@ export default function Register() {
                         <input
                             type="email"
                             name="mail"
-                            className={inputRegister}
+                            className={inputRegisterDelivery}
                             onChange={handleChange}
                             id="mail"
                             placeholder="E-mail"
@@ -189,7 +199,7 @@ export default function Register() {
                             autoComplete="new-password"
                             type="password"
                             name='password'
-                            className={inputRegister}
+                            className={inputRegisterDelivery}
                             onChange={handleChange}
                             id="password"
                             placeholder="Contraseña"
@@ -207,7 +217,7 @@ export default function Register() {
                             autrepeat-oComplete="new-password"
                             type="password"
                             name='repeatpassword'
-                            className={inputRegister}
+                            className={inputRegisterDelivery}
                             onChange={handleChange}
                             id="repeatpassword"
                             placeholder="Repita la Contraseña"
@@ -216,22 +226,31 @@ export default function Register() {
                     </div>
                 </div>
                 <div className="duo-input">
-                    <div className="mb-3 xl:w-96">
+                <div className='adress-input'>
                         <label
                             htmlFor="adress"
                             className="form-label inline-block mb-2 text-gray-700"
                         >
-                            Direccion:
+                            Direccion (Calle, Numero y Ciudad) :
                         </label>
-                        <input
-                            type="text"
-                            name='adress'
-                            className={inputRegister}
-                            onChange={handleChange}
-                            id="adress"
-                            placeholder="Direccion"
-                        />
+                        {
+                            isLoaded ?
+                            <Autocomplete>
+                                <input
+                                    type="text"
+                                    name='adress'
+                                    className={inputRegisterDelivery}
+                                    onChange={handleChange}
+                                    id="adress"
+                                    placeholder="Direccion"
+                                />
+                            </Autocomplete>
+                            :
+                            null
+                        }
                     </div>
+                </div>
+                <div className="duo-input">
                     <div className="mb-3 xl:w-96">
                         <label
                             htmlFor="img"
@@ -242,13 +261,13 @@ export default function Register() {
                         <input
                             type="file"
                             name='img'
-                            className={inputRegister}
+                            className={inputRegisterDelivery}
                             onChange={handleImageChange}
                             id="img"
 
                         />
                     </div>
-                </div>
+                </div>             
                 {
                     error.length !== 0 ?
                         <h1 className="text-amber-700 text-xl"> {error.response.data} </h1>

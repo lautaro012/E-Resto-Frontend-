@@ -6,7 +6,6 @@ import { buttonclass } from "../../Style/Clases/Clases"
 import './DeliveryList.css'
 
 export default function DeliveryList ({handleCloseRepartidores, id}:{handleCloseRepartidores:any, id:number}) {
-
     const dispatch = useAppDispatch()
     useEffect(() => {
         dispatch(getDelivery())
@@ -14,13 +13,13 @@ export default function DeliveryList ({handleCloseRepartidores, id}:{handleClose
 
     let delivery = useAppSelector((state: StateTypes) => state.delivery);
 
-
     const handleAsign = (e:any) => {
         dispatch(asignOrder(id, e.target.value))
         handleCloseRepartidores()
-        dispatch(getAllOrders())
+        window.location.reload()
     }
 
+    
     return (
         <div>
         {

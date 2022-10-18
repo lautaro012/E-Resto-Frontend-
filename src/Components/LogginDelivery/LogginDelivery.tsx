@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../config';
 import { Input, StateTypes, Submit } from '../../Interfaces/Interfaces';
 import { cleanError, logDelivery } from '../../redux/actions';
 import { buttonclass, inputForm } from '../../Style/Clases/Clases';
+import GoogleLoggin from '../Auth/GoogleLoggin';
 import './LogginDelivery.css'
 
 export default function LogginDelivery () {
@@ -114,6 +115,7 @@ export default function LogginDelivery () {
                         <br></br>
                         <hr></hr>
                         <br></br>
+                        <GoogleLoggin></GoogleLoggin>
                     </form>
                 </div>
         </div>

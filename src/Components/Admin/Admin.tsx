@@ -63,7 +63,7 @@ export default function Admin() {
       </div>
       <div className={firstDiv} id='rightAdminContainer'>
         {
-          render && render === "registeredUsers" || render === "bannedUsers" || render === "adminUsers" ?
+          render && (render === "registeredUsers" || render === "bannedUsers" || render === "adminUsers" ) ?
             <UserList render={render} />
             :
             render === "allProducts" ?

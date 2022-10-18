@@ -4,6 +4,7 @@
     overflow-y: scroll;
     max-height: 70vh;
     overflow-x: clip;
+    min-height: 70vh;
 }
 
 #conteiner_order {
