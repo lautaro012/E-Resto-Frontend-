@@ -12,7 +12,8 @@ const DeliveryRegister = () => {
         name: '',
         lastName: '',
         mail: '',
-        password: ''
+        password: '',
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW2zB9ZfnqjeJkkgqMS7zen-NVpatbD9U3tiEirtof0QIA8Cx3ApChLYPJO9hVdncSkrA&usqp=CAU',
     })
 
     const handleChange = (e: any) => {

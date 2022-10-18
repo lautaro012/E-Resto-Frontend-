@@ -40,7 +40,9 @@
     border-radius: 10px;
     width: 100%;
     background-color: white;
+    max-height: 370px;
     padding: 2% 2% 1% 2%;
+    overflow-y: scroll;
 }
 
 .resumen-conteiner {

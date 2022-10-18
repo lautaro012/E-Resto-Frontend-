@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../config'
 import {  getDeliveryByID } from '../../redux/actions'
 import { buttonclass } from '../../Style/Clases/Clases'
+import DeliveryOrders from '../DeliveryOrders/DeliveryOrders'
 import OrderDelivery from '../OrderDelivery/OrderDelivery'
 import './DeliveryProfile.css'
 
 export default function DeliveryProfile () {
 
-
+    const [render, setRender] = useState('OrdenActual')
     const dispatch = useAppDispatch()
     const token = JSON.parse(localStorage.getItem("delivery")!);
 
@@ -22,6 +23,7 @@ export default function DeliveryProfile () {
         localStorage.setItem("delivery", JSON.stringify([]))
         window.location.reload()
     }
+    // console.log('detalles del perfil',delivery)
 
     return (
         <div className="delivery-conteiner">
@@ -33,20 +35,28 @@ export default function DeliveryProfile () {
                             <img width={400} alt='asd' src={delivery.img}></img>
                             <span>{delivery.name} {delivery.lastName}</span>
                             <br></br>
-                            <button className={buttonclass}> Pedido Actual </button>
+                            <button onClick={() => setRender('OrdenActual')} className={buttonclass}> Pedido Actual </button>
                             <br></br>
-                            <button className={buttonclass}> Historial de Pedidos </button>
+                            <button onClick={() => setRender('AllOrders')} className={buttonclass}> Historial de Pedidos </button>
                             <br></br>
                             <button onClick={handleLogout} className={buttonclass}> Cerrar Sesion </button>
                         </div>
                     </aside>
                     <div className='order-delivery-conteiner'>
-                        {
-                            delivery.orders ?
+                    {
+                        render === 'OrdenActual' ?
+                            delivery.ocupado ?
                             <OrderDelivery delivery={delivery._id} detalles={delivery.orders}></OrderDelivery>
                             :
-                            <h1>Cargando..</h1>
-                        }
+                            <h1 className='h1-noOrder'>No posee Ningun pedido asignado</h1>
+                        :
+                        render === 'AllOrders' ?
+                        <DeliveryOrders detalles={delivery.orders} ></DeliveryOrders>
+                        :
+                        null
+                    }
+
+
                     </div>
                 </div>
                 :
