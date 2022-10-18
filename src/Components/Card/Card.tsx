@@ -34,7 +34,7 @@ export default function CardProduct({ formCard = false, comidaProps, modalOpen, 
                 <div className="mt-2.5 mb-5 flex items-center">
                     <PrettyRating value={rating} colors={colors.star} />
                     <span className="mr-2 ml-3 rounded bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">
-                        {rating}
+                        {rating.toFixed(2)}
                     </span>
                 </div>
                 <div className="flex items-center justify-between">

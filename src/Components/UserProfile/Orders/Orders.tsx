@@ -76,17 +76,21 @@ export default function Orders({ handleRender }: any) {
             <Modal
                 show={calificacion}
                 onClose={closeCalificacion}
-                size="5xl"
+                size="6xl"
                 data-aos="fade-right"
                 data-aos-duration="500"
             >
-                <ModalHeader></ModalHeader>
+                <ModalHeader>
+                    Calificacion de tu pedido
+                </ModalHeader>
                 <ModalBody>
                     <DetailOrder
                         order={orderId}
                     ></DetailOrder>
                 </ModalBody>
-                <ModalFooter></ModalFooter>
+                <ModalFooter>
+                    © 2022 Henry's Resto Project™
+                </ModalFooter>
             </Modal>
         </div>
     )

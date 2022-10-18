@@ -79,7 +79,6 @@ export default function Register({ closeRegister }: any) {
         }
     }
 
-    console.log(closeRegister)
     const handleSubmit = (e: any) => {
         e.preventDefault()
         setLoading(true)

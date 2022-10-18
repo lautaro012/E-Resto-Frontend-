@@ -20,7 +20,7 @@ export default function Orderlist() {
   }, [dispatch]);
 
 
-let detalles = JSON.parse(JSON.stringify(detalles2))
+  let detalles = JSON.parse(JSON.stringify(detalles2))
 
   const handleConfirm = (e: any) => {
     const prepared = {
@@ -63,6 +63,7 @@ let detalles = JSON.parse(JSON.stringify(detalles2))
                                 <td>{item.name}</td>
                                 <td><p> $ {item.price} </p></td>
                               </tr>
+                              <h5>{item.comentario ? item.comentario : null}</h5>
                               <br></br>
                             </div>
                           );
@@ -98,27 +99,27 @@ let detalles = JSON.parse(JSON.stringify(detalles2))
                         </div>
                         {
                           items.User__.length ?
-                          <div className="orderlist_details_conteiner">
-                            <span>
+                            <div className="orderlist_details_conteiner">
+                              <span>
 
-                              <h1>
-                                <strong>Para:</strong> {items.User__[0].name}{" "}
-                                {items.User__[0].lastName}
-                              </h1>
-                            </span>
-                            <span>
-                              <h1>
-                                <strong>Direccion:</strong> {items.User__[0].adress}
-                              </h1>
-                            </span>
-                            <span>
-                              <h1>
-                                <strong>Horario:</strong> {items.date.slice(11, -5)}
-                              </h1>
-                            </span>
-                          </div>
-                          :
-                          null
+                                <h1>
+                                  <strong>Para:</strong> {items.User__[0].name}{" "}
+                                  {items.User__[0].lastName}
+                                </h1>
+                              </span>
+                              <span>
+                                <h1>
+                                  <strong>Direccion:</strong> {items.User__[0].adress}
+                                </h1>
+                              </span>
+                              <span>
+                                <h1>
+                                  <strong>Horario:</strong> {items.date.slice(11, -5)}
+                                </h1>
+                              </span>
+                            </div>
+                            :
+                            null
                         }
                       </div>
 
@@ -128,9 +129,9 @@ let detalles = JSON.parse(JSON.stringify(detalles2))
                         {
                           items.prepared ?
                             items.Delivery__.length ?
-                            <button className={buttonclass} disabled > Repartidor asignado </button>
-                            :
-                            <button onClick={() => setModalRepartidores(true)} className={buttonclass}> Asignar Repartidor </button>
+                              <button className={buttonclass} disabled > Repartidor asignado </button>
+                              :
+                              <button onClick={() => setModalRepartidores(true)} className={buttonclass}> Asignar Repartidor </button>
                             :
                             <button value={items._id} onClick={handleConfirm} className={buttonclass}> Confirmar Pedido </button>
                         }

@@ -15,6 +15,7 @@ import { ModalBody } from "flowbite-react/lib/esm/components/Modal/ModalBody";
 import { ModalFooter } from "flowbite-react/lib/esm/components/Modal/ModalFooter";
 import SendMail from "../ForgotPass/SendMail";
 import Register from "../RegisterForm/RegisterForm";
+import { InternalSymbolName } from "typescript";
 
 
 export default function NavBar() {
@@ -165,7 +166,7 @@ export default function NavBar() {
             <SearchBar />
           </div>
           <button id="carrito" onClick={() => setOpenCart(true)}>
-            <h1>{items?.length}</h1>
+            <h1>{items?.length > 0 ? items.length : 0}</h1>
             <svg
               className="w-6 h-6"
               fill="none"
