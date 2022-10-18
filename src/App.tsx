@@ -8,13 +8,13 @@ import Pedidos from '../src/Components/Pedidos/Pedidos'
 import Home from '../src/Components/Home/Home'
 import Footer from './Components/Footer/Footer';
 import ForgotPass from './Components/ForgotPass/ForgotPass.jsx';
-import Mapa from './Components/Map/Map'
 import DeliveryProfile from './Components/DeliveryProfile/DeliveryProfile';
 import LogginDelivery from './Components/LogginDelivery/LogginDelivery';
-import Map from './Components/Map/Map';
+import Testmap from './Components/Map/TestMap';
 
 
 function App() {
+
 
   const dispatch = useAppDispatch()
 
@@ -45,14 +45,13 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/recupera/:id' element={<ForgotPass />} />
           <Route path='/pedidos' element={<Pedidos />} />
-          <Route path='/test' element={<Mapa />} />
           {
             delivery?.token ?
             <Route path='/delivery' element={<DeliveryProfile/>}></Route>
             :
             <Route path='/delivery' element={<LogginDelivery/>}></Route>
           }
-          <Route path='/test' element={< Map/>}/> 
+          {/* <Route path='/test' element={<Testmap/>}/>  */}
         </Routes>
         <Footer />
       </Router>
