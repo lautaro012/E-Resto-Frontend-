@@ -6,7 +6,7 @@ import Products from "../Products/Products"
 import { useRef } from "react"
 
 
-export default function Home () {
+export default function Home() {
 
     const home = useRef<null | HTMLImageElement>(null);
 
@@ -15,14 +15,14 @@ export default function Home () {
     return (
         <div className="home-conteiner">
             <header>
-            <HomeBar el={el} home={home}/>
-            <div className="logo-conteiner" >
-                <img id='logo_home' ref={home} width={400} src={Logo} alt='logo'/>
-            </div>
+                <HomeBar el={el} home={home} />
             </header>
-            <div>
-                <Products/>
+            <Products />
+            <div className="logo-conteiner" >
+                <img id='logo_home' ref={home} width={400} src={Logo} alt='logo' />
             </div>
+
+
             <div ref={el}>
             </div>
         </div>

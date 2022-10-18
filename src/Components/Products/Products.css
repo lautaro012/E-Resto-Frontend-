@@ -1,0 +1,30 @@
+.conteiner_carrousel {
+    min-height: 1px;
+    width: 100%;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    margin: 20px auto;
+    box-sizing: border-box;
+}
+
+.contener_max_carrousel {
+    position: relative;
+}
+
+.producto-background {
+    position: absolute;
+    width: 90%;
+    margin-left: 5%;
+
+    text-align: center;
+    font-size: 300px;
+    color: white;
+}
+
+.imagen_carrousel {
+    max-width: 50vw;
+    max-height: 50vh;
+    border-radius: 50%;
+    object-fit: cover;
+}
