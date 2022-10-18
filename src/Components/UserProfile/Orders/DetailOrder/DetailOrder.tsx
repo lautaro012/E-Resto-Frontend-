@@ -2,6 +2,7 @@ import { Accordion, Button } from "flowbite-react"
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../config";
 import swal from "sweetalert";
+import Swal from "sweetalert2";
 import './DetailOrder.css'
 import { postReview } from "../../../../redux/actions";
 
@@ -45,13 +46,38 @@ export default function DetailOrder({ order }: any) {
     function handleSubmit(event: any) {
         event.preventDefault()
         dispatch(postReview(input))
+        //dispatch(getCategories("AZ"))
         setInput({
             user_id: "",
             product_id: "",
             rating: 3,
             comment: ""
         })
-        swal({ title: "Comentario enviado!" })
+        //swal({ title: "Comentario enviado!" })
+
+        let timerInterval: any
+        Swal.fire({
+            title: 'Calificacion exitosa',
+            html: `Enviando calificacion a Henry's Resto.`,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+                //const b = Swal.getHtmlContainer().querySelector('b')
+                timerInterval = setInterval(() => {
+                    //  b.textContent = Swal.getTimerLeft()
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+            }
+            window.location.reload()
+        })
     }
 
     return (

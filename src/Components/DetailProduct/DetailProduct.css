@@ -17,7 +17,7 @@
     max-width: 50vw;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
 
   #detalle_izq {
@@ -69,4 +69,10 @@
 
   #buttons_detail_buy {
     margin-top: 5%;
+  }
+
+  .conteiner_calificaciones_detalle {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
   }

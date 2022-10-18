@@ -3,19 +3,20 @@ import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
 import { useAppDispatch, useAppSelector } from '../../../config'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './Orders.css'
 import DetailOrder from './DetailOrder/DetailOrder'
-import { buttonclass } from '../../../Style/Clases/Clases'
-import { getOrdenByID } from '../../../redux/actions'
+import { getUser } from '../../../redux/actions'
 
 export default function Orders({ handleRender }: any) {
 
     const user = useAppSelector(state => state.user)
+
     const [calificacion, setCalificacion] = useState<boolean>(false)
 
     const [orderId, setOrderId] = useState<object>()
     const dispatch = useAppDispatch()
+
     function closeCalificacion() {
         setCalificacion(false)
     }
@@ -27,6 +28,12 @@ export default function Orders({ handleRender }: any) {
     const handleOrderDetail = (e: any) => {
         handleRender('detail', e)
     }
+
+    const token = JSON.parse(localStorage.getItem("token")!);
+    useEffect(() => {
+        dispatch(getUser(token))
+    }, [])
+
 
     return (
         <div className='main_conteiner_order' data-aos="fade-left" data-aos-duration="500">
@@ -69,17 +76,21 @@ export default function Orders({ handleRender }: any) {
             <Modal
                 show={calificacion}
                 onClose={closeCalificacion}
-                size="5xl"
+                size="6xl"
                 data-aos="fade-right"
                 data-aos-duration="500"
             >
-                <ModalHeader></ModalHeader>
+                <ModalHeader>
+                    Calificacion de tu pedido
+                </ModalHeader>
                 <ModalBody>
                     <DetailOrder
                         order={orderId}
                     ></DetailOrder>
                 </ModalBody>
-                <ModalFooter></ModalFooter>
+                <ModalFooter>
+                    © 2022 Henry's Resto Project™
+                </ModalFooter>
             </Modal>
         </div>
     )

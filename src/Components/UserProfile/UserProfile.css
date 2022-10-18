@@ -101,7 +101,7 @@
 .User_options img {
     object-fit: cover;
     border-radius: 25px;
-    max-width: 85%;
+    max-width: 50%;
     margin-top: 5%;
 }
 

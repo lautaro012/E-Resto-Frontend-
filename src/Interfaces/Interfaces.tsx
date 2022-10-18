@@ -42,7 +42,7 @@ export type StateTypes = {
     categories: Array<Category> | [],
     backUpCategories: Array<Category> | [],
     detail: ProductDetail | [],
-    cart: ProductDetail[] | [],
+    cart: [] | Array<Category>,
     userDetail: [],
     allUsers: [],
     error: any,
