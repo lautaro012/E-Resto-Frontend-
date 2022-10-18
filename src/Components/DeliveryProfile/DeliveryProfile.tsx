@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../config'
-import { StateTypes } from '../../Interfaces/Interfaces'
-import { getDelivery, getDeliveryByID, getOrdenByID } from '../../redux/actions'
+import {  getDeliveryByID } from '../../redux/actions'
 import { buttonclass } from '../../Style/Clases/Clases'
-import Greencheck from '../../Style/images/icons8-checkmark-40.png'
-import Redcheck from '../../Style/images/red-check.png'
 import OrderDelivery from '../OrderDelivery/OrderDelivery'
 import './DeliveryProfile.css'
 
@@ -13,7 +9,6 @@ export default function DeliveryProfile () {
 
 
     const dispatch = useAppDispatch()
-    const navigate = useNavigate()
     const token = JSON.parse(localStorage.getItem("delivery")!);
 
 
