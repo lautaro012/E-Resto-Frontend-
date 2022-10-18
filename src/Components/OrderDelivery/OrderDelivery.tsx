@@ -29,6 +29,7 @@ export default function OrderDelivery ({delivery, detalles}:any) {
             console.log(err)
         })
     }
+    console.log(detalles)
 
     return (
         <div className="orden-details-conteiner">
@@ -65,7 +66,7 @@ export default function OrderDelivery ({delivery, detalles}:any) {
                                                 <br />
                                                 <h3>Detalles de la entrega:</h3>
                                                 {
-                                                    orden.user ?
+                                                    orden.user.length ?
                                                     <div className="timer-conteiner">
                                                         <h1><strong>Para:</strong> {orden.user[0].name} {orden.user[0].lastName}</h1>
                                                         <h1><strong>Direccion:</strong> {orden.user[0].adress}</h1>

@@ -56,3 +56,8 @@
     text-align: center;
     background-color: rgb(255, 177, 177);
 }
+
+.orderlist-map-orders{
+    display: flex;
+    flex-direction: column-reverse;
+}
