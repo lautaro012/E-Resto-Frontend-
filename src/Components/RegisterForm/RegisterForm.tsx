@@ -12,7 +12,7 @@ import { cleanError, createUser } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 
-export default function Register() {
+export default function Register({ closeRegister }: any) {
 
     let error = useAppSelector((state: StateTypes) => state.error);
     let dispatch = useAppDispatch()
@@ -66,46 +66,44 @@ const { isLoaded } = useJsApiLoader({
         setPasswordError(false)
     };
     const handleImageChange = (e: any) => {
-        if(e.target.files && e.target.files[0]) {
+        if (e.target.files && e.target.files[0]) {
             setLoading(true)
             const data = new FormData()
             data.append("file", e.target.files[0])
             data.append("upload_preset", "FoodHen")
-            fetch (
+            fetch(
                 "https://api.cloudinary.com/v1_1/luubermudezz/image/upload", {
-                 method: "POST",
-                 body: data
+                method: "POST",
+                body: data
                 // mode: 'no-cors'
-                }
+            }
             ).then(resp => resp.json())
-                    .then(file => {
-                        if(file) {
+                .then(file => {
+                    if (file) {
                         setInput({
-                        ...input,
-                        img: `${file.secure_url}`
+                            ...input,
+                            img: `${file.secure_url}`
                         })
                         setLoading(false)
                     }
-                    })
-  
+                })
+
         }
     }
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
-        //        console.log(input)
         setLoading(true)
-        if (input.password !== "" && input.password === input.repeatpassword) {
-            console.log("ENTRO IF")
+        if (input.password === input.repeatpassword) {
             dispatch(createUser(input, navigate));
         }
         else {
-            console.log("ENTRO ELSE")
             setPasswordError(true)
         }
         setTimeout(() => {
             setLoading(false)
         }, 2000)
+        closeRegister()
     }
 
     return (
@@ -113,7 +111,7 @@ const { isLoaded } = useJsApiLoader({
             <form onSubmit={handleSubmit}>
                 <h1> Ingrese sus datos : </h1>
                 <div className="image-subida">
-                    <img width={350} src={input.img} alt='test-img' />
+                    <img src={input.img} alt='test-img' />
                 </div>
                 <div className="duo-input">
                     <div className="mb-3 xl:w-96">

@@ -41,7 +41,6 @@ export default function Profile() {
                     </aside>
                 </div>
             </div>
-
             <div className='User_data_conteiner'>
                 <div className='User_data'>
                     {

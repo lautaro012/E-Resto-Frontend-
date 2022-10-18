@@ -1,15 +1,15 @@
-.orderlist_price_conteiner{
+.orderlist_price_conteiner {
     display: flex;
     flex-direction: column;
     background-color: white;
     border-radius: 20px;
     padding: 3rem;
-    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 0px 40px 4px rgba(108,108,108,0); 
-    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 0px 40px 4px rgba(108,108,108,0);
+    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 0px 40px 4px rgba(108, 108, 108, 0);
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 0px 40px 4px rgba(108, 108, 108, 0);
     margin-bottom: 2rem;
 }
 
-.orderlist_item_conteiner{
+.orderlist_item_conteiner {
     display: flex;
     justify-content: space-evenly;
     padding-bottom: 1rem;
@@ -33,7 +33,8 @@
     display: flex;
     justify-content: space-around;
 }
-.orderlist_price_conteiner2{
+
+.orderlist_price_conteiner2 {
     display: flex;
     flex-direction: row;
     font-size: 1.3rem;
@@ -41,12 +42,17 @@
     background-color: white;
     border-radius: 20px;
     padding: 1rem;
-    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 0px 40px 4px rgba(108,108,108,0); 
-    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 0px 40px 4px rgba(108,108,108,0);
+    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 0px 40px 4px rgba(108, 108, 108, 0);
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 0px 40px 4px rgba(108, 108, 108, 0);
 }
 
-.h1-conteiner{
+.h1-conteiner {
     align-self: center;
     font-size: 25px;
     font-weight: 500;
+}
+
+.orderlist_price_conteiner h5 {
+    text-align: center;
+    background-color: rgb(255, 177, 177);
 }

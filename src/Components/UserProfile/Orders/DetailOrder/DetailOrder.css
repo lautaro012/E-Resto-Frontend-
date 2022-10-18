@@ -23,12 +23,12 @@
 .conteiner_acordion {
     height: 70vh;
     overflow: auto;
-    width: 60%;
+    width: 50%;
     padding: 3%;
 }
 
 .conteiner_factura_detalles {
-    width: 40%;
+    width: 50%;
     height: 70vh;
     overflow: auto;
 }
