@@ -1,6 +1,7 @@
 .formSearchBarStyle {
     display: inline-block;
-    position: relative; }
+    position: relative; 
+}
 
 .formSearchBarStyle:hover input {
         width: 200px;
@@ -8,25 +9,25 @@
         cursor: pointer;
 }
 
-.inputFormSearchBarStyle:focus {
+.inputFormSearchBarStyle {
     width: 200px;
     padding: 0 36px 0 8px;
     cursor: pointer;
 }
 
-.divPrueba:hover input {
+.divPrueba input {
     width: 200px;
     padding: 0 36px 0 8px;
     cursor: pointer;
 }
 
-.formButtonSearchBarStyle:hover {
+.formButtonSearchBarStyle {
     cursor: pointer;
 }
 
 .formButtonSearchBarStyle{   
-    width: 35px;
-    height: 35px;
+    width: 20px;
+    height: 20px;
     background-color: rgb(202, 202, 202);
     color: #fff;
     border: 0;
@@ -40,6 +41,6 @@
 
 .inputFormSearchBarStyle{
     width: 0px;
-    height: 35px;
+    height: 30px;
     border: 0;
     transition: all 0.3s;}

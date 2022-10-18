@@ -10,6 +10,23 @@
     align-items: center;
 }
 
+.loginDeliveryNavBar{
+    padding: 1%;
+    background-color: #F1FFC4;
+}
+.loginDeliveryNavBar a {
+    display: flex;
+}
+
+.loginDeliveryNavBar p {
+    margin-left: 1%;
+}
+.loginDeliveryNavBar:hover{
+    cursor: pointer;
+    background-color: #e6f8ac;
+
+}
+
 .aside-delivery-conteiner {
     height: 90vh;
     width: 30%;
@@ -41,7 +58,7 @@ box-shadow: 0px 0px 0px 5px #A0A0A0, inset 0px 10px 27px -8px #141414, inset 0px
 .order-delivery-conteiner {
     height: 90vh;
     width: 70%;
-    background: azure;
+    background-color: white;
     display: flex;
     justify-content: center;
     overflow-y: scroll;
