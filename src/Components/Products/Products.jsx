@@ -10,6 +10,7 @@ export default function Products() {
 
     const items = useAppSelector((state) => state.products)
     const dispatch = useAppDispatch()
+    //const [indexNum, setIndexNum] = useState(0)
 
     useEffect(() => {
         dispatch(getProducts("AZ"))
@@ -19,37 +20,17 @@ export default function Products() {
 
     let imagen = []
 
-    let indexNum
+    const callback = function (index) {
+        console.log("callback", index);
+    }
 
-    imagenes.map((item, number = 0, index) => {
-        index = indexNum
-        number++
-
-        console.log("NUMBER", number)
-        console.log("INDEX", index)
-
+    imagenes.map((item) => {
         imagen.push(
             // <img src={img.img} alt={img.name} className="ifmagen_carrousel" />
-            // <ProducCard item={img}></ProducCard>
-            <div>
-                <img src={item.img} alt={item.name} className="imagen_carrousel" />
-                {
-                    index === number ?
-                        <div>
-                            <h1 id='h1_imagen_carrousel'>{item.name}</h1>
-                            <Button color="warning" pill={true} id="boton_imagen_carrousel">Ir a catalogo</Button>
-                        </div>
-                        :
-                        null
-                }
-            </div>
+            <ProducCard item={item}></ProducCard>
         )
     })
 
-    const callback = function (index) {
-        //console.log("callback", index);
-        indexNum = index
-    }
     return (
         <div className='contener_max_carrousel'>
             {/* <h1 className='producto-background'>Hery's Resto</h1> */}
