@@ -69,7 +69,7 @@ export default function ContadorLs(render: any) {
                       "
                         value={propina}
                         name='propina'
-                        min="0" max={subTotal}
+                        min="50" max={subTotal}
                         onChange={(event) => setPropina(Number(event.target.value))}
                     />
                 </div>
