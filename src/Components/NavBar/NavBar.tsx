@@ -143,7 +143,7 @@ export default function NavBar() {
             :
             (
               <div className="flex md:order-2">
-                <button onClick={openlog} className={buttonclass}>
+                <button onClick={openlog} style={{color: 'white'}} className={buttonclass}>
                   Iniciar Sesión
                 </button>
               </div>

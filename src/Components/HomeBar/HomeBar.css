@@ -4,7 +4,6 @@
 }
 .navbar-conteiner header {
     display: flex;
-    border: 1px solid rgb(0, 0, 0);
     background-color: #FFFFFF;
     justify-content: center;
     align-items: center;

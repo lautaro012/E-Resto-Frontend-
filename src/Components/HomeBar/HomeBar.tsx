@@ -31,14 +31,14 @@ export default function HomeBar({ el }: any) {
         <nav className="navbar-conteiner">
             <header>
                 <div className='navbar-buttons'>
-                    <button onClick={handleHome} className={buttonclass}> HOME </button>
+                    <button style={{color: '#395B64'}} onClick={handleHome} className={buttonclass}> HOME </button>
 
-                    <button className={buttonclass} onClick={() => navigate('/pedidos')}> HACE TU PEDIDO </button>
+                    <button style={{color: '#395B64'}} className={buttonclass} onClick={() => navigate('/pedidos')}> HACE TU PEDIDO </button>
                 </div>
                 <img className='logoHenryFood' src={Logo} alt='LOGO'></img>
                 <div className='navbar-buttons'>
-                    <button onClick={() => navigate('/delivery')} className={buttonclass} > SOY REPARTIDOR </button>
-                    <button className={buttonclass} onClick={() => setContacto(true)}> CONTACTANOS </button>
+                    <button style={{color: '#395B64'}} onClick={() => navigate('/delivery')} className={buttonclass} > SOY REPARTIDOR </button>
+                    <button style={{color: '#395B64'}} className={buttonclass} onClick={() => setContacto(true)}> CONTACTANOS </button>
                 </div>
             </header>
             <Modal
