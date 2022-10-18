@@ -1,4 +1,8 @@
-.Timeline-conteiner {}
+.Timeline-conteiner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .timeline-buttons {
     width: 400px;

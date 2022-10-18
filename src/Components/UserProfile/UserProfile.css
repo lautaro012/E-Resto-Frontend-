@@ -83,7 +83,7 @@
 .User_data_conteiner {
     width: 70%;
     background-color: #f9f6f4;
-    padding: 3%;
+    padding: 5% 3% 1% 4%;
 }
 
 .User_options {
@@ -133,7 +133,6 @@
     display: flex;
     align-items: center;
     transition: 0.5s;
-    padding: 2%;
 }
 
 .profile-game-list:hover {
