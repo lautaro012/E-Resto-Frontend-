@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Loggin from "../LogginForm/Loggin";
 import { useAppDispatch, useAppSelector } from "../../config";
 import { getUser } from "../../redux/actions";
-import { Modal } from "flowbite-react";
+import { Breadcrumb, Modal } from "flowbite-react";
 import Cart from "../Cart/Cart";
 import Panel from "./Panel";
 import { ModalHeader } from "flowbite-react/lib/esm/components/Modal/ModalHeader";
@@ -15,6 +15,7 @@ import { ModalBody } from "flowbite-react/lib/esm/components/Modal/ModalBody";
 import { ModalFooter } from "flowbite-react/lib/esm/components/Modal/ModalFooter";
 import SendMail from "../ForgotPass/SendMail";
 import Register from "../RegisterForm/RegisterForm";
+import ContactForm from "../ContactForm/ContactForm";
 
 
 export default function NavBar() {
@@ -26,6 +27,11 @@ export default function NavBar() {
   const [menuResponsive, setMenuResponsive] = useState<boolean>(true);
   const [forgotPW, setForgotPW] = useState<boolean>(false)
   const [openRegister, setOpenRegister] = useState<boolean>(false)
+  const [contacto, setContacto] = useState<boolean>(false)
+
+  function closeContacto() {
+      setContacto(false)
+  }
 
   const items = useAppSelector((state) => state.cart)
 
@@ -162,7 +168,22 @@ export default function NavBar() {
           id="mobile-menu-2"
         >
           <div className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <a href="/" >
+            <button className={buttonclass}>
+              <div className="divLogoButtonNavBar">
+                <img className="imgNavBarLogo" src='https://res.cloudinary.com/luubermudezz/image/upload/v1666070805/Portafolio/hogar_vr7981.png' alt="home" width='20'/>
+                <span>Inicio</span>
+              </div>
+            </button></a>
             <SearchBar />
+            <button className={buttonclass} onClick={() => setContacto(true)}>
+              <div className="divLogoButtonNavBar">
+                <img className="imgNavBarLogo" src='https://res.cloudinary.com/luubermudezz/image/upload/v1666071044/Portafolio/sobre_umitdw.png' alt="contacto" width='20'/>
+                <span>Contacto</span>
+              </div>
+            </button>
+            
+
           </div>
           <button id="carrito" onClick={() => setOpenCart(true)}>
             <h1>{items?.length}</h1>
@@ -183,6 +204,21 @@ export default function NavBar() {
           </button>
         </div>
       </div>
+      <Modal
+                show={contacto}
+                onClose={closeContacto}
+                size='3x1'
+            >
+                <ModalHeader>
+                    Contactanos
+                </ModalHeader>
+                <ModalBody>
+                    <ContactForm></ContactForm>
+                </ModalBody>
+                <ModalFooter>
+                    © 2022 Henry's Resto Project™
+                </ModalFooter>
+            </Modal>
     </nav>
   );
 }

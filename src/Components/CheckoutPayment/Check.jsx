@@ -63,7 +63,7 @@ export default function Check({ precio, subtotal, propina }) {
       <h1>Tarjeta de credito</h1>
       <StripeCheckout
         stripeKey={publishableKey}
-        label='Pay Now'
+        label='Pagar Ahora'
         billingAddress
         shippingAddress
         amount={precio * 100}

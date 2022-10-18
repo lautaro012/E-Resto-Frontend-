@@ -1,4 +1,4 @@
-import { Label } from 'flowbite-react'
+import { Button, Label } from 'flowbite-react'
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../config';
@@ -49,6 +49,13 @@ export default function LogginDelivery () {
         }, 1000)    
     };
     return (
+        <div>
+            <nav className='loginDeliveryNavBar'>
+            <a href="/">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            <p>Volver al inicio</p>
+            </a>
+            </nav>
         <div className="loggin-delivery-conteiner">
              <div className="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8">
                     <form onSubmit={handleSubmit}>
@@ -109,6 +116,7 @@ export default function LogginDelivery () {
                         <br></br>
                     </form>
                 </div>
+        </div>
         </div>
     )
 }

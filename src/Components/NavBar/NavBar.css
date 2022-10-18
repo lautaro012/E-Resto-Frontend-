@@ -26,3 +26,11 @@
     border-color: crimson;
     min-width: 50%;
 }
+.divLogoButtonNavBar{
+    display: flex;
+    color: white;
+    font-weight: bolder;
+}
+.divLogoButtonNavBar img {
+    margin-right: 7px
+}
