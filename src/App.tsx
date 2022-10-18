@@ -15,6 +15,7 @@ import Testmap from './Components/Map/TestMap';
 
 function App() {
 
+
   const dispatch = useAppDispatch()
 
   const token = JSON.parse(localStorage.getItem("token")!);
@@ -50,7 +51,7 @@ function App() {
             :
             <Route path='/delivery' element={<LogginDelivery/>}></Route>
           }
-          <Route path='/test' element={<Testmap/>}/> 
+          {/* <Route path='/test' element={<Testmap/>}/>  */}
         </Routes>
         <Footer />
       </Router>

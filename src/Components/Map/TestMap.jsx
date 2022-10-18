@@ -2,15 +2,39 @@
     useJsApiLoader,
     GoogleMap,
     MarkerF,
-    Autocomplete,
     DirectionsRenderer,
   } from '@react-google-maps/api'
   import { useRef, useState } from 'react'
 import { buttonclass } from '../../Style/Clases/Clases'
   
+
+
+
+
+
+  let currentLocation = { lat: -34.610291 , lng: -58.391988 }
   const center = { lat: -34.610291 , lng: -58.391988 }
+
+  navigator.geolocation.getCurrentPosition((suc) =>  {
+    currentLocation = {
+      lat: suc.coords.latitude, 
+      lng: suc.coords.longitude
+    }
+    console.log(currentLocation)
+  }, err => console.log(err))
   
-  function Testmap() {
+
+
+
+
+
+
+  function Testmap({ delivery} ) {
+
+
+    console.log('asdfasdgsdagasdg', delivery)
+
+
     const { isLoaded } = useJsApiLoader({
       id: 'google-map-script',
       googleMapsApiKey: "AIzaSyBcEkktrtcI1S6HvtWDNe83I75TECaSBgU",
@@ -21,26 +45,18 @@ import { buttonclass } from '../../Style/Clases/Clases'
     const [directionsResponse, setDirectionsResponse] = useState(null)
     const [distance, setDistance] = useState('')
     const [duration, setDuration] = useState('')
-  
-    /** @type React.MutableRefObject<HTMLInputElement> */
-    const originRef = useRef()
-    /** @type React.MutableRefObject<HTMLInputElement> */
-    const destiantionRef = useRef()
+
   
     if (!isLoaded) {
       return <h1>HOLA</h1>
     }
   
     async function calculateRoute() {
-      if (originRef.current.value === '' || destiantionRef.current.value === '') {
-        return <>A</>
-      }
       // eslint-disable-next-line no-undef
       const directionsService = new google.maps.DirectionsService()
-      console.log(originRef.current.value)
       const results = await directionsService.route({
-        origin: originRef.current.value,
-        destination: destiantionRef.current.value,
+        origin: center,
+        destination: currentLocation,
         // eslint-disable-next-line no-undef
         travelMode: google.maps.TravelMode.DRIVING,
       })
@@ -53,8 +69,6 @@ import { buttonclass } from '../../Style/Clases/Clases'
       setDirectionsResponse(null)
       setDistance('')
       setDuration('')
-      originRef.current.value = ''
-      destiantionRef.current.value = ''
     }
   
     return (
@@ -63,8 +77,8 @@ import { buttonclass } from '../../Style/Clases/Clases'
           {/* Google Map div */}
           <GoogleMap
             center={center}
-            zoom={18}
-            mapContainerStyle={{ width: '100vh', height: '100vh' }}
+            zoom={17}
+            mapContainerStyle={{ width: '50vh', height: '50vh' }}
             options={{
               zoomControl: false,
               streetViewControl: false,
@@ -84,37 +98,23 @@ import { buttonclass } from '../../Style/Clases/Clases'
         >
           <div>
             <div>
-              <Autocomplete>
-                <input type='text' placeholder='Origin' ref={originRef} />
-              </Autocomplete>
-            </div>
-            <div>
-              <Autocomplete>
-                <input
-                  type='text'
-                  placeholder='Destination'
-                  ref={destiantionRef}
-                />
-              </Autocomplete>
-            </div>
-  
-            <div>
               <button className={buttonclass} type='submit' onClick={calculateRoute}>
                 Calculate Route
               </button>
-              <button className={buttonclass}
-               
+              <button className={buttonclass} 
                 onClick={clearRoute}
               > LIMPIAR RUTA </button>
             </div>
           </div>
           <div>
+
             <span>Distance: {distance} </span>
             <span>Duration: {duration} </span>
+
             <button className={buttonclass}
               onClick={() => {
                 map.panTo(center)
-                map.setZoom(18)
+                map.setZoom(17)
               }}
             >CENTRAR</button>
           </div>

@@ -7,7 +7,7 @@ import "./OrderTimeline.css";
 import Greencheck from '../../Style/images/icons8-checkmark-40.png'
 import Redcheck from '../../Style/images/red-check.png'
 
-export default function OrderTimeline({ idOrden }: any) {
+export default function OrderTimeline({ onMap, idOrden }: any) {
 
     const dispatch = useAppDispatch()
 
@@ -18,7 +18,11 @@ export default function OrderTimeline({ idOrden }: any) {
     }, [])
 
     let detalles = useAppSelector((state: StateTypes) => state.ordenDetail);
+    const handleMap = () => {
+        onMap('map', detalles)
+    }
 
+    console.log(detalles)
     return (
         <>
 
@@ -146,7 +150,7 @@ export default function OrderTimeline({ idOrden }: any) {
                             <div className="timeline-buttons">
                                 {
                                     detalles[0].Delivery__.length !== 0 ?
-                                        <button className={buttonclass}>Ver mapa </button>
+                                        <button onClick={() => handleMap()} className={buttonclass}>Ver mapa </button>
                                         :
                                         null
                                 }

@@ -5,6 +5,7 @@ import DatosPerfil from './DatosPerfil'
 import Orders from './Orders/Orders'
 import { Button } from 'flowbite-react'
 import OrderTimeline from '../OrderTimeline/OrderTimeline'
+import Testmap from '../Map/TestMap'
 
 
 export default function Profile() {
@@ -13,10 +14,16 @@ export default function Profile() {
 
     const [render, setRender] = useState("perfil")
     const [idOrden, setIdOrden] = useState(0)
+    const [delivery, setDelivery] = useState({})
+
 
     function handleRender(componente: string, orden: number = 0) {
         setRender(componente)
         setIdOrden(orden)
+    }
+    function onMap (mapa:any, deli:any) {
+        setRender(mapa)
+        setDelivery(deli)
     }
     const user = JSON.parse(JSON.stringify(user2))
     return (
@@ -45,9 +52,13 @@ export default function Profile() {
                                 <Orders handleRender={handleRender} ></Orders>
                                 :
                                 render === 'detail' ?
-                                    <OrderTimeline idOrden={idOrden} ></OrderTimeline>
+                                    <OrderTimeline onMap={onMap} idOrden={idOrden} ></OrderTimeline>
+                                    :
+                                render === 'map' ?
+                                    <Testmap delivery={delivery}></Testmap>
                                     :
                                     null
+
                     }
                 </div>
             </div>
