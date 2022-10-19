@@ -556,7 +556,7 @@ export function createOrder(payload: any) {
 }
 export function postReview(input: any) {
     return function () {
-        axios.post('http://localhost:3001/review', input).then(res => res.data)
+        axios.post('/review', input).then(res => res.data)
             .then(resp => {
                 console.log(resp)
             })
