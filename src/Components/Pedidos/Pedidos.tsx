@@ -3,11 +3,17 @@ import "../Pedidos/Pedidos.css";
 import NavBar from "../NavBar/NavBar";
 import { ListGroup } from "flowbite-react";
 import { Link } from "react-scroll";
+<<<<<<< HEAD
 import { useEffect, useState } from "react";
+=======
+import  { useEffect, useState } from "react";
+>>>>>>> Development
 import { useAppDispatch, useAppSelector } from "../../config";
 import { getCategories } from "../../redux/actions";
 import { buttonclass, select } from "../../Style/Clases/Clases";
 import DetailProduct from "../DetailProduct/DetailProduct";
+import heladoNegro from '../../Style/images/heladoNegro.png'
+import heladoBlanco from '../../Style/images/heladoBlanco.png'
 import VideoHome from '../../Style/videos/video.mp4'
 import { Category, ProductDetail, Select, StateTypes } from "../../Interfaces/Interfaces";
 import ScrollToTop from "react-scroll-to-top";
@@ -133,13 +139,11 @@ export default function Pedidos() {
                                             })}
                                         </div>
                                     </div>
-                                )
-                                :
-                                null   
-                            })                  
-                        }
+                                </div>
+                            ) : null;
+                        })}
                         {
-                            categories?.every(categoria => categoria.categoryProducts.length === 0) ?
+                            categories && categories?.every(categoria => categoria.categoryProducts.length === 0) ?
                             <div className="flex items-center justify-around">
                             <div className="flex flex-col dark:text-white">
                                 <h1 className="text-7xl"> Oops... </h1>
@@ -151,7 +155,6 @@ export default function Pedidos() {
                             :
                             null
                         }
-
                     </div>
                 </div>
             </div>
