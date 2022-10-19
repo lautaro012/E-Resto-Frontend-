@@ -27,12 +27,12 @@ export default function GoogleLoggin( {showLoggin}) {
     useEffect(() => {
 
         /* global google */
-        if(showLoggin) {
+        if(window.google) {
             googleLogin()
         }
         
         //google.accounts.id.prompt()
-    }, [showLoggin])
+    }, [])
 
     function googleLogin () {
         google.accounts.id.initialize({
