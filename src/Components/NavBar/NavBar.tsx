@@ -18,8 +18,6 @@ import Register from "../RegisterForm/RegisterForm";
 import ContactForm from "../ContactForm/ContactForm";
 import { InternalSymbolName } from "typescript";
 
-
-
 export default function NavBar() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -169,6 +167,7 @@ export default function NavBar() {
           className=" justify-between items-center w-full md:flex md:w-auto md:order-1"
           id="mobile-menu-2"
         >
+
           <div className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-background dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <a href="/" >
             <button className={buttonclass}>
