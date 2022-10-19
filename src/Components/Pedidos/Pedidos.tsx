@@ -150,7 +150,9 @@ export default function Pedidos() {
                             </div>
                             :
                             null
-                        }                    </div>
+                        }                    
+                        
+                        </div>
                 </div>
             </div>
             {
