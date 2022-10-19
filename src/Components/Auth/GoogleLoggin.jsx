@@ -5,7 +5,7 @@ import { logUser } from '../../redux/actions'
 import { useNavigate } from 'react-router-dom'
 
 
-export default function GoogleLoggin() {
+export default function GoogleLoggin( {showLoggin}) {
     // password,lastName,userName,name,google
     const theme = localStorage.getItem("theme")
     let dispatch = useAppDispatch()
@@ -27,10 +27,12 @@ export default function GoogleLoggin() {
     useEffect(() => {
 
         /* global google */
-        googleLogin()
+        if(showLoggin) {
+            googleLogin()
+        }
         
         //google.accounts.id.prompt()
-    }, [])
+    }, [showLoggin])
 
     function googleLogin () {
         google.accounts.id.initialize({
