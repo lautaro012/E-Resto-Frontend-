@@ -144,6 +144,6 @@ export default function Loggin({ openlog, showLoggin, setForgotPW, setOpenRegist
                 </div>
             </Modal.Body>
         </Modal>
-    );
+
 }
 

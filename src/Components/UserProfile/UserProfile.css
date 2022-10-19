@@ -83,7 +83,7 @@
 .User_data_conteiner {
     width: 70%;
     background-color: #f9f6f4;
-    padding: 5% 3% 1% 4%;
+    padding: 3%;
 }
 
 .User_options {
@@ -106,6 +106,7 @@
 }
 
 .User_data {
+    height: 100%;
     max-width: 100%;
     max-height: 100%;
 }

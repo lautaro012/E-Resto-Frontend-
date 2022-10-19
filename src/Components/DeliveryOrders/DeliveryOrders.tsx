@@ -54,24 +54,29 @@ export default function DeliveryOrders ({detalles}:any) {
                                   }
                                 </span>    
                               </div>
-                                <div className="orderlist_details_conteiner">
-                                  <span>
-                                    <h1>
-                                      <strong>Para:</strong> {items.user[0].name}{" "}
-                                      {items.user[0].lastName}
-                                    </h1>
-                                  </span>
-                                  <span>
-                                    <h1>
-                                      <strong>Direccion:</strong> {items.user[0].adress}
-                                    </h1>
-                                  </span>
-                                  <span>
-                                    <h1>
-                                      <strong>Horario:</strong> {items.date.slice(11, -5)}
-                                    </h1>
-                                  </span>
-                                </div>
+                              {
+                                items.user.length ?
+                                  <div className="orderlist_details_conteiner">
+                                    <span>
+                                      <h1>
+                                        <strong>Para:</strong> {items.user[0].name}{" "}
+                                        {items.user[0].lastName}
+                                      </h1>
+                                    </span>
+                                    <span>
+                                      <h1>
+                                        <strong>Direccion:</strong> {items.user[0].adress}
+                                      </h1>
+                                    </span>
+                                    <span>
+                                      <h1>
+                                        <strong>Horario:</strong> {items.date.slice(11, -5)}
+                                      </h1>
+                                    </span>
+                                  </div>                                                 
+                                  :
+                                  null
+                              }                    
                             </div>
                             <br />
                           </div>

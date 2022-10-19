@@ -31,7 +31,8 @@
     padding: 2% 4% 2% 2%;
     max-height: 65vh;
     overflow-y: scroll;
-    min-width: 25vw
+    min-width: 25vw;
+    overflow-x:hidden;
 }
 
 .detail-price-conteiner {

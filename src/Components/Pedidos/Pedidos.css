@@ -1,5 +1,5 @@
 .Contenedor {
-  background-color: #F1FFC4;
+  /* background-color: #F1FFC4; */
 }
 
 .Contenedor_cartas {
@@ -41,7 +41,7 @@
 
 .categorias-productos {
   display: flex;
-  background-color: #F1FFC4;
+  /* background-color: #F1FFC4; */
   flex-direction: row;
 }
 
@@ -49,13 +49,13 @@
   display: flex;
   width: 100%;
   height: 5vh;
-  background-color: #F1FFC4;
+  /* background-color: #F1FFC4; */
   justify-content: space-evenly;
 }
 
 .categorias-productos {
   display: flex;
-  background-color: #F1FFC4;
+  /* background-color: #F1FFC4; */
   flex-direction: row;
 }
 
@@ -79,7 +79,7 @@
 .categorias-conteiner ul a li:hover {
   text-decoration: underline;
   cursor: pointer;
-  background-color: #f1ffc491;
+  /* background-color: #f1ffc491; */
 }
 
 .categorias-conteiner li {
@@ -89,7 +89,7 @@
 
 .categorias-div {
   width: 18%;
-  background-color: #F1FFC4;
+  /* background-color: #F1FFC4; */
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
