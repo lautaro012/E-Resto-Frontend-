@@ -23,7 +23,7 @@ export default function DeliveryProfile () {
         localStorage.setItem("delivery", JSON.stringify([]))
         window.location.reload()
     }
-    // console.log('detalles del perfil',delivery)
+    console.log('detalles del perfil',delivery)
 
     return (
         <div className="delivery-conteiner">

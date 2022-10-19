@@ -91,7 +91,7 @@ export default function Loggin({ openlog, showLoggin, setForgotPW, setOpenRegist
                         <br></br>
                         <div className="flex justify-between">
                             <div className="flex items-center gap-2">
-                                <Checkbox id="remember" />
+                                <Checkbox onChange={() => console.log('hola')} id="remember" />
                                 <Label htmlFor="remember">Recuerdame</Label>
                             </div>
                             <button
