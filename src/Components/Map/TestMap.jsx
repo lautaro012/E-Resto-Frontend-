@@ -4,9 +4,8 @@
     MarkerF,
     DirectionsRenderer,
   } from '@react-google-maps/api'
-  import { useRef, useState } from 'react'
-import { buttonclass } from '../../Style/Clases/Clases'
-  
+  import { useEffect, useState } from 'react'
+  import './TestMap.css'  
 
 
 
@@ -46,11 +45,16 @@ import { buttonclass } from '../../Style/Clases/Clases'
     const [distance, setDistance] = useState('')
     const [duration, setDuration] = useState('')
 
+    useEffect(() => {
+      calculateRoute()
+      return clearRoute()
+    },[])
+  
   
     if (!isLoaded) {
       return <h1>HOLA</h1>
     }
-  
+
     async function calculateRoute() {
       // eslint-disable-next-line no-undef
       const directionsService = new google.maps.DirectionsService()
@@ -72,13 +76,13 @@ import { buttonclass } from '../../Style/Clases/Clases'
     }
   
     return (
-      <div>
-        <div>
+      <div className='h-full'>
+        <div className='h-full'>
           {/* Google Map div */}
           <GoogleMap
             center={center}
             zoom={17}
-            mapContainerStyle={{ width: '50vh', height: '50vh' }}
+            mapContainerStyle={{  height: '100%' }}
             options={{
               zoomControl: false,
               streetViewControl: false,
@@ -94,30 +98,30 @@ import { buttonclass } from '../../Style/Clases/Clases'
             )}
           </GoogleMap>
         </div>
-        <div
+        <div className='details-delivery-map'
         >
-          <div>
-            <div>
-              <button className={buttonclass} type='submit' onClick={calculateRoute}>
-                Calculate Route
-              </button>
-              <button className={buttonclass} 
-                onClick={clearRoute}
-              > LIMPIAR RUTA </button>
+            <div className='flex flex-col items-center text-xl font-bold w-full'>
+            <label for={distance} class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Su pedido se encuentra a:</label>
+              <span name={distance}  id={distance}>{distance}</span>
             </div>
-          </div>
-          <div>
-
-            <span>Distance: {distance} </span>
-            <span>Duration: {duration} </span>
-
-            <button className={buttonclass}
+            <br></br>
+            <div className='flex flex-col items-center text-xl font-bold w-full'>
+            <label for={duration} class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Su pedido llegara en:</label>
+              <span name={duration} id={duration}>{duration}</span>
+            </div>
+            <div className='flex justify-evenly bg-slate-200/[.06] text-xl font-bold w-3/4'>
+            <img width={100} className='rounded-full' src={delivery[0].Delivery__[0].img} alt='alt '></img>
+              <div className='flex flex-col items-center text-xl font-bold'>
+              <label for={delivery[0].Delivery__[0].name} class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Delivery Man</label>
+              <span name={delivery[0].Delivery__[0].name} id={delivery[0].Delivery__[0].name}> {delivery[0].Delivery__[0].name} {delivery[0].Delivery__[0].lastName} </span>
+              </div>
+            </div>
+            {/* <button className={buttonclass}
               onClick={() => {
                 map.panTo(center)
                 map.setZoom(17)
               }}
-            >CENTRAR</button>
-          </div>
+            >CENTRAR</button> */}
         </div>
       </div>
     )

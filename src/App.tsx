@@ -39,7 +39,7 @@ function App() {
   }, [dispatch, foodsLS]);
 
   return (
-    <>
+    <div className=' bg-white dark:bg-background'>
       <Router>
         <Routes>
           <Route path='/' element={<Home />} />
@@ -55,7 +55,7 @@ function App() {
         </Routes>
         <Footer />
       </Router>
-    </>
+    </div>
   );
 }
 // 

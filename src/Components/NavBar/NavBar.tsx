@@ -72,7 +72,7 @@ export default function NavBar() {
   }
 
   return (
-    <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900" id="navBar">
+    <nav className="bg-background border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900" id="navBar">
       <div className="container flex flex-wrap justify-evenly items-center mx-auto">
         <button onClick={handleHome} className="flex items-center">
           <img id="logoNavBarImg" width={150} src={Logo} alt="LOGO"></img>
@@ -169,7 +169,7 @@ export default function NavBar() {
           className=" justify-between items-center w-full md:flex md:w-auto md:order-1"
           id="mobile-menu-2"
         >
-          <div className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <div className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-background dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <a href="/" >
             <button className={buttonclass}>
               <div className="divLogoButtonNavBar">
