@@ -7,6 +7,7 @@ import { Input, StateTypes, Submit } from "../../Interfaces/Interfaces";
 import { cleanError, logUser } from "../../redux/actions";
 import { buttonclass } from "../../Style/Clases/Clases";
 import { inputForm } from '../../Style/Clases/Clases'
+import GoogleLoggin from "../Auth/GoogleLoggin.jsx";
 import './Loggin.css'
 
 export default function Loggin({ openlog, showLoggin, setForgotPW, setOpenRegister }: any) {
@@ -143,6 +144,9 @@ export default function Loggin({ openlog, showLoggin, setForgotPW, setOpenRegist
                 </div>
             </Modal.Body>
         </Modal>
-    );
-}
+
+
+)}
+
+
 

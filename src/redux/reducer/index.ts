@@ -13,19 +13,29 @@ import {
     GET_USER_BY_ID,
     GET_ALL_USERS,
     GET_USER,
-    CLEAR_USER
+    CLEAR_USER,
+    GET_ORDER_ID,
+    GET_ALL_ORDERS,
+    GET_DELIVERY,
+    GET_DELIVERY_BY_ID,
+    CLEAN_ORDER
 
 } from "../actions";
 
 const initialState: StateTypes = {
     products: [],
     categories: [],
+    backUpCategories: [],
     detail: [],
     cart: [],
     userDetail: [],
     allUsers: [],
     error: '',
     user: '',
+    ordenDetail: [],
+    allOrders: [],
+    delivery: [],
+    deliveryProfile: []
 }
 
 
@@ -43,6 +53,7 @@ export default function rootReducer(state = initialState, action: Action) {
             return {
                 ...state,
                 categories: action.payload,
+                backUpCategories: action.payload,
             }
 
         case GET_ALL_USERS:
@@ -130,7 +141,32 @@ export default function rootReducer(state = initialState, action: Action) {
                 ...state,
                 user: ''
             }
-
+        case GET_ORDER_ID:
+            return{
+                ...state,
+                ordenDetail: action.payload
+            }
+        case GET_ALL_ORDERS:
+            return{
+                ...state,
+                allOrders: action.payload
+            }
+        
+        case GET_DELIVERY:
+            return{
+                ...state,
+                delivery: action.payload
+            }
+        case GET_DELIVERY_BY_ID:
+            return {
+                ...state,
+                deliveryProfile: action.payload
+            }
+        case CLEAN_ORDER:
+            return {
+                ...state,
+                ordenDetail: []
+            }
         default:
             return state;
     }

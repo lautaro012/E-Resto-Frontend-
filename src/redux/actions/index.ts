@@ -2,6 +2,7 @@ import { Dispatch } from "react";
 import axios from 'axios'
 import { Action, CardForm, Category, ProductDetail } from "../../Interfaces/Interfaces";
 import swal from "sweetalert";
+import Swal from 'sweetalert2';
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const GET_PRODUCTS_BY_NAME = 'GET_PRODUCTS_BY_NAME'
@@ -19,7 +20,11 @@ export const GET_USER = 'GET_USER'
 export const GET_ALL_USERS = 'GET_ALL_USERS'
 export const GET_USER_LOGGED = "GET_USER_LOGGED"
 export const CLEAR_USER = 'CLEAR_USER'
-
+export const GET_ORDER_ID = 'GET_ORDER_ID'
+export const GET_ALL_ORDERS = 'GET_ALL_ORDERS'
+export const GET_DELIVERY = 'GET_DELIVERY'
+export const GET_DELIVERY_BY_ID = 'GET_DELIVERY_BY_ID'
+export const CLEAN_ORDER = 'CLEAN_ORDER'
 export const getProducts = (sort: String) => {
 
     return function (dispatch: Dispatch<Action>) {
@@ -144,7 +149,7 @@ export const getCategories = (sort: string) => {
 export const createProduct = function (input: CardForm) {
     return function (dispatch: Dispatch<Action>) {
         axios.post('/product', input)
-            .then(res => swal( {title : "Producto creado correctamente"}))
+            .then(res => swal({ title: "Producto creado correctamente" }))
             .catch(error => console.log(error))
     }
 }
@@ -193,10 +198,40 @@ export const editProduct = (input: CardForm, id: number) => {
 }
 
 export const deleteProduct = (id: string) => {
-    axios.delete(`/product/${id}`).then(res => res.data)
-        .then(res => console.log(res))
-        .then(res => window.location.reload())
-        .catch(err => console.log(err))
+    return async function (dispatch: Dispatch<Action>) {
+        if (id) {
+            Swal.fire({
+                title: '¿Estás seguro que deseas eliminar este producto?',
+                text: "Ya no estará disponible en la tienda virtual",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonText: 'Cancelar',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, confirmar'
+            }).then((result: any) => {
+                if (result.isConfirmed) {
+                    try {
+                        axios.delete(`http://localhost:3001/product/${id}`)
+                            .then(res => {
+                                Swal.fire(
+                                    'Listo!',
+                                    'El producto ha sido eliminado correctamente',
+                                    'success'
+                                )
+                                    .then((res: any) => window.location.reload())
+
+                            })
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }
+            })
+        }
+        else {
+            console.log(`didn't get id`)
+        }
+    }
 }
 
 export function actualizarCart(food: any) {
@@ -231,7 +266,7 @@ export const sendSubscribeMail = (mail: String) => {
                     res => axios.post(`/sendSubscribeMail/${mail}`)
                 ).then(res => res.data)
                 .then(res => swal({ title: `Gracias por suscribirte a Henry's Food` }))
-                .catch(err => swal({ title: `${err.response.data}`}))
+                .catch(err => swal({ title: `${err.response.data}` }))
 
         }
     } else {
@@ -259,15 +294,34 @@ export const sendResetPassMail = (mail: String) => {
 export const changeBanUser = (id: any) => {
     return async function (dispatch: Dispatch<Action>) {
         if (id) {
-            try {
-                axios.put(`/banUser/${id}`)
-                    .then(res => {
-                        swal({ title: 'Usuario baneado' })
-                    })
+            Swal.fire({
+                title: '¿Estás seguro que deseas banear al usuario?',
+                text: "Se le informará al usuario el cambio en su cuenta",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonText: 'Cancelar',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, confirmar'
+            }).then((result: any) => {
+                if (result.isConfirmed) {
+                    try {
+                        axios.put(`http://localhost:3001/banUser/${id}`)
+                            .then(res => {
+                                Swal.fire(
+                                    'Listo!',
+                                    'El usuario ha sido baneado correctamente',
+                                    'success'
+                                )
 
-            } catch (error) {
-                console.log(error)
-            }
+                            })
+                    } catch (error) {
+                        console.log(error)
+                    }
+
+                }
+            })
+
         }
         else {
             console.log(`didn't get id`)
@@ -278,15 +332,33 @@ export const changeBanUser = (id: any) => {
 export const changeUserAsAdmin = (id: any) => {
     return async function (dispatch: Dispatch<Action>) {
         if (id) {
-            try {
-                axios.put(`/setAdmin/${id}`)
-                    .then(res => {
-                        swal({ title: 'El usuario es ahora administrador' })
-                    })
+            Swal.fire({
+                title: '¿Estás seguro que deseas convertir al usuario en administrador?',
+                text: "Podrá modificar, agregar productos y administrar los usuarios",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonText: 'Cancelar',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, confirmar'
+            }).then((result: any) => {
+                if (result.isConfirmed) {
+                    try {
+                        axios.put(`http://localhost:3001/setAdmin/${id}`)
+                            .then(res => {
+                                Swal.fire(
+                                    'Listo!',
+                                    'El usuario es ahora administrador',
+                                    'success'
+                                )
 
-            } catch (error) {
-                console.log(error)
-            }
+                            })
+                    } catch (error) {
+                        console.log(error)
+                    }
+
+                }
+            })
         }
         else {
             console.log(`didn't get id`)
@@ -297,13 +369,33 @@ export const changeUserAsAdmin = (id: any) => {
 export const changeNoBanUser = (id: any) => {
     return async function (dispatch: Dispatch<Action>) {
         if (id) {
-            try {
-                axios.put(`/noBanUser/${id}`)
-                    .then(res => swal({ title: 'El usuario ya no está baneado' }))
+            Swal.fire({
+                title: '¿Estás seguro que deseas devolver la cuenta al usuario?',
+                text: "Podrá acceder al sitio nuevamente",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonText: 'Cancelar',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, confirmar'
+            }).then((result: any) => {
+                if (result.isConfirmed) {
+                    try {
+                        axios.put(`http://localhost:3001/noBanUser/${id}`)
+                            .then(res => {
+                                Swal.fire(
+                                    'Listo!',
+                                    'El usuario ahora puede ingresar al sitio',
+                                    'success'
+                                )
 
-            } catch (error) {
-                console.log(error)
-            }
+                            })
+                    } catch (error) {
+                        console.log(error)
+                    }
+
+                }
+            })
         }
         else {
             console.log(`didn't get id`)
@@ -340,9 +432,9 @@ export const createUser = (input: any, navigate: any) => {
         axios.post(`/user/register`, input).then(resp => resp.data)
             .then(res => {
                 console.log('registrado', res)
-                swal({ title: 'Registrado correctamente' })
                 axios.post(`/sendWelcomeMail/${input.mail}`).then(res => console.log('email sent', res.data))
-                navigate('/pedidos')
+                swal({ title: 'Registrado correctamente' })
+                //navigate('/pedidos')
             })
             .catch(err => {
                 return dispatch({
@@ -368,7 +460,7 @@ export const logUser = (navigate: any, input: any) => {
             .then(res => {
                 localStorage.setItem('token', JSON.stringify(res));
                 window.location.reload()
-                navigate('/pedidos')
+                //navigate('/pedidos')
             })
             .catch(err => {
                 return dispatch({
@@ -441,14 +533,147 @@ export const modifyItemFromStock = (newStock: any, id: string) => {
     }
 }
 
-
+export function getAllOrders() {
+    return function (dispatch: Dispatch<Action>) {
+        axios.get('/order').then(res => res.data)
+            .then(resp => {
+                dispatch({
+                    type: GET_ALL_ORDERS,
+                    payload: resp
+                })
+            })
+    }
+}
 export function createOrder(payload: any) {
     return function () {
         axios.post('/order', payload).then(res => res.data)
             .then(resp => {
                 console.log(resp)
-                window.location.reload()
+                // window.location.reload()
             })
             .catch(error => console.log(error))
+    }
+}
+export function postReview(input: any) {
+    return function () {
+        axios.post('http://localhost:3001/review', input).then(res => res.data)
+            .then(resp => {
+                console.log(resp)
+            })
+            .catch(error => console.log(error))
+    }
+}
+
+export function getOrdenByID(id: number) {
+    return function (dispatch: Dispatch<Action>) {
+        axios.get(`/order/${id}`).then(res => res.data)
+            .then(res => {
+                dispatch({
+                    type: GET_ORDER_ID,
+                    payload: res
+                })
+            })
+    }
+}
+
+export function getDelivery() {
+    return function (dispatch: Dispatch<Action>) {
+        axios.get('/delivery').then(res => res.data)
+            .then(res => {
+                dispatch({
+                    type: GET_DELIVERY,
+                    payload: res
+                })
+            })
+    }
+}
+
+
+
+export const createNewDelivery = (input: any) => {
+
+    return function (dispatch: Dispatch<Action>) {
+        if (input) {
+            axios.post(`/delivery/register`, input).then(resp => resp.data)
+                .then(res => {
+                    console.log('registrado', res)
+                    Swal.fire('Registrado correctamente')
+                        .then((res) => { if (res.isConfirmed) window.location.reload() })
+                })
+                .catch(err => {
+                    if (err.response.status === 400) {
+                        swal('El mail ya está registrado')
+                    }
+                    if (err.response.status === 404) {
+                        swal('Faltó ingresar datos requeridos')
+                    }
+                    else console.log(err)
+                })
+        } else { console.log(`didn't get input`) }
+    }
+}
+
+
+
+export function getDeliveryByID(token: { auth: boolean, token: string }) {
+    return function (dispatch: Dispatch<Action>) {
+        axios
+            .get("/delivery/token", {
+                headers: {
+                    "x-access-token": token.token,
+                },
+            })
+            .then((res) => {
+                dispatch({
+                    type: GET_DELIVERY_BY_ID,
+                    payload: res.data
+                })
+            })
+            .catch((err) => {
+                dispatch({
+                    type: ERROR_HANDLER,
+                    payload: err
+                })
+            });
+    }
+}
+
+export function logDelivery(navigate: any, input: any) {
+    return function (dispatch: Dispatch<Action>) {
+        axios.post('/delivery/login', input).then(res => res.data)
+            .then(res => {
+                localStorage.setItem('delivery', JSON.stringify(res));
+                window.location.reload()
+            })
+            .catch(err => {
+                console.log(err.response.data)
+                return dispatch({
+                    type: ERROR_HANDLER,
+                    payload: err.response.data
+                })
+            })
+    }
+}
+
+export function asignOrder(id: number, deli_id: number) {
+    return function (dispatch: Dispatch<Action>) {
+        axios.put(`/order/add/${id}`, { deli_id }).then(res => res.data)
+            .then(res => swal({ title: 'Pedido Asignado Exitosamente' }))
+    }
+}
+
+export function getMailContact(input: any) {
+    return function (dispatch: Dispatch<Action>) {
+        axios.post('/contactMailing', input)
+            .then(res => swal({ title: 'Hemos recibido tu consulta, te responderemos a la brevedad' }))
+            .catch(res => swal({ title: 'No pudimos recibir el mail' }))
+    }
+}
+
+export function cleanOrder() {
+    return function (dispatch: Dispatch<Action>) {
+        dispatch({
+            type: CLEAN_ORDER
+        })
     }
 }

@@ -1,7 +1,7 @@
 
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
-import { createOrder, deleteItemFromCart } from "../../redux/actions";
+import { createOrder, deleteItemFromCart, getUser } from "../../redux/actions";
 import { useAppDispatch, useAppSelector } from '../../config';
 //import { useNavigate } from 'react-router-dom';
 import swal from "sweetalert";
@@ -13,11 +13,12 @@ export default function Check({ precio, subtotal, propina }) {
   const user = useAppSelector(state => state.user)
   const dispatch = useAppDispatch()
   //const navigate = useNavigate()
+  let token = localStorage.getItem("token");
   const payNow = async token => {
 
     try {
       const response = await axios({
-        url: 'http://localhost:3001/payment',
+        url: '/payment',
         method: 'post',
         data: {
           amount: precio * 100,
@@ -25,7 +26,7 @@ export default function Check({ precio, subtotal, propina }) {
         }
       })
       if (response.status === 200) {
-
+        console.log(token.card.address_line1)
         let cantidad = items.map(item => {
           return {
             name: item.name,
@@ -49,9 +50,11 @@ export default function Check({ precio, subtotal, propina }) {
           items: items
         }
 
-        dispatch(createOrder(payload))
-        dispatch(deleteItemFromCart("All"))
+        dispatch(createOrder(payload));
+        dispatch(deleteItemFromCart("All"));
+        dispatch(getUser(JSON.parse(token)));
         swal({ title: ('COMPRA EXITOSA') })
+        window.location.reload()
       }
     } catch (error) {
       console.log(error)
@@ -63,7 +66,7 @@ export default function Check({ precio, subtotal, propina }) {
       <h1>Tarjeta de credito</h1>
       <StripeCheckout
         stripeKey={publishableKey}
-        label='Pay Now'
+        label='Pagar Ahora'
         billingAddress
         shippingAddress
         amount={precio * 100}

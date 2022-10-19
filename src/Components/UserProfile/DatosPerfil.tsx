@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { modificarUser } from '../../redux/actions';
+import { Autocomplete, useJsApiLoader } from '@react-google-maps/api';
 //import { stringify } from 'querystring';
 
 
@@ -27,6 +28,11 @@ export default function DatosPerfil(data: any) {
             [event.target.name]: event.target.value
         }))
     }
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: "AIzaSyBcEkktrtcI1S6HvtWDNe83I75TECaSBgU",
+        libraries: ['places']
+        })
 
     const validations = (input: any) => { // VARIABLE PARA GUARDAR UN MENSAJE EN CASO DE FALTANTES DEL INPUT
         let errors: any = {}
@@ -96,7 +102,7 @@ export default function DatosPerfil(data: any) {
     // }
 
     return (
-        <div className="modificar_perfil">
+        <div className="modificar_perfil" data-aos="fade-left" data-aos-duration="500" >
             <h1 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">Mi perfil</h1>
             <div>
                 <h2>{mail}</h2>
@@ -119,16 +125,16 @@ export default function DatosPerfil(data: any) {
                                 <input
                                     id="User"
                                     type='text'
-                                    size={60}
+                                    size={40}
                                     value={input.userName}
                                     name='userName'
                                     placeholder="User..."
                                     onChange={(event) => handleInput(event)}
                                 />
+                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                                 {
                                     !errors.userName ? null : <span>{errors.userName}</span>
                                 }
-                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                             </div>
                             :
                             null
@@ -146,16 +152,16 @@ export default function DatosPerfil(data: any) {
                                     required
                                     id="Name"
                                     type='text'
-                                    size={60}
+                                    size={40}
                                     value={input.name}
                                     name='name'
                                     placeholder="Nombre..."
                                     onChange={(event) => handleInput(event)}
                                 />
+                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                                 {
                                     !errors.name ? null : <span>{errors.name}</span>
                                 }
-                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                             </div>
                             :
                             null
@@ -173,16 +179,16 @@ export default function DatosPerfil(data: any) {
                                 <input
                                     id="Last name"
                                     type='text'
-                                    size={60}
+                                    size={40}
                                     value={input.lastName}
                                     name='lastName'
                                     placeholder="Apellido..."
                                     onChange={(event) => handleInput(event)}
                                 />
+                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                                 {
                                     !errors.lastName ? null : <span>{errors.lastName}</span>
                                 }
-                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                             </div>
                             :
                             null
@@ -196,23 +202,28 @@ export default function DatosPerfil(data: any) {
                     <button onClick={(event) => abrirForm(event, "address")}>Editar</button>
                     {
                         form && form === "address" ?
+                            isLoaded ?
                             <div>
-                                <input
-                                    id="Address"
-                                    type='text'
-                                    size={60}
-                                    value={input.adress}
-                                    name='adress'
-                                    placeholder="Direccion..."
-                                    onChange={(event) => handleInput(event)}
-                                />
+                                <Autocomplete>
+                                    <input
+                                        id="Address"
+                                        type='text'
+                                        size={40}
+                                        value={input.adress}
+                                        name='adress'
+                                        placeholder="Direccion..."
+                                        onChange={(event) => handleInput(event)}
+                                    />
+                                </Autocomplete>
+                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                                 {
                                     !errors.adress ? null : <span>{errors.adress}</span>
                                 }
-                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                             </div>
                             :
                             null
+                        :
+                        null
                     }
                 </div>
                 <hr></hr>
@@ -224,15 +235,15 @@ export default function DatosPerfil(data: any) {
                             <div>
                                 <input
                                     type='text'
-                                    size={60}
+                                    size={40}
                                     name='img'
                                     placeholder="Inserte una URL para su foto de perfil"
                                     onChange={(event) => handleInput(event)}
                                 />
+                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                                 {
                                     !errors.img ? null : <span>{errors.img}</span>
                                 }
-                                <button onClick={(event) => abrirForm(event, "")}>X</button>
                             </div>
                             :
                             null

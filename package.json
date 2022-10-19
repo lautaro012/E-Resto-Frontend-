@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/free-regular-svg-icons": "^6.2.0",
+    "@react-google-maps/api": "^2.13.1",
     "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -19,10 +20,12 @@
     "flowbite-react": "^0.1.11",
     "fortawesome": "^0.0.1-security",
     "jwt-decode": "^3.1.2",
+    "leaflet": "^1.9.2",
     "mercadopago": "^1.5.14",
     "pretty-rating-react": "^2.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-leaflet": "^4.1.0",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
@@ -32,6 +35,7 @@
     "redux-devtools-extension": "^2.13.9",
     "stripe": "^10.12.0",
     "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.5.1",
     "typescript": "^4.8.3",
     "web-vitals": "^2.1.4"
   },

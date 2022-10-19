@@ -1,0 +1,30 @@
+.main_conteiner_order {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    max-height: 70vh;
+    overflow-x: clip;
+    min-height: 70vh;
+}
+
+#conteiner_order {
+    margin: 2% 5% 3% 5%;
+    border-style: solid;
+    border-color: rgb(204, 204, 204);
+    border-width: 0.5px;
+    border-radius: 25px;
+    padding: 3%;
+}
+
+#conteiner_order:hover {
+    background-size: cover;
+    background-position: center;
+    transform: translateY(10px) translateX(10px);
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.7);
+    transition: 500ms;
+}
+
+#estado_order_coteiner {
+    display: flex;
+    justify-content: space-between
+}

@@ -6,13 +6,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import axios from 'axios'
-import dotenv from "dotenv";
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
-// dotenv.config();
-axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
+
+axios.defaults.baseURL =  process.env.REACT_APP_API || "http://localhost:3001"  ;
+
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>

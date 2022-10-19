@@ -40,12 +40,17 @@ export type StateTypes = {
 
     products: ProductDetail[] | [],
     categories: Array<Category> | [],
+    backUpCategories: Array<Category> | [],
     detail: ProductDetail | [],
-    cart: ProductDetail[] | [],
+    cart: [] | Array<Category>,
     userDetail: [],
     allUsers: [],
     error: any,
     user: any,
+    ordenDetail: any,
+    allOrders: any,
+    delivery: any,
+    deliveryProfile: any
 }
 
 export type Action = {

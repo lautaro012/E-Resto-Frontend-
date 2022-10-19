@@ -2,42 +2,45 @@ import { useAppSelector } from '../../config'
 import './UserProfile.css'
 import { useState } from 'react'
 import DatosPerfil from './DatosPerfil'
-import Orders from './Orders'
+import Orders from './Orders/Orders'
 import { Button } from 'flowbite-react'
+import OrderTimeline from '../OrderTimeline/OrderTimeline'
+import Testmap from '../Map/TestMap'
+
 
 export default function Profile() {
 
-    //let dispatch = useAppDispatch()
-
-    const user = useAppSelector((state) => state.user)
-
-    // const token = JSON.parse(localStorage.getItem("token")!);
-
-    // useEffect(() => {
-    //     dispatch(getUser(token))
-    // }, [dispatch])
+    const user2 = useAppSelector((state) => state.user)
 
     const [render, setRender] = useState("perfil")
+    const [idOrden, setIdOrden] = useState(0)
+    const [delivery, setDelivery] = useState({})
 
-    function handleRender(componente: string) {
+
+    function handleRender(componente: string, orden: number = 0) {
         setRender(componente)
+        setIdOrden(orden)
     }
-
+    function onMap (mapa:any, deli:any) {
+        setRender(mapa)
+        setDelivery(deli)
+    }
+    const user = JSON.parse(JSON.stringify(user2))
     return (
         <div className='Profile'>
 
             <div className='User_options_conteiner'>
-                <aside className='User_options'>
-                    <div>
-                        <h1 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">{user.userName}</h1>
-                        <img src={user.img} alt={user.name} />
-                    </div>
-                    <Button id='profile_buttons' onClick={() => handleRender("perfil")}>Mi perfil</Button>
-                    <Button id='profile_buttons' onClick={() => handleRender("orders")}>Mis compras</Button>
-                    {/* <button id='profile_buttons' onClick={() => handleRender("favoritos")}>Favoritos</button> */}
-                </aside>
+                <div className='shadow-div'>
+                    <aside className='User_options'>
+                        <div>
+                            <h1 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">{user.userName}</h1>
+                            <img src={user.img} alt={user.name} />
+                        </div>
+                        <Button id='profile_buttons' onClick={() => handleRender("perfil")}>Mi perfil</Button>
+                        <Button id='profile_buttons' onClick={() => handleRender("orders")}>Mis compras</Button>
+                    </aside>
+                </div>
             </div>
-
             <div className='User_data_conteiner'>
                 <div className='User_data'>
                     {
@@ -45,9 +48,16 @@ export default function Profile() {
                             <DatosPerfil data={user}></DatosPerfil>
                             :
                             render === "orders" ?
-                                <Orders></Orders>
+                                <Orders handleRender={handleRender} ></Orders>
                                 :
-                                null
+                                render === 'detail' ?
+                                    <OrderTimeline onMap={onMap} idOrden={idOrden} ></OrderTimeline>
+                                    :
+                                render === 'map' ?
+                                    <Testmap delivery={delivery}></Testmap>
+                                    :
+                                    null
+
                     }
                 </div>
             </div>

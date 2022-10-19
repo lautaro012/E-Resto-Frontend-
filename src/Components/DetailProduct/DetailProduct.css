@@ -1,5 +1,4 @@
   #imagen_detail_modal {
-    max-width: 35vw;
     max-height: 50vh;
     min-height: 50vh;
     object-fit: cover;
@@ -13,8 +12,12 @@
   }
 
   #detalle_der {
-    margin: 1%;
+    margin: 2%;
+    min-height: 80vh;
     max-width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   #detalle_izq {
@@ -66,4 +69,10 @@
 
   #buttons_detail_buy {
     margin-top: 5%;
+  }
+
+  .conteiner_calificaciones_detalle {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
   }

@@ -6,19 +6,20 @@ import { actualizarCart } from './redux/actions';
 
 import Pedidos from '../src/Components/Pedidos/Pedidos'
 import Home from '../src/Components/Home/Home'
-import DetailProduct from './Components/DetailProduct/DetailProduct';
 import Footer from './Components/Footer/Footer';
-import Register from './Components/RegisterForm/RegisterForm';
 import ForgotPass from './Components/ForgotPass/ForgotPass.jsx';
-import SendMail from './Components/ForgotPass/SendMail';
-import About from './Components/About_us/About';
+import DeliveryProfile from './Components/DeliveryProfile/DeliveryProfile';
+import LogginDelivery from './Components/LogginDelivery/LogginDelivery';
+import Testmap from './Components/Map/TestMap';
+
 
 function App() {
+
 
   const dispatch = useAppDispatch()
 
   const token = JSON.parse(localStorage.getItem("token")!);
-
+  const delivery = JSON.parse(localStorage.getItem("delivery")!);
   const foodsLS = JSON.parse(localStorage.getItem("products")!);
 
   useEffect(() => {
@@ -28,28 +29,34 @@ function App() {
     if (!foodsLS) {
       localStorage.setItem("products", JSON.stringify([]));
     }
-  }, [foodsLS, token])
+    if (!delivery) {
+      localStorage.setItem("delivery", JSON.stringify([]));
+    }
+  }, [foodsLS, token, delivery])
 
   useEffect(() => {
     dispatch(actualizarCart(foodsLS));
   }, [dispatch, foodsLS]);
 
   return (
-    <>
+    <div className=' bg-white dark:bg-background'>
       <Router>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/modal' element={<SendMail />} />
           <Route path='/recupera/:id' element={<ForgotPass />} />
           <Route path='/pedidos' element={<Pedidos />} />
-          <Route path='/product/:id' element={<DetailProduct id closeModalDetail />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/about' element={<About />} />
+          {
+            delivery?.token ?
+            <Route path='/delivery' element={<DeliveryProfile/>}></Route>
+            :
+            <Route path='/delivery' element={<LogginDelivery/>}></Route>
+          }
+          {/* <Route path='/test' element={<Testmap/>}/>  */}
         </Routes>
         <Footer />
       </Router>
-    </>
+    </div>
   );
 }
-
+// 
 export default App;

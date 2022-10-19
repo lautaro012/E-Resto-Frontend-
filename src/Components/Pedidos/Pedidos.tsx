@@ -20,6 +20,10 @@ export default function Pedidos() {
     const [order, setOrder] = useState("");
     const [showDetailModal, setShowDetailModal] = useState<boolean | undefined>(false);
     const [idModal, setIdModal] = useState<string>();
+    const [render, setRender] = useState<boolean>(false)
+    const theme = localStorage.getItem("theme")!;
+
+    let categories = useAppSelector((state: StateTypes) => state.categories);
 
     function orderSort(e: Select) {
         e.preventDefault();
@@ -31,7 +35,16 @@ export default function Pedidos() {
         dispatch(getCategories(order));
     }, [dispatch, order]);
 
-    let categories = useAppSelector((state: StateTypes) => state.categories);
+    function setDarkMode() {
+        document.getElementById("boton_dark")?.classList.toggle("sun")
+        if (document.documentElement.classList.toggle('dark')) {
+            localStorage.theme = "dark"
+        }
+        else {
+            localStorage.theme = "light"
+        }
+        render ? setRender(false) : setRender(true)
+    }
 
     return (
         <>
@@ -41,27 +54,24 @@ export default function Pedidos() {
                     <h1>Henry's Resto Proyect</h1>
                     <video autoPlay preload="auto" muted loop src={VideoHome}></video>
                 </div>
+                <button className="theme-toggle--button" aria-label="Toggle Theme" onClick={() => setDarkMode()}>
+                    <span className={theme === "dark" ? "shape sun" : "shape moon"}></span>
+                    <span className="rays--container">
+                        <span className="ray"></span>
+                        <span className="ray"></span>
+                        <span className="ray"></span>
+                        <span className="ray"></span>
+                    </span>
+                </button>
                 <div className="sort-buttons">
-                    {/* <select
-                        onChange={(e) => orderSort(e)}
-                        className={select}
-                        id='selectConfigSize'
-                    >
-                        <option>Dietas</option>
-                    </select> */}
-
                     <select className={select} onChange={(e) => orderSort(e)} id='selectConfigSize'>
-                        <option value="">Ordenar por nombre:</option>
-                        <option value="AZ">AZ</option>
-                        <option value="ZA">ZA</option>
+                        <option value="">Ordenar Productos</option>
+                        <option value="AZ">A-z</option>
+                        <option value="ZA">Z-a</option>
+                        <option value="mayorPrecio">Precio +</option>
+                        <option value="menorPrecio">Precio -</option>
+                        <option value="mayorRating">Rating +</option>
                     </select>
-                    <select className={select} onChange={(e) => orderSort(e)} id='selectConfigSize' >
-                        <option value="">Ordenar por precio:</option>
-                        <option value="mayorPrecio">Mayor precio</option>
-                        <option value="menorPrecio">Menor precio</option>
-                    </select>
-                    {/* <button className={buttonclass} >MAS COMPRADOS</button> */}
-                    <button className={buttonclass} onClick={(e) => setOrder("mayorRating")}>MAS POPULARES</button>
                 </div>
                 <div className="categorias-productos">
                     <div className="categorias-div">
@@ -74,7 +84,6 @@ export default function Pedidos() {
                                             to={cat.name}
                                             spy={true}
                                             smooth={true}
-                                            duration={1000}
                                             key={cat.name}
                                         >
                                             <ListGroup.Item key={cat.name}>
@@ -93,7 +102,7 @@ export default function Pedidos() {
                         {categories?.map((categoria: Category) => {
                             return categoria.categoryProducts.length !== 0 ? (
                                 <div
-                                data-aos="fade-up" data-aos-duration="1500"
+                                    data-aos="fade-up" data-aos-duration="1500"
                                     id={categoria.name}
                                     key={categoria._id}
                                     className="Categoria"

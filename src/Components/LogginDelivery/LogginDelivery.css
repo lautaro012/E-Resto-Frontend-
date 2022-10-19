@@ -1,0 +1,22 @@
+.loggin-delivery-conteiner {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loginDeliveryNavBar{
+    padding: 1%;
+    background-color: #F1FFC4;
+}
+.loginDeliveryNavBar a {
+    display: flex;
+}
+
+.loginDeliveryNavBar p {
+    margin-left: 1%;
+}
+.loginDeliveryNavBar:hover{
+    cursor: pointer;
+    background-color: #e6f8ac;
+
+}
