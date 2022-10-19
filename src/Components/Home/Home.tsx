@@ -4,6 +4,7 @@ import Logo from '../../Style/images/Henry_icon.png'
 //import { Footer } from "../Footer/Footer"
 import Products from "../Products/Products"
 import { useRef } from "react"
+import { Modal } from 'flowbite-react'
 
 
 export default function Home () {
