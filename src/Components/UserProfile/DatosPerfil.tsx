@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { modificarUser } from '../../redux/actions';
+import { Autocomplete, useJsApiLoader } from '@react-google-maps/api';
 //import { stringify } from 'querystring';
 
 
@@ -27,6 +28,11 @@ export default function DatosPerfil(data: any) {
             [event.target.name]: event.target.value
         }))
     }
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: "AIzaSyBcEkktrtcI1S6HvtWDNe83I75TECaSBgU",
+        libraries: ['places']
+        })
 
     const validations = (input: any) => { // VARIABLE PARA GUARDAR UN MENSAJE EN CASO DE FALTANTES DEL INPUT
         let errors: any = {}
@@ -196,16 +202,19 @@ export default function DatosPerfil(data: any) {
                     <button onClick={(event) => abrirForm(event, "address")}>Editar</button>
                     {
                         form && form === "address" ?
+                            isLoaded ?
                             <div>
-                                <input
-                                    id="Address"
-                                    type='text'
-                                    size={40}
-                                    value={input.adress}
-                                    name='adress'
-                                    placeholder="Direccion..."
-                                    onChange={(event) => handleInput(event)}
-                                />
+                                <Autocomplete>
+                                    <input
+                                        id="Address"
+                                        type='text'
+                                        size={40}
+                                        value={input.adress}
+                                        name='adress'
+                                        placeholder="Direccion..."
+                                        onChange={(event) => handleInput(event)}
+                                    />
+                                </Autocomplete>
                                 <button onClick={(event) => abrirForm(event, "")}>X</button>
                                 {
                                     !errors.adress ? null : <span>{errors.adress}</span>
@@ -213,6 +222,8 @@ export default function DatosPerfil(data: any) {
                             </div>
                             :
                             null
+                        :
+                        null
                     }
                 </div>
                 <hr></hr>
