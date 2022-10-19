@@ -6,7 +6,7 @@
 }
 .loginDeliveryNavBar{
     padding: 1%;
-    background-color: #F1FFC4;
+    border-bottom: white 1px solid;
 }
 .loginDeliveryNavBar a {
     display: flex;
@@ -17,6 +17,4 @@
 }
 .loginDeliveryNavBar:hover{
     cursor: pointer;
-    background-color: #e6f8ac;
-
 }
