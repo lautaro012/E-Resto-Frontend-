@@ -116,7 +116,7 @@ export default function LogginDelivery () {
                         <br></br>
                         <hr></hr>
                         <br></br>
-                        <GoogleLoggin></GoogleLoggin>
+                        {/* <GoogleLoggin></GoogleLoggin> */}
                     </form>
                 </div>
         </div>
