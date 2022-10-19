@@ -19,8 +19,11 @@ function App() {
   const dispatch = useAppDispatch()
 
   const token = JSON.parse(localStorage.getItem("token")!);
+  const remember = JSON.parse(localStorage.getItem("remember")!);
   const delivery = JSON.parse(localStorage.getItem("delivery")!);
   const foodsLS = JSON.parse(localStorage.getItem("products")!);
+
+
 
   useEffect(() => {
     if (!token) {
@@ -31,8 +34,13 @@ function App() {
     }
     if (!delivery) {
       localStorage.setItem("delivery", JSON.stringify([]));
+    } 
+    if (!remember) {
+      localStorage.setItem("remember", JSON.stringify(false));
     }
   }, [foodsLS, token, delivery])
+
+ 
 
   useEffect(() => {
     dispatch(actualizarCart(foodsLS));
