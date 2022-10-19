@@ -3,7 +3,7 @@ import "../Pedidos/Pedidos.css";
 import NavBar from "../NavBar/NavBar";
 import { ListGroup } from "flowbite-react";
 import { Link } from "react-scroll";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../config";
 import { getCategories } from "../../redux/actions";
 import { buttonclass, select } from "../../Style/Clases/Clases";
