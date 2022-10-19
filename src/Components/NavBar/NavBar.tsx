@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import { buttonclass } from "../../Style/Clases/Clases";
 import Logo from "../../Style/images/Henry.png";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Loggin from "../LogginForm/Loggin";
 import { useAppDispatch, useAppSelector } from "../../config";
 import { getUser } from "../../redux/actions";
@@ -54,7 +54,7 @@ export default function NavBar() {
   //  console.log(menuResponsive);
 
   useEffect(() => {
-    dispatch(getUser(JSON.parse(token)));
+    dispatch(getUser(JSON.parse(token)))
   }, []);
 
   function closeCart() {
@@ -70,7 +70,7 @@ export default function NavBar() {
   }
 
   return (
-    <nav className="bg-background border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900" id="navBar">
+    <nav className="bg-background duration-500 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900" id="navBar">
       <div className="container flex flex-wrap justify-evenly items-center mx-auto">
         <button onClick={handleHome} className="flex items-center">
           <img id="logoNavBarImg" width={150} src={Logo} alt="LOGO"></img>
@@ -168,7 +168,7 @@ export default function NavBar() {
           id="mobile-menu-2"
         >
 
-          <div className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-background dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <div className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 duration-500 md:bg-background dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <a href="/" >
             <button className={buttonclass}>
               <div className="divLogoButtonNavBar">

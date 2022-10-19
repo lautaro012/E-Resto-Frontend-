@@ -13,17 +13,14 @@ export default function HomeBar({ el }: any) {
 
     const navigate = useNavigate()
     const [contacto, setContacto] = useState<boolean>(false)
+    const [catalogo, setCatalogo] = useState<boolean>(false)
+
 
     function closeContacto() {
         setContacto(false)
     }
-    const handleHome = () => {
-        // home.current?.scrollIntoView({behavior: 'smooth'});
-        window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
+    function closeCatalogo() {
+        setCatalogo(false)
     }
 
 
@@ -31,7 +28,7 @@ export default function HomeBar({ el }: any) {
         <nav className="navbar-conteiner">
             <header>
                 <div className='navbar-buttons'>
-                    <button style={{color: '#395B64'}} onClick={handleHome} className={buttonclass}> HOME </button>
+                    <button style={{color: '#395B64'}} onClick={() => setCatalogo(true)} className={buttonclass}> CATÁLOGO </button>
 
                     <button style={{color: '#395B64'}} className={buttonclass} onClick={() => navigate('/pedidos')}> HACE TU PEDIDO </button>
                 </div>
@@ -51,6 +48,23 @@ export default function HomeBar({ el }: any) {
                 </ModalHeader>
                 <ModalBody>
                     <ContactForm></ContactForm>
+                </ModalBody>
+                <ModalFooter>
+                    © 2022 Henry's Resto Project™
+                </ModalFooter>
+            </Modal>
+            <Modal
+                show={catalogo}
+                onClose={closeCatalogo}
+                size='md'
+            >
+                <ModalHeader>
+                    Accede a nuestro catalógo
+                </ModalHeader>
+                <ModalBody>
+                    <div className='catalogoStyleButton'>
+                    <a href='https://www.cervezabaum.com/publicAccess/cab/carta.pdf' target='_blank'><button className={buttonclass} >Accedé a nuestro catálogo</button></a>
+                    </div>
                 </ModalBody>
                 <ModalFooter>
                     © 2022 Henry's Resto Project™
