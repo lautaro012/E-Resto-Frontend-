@@ -54,7 +54,7 @@ console.log(detalles)
           )
           :
           (
-            <div>
+            <div className="orderlist-map-orders">
               {detalles.map((items: any) => {
                 if (!items.delivered) {
                   return (
@@ -64,7 +64,7 @@ console.log(detalles)
                       <table className="orderlist_price_conteiner">
                         {items?.items.map((item: any) => {
                           return (
-                            <div key={item.name}>
+                            <div key={item._id}>
                               <tr className="orderlist_item_conteiner">
                                 <td><img width={60} src={item.img} alt="alt"></img></td>
                                 <td>{item.cantidad}</td>

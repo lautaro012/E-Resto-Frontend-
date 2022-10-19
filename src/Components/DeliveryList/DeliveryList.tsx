@@ -16,8 +16,8 @@ export default function DeliveryList ({handleCloseRepartidores, id}:{handleClose
     const handleAsign = (e:any) => {
         dispatch(asignOrder(id, e.target.value))
         handleCloseRepartidores()
-        window.location.reload()
     }
+    console.log(id)
 
     
     return (
