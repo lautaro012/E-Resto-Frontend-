@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import { buttonclass } from "../../Style/Clases/Clases";
 import Logo from "../../Style/images/Henry.png";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Loggin from "../LogginForm/Loggin";
 import { useAppDispatch, useAppSelector } from "../../config";
 import { getUser } from "../../redux/actions";
@@ -54,7 +54,7 @@ export default function NavBar() {
   //  console.log(menuResponsive);
 
   useEffect(() => {
-    dispatch(getUser(JSON.parse(token)));
+    dispatch(getUser(JSON.parse(token)))
   }, []);
 
   function closeCart() {
