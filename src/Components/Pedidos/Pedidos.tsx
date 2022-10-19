@@ -3,11 +3,13 @@ import "../Pedidos/Pedidos.css";
 import NavBar from "../NavBar/NavBar";
 import { ListGroup } from "flowbite-react";
 import { Link } from "react-scroll";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../config";
 import { getCategories } from "../../redux/actions";
 import { buttonclass, select } from "../../Style/Clases/Clases";
 import DetailProduct from "../DetailProduct/DetailProduct";
+import heladoNegro from '../../Style/images/heladoNegro.png'
+import heladoBlanco from '../../Style/images/heladoBlanco.png'
 import VideoHome from '../../Style/videos/video.mp4'
 import { Category, ProductDetail, Select, StateTypes } from "../../Interfaces/Interfaces";
 import ScrollToTop from "react-scroll-to-top";
@@ -136,11 +138,6 @@ export default function Pedidos() {
                                 </div>
                             ) : null;
                         })}
-                                )
-                                :
-                                null   
-                            })                  
-                        }
                         {
                             categories && categories?.every(categoria => categoria.categoryProducts.length === 0) ?
                             <div className="flex items-center justify-around">
