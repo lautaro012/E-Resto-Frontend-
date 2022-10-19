@@ -212,7 +212,7 @@ export const deleteProduct = (id: string) => {
             }).then((result: any) => {
                 if (result.isConfirmed) {
                     try {
-                        axios.delete(`http://localhost:3001/product/${id}`)
+                        axios.delete(`/product/${id}`)
                             .then(res => {
                                 Swal.fire(
                                     'Listo!',
@@ -306,7 +306,7 @@ export const changeBanUser = (id: any) => {
             }).then((result: any) => {
                 if (result.isConfirmed) {
                     try {
-                        axios.put(`http://localhost:3001/banUser/${id}`)
+                        axios.put(`/banUser/${id}`)
                             .then(res => {
                                 Swal.fire(
                                     'Listo!',
@@ -344,7 +344,7 @@ export const changeUserAsAdmin = (id: any) => {
             }).then((result: any) => {
                 if (result.isConfirmed) {
                     try {
-                        axios.put(`http://localhost:3001/setAdmin/${id}`)
+                        axios.put(`/setAdmin/${id}`)
                             .then(res => {
                                 Swal.fire(
                                     'Listo!',
@@ -381,7 +381,7 @@ export const changeNoBanUser = (id: any) => {
             }).then((result: any) => {
                 if (result.isConfirmed) {
                     try {
-                        axios.put(`http://localhost:3001/noBanUser/${id}`)
+                        axios.put(`/noBanUser/${id}`)
                             .then(res => {
                                 Swal.fire(
                                     'Listo!',
