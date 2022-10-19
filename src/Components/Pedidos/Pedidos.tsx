@@ -127,9 +127,31 @@ export default function Pedidos() {
                                             );
                                         })}
                                     </div>
+<<<<<<< Updated upstream
                                 </div>
                             ) : null;
                         })}
+=======
+                                )
+                                :
+                                null   
+                            })                  
+                        }
+                        {
+                            categories && categories?.every(categoria => categoria.categoryProducts.length === 0) ?
+                            <div className="flex items-center justify-around">
+                            <div className="flex flex-col dark:text-white">
+                                <h1 className="text-7xl"> Oops... </h1>
+                                <br></br>
+                                <h2 className="text-5xl"> Algo salio mal </h2>
+                            </div>
+                            <img className="duration-500" src={theme === 'dark' ? heladoNegro : heladoBlanco } alt='404'/>
+                            </div>
+                            :
+                            null
+                        }
+
+>>>>>>> Stashed changes
                     </div>
                 </div>
             </div>

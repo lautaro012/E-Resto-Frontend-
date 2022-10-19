@@ -10,7 +10,7 @@ import Footer from './Components/Footer/Footer';
 import ForgotPass from './Components/ForgotPass/ForgotPass.jsx';
 import DeliveryProfile from './Components/DeliveryProfile/DeliveryProfile';
 import LogginDelivery from './Components/LogginDelivery/LogginDelivery';
-import Testmap from './Components/Map/TestMap';
+
 
 
 function App() {
@@ -51,7 +51,7 @@ function App() {
             :
             <Route path='/delivery' element={<LogginDelivery/>}></Route>
           }
-          {/* <Route path='/test' element={<Testmap/>}/>  */}
+          {/* <Route path='/test' element={<Map/>}/>  */}
         </Routes>
         <Footer />
       </Router>

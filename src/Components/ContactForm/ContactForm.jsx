@@ -7,11 +7,11 @@ import 'leaflet/dist/leaflet.css'
 
 import './ContactForm.css'
 import Icon from './Icon'
+import Map from '../Map/Map'
 
 const ContactForm = () => {
     let dispatch = useAppDispatch()
 
-    const position = [-34.61076253986243, -58.39184445159683]
 
 
     const [input, setInput] = useState({
@@ -57,20 +57,9 @@ const ContactForm = () => {
             </form>
             </span>
             <span>
-            <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
-                <TileLayer
-                    url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                />
-                <Marker position={position} icon={Icon}>
-                    <Popup>
-                        Encontranos Aquí <br /> Av. Entre Ríos 105
-                    </Popup>
-                </Marker>
-
-            </MapContainer>
-            <p> <strong>Nuestra Sucursal:</strong> Av. Entre ríos 105</p>
-            <p> <strong>Atención al cliente: </strong> 1130255468</p>
+            <Map></Map>
+            <p className='text-black dark:text-white'> <strong>Nuestra Sucursal:</strong> Av. Entre ríos 105</p>
+            <p className='text-black dark:text-white'> <strong>Atención al cliente: </strong> 1130255468</p>
             </span>
         </div>
     )
