@@ -11,7 +11,8 @@ const container = document.getElementById('root')!;
 const root = createRoot(container);
 
 
-axios.defaults.baseURL =  process.env.REACT_APP_API || "http://localhost:3001"  ;
+
+axios.defaults.baseURL = process.env.REACT_APP_API ||  "http://localhost:3001"
 
 
 root.render(

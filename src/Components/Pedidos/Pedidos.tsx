@@ -3,7 +3,7 @@ import "../Pedidos/Pedidos.css";
 import NavBar from "../NavBar/NavBar";
 import { ListGroup } from "flowbite-react";
 import { Link } from "react-scroll";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../config";
 import { getCategories } from "../../redux/actions";
 import { buttonclass, select } from "../../Style/Clases/Clases";
@@ -12,6 +12,8 @@ import VideoHome from '../../Style/videos/video.mp4'
 import { Category, ProductDetail, Select, StateTypes } from "../../Interfaces/Interfaces";
 import ScrollToTop from "react-scroll-to-top";
 import AOS from 'aos';
+import heladoBlanco from '../../Style/images/heladoBlanco.png'
+import heladoNegro from '../../Style/images/heladoNegro.png'
 import 'aos/dist/aos.css';
 AOS.init();
 
@@ -45,6 +47,7 @@ export default function Pedidos() {
         }
         render ? setRender(false) : setRender(true)
     }
+    
 
     return (
         <>
@@ -101,38 +104,57 @@ export default function Pedidos() {
 
                     </div>
                     <div className="productos-conteiner">
-                        {categories?.map((categoria: Category) => {
-                            return categoria.categoryProducts.length !== 0 ? (
-                                <div
-                                    data-aos="fade-up" data-aos-duration="1500"
-                                    id={categoria.name}
-                                    key={categoria._id}
-                                    className="Categoria"
-                                >
-                                    <h1 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                                        <strong>{categoria.name}</strong>
-                                        <span className="mr-2 ml-3 rounded bg-blue-100 px-2.5 py-0.5 text-4xl font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">
-                                            {categoria.categoryProducts.length}
-                                        </span>
-                                    </h1>
-                                    <br></br>
 
-                                    <div className="Contenedor_cartas">
-                                        {categoria?.categoryProducts?.map((info: ProductDetail) => {
-                                            return (
-                                                <Card
-                                                    key={info.name}
-                                                    comidaProps={info}
-                                                    modalOpen={setShowDetailModal}
-                                                    setIdModal={setIdModal}
-                                                />
-                                            );
-                                        })}
+                        {
+                            categories?.map((categoria: Category) => {
+                                return categoria.categoryProducts.length !== 0 ? (
+                                    <div
+                                        data-aos="fade-up" data-aos-duration="1500"
+                                        id={categoria.name}
+                                        key={categoria._id}
+                                        className="Categoria"
+                                    >
+                                        <h1 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                                            <strong>{categoria.name}</strong>
+                                            <span className="mr-2 ml-3 rounded bg-blue-100 px-2.5 py-0.5 text-4xl font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">
+                                                {categoria.categoryProducts.length}
+                                            </span>
+                                        </h1>
+                                        <br></br>
+
+                                        <div className="Contenedor_cartas">
+                                            {categoria?.categoryProducts?.map((info: ProductDetail) => {
+                                                return (
+                                                    <Card
+                                                        key={info.name}
+                                                        comidaProps={info}
+                                                        modalOpen={setShowDetailModal}
+                                                        setIdModal={setIdModal}
+                                                    />
+                                                );
+                                            })}
+                                        </div>
                                     </div>
-                                </div>
+
                             ) : null;
-                        })}
-                    </div>
+                             })
+                        }
+                        
+                        {
+                            categories && categories?.every(categoria => categoria.categoryProducts.length === 0) ?
+                            <div className="flex items-center justify-around">
+                            <div className="flex flex-col dark:text-white">
+                                <h1 className="text-7xl"> Oops... </h1>
+                                <br></br>
+                                <h2 className="text-5xl"> Algo salio mal </h2>
+                            </div>
+                            <img className="duration-500" src={theme === 'dark' ? heladoNegro : heladoBlanco } alt='404'/>
+                            </div>
+                            :
+                            null
+                        }                    
+                        
+                        </div>
                 </div>
             </div>
             {

@@ -28,7 +28,7 @@ export default function DeliveryList ({handleCloseRepartidores, id}:{handleClose
                     return (
                         <div key={del._id}>
                         <div className="deliverylist-conteiner">
-                            <img width={60} alt='asdf' src='https://citizengo.org/sites/default/files/images/test_3.png'></img>
+                            <img className="rounded-full" width={60} alt='asdf' src={del.img}></img>
                             <h1>{del.name} {del.lastName}</h1>
                             <h2>{del.mail}</h2>
                             <button value={del._id} onClick={handleAsign} className={buttonclass}> Asignar </button>
