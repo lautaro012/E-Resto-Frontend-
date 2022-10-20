@@ -91,6 +91,14 @@ export default function Products() {
                         </p>
                         <br />
                         <p>
+                            Nuestros platos se conciben con un equilibrio entre creatividad, técnica e intuición. El menú es variado, con propuestas diversas donde seguramente podrán encontrar influencias francesas, españolas, mediterráneas en general y, por supuesto, argentinas.
+                        </p>
+                        <br />
+                        <p>
+                            Nos gusta utilizar lo que se produce en diferentes regiones de nuestro país, y nos abastecemos a través de pequeños productores o proveedores especializados.
+                        </p>
+                        <br />
+                        <p>
                             ¿Qué estás esperando?
                         </p>
                     </div>
