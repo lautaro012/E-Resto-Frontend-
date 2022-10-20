@@ -15,3 +15,8 @@
 .logo-conteiner img {
     border-radius: 50%;
 }
+
+#logo_home {
+    width: 50vh;
+    height: 50vh;
+}

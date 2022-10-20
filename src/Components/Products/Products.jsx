@@ -109,11 +109,11 @@ export default function Products() {
                 </div>
             </div>
             <div className='conteiner_carrousel' id='carrousel2'>
-                <div className='contenedor_izquieda_carrousel' data-aos="fade-right" data-aos-duration="1500">
+                <div className='contenedor_izquieda_carrousel' data-aos="fade-left" data-aos-duration="1500">
                     <Carousel slides={cocinas} arrows={false} />
                 </div>
                 <div className='contenedor_derecha_carrousel' >
-                    <h1 data-aos="fade-left" data-aos-duration="1500">Nuestra cocina</h1>
+                    <h1 data-aos="fade-right" data-aos-duration="1500">Nuestra cocina</h1>
                     <div data-aos="fade-up" data-aos-duration="1500">
                         <br />
                         <p>
