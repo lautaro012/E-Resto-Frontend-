@@ -32,6 +32,8 @@ export default function Pedidos() {
         setOrder(e.target.value);
     }
 
+
+
     let dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(getCategories(order));
@@ -79,7 +81,7 @@ export default function Pedidos() {
                 <div className="categorias-productos">
                     <div className="categorias-div">
                         <div className="categorias-conteiner">
-                            <ListGroup>
+                          <ListGroup>
                                 {categories?.map((cat: Category) => {
                                     return cat.categoryProducts.length !== 0 ? (
                                         <Link
@@ -97,13 +99,15 @@ export default function Pedidos() {
                                                 {" "}
                                             </ListGroup.Item>
                                         </Link>
-                                    ) : null;
+                                    ) : null
                                 })}
-                            </ListGroup>
+                            </ListGroup> 
+                        
                         </div>
 
                     </div>
                     <div className="productos-conteiner">
+
 
                         {
                             categories?.map((categoria: Category) => {
@@ -134,6 +138,7 @@ export default function Pedidos() {
                                                 );
                                             })}
                                         </div>
+
                                     </div>
 
                                 )
@@ -155,6 +160,7 @@ export default function Pedidos() {
                                 :
                                 null
                         }
+
 
                     </div>
                 </div>

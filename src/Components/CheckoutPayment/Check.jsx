@@ -9,7 +9,7 @@ import './Check.css'
 
 export default function Check({ precio, subtotal, propina }) {
 
-  let publishableKey = 'pk_test_51Lde2sJXnqrwcfODw8cWGGVzyavpCNgaUXMhWTAbkGIJ3txhY9PVGuUzy9QPzQ5riddbQZdRADa3QTHxqhrSeSZq00dWuMhBM2'
+  let publishableKey = 'pk_test_51Lde2sJXnqrwcfODCthYnMFMYtsNW20Kuj0SghahI4srLdSPl7UI8B4wjBxazORFMqYaT8YxUwy8JVyZLIUG0yTE00PIJe7i3N'
   const items = useAppSelector((state) => state.cart)
   const user = useAppSelector(state => state.user)
   const dispatch = useAppDispatch()
