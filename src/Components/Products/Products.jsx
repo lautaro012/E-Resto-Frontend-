@@ -1,5 +1,9 @@
+import './Products.css'
 import { Carousel } from '3d-react-carousal';
 import ProducCard from './Produc_card';
+import PrettyRating from "pretty-rating-react";
+import ScrollToTop from 'react-scroll-to-top';
+import { buttonclass } from '../../Style/Clases/Clases';
 
 import plato from '../../Style/images/Landing/Plato.jpg'
 import local from '../../Style/images/Landing/Resto.jpg'
@@ -21,12 +25,12 @@ import resto3 from '../../Style/images/Landing/resto3.jpg'
 import resto4 from '../../Style/images/Landing/resto4.jpg'
 import resto5 from '../../Style/images/Landing/resto5.jpg'
 
-import './Products.css'
-import ScrollToTop from 'react-scroll-to-top';
-import { buttonclass } from '../../Style/Clases/Clases';
-
 
 export default function Products() {
+
+    const colors = {
+        star: ['#d9ad26', '#d9ad26', '#434b4d'],
+    }
 
     let imagen = [
         <ProducCard
@@ -36,7 +40,7 @@ export default function Products() {
         ></ProducCard>,
         <ProducCard
             item={local}
-            h1="Nuestro resto"
+            h1="Henry's Resto"
             to="carrousel3"
         ></ProducCard>,
         <ProducCard
@@ -131,7 +135,7 @@ export default function Products() {
                     <Carousel slides={restos} arrows={false} />
                 </div>
                 <div className='contenedor_derecha_carrousel' >
-                    <h1 data-aos="fade-left" data-aos-duration="1500">Nuestro resto</h1>
+                    <h1 data-aos="fade-left" data-aos-duration="1500">Henry's Resto</h1>
                     <div data-aos="fade-up" data-aos-duration="1500">
                         <br />
                         <p>
@@ -151,6 +155,41 @@ export default function Products() {
                         </p>
                     </div>
                 </div>
+            </div>
+
+            <div>
+                <div className='Calificacion_resto_izq' data-aos="fade-right" data-aos-duration="1500">
+                    <div className='Calificacion_titulo'>
+                        <h1>"Exelente lugar !"</h1>
+                        <PrettyRating value={5} colors={colors.star} />
+                    </div>
+                    <br />
+                    <p>Quede muy satisfecho con las comidas y la atencion fue de la mejor, una experiencia que volveria a repetir</p>
+                </div>
+                <div className='Calificacion_resto_der' data-aos="fade-left" data-aos-duration="1500">
+                    <div className='Calificacion_titulo'>
+                        <h1>"Me encanto !"</h1>
+                        <PrettyRating value={5} colors={colors.star} />
+                    </div>
+                    <p>La pagina es muy facil de usar, puedo calificar mis pedidos, saber quien me lo trae y hasta pagar online facilmente !</p>
+                </div>
+                <div className='Calificacion_resto_izq' data-aos="fade-right" data-aos-duration="1500">
+                    <div className='Calificacion_titulo'>
+                        <h1>"Muy satisfactoria experiencia"</h1>
+                        <PrettyRating value={5} colors={colors.star} />
+                    </div>
+                    <br />
+                    <p>Realmente me agrada la forma en la que puedo ver todas comidas en la web, cada una con su puntaje y comentarios de los demas</p>
+                </div>
+                <div className='Calificacion_resto_der' data-aos="fade-left" data-aos-duration="1500">
+                    <div className='Calificacion_titulo'>
+                        <h1>"Mi E-resto favorito"</h1>
+                        <PrettyRating value={5} colors={colors.star} />
+                    </div>
+                    <p>Que decir, simplemente puedo buscar el producto que quiera, tener mi perfil, modificar mis datos, ver mi historial de pedidos, todo !</p>
+                </div>
+
+
             </div>
 
             <ScrollToTop className={buttonclass} id='top_button' smooth={true} viewBox="0 0 24 24" svgPath="M5 15l7-7 7 7" />

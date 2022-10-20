@@ -6,6 +6,15 @@
 
 .contener_max_carrousel {
     position: relative;
+    padding-bottom: 5%;
+}
+
+.contener_max_carrousel {
+    font-family: "Dancing";
+}
+
+.contener_max_carrousel p {
+    font-size: x-large
 }
 
 .producto-background {
@@ -70,5 +79,43 @@
 }
 
 .contenedor_derecha_carrousel h1 {
+    font-size: 60px;
+}
+
+.Calificacion_titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Calificacion_resto_izq {
+    color: white;
+    border-style: groove;
+    border-width: 1px;
+    width: fit-content;
+    padding: 1%;
+    border-radius: 35px 35px 35px 0px;
+    margin-left: 10%;
+    margin-right: 50%;
+    margin-top: 5%;
+}
+
+.Calificacion_resto_izq h1 {
     font-size: 50px;
+}
+
+.Calificacion_resto_der h1 {
+    font-size: 50px;
+}
+
+.Calificacion_resto_der {
+    color: white;
+    border-style: groove;
+    border-width: 1px;
+    width: fit-content;
+    padding: 1%;
+    border-radius: 35px 35px 0px 35px;
+    margin-left: 50%;
+    margin-right: 10%;
+    margin-top: 5%;
 }
