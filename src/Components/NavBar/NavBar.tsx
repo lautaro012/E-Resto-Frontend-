@@ -80,7 +80,7 @@ export default function NavBar() {
         <Modal
           show={openCart}
           onClose={closeCart}
-          size="6xl"
+          size="7xl"
           data-aos="zoom-in-up"
           data-aos-duration="500"
         >

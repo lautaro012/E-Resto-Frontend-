@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { modificarUser } from '../../redux/actions';
 import { Autocomplete, useJsApiLoader } from '@react-google-maps/api';
-//import { stringify } from 'querystring';
-
 
 export default function DatosPerfil(data: any) {
 
@@ -32,7 +30,7 @@ export default function DatosPerfil(data: any) {
         id: 'google-map-script',
         googleMapsApiKey: "AIzaSyBcEkktrtcI1S6HvtWDNe83I75TECaSBgU",
         libraries: ['places']
-        })
+    })
 
     const validations = (input: any) => { // VARIABLE PARA GUARDAR UN MENSAJE EN CASO DE FALTANTES DEL INPUT
         let errors: any = {}
@@ -79,27 +77,29 @@ export default function DatosPerfil(data: any) {
         setForm(nombreDelInput)
     }
 
-    // async function handleImageChange(e: any) {
-    //     if (e.target.files && e.target.files[0]) {
-    //         const data = new FormData()
-    //         data.append("file", e.target.files[0])
-    //         data.append("upload_preset", "gamesAPI")
-    //         fetch(
-    //             "https://api.cloudinary.com/v1_1/luubermudezz/image/upload", {
-    //             method: "POST",
-    //             body: data
-    //         }
-    //         ).then(resp => resp.json())
-    //             .then(file => {
-    //                 if (file) {
-    //                     setInput({
-    //                         ...input,
-    //                         img: `${file.secure_url}`
-    //                     })
-    //                 }
-    //             })
-    //     }
-    // }
+    const handleImageChange = (e: any) => {
+        if (e.target.files && e.target.files[0]) {
+            const data = new FormData()
+            data.append("file", e.target.files[0])
+            data.append("upload_preset", "FoodHen")
+            fetch(
+                "https://api.cloudinary.com/v1_1/luubermudezz/image/upload", {
+                method: "POST",
+                body: data
+                // mode: 'no-cors'
+            }
+            ).then(resp => resp.json())
+                .then(file => {
+                    if (file) {
+                        setInput({
+                            ...input,
+                            img: `${file.secure_url}`
+                        })
+                    }
+                })
+
+        }
+    }
 
     return (
         <div className="modificar_perfil" data-aos="fade-left" data-aos-duration="500" >
@@ -203,27 +203,27 @@ export default function DatosPerfil(data: any) {
                     {
                         form && form === "address" ?
                             isLoaded ?
-                            <div>
-                                <Autocomplete>
-                                    <input
-                                        id="Address"
-                                        type='text'
-                                        size={40}
-                                        value={input.adress}
-                                        name='adress'
-                                        placeholder="Direccion..."
-                                        onChange={(event) => handleInput(event)}
-                                    />
-                                </Autocomplete>
-                                <button onClick={(event) => abrirForm(event, "")}>X</button>
-                                {
-                                    !errors.adress ? null : <span>{errors.adress}</span>
-                                }
-                            </div>
+                                <div>
+                                    <Autocomplete>
+                                        <input
+                                            id="Address"
+                                            type='text'
+                                            size={40}
+                                            value={input.adress}
+                                            name='adress'
+                                            placeholder="Direccion..."
+                                            onChange={(event) => handleInput(event)}
+                                        />
+                                    </Autocomplete>
+                                    <button onClick={(event) => abrirForm(event, "")}>X</button>
+                                    {
+                                        !errors.adress ? null : <span>{errors.adress}</span>
+                                    }
+                                </div>
+                                :
+                                null
                             :
                             null
-                        :
-                        null
                     }
                 </div>
                 <hr></hr>
@@ -234,11 +234,11 @@ export default function DatosPerfil(data: any) {
                         form && form === "image" ?
                             <div>
                                 <input
-                                    type='text'
+                                    type='file'
                                     size={40}
                                     name='img'
                                     placeholder="Inserte una URL para su foto de perfil"
-                                    onChange={(event) => handleInput(event)}
+                                    onChange={(event) => handleImageChange(event)}
                                 />
                                 <button onClick={(event) => abrirForm(event, "")}>X</button>
                                 {
