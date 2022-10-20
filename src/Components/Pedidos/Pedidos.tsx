@@ -85,6 +85,8 @@ export default function Pedidos() {
                                             spy={true}
                                             smooth={true}
                                             key={cat.name}
+                                            duration={2000}
+                                            offset={-150}
                                         >
                                             <ListGroup.Item key={cat.name}>
                                                 {" "}

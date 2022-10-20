@@ -1,11 +1,7 @@
-.conteiner_carrousel {
-    min-height: 1px;
+.conteiner_carrousel_main {
     width: 100%;
-    position: relative;
-    z-index: 0;
-    overflow: hidden;
-    margin: 20px auto;
-    box-sizing: border-box;
+    height: 100vh;
+    color: white;
 }
 
 .contener_max_carrousel {
@@ -22,9 +18,57 @@
     color: white;
 }
 
-.imagen_carrousel {
-    max-width: 50vw;
-    max-height: 50vh;
+.imagen_carrousel_main {
+    height: 50vh;
+    width: 25vw;
     border-radius: 50%;
     object-fit: cover;
+}
+
+#h1_imagen_carrousel {
+    text-align: center;
+    font-size: 50px;
+    color: white;
+}
+
+#button_verMas {
+    background-color: rgb(255, 255, 46);
+    padding: 3%;
+    align-items: center;
+    color: black;
+    width: 8vw;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.elemento_carrousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteiner_carrousel {
+    color: white;
+    display: flex;
+    padding: 3%;
+    justify-content: space-around;
+    height: 100vh
+}
+
+.contenedor_izquieda_carrousel {
+    width: 40%;
+}
+
+.contenedor_izquieda_carrousel img {
+    border-radius: 50%;
+    object-fit: cover;
+    min-height: 50vh;
+}
+
+.contenedor_derecha_carrousel {
+    max-width: 40%;
+}
+
+.contenedor_derecha_carrousel h1 {
+    font-size: 50px;
 }
