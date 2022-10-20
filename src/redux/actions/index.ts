@@ -664,7 +664,7 @@ export function asignOrder(id: number, deli_id: number) {
 
 export function getMailContact(input: any) {
     return function (dispatch: Dispatch<Action>) {
-        axios.post('/contactMailing', input)
+        axios.post('/contactMailing', input).then(res => res.data)
             .then(res => swal({ title: 'Hemos recibido tu consulta, te responderemos a la brevedad' }))
             .catch(res => swal({ title: 'No pudimos recibir el mail' }))
     }

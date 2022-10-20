@@ -30,6 +30,8 @@ export default function Pedidos() {
         setOrder(e.target.value);
     }
 
+
+
     let dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(getCategories(order));
@@ -76,7 +78,7 @@ export default function Pedidos() {
                 <div className="categorias-productos">
                     <div className="categorias-div">
                         <div className="categorias-conteiner">
-                            <ListGroup>
+                          <ListGroup>
                                 {categories?.map((cat: Category) => {
                                     return cat.categoryProducts.length !== 0 ? (
                                         <Link
@@ -92,44 +94,45 @@ export default function Pedidos() {
                                                 {" "}
                                             </ListGroup.Item>
                                         </Link>
-                                    ) : null;
+                                    ) : null
                                 })}
-                            </ListGroup>
+                            </ListGroup> 
+                        
                         </div>
 
                     </div>
                     <div className="productos-conteiner">
-                        {categories?.map((categoria: Category) => {
-                            return categoria.categoryProducts.length !== 0 ? (
-                                <div
-                                    data-aos="fade-up" data-aos-duration="1500"
-                                    id={categoria.name}
-                                    key={categoria._id}
-                                    className="Categoria"
-                                >
-                                    <h1 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                                        <strong>{categoria.name}</strong>
-                                        <span className="mr-2 ml-3 rounded bg-blue-100 px-2.5 py-0.5 text-4xl font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">
-                                            {categoria.categoryProducts.length}
-                                        </span>
-                                    </h1>
-                                    <br></br>
+                            {categories?.map((categoria: Category) => {
+                                return categoria.categoryProducts.length !== 0 ? (
+                                    <div
+                                        data-aos="fade-up" data-aos-duration="1500"
+                                        id={categoria.name}
+                                        key={categoria._id}
+                                        className="Categoria"
+                                    >
+                                        <h1 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                                            <strong>{categoria.name}</strong>
+                                            <span className="mr-2 ml-3 rounded bg-blue-100 px-2.5 py-0.5 text-4xl font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">
+                                                {categoria.categoryProducts.length}
+                                            </span>
+                                        </h1>
+                                        <br></br>
 
-                                    <div className="Contenedor_cartas">
-                                        {categoria?.categoryProducts?.map((info: ProductDetail) => {
-                                            return (
-                                                <Card
-                                                    key={info.name}
-                                                    comidaProps={info}
-                                                    modalOpen={setShowDetailModal}
-                                                    setIdModal={setIdModal}
-                                                />
-                                            );
-                                        })}
+                                        <div className="Contenedor_cartas">
+                                            {categoria?.categoryProducts?.map((info: ProductDetail) => {
+                                                return (
+                                                    <Card
+                                                        key={info.name}
+                                                        comidaProps={info}
+                                                        modalOpen={setShowDetailModal}
+                                                        setIdModal={setIdModal}
+                                                    />
+                                                );
+                                            })}
+                                        </div>
                                     </div>
-                                </div>
-                            ) : null;
-                        })}
+                                ) : null 
+                            })}
                     </div>
                 </div>
             </div>
