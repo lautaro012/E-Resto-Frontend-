@@ -5,6 +5,7 @@ import { createOrder, deleteItemFromCart, getUser } from "../../redux/actions";
 import { useAppDispatch, useAppSelector } from '../../config';
 //import { useNavigate } from 'react-router-dom';
 import swal from "sweetalert";
+import './Check.css'
 
 export default function Check({ precio, subtotal, propina }) {
 
@@ -62,7 +63,7 @@ export default function Check({ precio, subtotal, propina }) {
   }
 
   return (
-    <div>
+    <div className='stripe_modal'>
       <h1>Tarjeta de credito</h1>
       <StripeCheckout
         stripeKey={publishableKey}

@@ -28,20 +28,21 @@ export default function HomeBar({ el }: any) {
         <nav className="navbar-conteiner">
             <header>
                 <div className='navbar-buttons'>
-                    <button style={{color: '#395B64'}} onClick={() => setCatalogo(true)} className={buttonclass}> CATÁLOGO </button>
+                    <button style={{ color: '#395B64' }} onClick={() => setCatalogo(true)} className={buttonclass}> CATÁLOGO </button>
 
-                    <button style={{color: '#395B64'}} className={buttonclass} onClick={() => navigate('/pedidos')}> HACE TU PEDIDO </button>
+                    <button style={{ color: '#395B64' }} className={buttonclass} onClick={() => navigate('/pedidos')}> HACE TU PEDIDO </button>
                 </div>
                 <img className='logoHenryFood' src={Logo} alt='LOGO'></img>
                 <div className='navbar-buttons'>
-                    <button style={{color: '#395B64'}} onClick={() => navigate('/delivery')} className={buttonclass} > SOY REPARTIDOR </button>
-                    <button style={{color: '#395B64'}} className={buttonclass} onClick={() => setContacto(true)}> CONTACTANOS </button>
+                    <button style={{ color: '#395B64' }} onClick={() => navigate('/delivery')} className={buttonclass} > SOY REPARTIDOR </button>
+                    <button style={{ color: '#395B64' }} className={buttonclass} onClick={() => setContacto(true)}> CONTACTANOS </button>
                 </div>
             </header>
             <Modal
                 show={contacto}
                 onClose={closeContacto}
-                size='3x1'
+                size='8xl'
+                data-aos="fade-left" data-aos-duration="500"
             >
                 <ModalHeader>
                     Contactanos
@@ -50,7 +51,7 @@ export default function HomeBar({ el }: any) {
                     <ContactForm></ContactForm>
                 </ModalBody>
                 <ModalFooter>
-                    © 2022 Henry's Resto Project™
+                    <a href="/">© 2022 Henry's Resto Project™</a>
                 </ModalFooter>
             </Modal>
             <Modal
@@ -63,11 +64,11 @@ export default function HomeBar({ el }: any) {
                 </ModalHeader>
                 <ModalBody>
                     <div className='catalogoStyleButton'>
-                    <a href='https://www.cervezabaum.com/publicAccess/cab/carta.pdf' target='_blank'><button className={buttonclass} >Accedé a nuestro catálogo</button></a>
+                        <a href='https://www.cervezabaum.com/publicAccess/cab/carta.pdf' target='_blank'><button className={buttonclass} >Accedé a nuestro catálogo</button></a>
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                    © 2022 Henry's Resto Project™
+                    <a href="/">© 2022 Henry's Resto Project™</a>
                 </ModalFooter>
             </Modal>
         </nav>

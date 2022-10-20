@@ -8,7 +8,7 @@
     margin-top: 40px;
 }
 .firstDivProductSizing h3{
-    background-color: #F1FFC4;
+    background-color: #b1b1b1;
     padding: 10px;
     font-weight: bolder;
 }
@@ -40,4 +40,9 @@
     justify-content: center;
     flex-wrap: nowrap;
     margin-bottom: 3%;
+    background-color: #7e7e7e;
+    padding: 1%;
+    max-width: 50%;
+    border-radius: 25px;
+    margin-left: 25%;
 }

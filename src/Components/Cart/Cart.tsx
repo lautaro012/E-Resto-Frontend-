@@ -127,7 +127,7 @@ export default function Cart() {
                                                 }
 
                                                 <div className="food__details">
-                                                    <p className="food__detail"><span className="emoji">⭐️</span>{item.rating}</p>
+                                                    <p className="food__detail"><span className="emoji">⭐️</span>{item.rating.toFixed(2)}</p>
                                                     <PrettyRating value={item.rating} colors={colors.star} />
                                                     <button className="food__detail" onClick={() => deleteItem(item._id, item.name)}>
                                                         <span className="emoji">🗑</span>

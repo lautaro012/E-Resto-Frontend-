@@ -5,6 +5,7 @@ import { buttonclass, inputForm, labelForm } from "../../Style/Clases/Clases";
 import { createProduct, getCategories, editProduct } from "../../redux/actions";
 import { Modal } from "flowbite-react";
 import Card from "../Card/Card";
+import Swal from "sweetalert2";
 import "./Form.css";
 
 export default function Form({
@@ -72,30 +73,30 @@ export default function Form({
     });
   };
   const handleImageChange = (e: any) => {
-    if(e.target.files && e.target.files[0]) {
-        setLoading(true)
-        const data = new FormData()
-        data.append("file", e.target.files[0])
-        data.append("upload_preset", "FoodHen")
-        fetch (
-            "https://api.cloudinary.com/v1_1/luubermudezz/image/upload", {
-             method: "POST",
-             body: data
-            // mode: 'no-cors'
-            }
-        ).then(resp => resp.json())
-                .then(file => {
-                    if(file) {
-                    setInput({
-                    ...input,
-                    img: `${file.secure_url}`
-                    })
-                    setLoading(false)
-                }
-                })
+    if (e.target.files && e.target.files[0]) {
+      setLoading(true)
+      const data = new FormData()
+      data.append("file", e.target.files[0])
+      data.append("upload_preset", "FoodHen")
+      fetch(
+        "https://api.cloudinary.com/v1_1/luubermudezz/image/upload", {
+        method: "POST",
+        body: data
+        // mode: 'no-cors'
+      }
+      ).then(resp => resp.json())
+        .then(file => {
+          if (file) {
+            setInput({
+              ...input,
+              img: `${file.secure_url}`
+            })
+            setLoading(false)
+          }
+        })
 
     }
-}
+  }
   const handleSelect = (e: Select) => {
     setInput({
       ...input,
@@ -104,20 +105,79 @@ export default function Form({
   };
 
   const handleSubmit = (e: Submit) => {
+    e.preventDefault()
+    let timerInterval: any
+
     if (formData.newProduct) {
-      return dispatch(createProduct(input));
+      dispatch(createProduct(input));
+      setInput({
+        name: "test",
+        img: "https://citizengo.org/sites/default/files/images/test_3.png",
+        price: 0,
+        description: "test-description",
+        off: 0,
+        stock: 0,
+        rating: 3,
+        category: "",
+      });
+      Swal.fire({
+        title: 'Producto creado correctamente',
+        html: `Actualizando la base de datos.`,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading()
+          //const b = Swal.getHtmlContainer().querySelector('b')
+          timerInterval = setInterval(() => {
+            //  b.textContent = Swal.getTimerLeft()
+          }, 100)
+        },
+        willClose: () => {
+          clearInterval(timerInterval)
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log('I was closed by the timer')
+        }
+        window.location.reload()
+      })
     }
-    dispatch(editProduct(input, formData._id));
-    setInput({
-      name: "test",
-      img: "https://citizengo.org/sites/default/files/images/test_3.png",
-      price: 0,
-      description: "test-description",
-      off: 0,
-      stock: 0,
-      rating: 3,
-      category: "",
-    });
+    else {
+      dispatch(editProduct(input, formData._id));
+      setInput({
+        name: "test",
+        img: "https://citizengo.org/sites/default/files/images/test_3.png",
+        price: 0,
+        description: "test-description",
+        off: 0,
+        stock: 0,
+        rating: 3,
+        category: "",
+      });
+      Swal.fire({
+        title: 'Producto editado correctamente',
+        html: `Actualizando el producto.`,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading()
+          //const b = Swal.getHtmlContainer().querySelector('b')
+          timerInterval = setInterval(() => {
+            //  b.textContent = Swal.getTimerLeft()
+          }, 100)
+        },
+        willClose: () => {
+          clearInterval(timerInterval)
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log('I was closed by the timer')
+        }
+        window.location.reload()
+      })
+    }
   };
   return (
     <>
@@ -239,7 +299,7 @@ export default function Form({
                       );
                     })}
                   </select>
-                  <br/>
+                  <br />
                   <div className="relative z-0 mb-6 w-full group">
                     <input
                       type="number"
