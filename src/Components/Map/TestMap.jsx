@@ -30,10 +30,6 @@
 
   function Testmap({ delivery} ) {
 
-
-    console.log('asdfasdgsdagasdg', delivery)
-
-
     const { isLoaded } = useJsApiLoader({
       id: 'google-map-script',
       googleMapsApiKey: "AIzaSyBcEkktrtcI1S6HvtWDNe83I75TECaSBgU",
@@ -101,12 +97,12 @@
         <div className='details-delivery-map'
         >
             <div className='flex flex-col items-center text-xl font-bold w-full'>
-            <label for={distance} class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Su pedido se encuentra a:</label>
+            <label for={distance} class="block mb-2 text-sm font-medium text-gray-900 dark:text-black-300">Su pedido se encuentra a:</label>
               <span name={distance}  id={distance}>{distance}</span>
             </div>
             <br></br>
             <div className='flex flex-col items-center text-xl font-bold w-full'>
-            <label for={duration} class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Su pedido llegara en:</label>
+            <label for={duration} class="block mb-2 text-sm font-medium text-gray-900 dark:text-black-300">Su pedido llegara en:</label>
               <span name={duration} id={duration}>{duration}</span>
             </div>
             <div className='flex justify-evenly bg-slate-200/[.06] text-xl font-bold w-3/4'>

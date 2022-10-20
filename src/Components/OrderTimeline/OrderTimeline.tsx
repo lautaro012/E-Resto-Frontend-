@@ -22,7 +22,6 @@ export default function OrderTimeline({ onMap, idOrden }: any) {
         onMap('map', detalles)
     }
 
-    console.log(detalles)
     return (
         <>
 

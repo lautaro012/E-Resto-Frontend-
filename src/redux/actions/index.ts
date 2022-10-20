@@ -149,7 +149,7 @@ export const getCategories = (sort: string) => {
 export const createProduct = function (input: CardForm) {
     return function (dispatch: Dispatch<Action>) {
         axios.post('/product', input)
-            .then(res => swal({ title: "Producto creado correctamente" }))
+            .then(res => console.log(res))
             .catch(error => console.log(error))
     }
 }
