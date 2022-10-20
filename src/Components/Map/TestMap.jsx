@@ -30,10 +30,6 @@
 
   function Testmap({ delivery} ) {
 
-
-    console.log('asdfasdgsdagasdg', delivery)
-
-
     const { isLoaded } = useJsApiLoader({
       id: 'google-map-script',
       googleMapsApiKey: "AIzaSyBcEkktrtcI1S6HvtWDNe83I75TECaSBgU",

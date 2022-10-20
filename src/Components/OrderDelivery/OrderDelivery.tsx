@@ -29,7 +29,6 @@ export default function OrderDelivery ({delivery, detalles}:any) {
             console.log(err)
         })
     }
-    console.log(detalles)
 
     return (
         <div className="orden-details-conteiner">
