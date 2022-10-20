@@ -12,7 +12,7 @@
 
 .loginDeliveryNavBar{
     padding: 1%;
-    background-color: #F1FFC4;
+    background-color: #ffffff;
 }
 .loginDeliveryNavBar a {
     display: flex;
@@ -23,7 +23,7 @@
 }
 .loginDeliveryNavBar:hover{
     cursor: pointer;
-    background-color: #e6f8ac;
+    background-color: #ffffff;
 
 }
 
@@ -58,7 +58,7 @@ box-shadow: 0px 0px 0px 5px #A0A0A0, inset 0px 10px 27px -8px #141414, inset 0px
 .order-delivery-conteiner {
     height: 90vh;
     width: 70%;
-    background-color: white;
+
     display: flex;
     justify-content: center;
     overflow-y: scroll;

@@ -1,0 +1,125 @@
+.conteiner_carrousel_main {
+    width: 100%;
+    height: 100vh;
+    color: white;
+}
+
+.contener_max_carrousel {
+    position: relative;
+    padding-bottom: 10%;
+}
+
+.contener_max_carrousel {
+    font-family: "Dancing";
+}
+
+.contener_max_carrousel p {
+    font-size: x-large
+}
+
+.producto-background {
+    position: absolute;
+    width: 90%;
+    margin-left: 5%;
+
+    text-align: center;
+    font-size: 300px;
+    color: white;
+}
+
+.imagen_carrousel_main {
+    height: 50vh;
+    width: 25vw;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#h1_imagen_carrousel {
+    text-align: center;
+    font-size: 50px;
+    color: white;
+}
+
+#button_verMas {
+    background-color: rgb(255, 255, 46);
+    padding: 3%;
+    align-items: center;
+    color: black;
+    width: 8vw;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.elemento_carrousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conteiner_carrousel {
+    color: white;
+    display: flex;
+    padding: 3%;
+    justify-content: space-around;
+    height: 100vh
+}
+
+.contenedor_izquieda_carrousel {
+    width: 40%;
+}
+
+.contenedor_izquieda_carrousel img {
+    border-radius: 50%;
+    object-fit: cover;
+    min-height: 50vh;
+}
+
+.contenedor_derecha_carrousel {
+    max-width: 40%;
+}
+
+.contenedor_derecha_carrousel h1 {
+    font-size: 60px;
+}
+
+.Calificacion_titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Calificacion_resto_izq {
+    color: white;
+    border-style: groove;
+    border-width: 1px;
+    width: fit-content;
+    padding: 1%;
+    border-radius: 35px 35px 35px 0px;
+    margin-left: 10%;
+    margin-right: 50%;
+    margin-top: 5%;
+}
+
+.Calificacion_resto_izq h1 {
+    font-size: 50px;
+}
+
+.Calificacion_resto_der h1 {
+    font-size: 50px;
+}
+
+.Calificacion_resto_der {
+    color: white;
+    border-style: groove;
+    border-width: 1px;
+    width: fit-content;
+    padding: 1%;
+    border-radius: 35px 35px 0px 35px;
+    margin-left: 50%;
+    margin-right: 10%;
+    margin-top: 5%;
+}
+
+#carrousel2{
+    flex-direction: row-reverse;
+}

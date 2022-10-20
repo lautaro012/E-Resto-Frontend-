@@ -30,7 +30,7 @@ export default function NavBar() {
   const [contacto, setContacto] = useState<boolean>(false)
 
   function closeContacto() {
-      setContacto(false)
+    setContacto(false)
   }
 
   const items = useAppSelector((state) => state.cart)
@@ -80,7 +80,7 @@ export default function NavBar() {
         <Modal
           show={openCart}
           onClose={closeCart}
-          size="6xl"
+          size="7xl"
           data-aos="zoom-in-up"
           data-aos-duration="500"
         >
@@ -107,7 +107,7 @@ export default function NavBar() {
             <SendMail></SendMail>
           </ModalBody>
           <ModalFooter>
-            <a href="/">Henry's Resto Project™</a>
+            <a href="/">© 2022 Henry's Resto Project™</a>
           </ModalFooter>
         </Modal>
 
@@ -126,7 +126,25 @@ export default function NavBar() {
             <Register closeRegister={closeRegister}></Register>
           </ModalBody>
           <ModalFooter>
-            <a href="/">Henry's Resto Project™</a>
+            <a href="/">© 2022 Henry's Resto Project™</a>
+          </ModalFooter>
+        </Modal>
+
+        {/* Modal contacto */}
+        <Modal
+          show={contacto}
+          onClose={closeContacto}
+          size='8xl'
+          data-aos="fade-left" data-aos-duration="500"
+        >
+          <ModalHeader>
+            Contactanos
+          </ModalHeader>
+          <ModalBody>
+            <ContactForm></ContactForm>
+          </ModalBody>
+          <ModalFooter>
+            <a href="/">© 2022 Henry's Resto Project™</a>
           </ModalFooter>
         </Modal>
 
@@ -141,7 +159,7 @@ export default function NavBar() {
             :
             (
               <div className="flex md:order-2">
-                <button onClick={openlog} style={{color: 'white'}} className={buttonclass}>
+                <button onClick={openlog} style={{ color: 'white' }} className={buttonclass}>
                   Iniciar Sesión
                 </button>
               </div>
@@ -170,20 +188,20 @@ export default function NavBar() {
 
           <div className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 duration-500 md:bg-background dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <a href="/" >
-            <button className={buttonclass}>
-              <div className="divLogoButtonNavBar">
-                <img className="imgNavBarLogo" src='https://res.cloudinary.com/luubermudezz/image/upload/v1666070805/Portafolio/hogar_vr7981.png' alt="home" width='20'/>
-                <span>Inicio</span>
-              </div>
-            </button></a>
+              <button className={buttonclass}>
+                <div className="divLogoButtonNavBar">
+                  <img className="imgNavBarLogo" src='https://res.cloudinary.com/luubermudezz/image/upload/v1666070805/Portafolio/hogar_vr7981.png' alt="home" width='20' />
+                  <span>Inicio</span>
+                </div>
+              </button></a>
             <SearchBar />
             <button className={buttonclass} onClick={() => setContacto(true)}>
               <div className="divLogoButtonNavBar">
-                <img className="imgNavBarLogo" src='https://res.cloudinary.com/luubermudezz/image/upload/v1666071044/Portafolio/sobre_umitdw.png' alt="contacto" width='20'/>
+                <img className="imgNavBarLogo" src='https://res.cloudinary.com/luubermudezz/image/upload/v1666071044/Portafolio/sobre_umitdw.png' alt="contacto" width='20' />
                 <span>Contacto</span>
               </div>
             </button>
-            
+
 
           </div>
           <button id="carrito" onClick={() => setOpenCart(true)}>
@@ -205,21 +223,6 @@ export default function NavBar() {
           </button>
         </div>
       </div>
-      <Modal
-                show={contacto}
-                onClose={closeContacto}
-                size='3x1'
-            >
-                <ModalHeader>
-                    Contactanos
-                </ModalHeader>
-                <ModalBody>
-                    <ContactForm></ContactForm>
-                </ModalBody>
-                <ModalFooter>
-                    © 2022 Henry's Resto Project™
-                </ModalFooter>
-            </Modal>
     </nav>
   );
 }

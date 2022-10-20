@@ -13,6 +13,14 @@
   }
 }
 
+@font-face {
+  font-family: "Dancing";
+  src: url("../src/Style/Fonts/Dancing_Script/DancingScript-VariableFont_wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+
 .App-header {
   min-height: 100vh;
   display: flex;
