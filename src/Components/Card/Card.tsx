@@ -46,14 +46,14 @@ export default function CardProduct({ formCard = false, comidaProps, modalOpen, 
                                     {
                                         off ?
                                             <div className="off_price">
-                                                <span className="text-3xl font-bold text-gray-900 dark:text-white text-decoration-line: line-through">${price}</span>
+                                                <span className="text-2xl font-bold text-gray-900 dark:text-white text-decoration-line: line-through">${price.toFixed(2)}</span>
                                                 <div className="food__tag--2_card">
                                                     <h2 className="text-3xs font-bold text-gray-900 dark:text-white">% {off} off</h2>
                                                 </div>
-                                                <span className="text-3xl font-bold text-gray-900 dark:text-white">${currentprice}</span>
+                                                <span className="text-2xl font-bold text-gray-900 dark:text-white">${currentprice.toFixed(2)}</span>
                                             </div>
                                             :
-                                            <span className="text-3xl font-bold text-gray-900 dark:text-white">${price}</span>
+                                            <span className="text-2xl font-bold text-gray-900 dark:text-white">${price.toFixed(2)}</span>
                                     }
                                 </div>
                                 <div>

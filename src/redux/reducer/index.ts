@@ -68,7 +68,6 @@ export default function rootReducer(state = initialState, action: Action) {
                 producto.categoryProducts = producto.categoryProducts.filter((data: ProductDetail) => data.name.toLowerCase().includes(action.payload.name.toLowerCase()))
                 return producto
             })
-
             return {
                 ...state,
                 categories: Productosfiltrados
@@ -142,18 +141,18 @@ export default function rootReducer(state = initialState, action: Action) {
                 user: ''
             }
         case GET_ORDER_ID:
-            return{
+            return {
                 ...state,
                 ordenDetail: action.payload
             }
         case GET_ALL_ORDERS:
-            return{
+            return {
                 ...state,
                 allOrders: action.payload
             }
-        
+
         case GET_DELIVERY:
-            return{
+            return {
                 ...state,
                 delivery: action.payload
             }

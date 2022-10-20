@@ -32,6 +32,8 @@ export default function DetailProduct({ id, closeModalDetail }) {
         closeModalDetail(false)
     }
 
+    console.log(cart)
+
     function addFoodToCart() {
 
         let itemFound = cart.find(item => item._id === food._id)
@@ -103,7 +105,7 @@ export default function DetailProduct({ id, closeModalDetail }) {
             <Modal
                 show={opinionesModal}
                 onClose={closeOpinionesModal}
-            ><fieldset disabled="disabled"></fieldset>
+            >
                 <ModalHeader>
                     <h1>Calificaciones de {food?.name}</h1>
                 </ModalHeader>

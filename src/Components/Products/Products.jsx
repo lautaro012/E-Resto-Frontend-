@@ -160,18 +160,18 @@ export default function Products() {
             <div>
                 <div className='Calificacion_resto_izq' data-aos="fade-right" data-aos-duration="1500">
                     <div className='Calificacion_titulo'>
-                        <h1>"Exelente lugar !"</h1>
+                        <h1>"Excelente lugar !"</h1>
                         <PrettyRating value={5} colors={colors.star} />
                     </div>
                     <br />
-                    <p>Quede muy satisfecho con las comidas y la atencion fue de la mejor, una experiencia que volveria a repetir</p>
+                    <p>Quedé muy satisfecho con las comidas y la atención fue de la mejor, una experiencia que volvería a repetir</p>
                 </div>
                 <div className='Calificacion_resto_der' data-aos="fade-left" data-aos-duration="1500">
                     <div className='Calificacion_titulo'>
-                        <h1>"Me encanto !"</h1>
+                        <h1>"Me encantó !"</h1>
                         <PrettyRating value={5} colors={colors.star} />
                     </div>
-                    <p>La pagina es muy facil de usar, puedo calificar mis pedidos, saber quien me lo trae y hasta pagar online facilmente !</p>
+                    <p>La página es muy fácil de usar, puedo calificar mis pedidos, saber quién me lo trae y hasta pagar online facilmente !</p>
                 </div>
                 <div className='Calificacion_resto_izq' data-aos="fade-right" data-aos-duration="1500">
                     <div className='Calificacion_titulo'>
@@ -179,17 +179,15 @@ export default function Products() {
                         <PrettyRating value={5} colors={colors.star} />
                     </div>
                     <br />
-                    <p>Realmente me agrada la forma en la que puedo ver todas comidas en la web, cada una con su puntaje y comentarios de los demas</p>
+                    <p>Realmente me agrada la forma en la que puedo ver todas comidas en la web, cada una con su puntaje y comentarios de los demás</p>
                 </div>
                 <div className='Calificacion_resto_der' data-aos="fade-left" data-aos-duration="1500">
                     <div className='Calificacion_titulo'>
                         <h1>"Mi E-resto favorito"</h1>
                         <PrettyRating value={5} colors={colors.star} />
                     </div>
-                    <p>Que decir, simplemente puedo buscar el producto que quiera, tener mi perfil, modificar mis datos, ver mi historial de pedidos, todo !</p>
+                    <p>¿ Qué decir ? Simplemente puedo buscar el producto que quiera, tener mi perfil, modificar mis datos, ver mi historial de pedidos, todo !</p>
                 </div>
-
-
             </div>
 
             <ScrollToTop className={buttonclass} id='top_button' smooth={true} viewBox="0 0 24 24" svgPath="M5 15l7-7 7 7" />
