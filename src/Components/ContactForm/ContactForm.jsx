@@ -4,6 +4,7 @@ import { getMailContact } from '../../redux/actions'
 import { buttonclass } from '../../Style/Clases/Clases'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
+import swal from 'sweetalert'
 
 import './ContactForm.css'
 import Icon from './Icon'
@@ -30,6 +31,7 @@ const ContactForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(getMailContact(input))
+        swal({ title: 'Hemos recibido tu consulta, te responderemos a la brevedad' })
     }
 
     return (
