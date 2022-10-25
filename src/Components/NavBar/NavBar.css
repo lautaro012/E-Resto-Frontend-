@@ -34,3 +34,12 @@
 .divLogoButtonNavBar img {
     margin-right: 7px
 }
+
+.h1-button-user{
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 12px;
+    font-size: 17px;
+    font-weight: bolder;
+}

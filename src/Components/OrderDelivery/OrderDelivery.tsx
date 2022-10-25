@@ -30,6 +30,7 @@ export default function OrderDelivery ({delivery, detalles}:any) {
         })
     }
 
+
     return (
         <div className="orden-details-conteiner">
                                 {
