@@ -7,6 +7,7 @@ import { Modal } from "flowbite-react";
 import Admin from "../Admin/Admin";
 import Profile from "../UserProfile/UserProfile";
 import { clearUser } from "../../redux/actions";
+import './NavBar.css'
 
 
 export default function Panel({ menuResponsive, setMenuResponsive }: any) {
@@ -63,6 +64,7 @@ export default function Panel({ menuResponsive, setMenuResponsive }: any) {
             >
                 <span className="sr-only">Open user menu</span>
                 <img className="w-16 h-16 rounded-full" src={user.img} alt="user" />
+                <h1 className="h1-button-user">{user.name} {user.lastName}</h1>
             </button>
             {/* <!-- Dropdown menu --> */}
             <div

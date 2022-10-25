@@ -71,7 +71,7 @@ export default function Check({ precio, subtotal, propina }) {
         billingAddress
         shippingAddress
         amount={precio * 100}
-        description='Finaliza tu compra'
+        description='Usar 4242-4242-4242-4242'
         token={payNow}
       />
     </div>

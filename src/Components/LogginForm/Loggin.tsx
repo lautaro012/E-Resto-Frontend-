@@ -137,6 +137,16 @@ export default function Loggin({ openlog, showLoggin, setForgotPW, setOpenRegist
                                 Crear cuenta
                             </button>
                         </div>
+                        <br></br>
+                        <div className="loggin-conteiner">
+                            <span>User de prueba: user@user.com</span>
+                            <span>Password: user</span>
+                        </div>
+                        <br></br>
+                        <div className="loggin-conteiner">
+                            <span>Admin de prueba: admin@admin.com</span>
+                            <span>Password: admin</span>
+                        </div>
                     </form>
                 </div>
             </Modal.Body>
