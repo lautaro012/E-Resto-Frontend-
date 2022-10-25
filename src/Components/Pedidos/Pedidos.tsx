@@ -32,6 +32,8 @@ export default function Pedidos() {
         setOrder(e.target.value);
     }
 
+
+
     let dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(getCategories(order));
@@ -53,31 +55,55 @@ export default function Pedidos() {
     return (
         <>
             <NavBar />
-            {
-                categories.length !== 0 ?
-                    <div className="Contenedor">
-                        <div className="TOP">
-                            <h1>Henry's Resto Project</h1>
-                            <video autoPlay preload="auto" muted loop src={VideoHome}></video>
-                        </div>
-                        <button className="theme-toggle--button" aria-label="Toggle Theme" onClick={() => setDarkMode()}>
-                            <span className={theme === "dark" ? "shape sun" : "shape moon"}></span>
-                            <span className="rays--container">
-                                <span className="ray"></span>
-                                <span className="ray"></span>
-                                <span className="ray"></span>
-                                <span className="ray"></span>
-                            </span>
-                        </button>
-                        <div className="sort-buttons">
-                            <select className={select} onChange={(e) => orderSort(e)} id='selectConfigSize'>
-                                <option value="">Ordenar Productos</option>
-                                <option value="AZ">A-z</option>
-                                <option value="ZA">Z-a</option>
-                                <option value="mayorPrecio">Precio +</option>
-                                <option value="menorPrecio">Precio -</option>
-                                <option value="mayorRating">Rating +</option>
-                            </select>
+            <div className="Contenedor">
+                <div className="TOP">
+                    <h1>Henry's Resto Proyect</h1>
+                    <video autoPlay preload="auto" muted loop src={VideoHome}></video>
+                </div>
+                <button className="theme-toggle--button" aria-label="Toggle Theme" onClick={() => setDarkMode()}>
+                    <span className={theme === "dark" ? "shape sun" : "shape moon"}></span>
+                    <span className="rays--container">
+                        <span className="ray"></span>
+                        <span className="ray"></span>
+                        <span className="ray"></span>
+                        <span className="ray"></span>
+                    </span>
+                </button>
+                <div className="sort-buttons">
+                    <select className={select} onChange={(e) => orderSort(e)} id='selectConfigSize'>
+                        <option value="">Ordenar Productos</option>
+                        <option value="AZ">A-z</option>
+                        <option value="ZA">Z-a</option>
+                        <option value="mayorPrecio">Precio +</option>
+                        <option value="menorPrecio">Precio -</option>
+                        <option value="mayorRating">Rating +</option>
+                    </select>
+                </div>
+                <div className="categorias-productos">
+                    <div className="categorias-div">
+                        <div className="categorias-conteiner">
+                          <ListGroup>
+                                {categories?.map((cat: Category) => {
+                                    return cat.categoryProducts.length !== 0 ? (
+                                        <Link
+                                            activeClass="active"
+                                            to={cat.name}
+                                            spy={true}
+                                            smooth={true}
+                                            key={cat.name}
+                                            duration={2000}
+                                            offset={-150}
+                                        >
+                                            <ListGroup.Item key={cat.name}>
+                                                {" "}
+                                                <button id="buttonAsideConfig" className={buttonclass}>{cat.name}</button>
+                                                {" "}
+                                            </ListGroup.Item>
+                                        </Link>
+                                    ) : null
+                                })}
+                            </ListGroup> 
+
                         </div>
                         <div className="categorias-productos">
                             <div className="categorias-div">
@@ -104,66 +130,61 @@ export default function Pedidos() {
                                         })}
                                     </ListGroup>
                                 </div>
+                    </div>
+                    <div className="productos-conteiner">
 
-                            </div>
-                            <div className="productos-conteiner">
 
+                        {
+                            categories?.map((categoria: Category) => {
+                                return categoria.categoryProducts.length !== 0 ? (
+                                    <div
+                                        data-aos="fade-up" data-aos-duration="1500"
+                                        id={categoria.name}
+                                        key={categoria._id}
+                                        className="Categoria"
+                                    >
+                                        <h1 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                                            <strong>{categoria.name}</strong>
+                                            <span className="mr-2 ml-3 rounded bg-blue-100 px-2.5 py-0.5 text-4xl font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">
+                                                {categoria.categoryProducts.length}
+                                            </span>
+                                        </h1>
+                                        <br></br>
 
-                                {
-                                    categories?.map((categoria: Category) => {
-                                        return categoria.categoryProducts.length !== 0 ? (
-                                            <div
-                                                data-aos="fade-up" data-aos-duration="1500"
-                                                id={categoria.name}
-                                                key={categoria._id}
-                                                className="Categoria"
-                                            >
-                                                <h1 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                                                    <strong>{categoria.name}</strong>
-                                                    <span className="mr-2 ml-3 rounded bg-blue-100 px-2.5 py-0.5 text-4xl font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">
-                                                        {categoria.categoryProducts.length}
-                                                    </span>
-                                                </h1>
-                                                <br></br>
-
-                                                <div className="Contenedor_cartas">
-                                                    {categoria?.categoryProducts?.map((info: ProductDetail) => {
-                                                        return (
-                                                            <Card
-                                                                key={info.name}
-                                                                comidaProps={info}
-                                                                modalOpen={setShowDetailModal}
-                                                                setIdModal={setIdModal}
-                                                            />
-                                                        );
-                                                    })}
-                                                </div>
-
-                                            </div>
-
-                                        )
-                                            :
-                                            null;
-                                    })
-                                }
-
-                                {
-                                    categories && categories?.every(categoria => categoria.categoryProducts.length === 0) ?
-                                        <div className="flex items-center justify-around">
-                                            <div className="flex flex-col dark:text-white">
-                                                <h1 className="text-7xl"> Oops... </h1>
-                                                <br></br>
-                                                <h2 className="text-5xl"> Algo salio mal </h2>
-                                            </div>
-                                            <img className="duration-500" src={theme === 'dark' ? heladoNegro : heladoBlanco} alt='404' />
+                                        <div className="Contenedor_cartas">
+                                            {categoria?.categoryProducts?.map((info: ProductDetail) => {
+                                                return (
+                                                    <Card
+                                                        key={info.name}
+                                                        comidaProps={info}
+                                                        modalOpen={setShowDetailModal}
+                                                        setIdModal={setIdModal}
+                                                    />
+                                                );
+                                            })}
                                         </div>
-                                        :
-                                        null
-                                }
 
+                                    </div>
 
-                            </div>
-                        </div>
+                                )
+                                    :
+                                    null;
+                            })
+                        }
+
+                        {
+                            categories && categories?.every(categoria => categoria.categoryProducts.length === 0) ?
+                                <div className="flex items-center justify-around">
+                                    <div className="flex flex-col dark:text-white">
+                                        <h1 className="text-7xl"> Oops... </h1>
+                                        <br></br>
+                                        <h2 className="text-5xl"> Algo salio mal </h2>
+                                    </div>
+                                    <img className="duration-500" src={theme === 'dark' ? heladoNegro : heladoBlanco} alt='404' />
+                                </div>
+                                :
+                                null
+                        }
                     </div>
                     :
                     null
