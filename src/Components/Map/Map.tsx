@@ -1,20 +1,18 @@
 import React from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
 
 const containerStyle = {
-  width: '400px',
-  height: '400px'
+  width: '80vh',
+  height: '50vh'
 };
 
-const center = {
-  lat: -3.745,
-  lng: -38.523
-};
-
+const center = { lat: -34.610291 , lng: -58.391988 }
 function Mapa() {
+
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyBcEkktrtcI1S6HvtWDNe83I75TECaSBgU"
+    googleMapsApiKey: "AIzaSyBcEkktrtcI1S6HvtWDNe83I75TECaSBgU",
+    libraries: ['places']
   })
 
   const [map, setMap] = React.useState(null)
@@ -33,17 +31,18 @@ function Mapa() {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={11}
+      zoom={18}
       options={{
-        zoomControl: true,
-        streetViewControl: true,
-        mapTypeControl: true,
-        fullscreenControl: true,
+        zoomControl: false,
+        streetViewControl: false,
+        mapTypeControl: false,
+        fullscreenControl: false,
       }}
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
       { /* Child components, such as markers, info windows, etc. */}
+      <MarkerF position={center}/>
       <></>
     </GoogleMap>
   ) : <></>

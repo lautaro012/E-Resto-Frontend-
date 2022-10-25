@@ -5,10 +5,11 @@ import { createOrder, deleteItemFromCart, getUser } from "../../redux/actions";
 import { useAppDispatch, useAppSelector } from '../../config';
 //import { useNavigate } from 'react-router-dom';
 import swal from "sweetalert";
+import './Check.css'
 
 export default function Check({ precio, subtotal, propina }) {
 
-  let publishableKey = 'pk_test_51Lde2sJXnqrwcfODw8cWGGVzyavpCNgaUXMhWTAbkGIJ3txhY9PVGuUzy9QPzQ5riddbQZdRADa3QTHxqhrSeSZq00dWuMhBM2'
+  let publishableKey = 'pk_test_51LushWLJf5O9PKjb6a1zghP3siatL2CM3lY0lqNZqZfZEr3iRkAZPvozsOawChVS4tlWqTXCbnxwrsiyEnL5bboj00mqhun5wH'
   const items = useAppSelector((state) => state.cart)
   const user = useAppSelector(state => state.user)
   const dispatch = useAppDispatch()
@@ -62,7 +63,7 @@ export default function Check({ precio, subtotal, propina }) {
   }
 
   return (
-    <div>
+    <div className='stripe_modal'>
       <h1>Tarjeta de credito</h1>
       <StripeCheckout
         stripeKey={publishableKey}

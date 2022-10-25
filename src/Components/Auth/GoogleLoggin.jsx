@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import jwt_decode from 'jwt-decode'
 import { useAppDispatch } from '../../config'
 import { logUser } from '../../redux/actions'
@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom'
 
 export default function GoogleLoggin() {
     // password,lastName,userName,name,google
+    const divRef = useRef(null);
+
     const theme = localStorage.getItem("theme")
     let dispatch = useAppDispatch()
     let navigate = useNavigate()
@@ -27,7 +29,9 @@ export default function GoogleLoggin() {
     useEffect(() => {
 
         /* global google */
-        googleLogin()
+        if(window.google) {
+            googleLogin()
+        }
         
         //google.accounts.id.prompt()
     }, [])
@@ -38,13 +42,17 @@ export default function GoogleLoggin() {
             callback: handleCallbackResponse
         });
         google.accounts.id.renderButton(
-            document.getElementById('SIGNGOOGLE'),
+            divRef.current,
             { theme: theme === 'dark' ? 'large' : 'filled_black' , size: 'large' }
         );
     }
+
+
+
+
     return (
         <div>
-            <div id='SIGNGOOGLE'></div>
+            <div ref={divRef} id='SIGNGOOGLE'></div>
         </div>
     )
 }

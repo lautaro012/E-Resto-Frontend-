@@ -68,7 +68,7 @@ const DeliveryRegister = () => {
     return (
         <div className='divDeliveryRegister' data-aos="fade-left" data-aos-duration="500">
             <h3 className={headerRegisterDelivery}>Registrar nuevo repartidor</h3>
-            <div className="image-subida">
+            <div className="image-subida2">
                 <img src={input.img} alt='test-img' />
             </div>
             

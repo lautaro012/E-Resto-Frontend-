@@ -90,10 +90,6 @@ export default function Loggin({ openlog, showLoggin, setForgotPW, setOpenRegist
                         </div>
                         <br></br>
                         <div className="flex justify-between">
-                            <div className="flex items-center gap-2">
-                                <Checkbox onChange={() => console.log('hola')} id="remember" />
-                                <Label htmlFor="remember">Recuerdame</Label>
-                            </div>
                             <button
                                 onClick={() => setForgotPW(true)}
                                 type="button"
@@ -129,7 +125,7 @@ export default function Loggin({ openlog, showLoggin, setForgotPW, setOpenRegist
                         <hr></hr>
                         <br></br>
                         <div className="loggin-conteiner">
-                            <GoogleLoggin></GoogleLoggin>
+                            <GoogleLoggin ></GoogleLoggin>
                         </div>
                         <br></br>
                         <div className="text-sm font-medium text-gray-500 dark:text-gray-300">

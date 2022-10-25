@@ -85,9 +85,10 @@ export default function ContadorLs(render: any) {
                 <Modal
                     show={openModal}
                     onClose={closeModal}
+                    data-aos="fade-up" data-aos-duration="500"
                 >
                     <Modal.Header>
-                        Elegi tu metodo de pago
+                        Metodo de pago
                     </Modal.Header>
                     <Modal.Body>
                         <Check
@@ -97,7 +98,7 @@ export default function ContadorLs(render: any) {
                         ></Check>
                     </Modal.Body>
                     <Modal.Footer>
-
+                        <a href="/">© 2022 Henry's Resto Project™</a>
                     </Modal.Footer>
                 </Modal>
             </div>

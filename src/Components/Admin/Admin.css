@@ -30,7 +30,7 @@
 }
 
 #pFoodsFilter{    
-    background-color: #F1FFC4;
+    /* background-color: #F1FFC4; */
     display: flex;
     flex-wrap: wrap;
     align-content: center;

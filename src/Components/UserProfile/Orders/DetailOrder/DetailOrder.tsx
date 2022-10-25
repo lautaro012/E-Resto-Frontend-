@@ -126,33 +126,40 @@ export default function DetailOrder({ order }: any) {
                 }
             </div>
             <div className="conteiner_acordion">
-                <Accordion>
-                    {
-                        order && order.items.map((food: any) => {
-                            return (
-                                <Accordion.Panel key={food._id}>
-                                    <Accordion.Title>
-                                        <div id="conteinerCard_order" key={food.naem}>
-                                            <h1>{food.name}</h1>
-                                            <img src={food.img} alt={food.name}></img>
-                                        </div>
-                                    </Accordion.Title>
-                                    <Accordion.Content >
-                                        <form onSubmit={(event) => handleSubmit(event)} className="Form_review_acordion">
+                {
+                    user.baneado === true ?
+                        <div>
+                            <h1>Lamentamos el inconveniente, en este momento te ecuentras baneado ⛔</h1>
+                            <p>Para mas informacion, envia un mail a soporte</p>
+                        </div>
+                        :
+                        <Accordion>
+                            {
+                                order && order.items.map((food: any) => {
+                                    return (
+                                        <Accordion.Panel key={food._id}>
+                                            <Accordion.Title>
+                                                <div id="conteinerCard_order" key={food.naem}>
+                                                    <h1>{food.name}</h1>
+                                                    <img src={food.img} alt={food.name}></img>
+                                                </div>
+                                            </Accordion.Title>
+                                            <Accordion.Content >
+                                                <form onSubmit={(event) => handleSubmit(event)} className="Form_review_acordion">
 
-                                            <textarea id="comment"
-                                                value={input.comment}
-                                                name='comment'
-                                                placeholder="Breve comentario sobre tu pedido..."
-                                                rows={5} cols={50}
-                                                required
-                                                onClick={(e) => handleIdComida(e, food._id)}
-                                                onChange={(event) => handleInput(event)}
-                                            />
-                                            <label>Puntaje</label>
-                                            <input
-                                                type='number'
-                                                className="
+                                                    <textarea id="comment"
+                                                        value={input.comment}
+                                                        name='comment'
+                                                        placeholder="Breve comentario sobre tu pedido..."
+                                                        rows={5} cols={50}
+                                                        required
+                                                        onClick={(e) => handleIdComida(e, food._id)}
+                                                        onChange={(event) => handleInput(event)}
+                                                    />
+                                                    <label>Puntaje</label>
+                                                    <input
+                                                        type='number'
+                                                        className="
                                                         form-control
                                                         block
                                                         px-3
@@ -168,21 +175,23 @@ export default function DetailOrder({ order }: any) {
                                                         m-0
                                                         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
                                                       "
-                                                value={input.rating}
-                                                name='rating'
-                                                min={1} max={5}
-                                                required
-                                                onChange={(event) => handleInput(event)}
-                                            />
+                                                        value={input.rating}
+                                                        name='rating'
+                                                        min={1} max={5}
+                                                        required
+                                                        onChange={(event) => handleInput(event)}
+                                                    />
 
-                                            <Button id="submit" type="submit">Enviar calificacion</Button>
-                                        </form>
-                                    </Accordion.Content>
-                                </Accordion.Panel>
-                            )
-                        })
-                    }
-                </Accordion>
+                                                    <Button id="submit" type="submit">Enviar calificacion</Button>
+                                                </form>
+                                            </Accordion.Content>
+                                        </Accordion.Panel>
+                                    )
+                                })
+                            }
+                        </Accordion>
+                }
+
             </div>
         </div>
     )

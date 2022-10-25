@@ -23,8 +23,6 @@ export default function Orderlist() {
 
   let detalles = JSON.parse(JSON.stringify(detalles2))
 
-console.log(detalles)
-
   const handleConfirm = (e: any) => {
     const prepared = {
       prepared: true
