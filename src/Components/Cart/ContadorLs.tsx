@@ -75,10 +75,10 @@ export default function ContadorLs(render: any) {
                 </div>
             </div>
             <div id="caja">
-                <h2>Sub total : ${subTotal}</h2>
-                <h2>Propina : ${propina}</h2>
+                <h2 className="dark:text-gray-300">Sub total : ${subTotal}</h2>
+                <h2 className="dark:text-gray-300">Propina : ${propina}</h2>
                 <hr />
-                <h1>Total : ${total}</h1>
+                <h1 className="dark:text-gray-300">Total : ${total}</h1>
                 <Button id="pedido_ya" onClick={() => handleModal(true)}>
                     Hacer pedido ya !
                 </Button>

@@ -85,9 +85,9 @@ export default function DetailOrder({ order }: any) {
             <div className="conteiner_factura_detalles">
                 {
                     order && order ?
-                        <div className="details-order">
+                        <div className="dark:text-gray-300 details-order">
                             <h1> Detalles del pedido </h1>
-                            <div className="detail-price-conteiner">
+                            <div className="dark:text-gray-300 detail-price-conteiner">
                                 {
                                     order.items.map((item: any) => {
                                         return (

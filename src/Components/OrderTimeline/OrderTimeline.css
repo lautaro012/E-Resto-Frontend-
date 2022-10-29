@@ -35,7 +35,9 @@
     min-width: 25vw;
     overflow-x:hidden;
 }
-
+.details-order::-webkit-scrollbar {
+    display: none;
+}
 .detail-price-conteiner {
     display: flex;
     flex-direction: column;
@@ -45,6 +47,9 @@
     max-height: 370px;
     padding: 2% 2% 1% 2%;
     overflow-y: scroll;
+}
+.detail-price-conteiner::-webkit-scrollbar {
+    display: none;
 }
 
 .resumen-conteiner {

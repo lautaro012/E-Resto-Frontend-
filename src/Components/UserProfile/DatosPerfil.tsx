@@ -117,7 +117,7 @@ export default function DatosPerfil(data: any) {
             <form onSubmit={(event) => handleSubmit(event)} className="Form">
                 <div className="Label_user">
                     <h2 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">User</h2>
-                    <label>{userName}</label>
+                    <label className='dark:text-gray-300'>{userName}</label>
                     <button onClick={(event) => abrirForm(event, "user name")}>Editar</button>
                     {
                         form && form === "user name" ?
@@ -127,7 +127,7 @@ export default function DatosPerfil(data: any) {
                                     type='text'
                                     size={40}
                                     value={input.userName}
-                                    name='userName'
+                                    name='userName' 
                                     placeholder="User..."
                                     onChange={(event) => handleInput(event)}
                                 />
@@ -143,7 +143,7 @@ export default function DatosPerfil(data: any) {
                 <hr></hr>
                 <div className="Label_user">
                     <h2 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Nombre</h2>
-                    <label>{name}</label>
+                    <label className='dark:text-gray-300'>{name}</label>
                     <button onClick={(event) => abrirForm(event, "name")}>Editar</button>
                     {
                         form && form === "name" ?
@@ -171,7 +171,7 @@ export default function DatosPerfil(data: any) {
                 <hr></hr>
                 <div className="Label_user">
                     <h2 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Apellido</h2>
-                    <label>{lastName}</label>
+                    <label className='dark:text-gray-300'>{lastName}</label>
                     <button onClick={(event) => abrirForm(event, "last name")}>Editar</button>
                     {
                         form && form === "last name" ?
@@ -198,7 +198,7 @@ export default function DatosPerfil(data: any) {
                 <hr></hr>
                 <div className="Label_user">
                     <h2 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Direccion</h2>
-                    <label>{adress}</label>
+                    <label className='dark:text-gray-300'>{adress}</label>
                     <button onClick={(event) => abrirForm(event, "address")}>Editar</button>
                     {
                         form && form === "address" ?

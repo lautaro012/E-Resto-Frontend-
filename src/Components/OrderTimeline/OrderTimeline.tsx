@@ -29,7 +29,7 @@ export default function OrderTimeline({ onMap, idOrden }: any) {
                 detalles.length === 0 ?
                     <h1> CARGANDO .... </h1>
                     :
-                    <div className="orden-details-conteiner" data-aos="fade-left" data-aos-duration="500">
+                    <div className="dark:text-gray-300 orden-details-conteiner" data-aos="fade-left" data-aos-duration="500">
                         <div className="Timeline-conteiner">
                             {/* <ol className="relative border-l border-gray-200 dark:border-gray-700"> */}
                             <ol>
