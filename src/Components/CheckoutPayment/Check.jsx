@@ -10,6 +10,7 @@ import './Check.css'
 export default function Check({ precio, subtotal, propina }) {
 
   let publishableKey = 'pk_test_51Lde2sJXnqrwcfODCthYnMFMYtsNW20Kuj0SghahI4srLdSPl7UI8B4wjBxazORFMqYaT8YxUwy8JVyZLIUG0yTE00PIJe7i3N'
+
   const items = useAppSelector((state) => state.cart)
   const user = useAppSelector(state => state.user)
   const dispatch = useAppDispatch()
@@ -71,7 +72,7 @@ export default function Check({ precio, subtotal, propina }) {
         billingAddress
         shippingAddress
         amount={precio * 100}
-        description='Finaliza tu compra'
+        description='Usar 4242-4242-4242-4242'
         token={payNow}
       />
     </div>

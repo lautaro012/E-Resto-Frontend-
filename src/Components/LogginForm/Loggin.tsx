@@ -90,7 +90,6 @@ export default function Loggin({ openlog, showLoggin, setForgotPW, setOpenRegist
                         </div>
                         <br></br>
                         <div className="flex justify-between">
-
                             <button
                                 onClick={() => setForgotPW(true)}
                                 type="button"
@@ -137,6 +136,16 @@ export default function Loggin({ openlog, showLoggin, setForgotPW, setOpenRegist
                             >
                                 Crear cuenta
                             </button>
+                        </div>
+                        <br></br>
+                        <div className="loggin-conteiner">
+                            <span>User de prueba: user@user.com</span>
+                            <span>Password: user</span>
+                        </div>
+                        <br></br>
+                        <div className="loggin-conteiner">
+                            <span>Admin de prueba: admin@admin.com</span>
+                            <span>Password: admin</span>
                         </div>
                     </form>
                 </div>

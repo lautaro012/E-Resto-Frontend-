@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../config";
 import { getCategories } from "../../redux/actions";
 import { buttonclass, select } from "../../Style/Clases/Clases";
-import DetailProduct from "../DetailProduct/DetailProduct";
+import DetailProduct from "../DetailProduct/DetailProduct.jsx";
 import VideoHome from '../../Style/videos/video.mp4'
 import { Category, ProductDetail, Select, StateTypes } from "../../Interfaces/Interfaces";
 import ScrollToTop from "react-scroll-to-top";
@@ -50,6 +50,7 @@ export default function Pedidos() {
         render ? setRender(false) : setRender(true)
     }
 
+    console.log(categories.length)
 
     return (
         <>
@@ -102,9 +103,8 @@ export default function Pedidos() {
                                     ) : null
                                 })}
                             </ListGroup> 
-                        
-                        </div>
 
+                        </div>
                     </div>
                     <div className="productos-conteiner">
 
@@ -160,8 +160,6 @@ export default function Pedidos() {
                                 :
                                 null
                         }
-
-
                     </div>
                 </div>
             </div>
@@ -175,6 +173,7 @@ export default function Pedidos() {
                     null
             }
             <ScrollToTop className={buttonclass} id='top_button' smooth viewBox="0 0 24 24" svgPath="M5 15l7-7 7 7" />
+
         </>
     );
 }

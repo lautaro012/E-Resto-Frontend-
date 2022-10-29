@@ -19,7 +19,6 @@ const UserList = (render: any) => {
 
     const undoBanUser = (e: any) => {
         dispatch(changeNoBanUser(e.target.value))
-
     }
 
     useEffect(() => {

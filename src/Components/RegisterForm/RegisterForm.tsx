@@ -96,6 +96,7 @@ const { isLoaded } = useJsApiLoader({
         setLoading(true)
         if (input.password === input.repeatpassword) {
             dispatch(createUser(input, navigate));
+            closeRegister()
         }
         else {
             setPasswordError(true)
@@ -103,7 +104,6 @@ const { isLoaded } = useJsApiLoader({
         setTimeout(() => {
             setLoading(false)
         }, 2000)
-        closeRegister()
     }
 
     return (
