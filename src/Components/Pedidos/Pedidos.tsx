@@ -130,6 +130,8 @@ export default function Pedidos() {
                                         })}
                                     </ListGroup>
                                 </div>
+                            </div>
+                        </div>
                     </div>
                     <div className="productos-conteiner">
 
@@ -186,10 +188,8 @@ export default function Pedidos() {
                                 null
                         }
                     </div>
-                    :
-                    null
-            }
-
+                </div>
+            </div>
             {
                 showDetailModal ?
                     <DetailProduct
@@ -200,6 +200,7 @@ export default function Pedidos() {
                     null
             }
             <ScrollToTop className={buttonclass} id='top_button' smooth viewBox="0 0 24 24" svgPath="M5 15l7-7 7 7" />
+
         </>
     );
 }
