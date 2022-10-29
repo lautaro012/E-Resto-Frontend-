@@ -138,12 +138,12 @@ export default function Loggin({ openlog, showLoggin, setForgotPW, setOpenRegist
                             </button>
                         </div>
                         <br></br>
-                        <div className="loggin-conteiner">
+                        <div className="loggin-conteiner dark:text-gray-300">
                             <span>User de prueba: user@user.com</span>
                             <span>Password: user</span>
                         </div>
                         <br></br>
-                        <div className="loggin-conteiner">
+                        <div className="loggin-conteiner dark:text-gray-300">
                             <span>Admin de prueba: admin@admin.com</span>
                             <span>Password: admin</span>
                         </div>

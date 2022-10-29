@@ -46,9 +46,9 @@ export default function Orders({ handleRender }: any) {
                                 <div id='estado_order_coteiner'>
                                     {
                                         order.delivered === true ?
-                                            <span>🟢 Entregado</span>
+                                            <span className='dark:text-gray-300'>🟢 Entregado</span>
                                             :
-                                            <span>🔵 En proceso</span>
+                                            <span className='dark:text-gray-300'>🔵 En proceso</span>
                                     }
                                     {
                                         order.delivered === true ?
@@ -58,19 +58,19 @@ export default function Orders({ handleRender }: any) {
                                     }
                                 </div>
                                 <h3 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Fecha</h3>
-                                <p>{order.date.slice(0, 10)}</p>
+                                <p className='dark:text-gray-300'>{order.date.slice(0, 10)}</p>
                                 <hr />
                                 <h3 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Pago</h3>
-                                <p>{order.payment}</p>
+                                <p className='dark:text-gray-300'>{order.payment}</p>
                                 <hr />
                                 <h3 className="text-4l font-semibold tracking-tight text-gray-900 dark:text-white">Total</h3>
-                                <p>$ {order.total}</p>
+                                <p className='dark:text-gray-300'>$ {order.total}</p>
                             </div>
                         )
                     })
                     :
                     <div>
-                        <h3>No hiciste ninguna compra !</h3>
+                        <h3 className='dark:text-gray-300'>No hiciste ninguna compra !</h3>
                     </div>
             }
             <Modal
