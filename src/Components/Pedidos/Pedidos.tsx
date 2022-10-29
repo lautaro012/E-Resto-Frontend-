@@ -105,33 +105,6 @@ export default function Pedidos() {
                             </ListGroup> 
 
                         </div>
-                        <div className="categorias-productos">
-                            <div className="categorias-div">
-                                <div className="categorias-conteiner">
-                                    <ListGroup>
-                                        {categories?.map((cat: Category) => {
-                                            return cat.categoryProducts.length !== 0 ? (
-                                                <Link
-                                                    activeClass="active"
-                                                    to={cat.name}
-                                                    spy={true}
-                                                    smooth={true}
-                                                    key={cat.name}
-                                                    duration={2000}
-                                                    offset={-150}
-                                                >
-                                                    <ListGroup.Item key={cat.name}>
-                                                        {" "}
-                                                        <button id="buttonAsideConfig" className={buttonclass}>{cat.name}</button>
-                                                        {" "}
-                                                    </ListGroup.Item>
-                                                </Link>
-                                            ) : null;
-                                        })}
-                                    </ListGroup>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div className="productos-conteiner">
 
