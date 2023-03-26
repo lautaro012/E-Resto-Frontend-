@@ -12,7 +12,7 @@ const root = createRoot(container);
 
 
 
-axios.defaults.baseURL = process.env.REACT_APP_API || "https://e-resto-backend-lautaro.up.railway.app"
+axios.defaults.baseURL = process.env.REACT_APP_API || "https://e-resto-backend-lautaro.up.railway.app/"
 
 
 root.render(

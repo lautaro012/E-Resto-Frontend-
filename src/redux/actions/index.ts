@@ -103,6 +103,7 @@ export const getCategories = (sort: string) => {
     return function (dispatch: Dispatch<Action>) {
         axios('/category').then(resp => resp.data)
             .then(resp => {
+                console.log(process.env.REACT_APP_API, 'REACT APP API')
                 console.log("RESP", resp)
                 resp.map((cat: Category) => {
                     if (sort === 'AZ') {
