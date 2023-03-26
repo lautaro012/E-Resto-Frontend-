@@ -103,7 +103,7 @@ export const getCategories = (sort: string) => {
     return function (dispatch: Dispatch<Action>) {
         axios('/category').then(resp => resp.data)
             .then(resp => {
-                //console.log("RESP", resp)
+                console.log("RESP", resp)
                 resp.map((cat: Category) => {
                     if (sort === 'AZ') {
                         cat.categoryProducts.sort(function (a: ProductDetail, b: ProductDetail) {
