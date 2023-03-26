@@ -9,7 +9,7 @@ import './Check.css'
 
 export default function Check({ precio, subtotal, propina }) {
 
-  let publishableKey = 'pk_test_51Lde2sJXnqrwcfODCthYnMFMYtsNW20Kuj0SghahI4srLdSPl7UI8B4wjBxazORFMqYaT8YxUwy8JVyZLIUG0yTE00PIJe7i3N'
+  let publishableKey = 'pk_test_51Ldds4HbgOZq2CZh6iVPDEzvYoEaqUDMufxiYVYkrxKnRW6GrAqtvcrDRZGxKSLhgvSZa1jLYofQeNVIQYxZvY9W0003BM2l05'
 
   const items = useAppSelector((state) => state.cart)
   const user = useAppSelector(state => state.user)
@@ -54,7 +54,7 @@ export default function Check({ precio, subtotal, propina }) {
 
         dispatch(createOrder(payload));
         dispatch(deleteItemFromCart("All"));
-        dispatch(getUser(JSON.parse(token)));
+        // dispatch(getUser(JSON.parse(token)));
         swal({ title: ('COMPRA EXITOSA') })
         window.location.reload()
       }
