@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import './HomeBar.css'
-import Logo from '../../Style/images/Henry.png'
+import Logo from '../../Style/images/logo-resto.png'
 import { buttonclass } from '../../Style/Clases/Clases'
 import { useState } from "react";
 import { Modal } from 'flowbite-react';
@@ -51,7 +51,7 @@ export default function HomeBar({ el }: any) {
                     <ContactForm></ContactForm>
                 </ModalBody>
                 <ModalFooter>
-                    <a href="/">© 2022 Henry's Resto Project™</a>
+                    <a href="/">© 2022 Resto Project™</a>
                 </ModalFooter>
             </Modal>
             <Modal
@@ -68,7 +68,7 @@ export default function HomeBar({ el }: any) {
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                    <a href="/">© 2022 Henry's Resto Project™</a>
+                    <a href="/">© 2022 Resto Project™</a>
                 </ModalFooter>
             </Modal>
         </nav>

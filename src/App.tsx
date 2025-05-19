@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useAppDispatch } from '../src/config'
 import { actualizarCart } from './redux/actions';
-
 import Pedidos from '../src/Components/Pedidos/Pedidos'
 import Home from '../src/Components/Home/Home'
 import Footer from './Components/Footer/Footer';

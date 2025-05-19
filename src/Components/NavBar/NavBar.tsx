@@ -2,12 +2,11 @@ import "./NavBar.css";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import { buttonclass } from "../../Style/Clases/Clases";
-import Logo from "../../Style/images/Henry.png";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Loggin from "../LogginForm/Loggin";
 import { useAppDispatch, useAppSelector } from "../../config";
 import { getUser } from "../../redux/actions";
-import { Breadcrumb, Modal } from "flowbite-react";
+import {  Modal } from "flowbite-react";
 import Cart from "../Cart/Cart";
 import Panel from "./Panel";
 import { ModalHeader } from "flowbite-react/lib/esm/components/Modal/ModalHeader";
@@ -16,7 +15,7 @@ import { ModalFooter } from "flowbite-react/lib/esm/components/Modal/ModalFooter
 import SendMail from "../ForgotPass/SendMail";
 import Register from "../RegisterForm/RegisterForm";
 import ContactForm from "../ContactForm/ContactForm";
-import { InternalSymbolName } from "typescript";
+import Logo from "../../Style/images/logo-resto.png";
 
 export default function NavBar() {
   const dispatch = useAppDispatch();
@@ -73,7 +72,7 @@ export default function NavBar() {
     <nav className="bg-background duration-500 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900" id="navBar">
       <div className="container flex flex-wrap justify-evenly items-center mx-auto">
         <button onClick={handleHome} className="flex items-center">
-          <img id="logoNavBarImg" width={150} src={Logo} alt="LOGO"></img>
+          <img id="logoNavBarImg" width={80} src={Logo} alt="LOGO"></img>
         </button>
 
         {/* Modal carrito */}
@@ -101,13 +100,13 @@ export default function NavBar() {
           data-aos-duration="500"
         >
           <ModalHeader>
-            Recuperacion de contraseña en Henry's Resto Proyect
+            Recuperacion de contraseña en Resto Proyect
           </ModalHeader>
           <ModalBody>
             <SendMail></SendMail>
           </ModalBody>
           <ModalFooter>
-            <a href="/">© 2022 Henry's Resto Project™</a>
+            <a href="/">© 2022 Resto Project™</a>
           </ModalFooter>
         </Modal>
 
@@ -120,13 +119,13 @@ export default function NavBar() {
           data-aos-duration="500"
         >
           <ModalHeader>
-            Registro en Henry's Resto Proyect
+            Registro en Resto Proyect
           </ModalHeader>
           <ModalBody>
             <Register closeRegister={closeRegister}></Register>
           </ModalBody>
           <ModalFooter>
-            <a href="/">© 2022 Henry's Resto Project™</a>
+            <a href="/">© 2022 Resto Project™</a>
           </ModalFooter>
         </Modal>
 
@@ -144,7 +143,7 @@ export default function NavBar() {
             <ContactForm></ContactForm>
           </ModalBody>
           <ModalFooter>
-            <a href="/">© 2022 Henry's Resto Project™</a>
+            <a href="/">© 2022 Resto Project™</a>
           </ModalFooter>
         </Modal>
 

@@ -98,7 +98,7 @@ export default function ContadorLs(render: any) {
                         ></Check>
                     </Modal.Body>
                     <Modal.Footer>
-                        <a href="/">© 2022 Henry's Resto Project™</a>
+                        <a href="/">© 2022 Resto Project™</a>
                     </Modal.Footer>
                 </Modal>
             </div>

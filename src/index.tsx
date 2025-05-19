@@ -10,8 +10,6 @@ import axios from 'axios'
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
-
-
 axios.defaults.baseURL = "https://e-resto-backend.onrender.com/"
 
 

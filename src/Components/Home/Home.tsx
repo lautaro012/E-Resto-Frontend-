@@ -1,10 +1,8 @@
 import HomeBar from '../HomeBar/HomeBar'
 import './Home.css'
-import Logo from '../../Style/images/Henry_icon.png'
-//import { Footer } from "../Footer/Footer"
+import Logo from '../../Style/images/logo-resto.png'
 import Products from "../Products/Products"
 import { useRef } from "react"
-import { Modal } from 'flowbite-react'
 
 
 export default function Home() {
@@ -18,10 +16,18 @@ export default function Home() {
             <header>
                 <HomeBar el={el} home={home} />
             </header>
+            <div className="hero-text" data-aos="fade-up" data-aos-duration="2000">
+                <img id='logo_home' ref={home} src={Logo} alt='logo' />
+                <h1>Delightful Experience</h1>
+                <p>A taste of perfection in every dish – fine dining with a modern twist.</p>
+            </div>
+
+           {/* 
             <div className="logo-conteiner" data-aos="fade-up" data-aos-duration="3000">
                 <img id='logo_home' ref={home} width={400} src={Logo} alt='logo' />
                 <br />
             </div>
+            */}
 
             <Products />
 

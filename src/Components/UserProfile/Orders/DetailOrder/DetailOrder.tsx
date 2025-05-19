@@ -58,7 +58,7 @@ export default function DetailOrder({ order }: any) {
         let timerInterval: any
         Swal.fire({
             title: 'Calificacion exitosa',
-            html: `Enviando calificacion a Henry's Resto.`,
+            html: `Enviando calificacion a Resto project.`,
             timer: 2000,
             timerProgressBar: true,
             didOpen: () => {

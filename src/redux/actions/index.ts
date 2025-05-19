@@ -266,7 +266,7 @@ export const sendSubscribeMail = (mail: String) => {
                 .then(
                     res => axios.post(`/sendSubscribeMail/${mail}`)
                 ).then(res => res.data)
-                .then(res => swal({ title: `Gracias por suscribirte a Henry's Food` }))
+                .then(res => swal({ title: `Gracias por suscribirte a Resto Food` }))
                 .catch(err => swal({ title: `${err.response.data}` }))
 
         }

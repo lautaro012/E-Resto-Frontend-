@@ -57,7 +57,7 @@ export default function Pedidos() {
             <NavBar />
             <div className="Contenedor">
                 <div className="TOP">
-                    <h1>Henry's Resto Proyect</h1>
+                    <h1>Resto Proyect</h1>
                     <video autoPlay preload="auto" muted loop src={VideoHome}></video>
                 </div>
                 <button className="theme-toggle--button" aria-label="Toggle Theme" onClick={() => setDarkMode()}>

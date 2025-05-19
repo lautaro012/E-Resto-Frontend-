@@ -89,7 +89,7 @@ export default function Orders({ handleRender }: any) {
                     ></DetailOrder>
                 </ModalBody>
                 <ModalFooter>
-                    © 2022 Henry's Resto Project™
+                    © 2022 Resto Project™
                 </ModalFooter>
             </Modal>
         </div>
