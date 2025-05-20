@@ -53,7 +53,7 @@ export default function Loggin({ openlog, showLoggin, setForgotPW, setOpenRegist
     };
 
     return (
-        <Modal show={showLoggin} size="lg" popup={true} onClose={openlog} data-aos="zoom-in" data-aos-duration="100">
+        <Modal show={showLoggin} size="md" popup={true} onClose={openlog} data-aos="zoom-in" data-aos-duration="100">
             <Modal.Header />
             <Modal.Body>
                 <div className="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8">

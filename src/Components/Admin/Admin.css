@@ -1,9 +1,9 @@
 .divAdminContainer{
     display: flex;
-    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     background-color: #f9f6f4;
+    max-height: 650px;
 }
 
 #leftAdminContainer {

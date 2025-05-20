@@ -56,7 +56,7 @@ export default function Panel({ menuResponsive, setMenuResponsive }: any) {
             <button
                 onClick={handleUser}
                 type="button"
-                className="flex m-4 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                 id="user-menu-button"
                 aria-expanded="false"
                 data-dropdown-toggle="user-dropdown"
@@ -72,7 +72,7 @@ export default function Panel({ menuResponsive, setMenuResponsive }: any) {
                 className=" absolute top-20 z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                 id="user-dropdown"
             >
-                <div className="py-4 px-8">
+                <div className="py-3 px-4">
                     <span className="block text-sm text-gray-900 dark:text-white">
                         {user.name} {user.lastName}
                     </span>

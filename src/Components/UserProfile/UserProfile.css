@@ -1,8 +1,7 @@
 .Profile {
     display: flex;
     font-size: large;
-    max-height: 80vh;
-    min-height: 80vh;
+
 }
 
 .Profile hr {

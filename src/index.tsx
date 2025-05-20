@@ -10,8 +10,8 @@ import axios from 'axios'
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
-axios.defaults.baseURL = "https://e-resto-backend.onrender.com/"
-
+//axios.defaults.baseURL = "https://e-resto-backend.onrender.com/"
+axios.defaults.baseURL = "http://localhost:3000/"
 
 root.render(
   <React.StrictMode>

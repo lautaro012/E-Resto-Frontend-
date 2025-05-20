@@ -28,8 +28,9 @@ export default function Home() {
                 <br />
             </div>
             */}
-
+            {/*
             <Products />
+            */}
 
             <div ref={el}>
             </div>

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect } from 'react'
 import './Admin.css'
-
 import { useAppDispatch, useAppSelector } from '../../../config'
 import { changeBanUser, changeNoBanUser, changeUserAsAdmin, getAllUsers } from '../../../redux/actions'
 import { buttonclass, listUsuariosRegistrados, mailUsuarioRegistrado, nameUsuarioRegistrado, titleUsuariosRegistrados } from '../../../Style/Clases/Clases'
 
-const UserList = (render: any) => {
+function UserList(render: any) {
+
     let dispatch = useAppDispatch()
     const users = useAppSelector((state) => state.allUsers)
 
@@ -23,8 +23,11 @@ const UserList = (render: any) => {
 
     useEffect(() => {
         dispatch(getAllUsers())
-    }, [users])
-
+    }, [])
+    function effecto(){
+        console.log('effecto');
+        
+    }
 
     return (
         <div data-aos="fade-left" data-aos-duration="500">
